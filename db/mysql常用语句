@@ -76,7 +76,7 @@ select * from persons where id<10000010;
 select p.Id as 编号, p.LastName as 姓名, p.FirstName 名字 from persons as p where id<10000010;
 
 INSERT INTO 表名称 VALUES (值1, 值2,....)
-INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+INSERT INTO 表名称 (列1, 列2,...) VALUES (值1, 值2,....)
 insert into persons (LastName,FirstName,Birthday) values ('shen','shaohui','1982-06-26 10:10:10');
 insert into persons (LastName,FirstName,Birthday) values ('shen','yuchen','2011-03-28 07:36:00');
 insert into orders (OrderNo,Id_P,OrderDate) values (1,10000001,now());
@@ -124,7 +124,8 @@ C将步骤B格式化函数DATE_FORMAT的执行结果列重命名为afer_add_date
 select DATE_SUB(afer_add_date, INTERVAL 2 DAY) from (
 select DATE_ADD(format_date,INTERVAL 1 DAY) as afer_add_date from (
 select DATE_FORMAT(order_date,'%Y-%m-%e %H:%i:%s') as format_date from (select o.OrderDate as order_date from orders as o ) as order_date_table) as format_date_table) as afer_add_table; 
-
+函数的语法
+内建 SQL 函数的语法是：SELECT function(列名) FROM 表
 
 日期处理函数
 select DATE_FORMAT(now(),'%Y-%m-%e %H:%i:%s'); 
