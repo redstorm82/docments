@@ -127,6 +127,42 @@ select DATE_FORMAT(order_date,'%Y-%m-%e %H:%i:%s') as format_date from (select o
 函数的语法
 内建 SQL 函数的语法是：SELECT function(列名) FROM 表
 
+select 编号,姓名,名字,DATE_FORMAT(yers,"%Y-%m-%e") as 出生日期 from (select p.id as 编号, p.LastName as 姓名, p.FirstName as 名字 , p.Birthday as yers from persons as p limit 0,10) ps
+
+MySQL存储过程
+MySQL存储过程创建的格式：
+CREATE PROCEDURE 过程名 ([过程参数[,...]]) 
+[特性 ...] 过程体 
+
+eg： 
+DELIMITER // 
+CREATE PROCEDURE proc1(OUT s int) 
+BEGIN 
+SELECT COUNT(*) INTO s FROM persons; 
+END 
+// 
+DELIMITER ; 
+
+DELIMITER // 
+CREATE PROCEDURE proc_get_persons(OUT s ) 
+BEGIN 
+select p.id as 编号, p.LastName as 姓名, p.FirstName as 名字 , p.Birthday as yers from persons as p limit 0,10 as s
+END 
+// 
+DELIMITER ; 
+
+查看当前数据库存储过程
+show procedure status;
+show procedure status where db='数据库名'; 
+
+存储过程的删除  
+DROP PROCEDURE name
+drop PROCEDURE proc1
+
+存储过程的修改 
+ALTER PROCEDURE 
+
+
 日期处理函数
 select DATE_FORMAT(now(),'%Y-%m-%e %H:%i:%s'); 
 select DATE_FORMAT('1997-10-04 22:23:00','%Y-%m-%e %H:%i:%s'); 

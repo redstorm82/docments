@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>MySQL存储过程例子(包含事务，输出参数，嵌套调用)_Mysql_脚本之家</title>
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/24814.htm">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/24814.htm">
+<script type="text/javascript">
+if((navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)))
+{
+    location.replace("http://m.jb51.net/article/24814.htm");
+}
+</script>
+<meta name="keywords" content="MySQL,存储过程" />
+<meta name="description" content="MySQL存储过程例子，包含事务，输出参数，嵌套调用,学习mysql存储过程的朋友可以参考下。" />
+<link rel="stylesheet" href="http://img.jb51.net/skin/blue/global.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://img.jb51.net/skin/blue/content.css" type="text/css" media="all" />
+<link type="text/css" rel="stylesheet" href="/jslib/syntaxhighlighter/styles/shCore.css" />
+<link type="text/css" rel="Stylesheet" href="/jslib/syntaxhighlighter/styles/shThemeDefault.css" />
+<script type="text/javascript" src="http://img.jb51.net/js/function.js"></script>
+</head>
+<body>
+<DIV id=topnav>
+<div class="wrap">
+<DIV id=toptext>脚 本 之 家 www.jb51.net</DIV>
+<UL id=topnavlist>
+<script type="text/javascript" charset="gb2312">dy("top");</script>
+</UL>
+</div>
+</DIV>
+<div class="wrap">
+<div id="dxy_logo">
+<div id="logo_l"><a href="http://www.jb51.net" title="脚本之家" target="_blank"><img src="http://www.jb51.net/images/logo.gif" alt="脚本之家" /></a></div>
+<div id="logo_m"></div>
+<div id="logo_r"></div>
+</div><!--导航开始-->
+<div id="nav_top">
+<ul>
+<li class="current"><a href="http://www.jb51.net">首页</a></li>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li class="last"><a href="http://www.jb51.net/hack/">网络安全</a></li>
+</ul>
+</div><!--导航结束-->
+<div class=blank3></div>
+<div class="subnav">
+<ul><li><a href='/list/list_113_1.htm' title="MsSql">MsSql</a></li>
+<li><a href='/list/list_112_1.htm' title="Mysql">Mysql</a></li>
+<li><a href='/list/list_105_1.htm' title="Access">Access</a></li>
+<li><a href='/list/list_154_1.htm' title="oracle">oracle</a></li>
+<li><a href='/list/list_155_1.htm' title="DB2">DB2</a></li>
+<li><a href='/list/list_236_1.htm' title="mssql2008">mssql2008</a></li>
+<li><a href='/list/list_210_1.htm' title="mssql2005">mssql2005</a></li>
+<li><a href='/list/list_215_1.htm' title="SQLite">SQLite</a></li>
+<li><a href='/list/list_224_1.htm' title="PostgreSQL">PostgreSQL</a></li>
+<li><a href='/list/list_239_1.htm' title="MongoDB">MongoDB</a></li>
+<li><a href='/list/list_242_1.htm' title="Redis">Redis</a></li>
+<li><a href='/list/list_132_1.htm' title="数据库文摘">数据库文摘</a></li>
+<li><a href='/list/list_133_1.htm' title="数据库其它">数据库其它</a></li>
+</ul>
+</div>
+<div class=blank3></div>
+<DIV class="search">
+<UL><LI class=search-hot><SPAN>特色栏目：</SPAN>
+<A href="http://www.jb51.net/list/list_114_1.htm" target='_blank'>vbscript</A> 
+<A href="http://www.jb51.net/list/list_6_1.htm" target='_blank'>正则表达式</A> 
+<A href="http://www.jb51.net/list/list_3_1.htm" target='_blank'>javascript</A>
+<A href="http://www.jb51.net/list/list_106_1.htm" target='_blank'>批处理</A>
+<A href="http://s.jb51.net">服务器软件</A> 
+<A href="http://sc.jb51.net/?txt" target="_blank" style="color:red">素材下载</A> 
+</LI><LI class=search-box>
+<div class="sall">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="keyword_input">
+    <input type="submit" value="搜索" class="s_btn">
+</form></div>
+</LI></UL>
+</div>
+<div class=blank3></div>
+<DIV class="tonglanad">
+<script type="text/javascript">var tougao="mdxy-dxy";var lmname="Mysql";dy("bdtl");</script>
+</div>
+<div class=blank3></div>
+<div id="tonglan1"></div>
+<div class=blank3></div>
+<div class="dxy_main">
+<div class="dxy_main_l">
+<div id="art_con">
+<div id="daohang">页面导航：  <a href='/'>首页</a> → <a href="/list/index_104.htm" title="数据库">数据库</a> → <a href="/list/list_112_1.htm" title="Mysql">Mysql</a> → 正文内容 MySQL存储过程<div class="blank3"></div></div>
+<div class=blank3></div>
+<h1>MySQL存储过程例子(包含事务，输出参数，嵌套调用)</h1>
+<div id="art_info">
+作者：  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 类型：转载 
+</div><!--end art_info-->
+<div class=blank3></div>
+<div id="art_demo">MySQL存储过程例子，包含事务，输出参数，嵌套调用,学习mysql存储过程的朋友可以参考下。</div>
+<div class=blank3></div>
+<div id="con_all">
+<script type="text/javascript">dy("bcall");</script>
+</div>
+<div id="art_content">
+<!--NEWSZW_HZH_BEGIN-->
+drop procedure if exists pro_rep_shadow_rs; <BR>delimiter | <BR>---------------------------------- <BR>-- rep_shadow_rs <BR>-- 用来处理信息的增加，更新和删除 <BR>-- 每次只更新上次以来没有做过的数据 <BR>-- 根据不同的标志位 <BR>-- 需要一个输出的参数， <BR>-- 如果返回为0，则调用失败，事务回滚 <BR>-- 如果返回为1，调用成功，事务提交 <BR>-- <BR>-- 测试方法 <BR>-- call pro_rep_shadow_rs(@rtn); <BR>-- select @rtn; <BR>---------------------------------- <BR>create procedure pro_rep_shadow_rs(out rtn int) <BR>begin <BR>-- 声明变量，所有的声明必须在非声明的语句前面 <BR>declare iLast_rep_sync_id int default -1; <BR>declare iMax_rep_sync_id int default -1; <br><br>-- 如果出现异常，或自动处理并rollback,但不再通知调用方了 <BR>-- 如果希望应用获得异常，需要将下面这一句，以及启动事务和提交事务的语句全部去掉 <BR>declare exit handler for sqlexception rollback; <br><br>-- 查找上一次的 <BR>select eid into iLast_rep_sync_id from rep_de_proc_log where tbl='rep_shadow_rs'; <br><br>-- 如果不存在，则增加一行 <BR>if iLast_rep_sync_id=-1 then <BR>insert into rep_de_proc_log(rid,eid,tbl) values(0,0,'rep_shadow_rs'); <BR>set iLast_rep_sync_id = 0; <BR>end if; <br><br>-- 下一个数字 <BR>set iLast_rep_sync_id=iLast_rep_sync_id+1; <br><br>-- 设置默认的返回值为0：失败 <BR>set rtn=0; <br><br>-- 启动事务 <BR>start transaction; <br><br>-- 查找最大编号 <BR>select max(rep_sync_id) into iMax_rep_sync_id from rep_shadow_rs; <BR>-- 有新数据 <BR>if iMax_rep_sync_id&gt;=iLast_rep_sync_id then <BR>-- 调用 <BR>call pro_rep_shadow_rs_do(iLast_rep_sync_id,iMax_rep_sync_id); <BR>-- 更新日志 <BR>update rep_de_proc_log set rid=iLast_rep_sync_id,eid=iMax_rep_sync_id where tbl='rep_shadow_rs'; <BR>end if; <br><br>-- 运行没有异常，提交事务 <BR>commit; <BR>-- 设置返回值为1 <BR>set rtn=1; <BR>end; <br><br><BR>delimiter ; <BR>drop procedure if exists pro_rep_shadow_rs_do; <br><br>delimiter | <BR>--------------------------------- <BR>-- 处理指定编号范围内的数据 <BR>-- 需要输入2个参数 <BR>-- last_rep_sync_id 是编号的最小值 <BR>-- max_rep_sync_id 是编号的最大值 <BR>-- 无返回值 <BR>--------------------------------- <BR>create procedure pro_rep_shadow_rs_do(last_rep_sync_id int, max_rep_sync_id int) <BR>begin <BR>declare iRep_operationtype varchar(1); <BR>declare iRep_status varchar(1); <BR>declare iRep_Sync_id int; <BR>declare iId int; <br><br>-- 这个用于处理游标到达最后一行的情况 <BR>declare stop int default 0; <BR>-- 声明游标 <BR>declare cur cursor for select id,Rep_operationtype,iRep_status,rep_sync_id from rep_shadow_rs where rep_sync_id between last_rep_sync_id and max_rep_sync_id; <BR>-- 声明游标的异常处理，设置一个终止标记 <BR>declare CONTINUE HANDLER FOR SQLSTATE '02000' SET stop=1; <br><br>-- 打开游标 <BR>open cur; <br><br>-- 读取一行数据到变量 <BR>fetch cur into iId,iRep_operationtype,iRep_status,iRep_Sync_id; <BR>-- 这个就是判断是否游标已经到达了最后 <BR>while stop &lt;&gt; 1 do <BR>-- 各种判断 <BR>if iRep_operationtype='I' then <BR>insert into rs0811 (id,fnbm) select id,fnbm from rep_shadow_rs where rep_sync_id=iRep_sync_id; <BR>elseif iRep_operationtype='U' then <BR>begin <BR>if iRep_status='A' then <BR>insert into rs0811 (id,fnbm) select id,fnbm from rep_shadow_rs where rep_sync_id=iRep_sync_id; <BR>elseif iRep_status='B' then <BR>delete from rs0811 where id=iId; <BR>end if; <BR>end; <BR>elseif iRep_operationtype='D' then <BR>delete from rs0811 where id=iId; <BR>end if; <br><br>-- 读取下一行的数据 <BR>fetch cur into iId,iRep_operationtype,iRep_status,iRep_Sync_id; <br><br>end while; -- 循环结束 <BR>close cur; -- 关闭游标 <BR>end;
+<!--NEWSZW_HZH_END-->
+
+<div id="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="/article/53302.htm" title="MySQL 存储过程中执行动态SQL语句的方法" target="_blank">MySQL 存储过程中执行动态SQL语句的方法</a></li><li><a href="/article/51029.htm" title="MySql学习心得之存储过程" target="_blank">MySql学习心得之存储过程</a></li><li><a href="/article/39471.htm" title="mysql 导入导出数据库以及函数、存储过程的介绍" target="_blank">mysql 导入导出数据库以及函数、存储过程的介绍</a></li><li><a href="/article/32139.htm" title="mysql存储过程 游标 循环使用介绍" target="_blank">mysql存储过程 游标 循环使用介绍</a></li><li><a href="/article/30825.htm" title="mysql存储过程详解" target="_blank">mysql存储过程详解</a></li><li><a href="/article/27996.htm" title="MySQL动态创建表，数据分表的存储过程" target="_blank">MySQL动态创建表，数据分表的存储过程</a></li><li><a href="/article/27085.htm" title="mysql多次调用存储过程的问题" target="_blank">mysql多次调用存储过程的问题</a></li><li><a href="/article/23574.htm" title="mysql 存储过程中变量的定义与赋值操作" target="_blank">mysql 存储过程中变量的定义与赋值操作</a></li><li><a href="/article/19587.htm" title="MySQL 有输入输出参数的存储过程实例" target="_blank">MySQL 有输入输出参数的存储过程实例</a></li><li><a href="/article/15769.htm" title="MySQL5创建存储过程的示例" target="_blank">MySQL5创建存储过程的示例</a></li><li><a href="/article/7032.htm" title="mysql中存储过程、函数的一些问题" target="_blank">mysql中存储过程、函数的一些问题</a></li><li><a href="/article/53652.htm" title="Mysql存储过程学习笔记--建立简单的存储过程" target="_blank">Mysql存储过程学习笔记--建立简单的存储过程</a></li></ul>
+<div id="con_da2">
+<script type="text/javascript">dy("baidu580");</script>
+</div>
+</div>
+<div id="con_bo"></div>
+</div>
+<div class=blank3></div>
+<div id="shoucang">
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+        <a class="bds_qzone">QQ空间</a>
+        <a class="bds_tsina">新浪微博</a>
+        <a class="bds_tqq">腾讯微博</a>
+        <a class="bds_tsohu">搜狐微博</a>
+        <a class="bds_renren">人人网</a>
+        <a class="bds_kaixin001">开心网</a>
+        <a class="bds_baidu">百度搜藏</a>
+        <span class="bds_more">更多</span>
+		<a class="shareCount"></a>
+    </div>
+</div>
+<div class=blank3></div>
+<div class="tags">
+<strong>Tags：</strong><a href="http://img.jb51.net/tag/MySQL/1.htm" target="_blank" title="搜索关于MySQL的文章">MySQL</a> <a href="http://img.jb51.net/tag/%B4%E6%B4%A2%B9%FD%B3%CC/1.htm" target="_blank" title="搜索关于存储过程的文章">存储过程</a> 
+</div>
+<div class=blank3></div>
+<div class="con_ff">
+<A title=复制本文链接发给你QQ/MSN上的好友 href="javascript: copyUserHomeToClipBoard()" 
+rel=nofollow class=button_link>复制链接</A><a href="javascript:addBookmark(document.title,document.location.href)" class=button_link>收藏本文</a><a href="javascript:doPrint();" class="button_link">打印本文</a><a href="javascript:closeWindow()" class="button_link">关闭本文</a><a href='/index.htm' class=button_link>返回首页</a>
+</div>
+<div id="prenext">
+<div id='prv'>上一篇：<a href='/article/24813.htm' title='教会你完全搞定MySQL数据库 轻松八句话'>教会你完全搞定MySQL数据库 轻松八句话</a></div><div id='next'>下一篇：<a href='/article/63047.htm'>MySql insert插入操作的3个小技巧分享</a></div>
+</div>
+<div class=blank3></div>
+<DIV id=relatedarticle>
+<H2>相关文章</H2>
+<ul><li><span>2009-10-10</span><a href="/article/20262.htm" title="SQL 语句优化方法30例" target="_blank">SQL 语句优化方法30例</a></li><li><span>2013-06-06</span><a href="/article/38002.htm" title="关于mysql基础知识的介绍" target="_blank">关于mysql基础知识的介绍</a></li><li><span>2014-08-08</span><a href="/article/53426.htm" title="要慎用mysql的enum字段的原因" target="_blank">要慎用mysql的enum字段的原因</a></li><li><span>2011-09-09</span><a href="/article/28249.htm" title="SQLServer 2005 自动备份数据库的方法分享(附图解教程)" target="_blank">SQLServer 2005 自动备份数据库的方法分享(附图解教程)</a></li><li><span>2006-12-12</span><a href="/article/5472.htm" title="如何把ACCESS的数据导入到Mysql中" target="_blank">如何把ACCESS的数据导入到Mysql中</a></li><li><span>2013-05-05</span><a href="/article/36370.htm" title="Mysql查看版本号的五种方式介绍" target="_blank">Mysql查看版本号的五种方式介绍</a></li><li><span>2012-10-10</span><a href="/article/31584.htm" title="MYSQL删除匿名用户的方法(提高安全性)" target="_blank">MYSQL删除匿名用户的方法(提高安全性)</a></li><li><span>2013-06-06</span><a href="/article/39271.htm" title="Ubuntu Server下MySql数据库备份脚本代码" target="_blank">Ubuntu Server下MySql数据库备份脚本代码</a></li><li><span>2013-06-06</span><a href="/article/38290.htm" title="如何在SQL Server中实现 Limit m,n 的功能" target="_blank">如何在SQL Server中实现 Limit m,n 的功能</a></li><li><span>2009-06-06</span><a href="/article/18457.htm" title="mysql 控制台操作" target="_blank">mysql 控制台操作</a></li></ul>
+<DIV class=clear></DIV></DIV>
+<div class="sm"><script type="text/javascript" charset="gb2312">dy("bdtxt");</script></div>
+<DIV id=comments>
+<H2>文章评论</H2>
+<div id="commentList">
+<div class="ds-thread" data-category="" data-thread-key="art_24814" data-title="MySQL存储过程例子(包含事务，输出参数，嵌套调用)" data-author-key="" data-url="http://www.jb51.net/article/24814.htm"></div>
+</div>
+</div>
+<div class=blank3></div>
+<div class="sm"><script type="text/javascript" charset="gb2312">dy("sm");</script></div>
+<div class=blank3></div>
+<div id="hm_t_3717"></div>
+<div class=blank3></div>
+</div>
+</div><!--end dxy_mainl-->
+<div class="dxy_main_r">
+<div class="rbg" id="art_1"><script type="text/javascript">dy("r1");</script></div>
+<div class=blank3></div>
+<DIV class="r_title"><H6>最 近 更 新</H6></div>
+<div class="rightContent">
+<ul><li><a href="/article/25640.htm" title="win2003服务器下配置 MySQL 群集(Cluster)的方法" target="_blank">win2003服务器下配置 MySQL 群集(Cluster</a></li><li><a href="/article/18959.htm" title="linux mysql 找回密码" target="_blank">linux mysql 找回密码</a></li><li><a href="/article/23344.htm" title="MYSQL数据库中的现有表增加新字段（列）" target="_blank">MYSQL数据库中的现有表增加新字段（列）</a></li><li><a href="/article/31073.htm" title="mysql中合并两个字段的方法分享" target="_blank">mysql中合并两个字段的方法分享</a></li><li><a href="/article/29124.htm" title="mysql中取系统当前时间，当前日期方便查询判定的代码" target="_blank">mysql中取系统当前时间，当前日期方便查询</a></li><li><a href="/article/33813.htm" title="配置mysql允许远程连接的方法" target="_blank">配置mysql允许远程连接的方法</a></li><li><a href="/article/62505.htm" title="开源MySQL高效数据仓库解决方案：Infobright详细介绍" target="_blank">开源MySQL高效数据仓库解决方案：Infobri</a></li><li><a href="/article/46398.htm" title="mysql通过查看跟踪日志跟踪执行的sql语句" target="_blank">mysql通过查看跟踪日志跟踪执行的sql语句</a></li><li><a href="/article/32648.htm" title="Mysql跨表更新 多表update sql语句总结" target="_blank">Mysql跨表更新 多表update sql语句总结</a></li><li><a href="/article/27240.htm" title="Mysql 主从数据库同步(centos篇)" target="_blank">Mysql 主从数据库同步(centos篇)</a></li></ul>
+</div>
+<div class=blank3></div>
+<div id="art_2"><script type="text/javascript">dy("r2");</script></div>
+<div class=blank3></div>
+<DIV class="r_title"><H6>热 点 排 行</H6></div>
+<div class="hotContent">
+<ul class="toplist"><li class="light"><SPAN class=r_num>1</SPAN><a href="/article/23876.htm" title="mysql安装图解 mysql图文安装教程(详细说明)" target="_blank">mysql安装图解 mysql图文安装教程</a></li><li class="light"><SPAN class=r_num>2</SPAN><a href="/article/26505.htm" title="Can''t connect to MySQL server on localhost (10061)解决方法" target="_blank">Can''t connect to MySQL server</a></li><li class="light"><SPAN class=r_num>3</SPAN><a href="/article/15386.htm" title="超详细mysql left join,right join,inner join用法分析" target="_blank">超详细mysql left join,right jo</a></li><li><SPAN class=r_num>4</SPAN><a href="/article/22734.htm" title="Mysql命令行导入sql数据" target="_blank">Mysql命令行导入sql数据</a></li><li><SPAN class=r_num>5</SPAN><a href="/article/27458.htm" title="Mysql字符串截取函数SUBSTRING的用法说明" target="_blank">Mysql字符串截取函数SUBSTRING的</a></li><li><SPAN class=r_num>6</SPAN><a href="/article/25686.htm" title="MySQL数据库备份与恢复方法" target="_blank">MySQL数据库备份与恢复方法</a></li><li><SPAN class=r_num>7</SPAN><a href="/article/25257.htm" title="MYSQL 数据库导入导出命令" target="_blank">MYSQL 数据库导入导出命令</a></li><li><SPAN class=r_num>8</SPAN><a href="/article/23966.htm" title="MySQL日期数据类型、时间类型使用总结" target="_blank">MySQL日期数据类型、时间类型使用</a></li><li><SPAN class=r_num>9</SPAN><a href="/article/23781.htm" title="MySQL server has gone away 问题的解决方法" target="_blank">MySQL server has gone away 问题</a></li><li><SPAN class=r_num>10</SPAN><a href="/article/21984.htm" title="windows下mysql忘记root密码的解决方法" target="_blank">windows下mysql忘记root密码的解</a></li></ul>
+</div>
+<div class=blank3></div>
+<div id="art_3"><script type="text/javascript">dy("r3");</script></div>
+<div class=blank3></div>
+<div id="baidu300"><script type="text/javascript">dy("baidu300_2");</script></div>
+</DIV><!--end mainr-->
+<div class=clear></div>
+</div><!--end main2-->
+</div>
+<div class="blank3"></div>
+
+<div id="footer">
+  <div id="footerinfo">
+   <div id="footercontent"><a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - <a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - <a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  <a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  <a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - <a href="tencent://message/?uin=461478385&Site=http://www.jb51.net" target="_blank">投诉建议</a> - <a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a></div>
+    <div id="footercopyrights">CopyRight &copy; 2006-2015 <a href="http://www.jb51.net">脚本之家</a> JB51.Net , All Rights Reserved</div>
+  </div>
+  <DIV class=ewm><IMG alt="脚本之家官方微信" src="http://img.jb51.net/images/weixin_jb51.gif"></DIV>
+</div>
+<!-- Baidu Button BEGIN -->
+<div id="logo_m_tp"><script type="text/javascript">dy("logo_m");</script></div>
+<div id="logo_r_tp"><script type="text/javascript">dy("logo_r");</script></div>
+<div id="tonglan1_tp"><script type="text/javascript">dy("tonglan1");</script></div>
+<script type="text/javascript" src="http://img.jb51.net/jslib/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://img.jb51.net/js/foot.js"></script>
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shAutoloader.js"></script>
+<script type="text/javascript"> 
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+</script>
+<div class="tongji"><script type="text/javascript" src="http://img.jb51.net/inc/tongji.js"></script></div>
+<script type="text/javascript" src="http://www.jb51.net/pl.asp?id=24814"></script>
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=50347" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<!-- Baidu Button END -->
+<!-- Duoshuo Comment BEGIN -->
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+var duoshuoQuery = {short_name:"jb51"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</body>
+</html>
+<!-- published at 2015-4-1 16:32:53By dxycms qq:461478385  -->

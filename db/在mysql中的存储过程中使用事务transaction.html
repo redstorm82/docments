@@ -1,0 +1,674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在mysql中的存储过程中使用事务transaction_Sean_新浪博客</title>
+<meta name="keywords" content="在mysql中的存储过程中使用事务transaction_Sean_新浪博客,Sean,mysql,数据库,存储过程,事务,transaction,it" />
+<meta name="description" content="在mysql中的存储过程中使用事务transaction_Sean_新浪博客,Sean," />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://blog.sina.cn/dpool/blog/s/blog_6dd65c6f0100t3u5.html?vt=4">
+<meta http-equiv="mobile-agent" content="format=wml; url=http://blog.sina.cn/dpool/blog/ArtRead.php?nid=6dd65c6f0100t3u5&vt=1">
+<!–[if lte IE 6]>
+<script type="text/javascript">
+try{
+document.execCommand("BackgroundImageCache", false, true);
+}catch(e){}
+</script>
+<![endif]–>
+<script type="text/javascript">
+window.staticTime=new Date().getTime();
+</script>
+<link rel="pingback" href="http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php?rsd" />
+<link href="http://blog.sina.com.cn/blog_rebuild/blog/wlwmanifest.xml" type="application/wlwmanifest+xml" rel="wlwmanifest" />
+<link rel="alternate" type="application/rss+xml" href="http://blog.sina.com.cn/rss/1842764911.xml" title="RSS" />
+<link href="http://simg.sinajs.cn/blog7style/css/conf/blog/article.css" type="text/css" rel="stylesheet" /><link href="http://simg.sinajs.cn/blog7style/css/common/common.css" type="text/css" rel="stylesheet" /><link href="http://simg.sinajs.cn/blog7style/css/blog/blog.css" type="text/css" rel="stylesheet" /><link href="http://simg.sinajs.cn/blog7style/css/module/common/blog.css" type="text/css" rel="stylesheet" /><style id="tplstyle" type="text/css">@charset "utf-8";@import url("http://simg.sinajs.cn/blog7newtpl/css/4/4_9/t.css");
+</style>
+<style id="positionstyle"  type="text/css">
+.sinabloghead .blogtoparea{ left:102px;top:70.8333px;}
+.sinabloghead .blognav{ left:90px;top:139.15px;}
+</style>
+<style id="bgtyle"  type="text/css">
+</style>
+<style id="headtyle"  type="text/css">
+</style>
+<style id="navtyle"  type="text/css">
+</style>
+<script type="text/javascript" src="http://d1.sina.com.cn/litong/zhitou/sspnew.js"></script></head>
+<body>
+<!--$sinatopbar-->
+<div style="z-index:512;" class="nsinatopbar">
+  <div style="position:absolute;left:0;top:0;" id="trayFlashConnetion"></div>
+  <div class="ntopbar_main"> 
+    <a id="login_bar_logo_link_350" href="http://blog.sina.com.cn" target="_blank"><img class="ntopbar_logo" src="http://simg.sinajs.cn/blog7style/images/common/topbar/topbar_logo.gif" width="100" alt="新浪博客"></a>
+    <div class="ntopbar_floatL">
+      <div class="ntopbar_search" id="traySearchBar"></div>
+	  <div class="ntopbar_ad" id="loginBarActivity" style="display:none;"></div>
+    </div>
+    <div class="ntopbar_loading"><img src="http://simg.sinajs.cn/blog7style/images/common/loading.gif">加载中…</div>
+  </div>
+</div>
+<!--$end sinatopbar-->
+
+<div class="sinabloga" id="sinabloga">
+	<div id="sinablogb" class="sinablogb">
+
+	   
+ <div id="sinablogHead" class="sinabloghead">
+     <div style="display: none;" id="headflash" class="headflash"></div>
+	   <div id="headarea" class="headarea">
+      <div id="blogTitle" class="blogtoparea">
+      <h1 id="blogname" class="blogtitle"><a href="http://blog.sina.com.cn/zlianxiang"><span id="blognamespan">加载中...</span></a></h1>
+	  		
+					<div id="bloglink" class="bloglink"><a href="http://blog.sina.com.cn/zlianxiang">http://blog.sina.com.cn/zlianxiang</a>  <a onclick="return false;" class="CP_a_fuc" href="#" id="SubscribeNewRss">[<cite>订阅</cite>]</a><a class="CP_a_fuc" href="javascript:void(scope.pa_add.add('1842764911'));">[<cite>手机订阅</cite>]</a></div>
+      </div>
+      <div class="blognav" id="blognav">
+      			  <div id="blognavBg" class="blognavBg"></div> <div class="blognavInfo"> 
+		<span><a   href="http://blog.sina.com.cn/zlianxiang">首页</a></span>
+      <span><a class="on" href="http://blog.sina.com.cn/s/articlelist_1842764911_0_1.html">博文目录</a></span>
+      <span><a href="http://photo.blog.sina.com.cn/zlianxiang">图片</a></span>
+      <span class="last"><a  href="http://blog.sina.com.cn/s/profile_1842764911.html">关于我</a></span></div>
+      </div>      		      		 	
+      
+             <div class="autoskin" id="auto_skin">
+       </div>
+
+<div class="adsarea">
+     <a href="#"><div id="template_clone_pic" class="pic"></div></a>
+     <div id="template_clone_link" class="link wdc_HInf"></div>
+     <div id="template_clone_other" class="other"></div>        
+</div>
+    </div>
+    </div>
+    
+    <!--主题内容开始 -->
+    <div class="sinablogbody" id="sinablogbody">
+		
+	<!--第一列start-->
+    <div id="column_1" class="SG_colW21 SG_colFirst"><div class="SG_conn" id="module_901">
+    <div class="SG_connHead">
+            <span class="title" comp_title="个人资料">个人资料</span>
+            <span class="edit">
+                        </span>
+    </div>
+    <div class="SG_connBody">
+        <div class="info">
+                         
+            <div class="info_img" id="comp_901_head"><img src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" real_src ="http://p8.sinaimg.cn/1842764911/180/11441324358829" id="comp_901_head_image" width="180" height="180" alt="Sean" title="Sean" /></div>
+            
+            <div class="info_txt">
+              <div class="info_nm">
+                <img id="comp_901_online_icon" style="display:none;" class="SG_icon SG_icon1" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" width="15" height="15" align="absmiddle" />
+                <span class="SG_txtb"><strong id="ownernick">Sean                                </strong></span>
+                
+                <div class="clearit"></div>
+              </div>
+              <div class="info_btn1">
+                <a target="_blank" href="http://weibo.com/u/1842764911?source=blog" class="SG_aBtn SG_aBtn_ico"><cite><img class="SG_icon SG_icon51" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" width="15" height="15" align="absmiddle" />微博</cite></a>
+                <div class="clearit"></div>
+              </div>
+    <div class="SG_j_linedot"></div>        <div class="info_locate" id = "info_locate_id">
+<div class="SG_j_linedot"></div>
+<div class="info_btn2">
+    <p>
+    <a href="javascript:void(0);" class="SG_aBtn " id="comp901_btn_invite"><cite >加好友</cite></a>
+    <a href="javascript:void(0);" class="SG_aBtn" id="comp901_btn_sendpaper"><cite >发纸条</cite></a>
+    </p>
+    <p>
+    <a href="http://blog.sina.com.cn/s/profile_1842764911.html#write" class="SG_aBtn"   id="comp901_btn_msninfo"><cite>写留言</cite></a>
+    <a href="#" onclick="return false;" class="SG_aBtn"  id="comp901_btn_follow"><cite onclick="Module.SeeState.add()">加关注</cite></a>
+    </p>
+    <div class="clearit"></div>
+</div>
+<div class="SG_j_linedot"></div>
+</div>
+                  <div class="info_list">     
+                                   <ul class="info_list1">
+                    <li><span class="SG_txtc">博客等级：</span><span id="comp_901_grade"><img src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" real_src="http://simg.sinajs.cn/blog7style/images/common/number/1.gif"  /><img src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" real_src="http://simg.sinajs.cn/blog7style/images/common/number/5.gif"  /></span></li>
+                    <li><span class="SG_txtc">博客积分：</span><span id="comp_901_score"><strong>0</strong></span></li>
+                    </ul>
+                    <ul class="info_list2">
+                    <li><span class="SG_txtc">博客访问：</span><span id="comp_901_pv"><strong>73,515</strong></span></li>
+                    <li><span class="SG_txtc">关注人气：</span><span id="comp_901_attention"><strong>22</strong></span></li>
+                    <li><span class="SG_txtc">获赠金笔：</span><strong id="comp_901_d_goldpen">0支</strong></li>
+                    <li><span class="SG_txtc">赠出金笔：</span><strong id="comp_901_r_goldpen">0支</strong></li>
+					<li class="lisp" id="comp_901_badge"><span class="SG_txtc">荣誉徽章：</span></li>
+                    </ul>
+                  </div>
+<div class="clearit"></div>
+    </div>
+    <div class="clearit"></div>
+</div>
+            </div>       
+            <div class="SG_connFoot"></div>
+</div>
+<div id="module_903" class="SG_conn ">
+    <div class="SG_connHead">
+    <span comp_title="相关博文" class="title">相关博文</span>
+    <span class="edit"> </span>
+    </div>
+    <div class="SG_connBody">
+    <div class="atcTitList relaList">        <ul class="">
+
+                <li class="SG_j_linedot1" style="display:none;">
+            <p id="atcTitLi_SLOT_41" class="atcTitCell_tit SG_dot" style="display:none">
+        </p>
+        </li>
+        <li class="SG_j_linedot1" style="display:none;">
+            <p id="atcTitLi_SLOT_42"  class="atcTitCell_tit SG_dot" style="display:none">
+        </p>
+        </li>
+        
+                	</ul>
+    <div class="atcTit_more"><span class="SG_more"><a href="http://blog.sina.com.cn/" target="_blank">更多&gt;&gt;</a></span></div></div>    </div>
+    <div class="SG_connFoot"></div>
+  </div>
+<div class="SG_conn " id="module_904">
+<div class="SG_connHead">
+<span class="title">推荐博文</span>
+</div>
+<div class="SG_connBody ">
+	<div class="atcTitList relaList">		<ul class="">
+			<li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="日本新干线安全神话崩溃后的困局" target="_blank" href="http://blog.sina.com.cn/s/blog_6011cb260102vm1v.html?tj=2?tj=2">日本新干线安全神话崩溃后的困局</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1611778854" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="9岁男孩钓到500斤巨大白鲟后" target="_blank" href="http://blog.sina.com.cn/s/blog_69f845650102waoj.html?tj=2?tj=2">9岁男孩钓到500斤巨大白鲟后</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1777878373" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="【实拍】加拿大：享誉世界的布查" target="_blank" href="http://blog.sina.com.cn/s/blog_568d60fd0102vml3.html?tj=2?tj=2">【实拍】加拿大：享誉世界的布查</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1452105981" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="看老外另类防盗车新招(图)" target="_blank" href="http://blog.sina.com.cn/s/blog_69f845650102waoi.html?tj=2?tj=2">看老外另类防盗车新招(图)</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1777878373" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="“土豪”的玩具：带你看看造型各" target="_blank" href="http://blog.sina.com.cn/s/blog_73f3af200102vpn7.html?tj=2?tj=2">“土豪”的玩具：带你看看造型各</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1945349920" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="美国11岁女孩用弓弩拔牙震惊网" target="_blank" href="http://blog.sina.com.cn/s/blog_73f3af200102vpn8.html?tj=2?tj=2">美国11岁女孩用弓弩拔牙震惊网</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1945349920" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="中国土生土长的48项世界遗产(" target="_blank" href="http://blog.sina.com.cn/s/blog_69f845650102walf.html?tj=2?tj=2">中国土生土长的48项世界遗产(</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1777878373" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="惊诧！美少年耳中“暗藏”10厘" target="_blank" href="http://blog.sina.com.cn/s/blog_73f3af200102vple.html?tj=2?tj=2">惊诧！美少年耳中“暗藏”10厘</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1945349920" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="十个关于食物的谣言你曾深信几个" target="_blank" href="http://blog.sina.com.cn/s/blog_69f845650102walc.html?tj=2?tj=2">十个关于食物的谣言你曾深信几个</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1777878373" class="SG_linkb"></a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" title="说说手机预装软件那些事" target="_blank" href="http://blog.sina.com.cn/s/blog_5854ac960102volr.html?tj=2?tj=2">说说手机预装软件那些事</a></p>
+        <p class="atcTitCell_nm"><a suda-uatrack="key=blog_tjblog&value=h_tjblog" target="_blank" href="http://blog.sina.com.cn/u/1481944214" class="SG_linkb"></a></p>
+		</li>		</ul>
+		<div id="atcPicList">
+		</div>
+	<div class="atcTit_more"><span class="SG_more"><a target="_blank" href="http://blog.sina.com.cn/">查看更多</a>&gt;&gt;</span></div></div></div>
+<div class="SG_connFoot"></div>
+</div>
+        <div class="SG_conn" id="module_47"><div class="SG_connHead">
+                <span class="title" comp_title="谁看过这篇博文">谁看过这篇博文</span>
+                                <span class="edit"></span>
+            </div>
+            <div class="SG_connBody">
+            	<div class="wdtLoading"><img src="http://simg.sinajs.cn/blog7style/images/common/loading.gif" />加载中…</div>            </div>
+            <div class="SG_connFoot"></div>
+                  </div></div>
+	<!--第一列end-->
+	
+	<!--第二列start-->
+	<div id="column_2" class="SG_colW73">	
+<div id="module_920" class="SG_conn">
+	<div class="SG_connHead">
+	    <span comp_title="正文" class="title">正文</span>
+	    <span class="edit"><span id="articleFontManage" class="fontSize">字体大小：<a href="javascript:;" onclick="changeFontSize(2);return false;">大</a> <strong>中</strong> <a href="javascript:;" onclick="changeFontSize(0);return false;">小</a></span></span>
+	</div>
+    <div class="SG_connBody">
+<!--博文正文 begin -->
+	<div id="articlebody" class="artical" favMD5='{"6dd65c6f0100t3u5":"b4a035f9c354f4ed99db7e63f4bf73b5"}'>
+		<div class="articalTitle"> 
+			
+								<h2 id="t_6dd65c6f0100t3u5" class="titName SG_txta">在mysql中的存储过程中使用事务transaction</h2>
+			
+					<span class="time SG_txtc">(2011-06-27 14:27:50)</span><div class="turnBoxzz"><a href="javascript:;" class="SG_aBtn SG_aBtn_ico SG_turn"  action-type="reblog" action-data="{srcBlog:1, blogId:'6dd65c6f0100t3u5'}"><cite><img class="SG_icon SG_icon111" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" width="15" height="15" align="absmiddle">转载<em class="arrow">▼</em></cite></a></div>		</div>
+		<div class="articalTag" id="sina_keyword_ad_area">
+			<table>
+				<tr>
+					<td class="blog_tag">
+					<script>
+					var $tag='mysql,数据库,存储过程,事务,transaction,it';
+					var $tag_code='096a261fe7032b60610605c40b9908ce';
+					var $r_quote_bligid='6dd65c6f0100t3u5';
+					var $worldcup='0';
+					var $worldcupball='0';
+					</script>
+											<span class="SG_txtb">标签：</span>
+																				<h3><a href="http://search.sina.com.cn/?c=blog&q=mysql&by=tag" target="_blank">mysql</a></h3>
+																				<h3><a href="http://search.sina.com.cn/?c=blog&q=%CA%FD%BE%DD%BF%E2&by=tag" target="_blank">数据库</a></h3>
+																				<h3><a href="http://search.sina.com.cn/?c=blog&q=%B4%E6%B4%A2%B9%FD%B3%CC&by=tag" target="_blank">存储过程</a></h3>
+																				<h3><a href="http://search.sina.com.cn/?c=blog&q=%CA%C2%CE%F1&by=tag" target="_blank">事务</a></h3>
+																				<h3><a href="http://search.sina.com.cn/?c=blog&q=transaction&by=tag" target="_blank">transaction</a></h3>
+																				<h3><a href="http://search.sina.com.cn/?c=blog&q=it&by=tag" target="_blank">it</a></h3>
+																</td>
+					<td class="blog_class">
+											<span class="SG_txtb">分类：</span>
+						<a target="_blank" href="http://blog.sina.com.cn/s/articlelist_1842764911_4_1.html">DataBase</a>
+										</td>
+				</tr>
+			</table>
+		</div>
+						<!-- 正文开始 -->
+		<div id="sina_keyword_ad_area2" class="articalContent   ">
+			一.<br />
+在处理事务时，使用SQLException捕获SQL错误，然后处理；
+按照这个推论，我们必须在MySQL存储过程中捕获SQL错误，最后判断是回滚(ROLLBACK)还是提交(COMMIT)。
+所以存储过程为：
+<div>
+<ol START="1">
+<li>
+<span><span>DELIMITER&nbsp;<wbr>$$&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span><span>DROP</SPAN><span>&nbsp;<wbr></SPAN><span>PROCEDURE</SPAN><span>&nbsp;<wbr>IF&nbsp;<wbr>EXISTS&nbsp;<wbr>&nbsp;<wbr>test_sp1&nbsp;<wbr>$$&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span><span>CREATE</SPAN><span>&nbsp;<wbr></SPAN><span>PROCEDURE</SPAN><span>&nbsp;<wbr>test_sp1(&nbsp;<wbr>)&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span>BEGIN</SPAN><span>&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span STYLE="font-weight: bold;">DECLARE</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr>t_error&nbsp;<wbr></SPAN><span STYLE="font-weight: bold;">INTEGER</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr></SPAN><span STYLE="font-weight: bold;">DEFAULT</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr>0;&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span STYLE="font-weight: bold;">DECLARE</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr></SPAN><span STYLE="font-weight: bold;">CONTINUE</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr>HANDLER&nbsp;<wbr></SPAN><span STYLE="font-weight: bold;">FOR</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr>SQLEXCEPTION&nbsp;<wbr></SPAN><span STYLE="font-weight: bold;">SET</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr>t_error=1;&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li><span>&nbsp;<wbr>&nbsp;<wbr></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span STYLE="font-weight: bold;">&nbsp;<wbr>START&nbsp;<wbr></SPAN><span STYLE="font-weight: bold;">TRANSACTION</SPAN><span><span STYLE="font-weight: bold;">;</SPAN>&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span>INSERT</SPAN><span>&nbsp;<wbr></SPAN><span>INTO</SPAN><span>&nbsp;<wbr>test&nbsp;<wbr></SPAN><span>VALUES</SPAN><span>(</SPAN><span>NULL</SPAN><span>,&nbsp;<wbr></SPAN><span>'test&nbsp;<wbr>sql&nbsp;<wbr>001'</SPAN><span>);&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span>INSERT</SPAN><span>&nbsp;<wbr></SPAN><span>INTO</SPAN><span>&nbsp;<wbr>test&nbsp;<wbr></SPAN><span>VALUES</SPAN><span>(</SPAN><span>'1'</SPAN><span>,&nbsp;<wbr></SPAN><span>'test&nbsp;<wbr>sql&nbsp;<wbr>002'</SPAN><span>);&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li><span>&nbsp;<wbr>&nbsp;<wbr></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+<span STYLE="font-weight: bold;">IF&nbsp;<wbr>t_error&nbsp;<wbr>=&nbsp;<wbr>1&nbsp;<wbr></SPAN><span STYLE="font-weight: bold;">THEN</SPAN><span><span STYLE="font-weight: bold;">&nbsp;<wbr></SPAN>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span STYLE="font-weight: bold;">ROLLBACK</SPAN><span STYLE="font-weight: bold;">;&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span STYLE="font-weight: bold;">ELSE</SPAN><span><span STYLE="font-weight: bold;">&nbsp;<wbr></SPAN>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span STYLE="font-weight: bold;">COMMIT</SPAN><span STYLE="font-weight: bold;">;&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span STYLE="font-weight: bold;">END</SPAN><span STYLE="font-weight: bold;">&nbsp;<wbr>IF;&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li><span>&nbsp;<wbr>&nbsp;<wbr></SPAN></LI>
+<li>
+<span>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><span>END</SPAN><span>$$&nbsp;<wbr>&nbsp;<wbr></SPAN></SPAN></LI>
+<li>
+<span>DELIMITER&nbsp;<wbr>;&nbsp;<wbr>&nbsp;<wbr></SPAN></LI>
+</OL>
+</DIV>
+<p>在这个例子中，我们为test_sp1() 定义了一个 SQLEXCEPTION 参数 t_error，
+在遇到SQL错误时，继续执行(CONTINUE); 如果执行状态没有错误，则提交，反之回滚！</P>
+<p><br /></P>
+<p>二.在调用事务时，将事务的执行状态（即：事务是提交了还是回滚了），返回给被调者。</P>
+<p>下面给出另一个例子：<br /></P>
+<p>CREATE DEFINER=`3dmodelbaseadmin`@`%` PROCEDURE
+`p_userConfirmPay`(<br />
+in p_lID int,<br />
+in p_endTime DATETIME,<br />
+in p_moneyAfterTax decimal(10,2),<br />
+in p_integralAfterTax decimal(10,0),<br />
+in p_sellerID int unsigned,<br />
+in p_cashOrPoints int,<br />
+in p_loginName_site varchar(50),<br />
+in p_transactionID_site char(100),<br />
+in p_orderID char(100),<br />
+in p_remarks_site char(100),<br />
+in p_transactionID char(100),<br />
+in p_cMEMID INT UNSIGNED,<br />
+in p_curTotal DECIMAL(10,2),<br />
+in p_curTotalcIntegral decimal(10,0),<br />
+in p_remarks char(100))<br />
+BEGIN<br />
+<br />
+DECLARE p_cMEMID_site INT;<br />
+DECLARE p_balance_site DECIMAL(10,2);<br />
+DECLARE p_balance DECIMAL(10,2);<br />
+DECLARE p_intBalance_site DECIMAL(10,0);<br />
+DECLARE p_intBalance DECIMAL(10,0);<br />
+<br />
+<span STYLE="font-weight: bold;">DECLARE t_error INTEGER DEFAULT
+0;</SPAN><br STYLE="font-weight: bold;" />
+<span STYLE="font-weight: bold;">DECLARE CONTINUE HANDLER FOR
+SQLEXCEPTION SET t_error=1;</SPAN><br />
+<br />
+<span STYLE="font-weight: bold;">START TRANSACTION;</SPAN><br />
+<br />
+set p_cMEMID_site=(select cMEMID from m_member where
+cLoginName=p_loginName_site);<br />
+<br />
+update l_memberdownlog set lState=1,endTime=p_endTime where
+lID=p_lID;<br />
+<br />
+update m_memberMoney set cMoney=cMoney-p_moneyAfterTax,<br />
+cIntegral = cIntegral-p_integralAfterTax where
+cMEMID=p_cMEMID_site;<br />
+<br />
+update m_memberMoney set cMoney=cMoney+p_moneyAfterTax,<br />
+cIntegral = cIntegral+p_integralAfterTax where
+cMEMID=p_sellerID;<br />
+<br />
+<span STYLE="color: rgb(0, 0, 0); font-weight: bold;">if
+p_cashOrPoints=0 then</SPAN><br />
+&nbsp;<wbr> set p_balance_site = (select cMoney from
+m_memberMoney where cMEMID=p_cMEMID_site);<br />
+&nbsp;<wbr> INSERT INTO cashDetail ......(<span STYLE="color: rgb(255, 0, 0);">此处省略</SPAN>);<br />
+<span STYLE="font-weight: bold;">else</SPAN><br />
+&nbsp;<wbr> set p_intBalance_site = (select cIntegral from
+m_memberMoney where cMEMID=p_cMEMID_site);<br />
+&nbsp;<wbr> INSERT INTO integralDetail ......（<span STYLE="color: rgb(255, 0, 0);">此处省略</SPAN>）;<br />
+<span STYLE="font-weight: bold;">end if;</SPAN><br />
+<br />
+update m_memberMoney set
+totalConsMoney=totalConsMoney+p_curTotal,<br />
+totalConsIntegral=totalConsIntegral+p_curTotalcIntegral where
+cMEMID=p_cMEMID;<br />
+<br />
+<span STYLE="font-weight: bold;">IF t_error = 1
+THEN</SPAN><br STYLE="font-weight: bold;" />
+<span STYLE="font-weight: bold;">&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+ROLLBACK;</SPAN><br STYLE="font-weight: bold;" />
+<span STYLE="font-weight: bold;">ELSE</SPAN><br STYLE="font-weight: bold;" />
+<span STYLE="font-weight: bold;">&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+COMMIT;</SPAN><br STYLE="font-weight: bold;" />
+<span STYLE="font-weight: bold;">END IF;</SPAN><br STYLE="font-weight: bold;" />
+<br STYLE="font-weight: bold;" />
+<span STYLE="font-weight: bold; color: rgb(255, 0, 0);">select
+t_error;</SPAN>&nbsp;<wbr> <span STYLE="color: rgb(255, 0, 0);">将事务的执行状态返回给被调者</SPAN><br STYLE="font-weight: bold;" />
+<br />
+END</P>
+<p>三.在Asp中被调者使用<span STYLE="font-weight: bold;">返回的事务状态</SPAN>：</P>
+<p>set rs1 =
+server.CreateObject("ADODB.RecordSet")&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br />
+
+set Connection = server.createobject("adodb.connection")<br />
+Connection.open conn<br />
+sqlConfirmPay = "p_userConfirmPay(" &amp; ID
+&amp; ",'" &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> Now()
+&amp; "'," &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+moneyAfterTax &amp; "," &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+integralAfterTax &amp; "," &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> sellerID
+&amp; "," &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> cashOrPoints
+&amp; ",'" &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+siteLoginName &amp; "','" &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+transactionID_site &amp; "','" &amp;
+_<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> orderID
+&amp; "','" &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> remarks_site
+&amp; "','" &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+transactionID_seller &amp; "'," &amp;
+_<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> cMEMID
+&amp; "," &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> lMoney
+&amp; "," &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> lIntegral
+&amp; ",'" &amp; _<br />
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> remarks
+&amp;
+"')"&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr><br />
+<span STYLE="font-weight: bold;">set rs1</SPAN> =
+Connection.Execute(sqlConfirmPay) '<span STYLE="font-weight: bold;">将执行存储过程后的<span STYLE="color: rgb(255, 0, 0);">结果集</SPAN>赋给rs1</SPAN><br />
+<span STYLE="font-weight: bold;">result =
+cInt(rs1("t_error"))</SPAN>&nbsp;<wbr> '<span STYLE="font-weight: bold;">得到返回的事务的状态</SPAN><br />
+'response.Write("result:" &amp; cStr(rs1("t_error"))
+&amp; "&lt;br /&gt;")<br />
+Connection.close<br />
+set Connection=nothing<br />
+rs1.close<br />
+set rs1 = nothing<br />
+<br />
+'判断执行的存储过程是否出错<br />
+<span STYLE="font-weight: bold;">if result = 0 then</SPAN><br />
+&nbsp;<wbr> '如果没有出错，<br />
+&nbsp;<wbr> ......<br />
+else<br />
+&nbsp;<wbr> '如果出错了<br />
+&nbsp;<wbr> ......<br />
+end if<br /></P>
+<p><br /></P>							
+		</div>
+						<!-- 正文结束 -->
+		<div id='share' class="shareUp">
+        	<div class="share SG_txtb">
+			分享： 
+			<div class="bshare-custom" style="display:inline;margin-left:5px;"><a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a><a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a><a title="分享到QQ空间" class="bshare-qzone" href="javascript:void(0);"></a><a title="分享到豆瓣" class="bshare-douban" href="javascript:void(0);"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+			</div>
+			</div>
+            <div class="up">
+	        	<div title="喜欢后让更多人看到" id="dbox_6dd65c6f0100t3u5" class="upBox upBox_click" style="cursor: pointer;">
+	            	<p ti_title="在mysql中的存储过程中使用事务transaction" id="dbox2_6dd65c6f0100t3u5" class="count" ></p>
+	                <p class="link"><img width="15" height="15" align="absmiddle" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" class="SG_icon SG_icon34">喜欢</p>
+	            </div>
+<!--
+                <div class="upBox upBox_add">
+                    <p class="count">0</p>
+                    <p class="link"><img width="20" height="16" align="absmiddle" title="推荐" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" class="SG_icon SG_icon214">赠金笔</p>
+                </div>
+-->
+                                <div class="upBox upBox_add">
+                    <p class="count" id="goldPan-num">0</p>
+                    <p class="link" id="goldPan-give"><img class="SG_icon SG_icon214" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" width="20" height="16" title="赠金笔" align="absmiddle">赠金笔</p>
+                </div>
+                
+	        </div>
+            <div class="clearit"></div>
+		</div>
+		<div class="articalInfo">
+			<!-- 分享到微博 {$t_blog} -->
+			<div class="IL">
+				阅读<span id="r_6dd65c6f0100t3u5" class="SG_txtb"></span><em class="SG_txtb">┊</em> 
+				<a href="#commonComment">评论</a> <span id="c_6dd65c6f0100t3u5" class="SG_txtb"></span><em class="SG_txtb">┊</em>				<a href="javascript:;" onclick="$articleManage('6dd65c6f0100t3u5',5);return false;">收藏</a><span id="f_6dd65c6f0100t3u5"  class="SG_txtb"></span>
+				<em class="SG_txtb">┊</em><a href="#" id="quote_set_sign" onclick="return false ;">转载</a><a  href="#" id="z_6dd65c6f0100t3u5" onclick="return false ;" class="zznum"></a>				<span id="fn_在mysql中的存储过程中使用事务transaction" class="SG_txtb"></span><em class="SG_txtb">┊</em>
+				<a onclick="return false;" href="javascript:;" ><cite id="d1_digg_6dd65c6f0100t3u5">喜欢</cite></a><a id="d1_digg_down_6dd65c6f0100t3u5" href="javascript:;" ><b>▼</b></a>
+									<em class="SG_txtb">┊</em><a href="http://blog.sina.com.cn/main_v5/ria/print.html?blog_id=blog_6dd65c6f0100t3u5" target="_blank">打印</a><em class="SG_txtb">┊</em><a id="q_6dd65c6f0100t3u5" onclick="report('6dd65c6f0100t3u5');return false;" href="#">举报</a>
+											</div>
+			<div class="IR">
+				<table>
+					<tr>
+											<th class="SG_txtb" scope="row">已投稿到：</th>
+						<td>
+							<div class="IR_list">
+								<span><img class="SG_icon SG_icon36" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" width="15" height="15" title="排行榜" align="absmiddle" /> <a href="http://blog.sina.com.cn/lm/114/113/day.html" class="SG_linkb" target="_blank">排行榜</a></span>							</div>
+						</td>
+										</tr>
+									</table>
+			</div>
+		</div>
+		<div class="clearit"></div>
+		<div class="blogzz_zzlist borderc" id="blog_quote" style="display:none">加载中，请稍候......</div>
+		<div class="articalfrontback SG_j_linedot1 clearfix" id="new_nextprev_6dd65c6f0100t3u5">
+							<div><span class="SG_txtb">前一篇：</span><a href="http://blog.sina.com.cn/s/blog_6dd65c6f0100t37x.html">MySQL存储过程中使用SELECT&nbsp;…INTO语句为变量赋值</a></div>
+										<div><span class="SG_txtb">后一篇：</span><a href="http://blog.sina.com.cn/s/blog_6dd65c6f0100t755.html">MySQL&nbsp;添加列，修改列，删除列的sql语句写法</a></div>
+					</div>
+		<div class="clearit"></div>
+							
+		<div id="loginFollow"></div>
+				<div class="allComm">
+			<div  class="allCommTit" >
+				<div class="SG_floatL">
+				    <strong>评论</strong>
+				    <span id="commAd_1" style="display:none;">
+				        <span style="margin-left:15px; width:220px; display:inline-block;"><a target="_blank" href="http://blog.sina.com.cn/lm/8/2009/0325/105340.html">重要提示：警惕虚假中奖信息</a></span>
+				    </span>
+				</div>
+				<div class="SG_floatR"><a class="CP_a_fuc" href="#post">[<cite>发评论</cite>]</a></div>
+			</div>
+			<ul id="article_comment_list" class="SG_cmp_revert"><!-- 循环始 --><li>评论加载中，请稍候...</li><!-- 循环终  --></ul>
+			<div class="clearit"></div>
+			<div class="myCommPages SG_j_linedot1">
+				<div class="SG_page" id="commentPaging" style="display:none;">
+					<ul class="SG_pages">
+					</ul>
+				</div>
+				<div class="clearit"></div>
+			</div>
+			<a name="post"></a>
+			<div class="writeComm">
+				<div class="allCommTit">
+					<div class="SG_floatL">
+					    <strong>发评论</strong>
+					    <span></span>
+					</div>
+					<div class="SG_floatR"></div>
+				</div>
+				<div class="wrCommTit">
+					<div class="SG_floatL" id="commentNick" style="display:none;"></div>
+				</div>
+				<div class="formTextarea">
+					<div style="float:left;" id="commonComment">
+					<iframe id="postCommentIframe"  frameborder="0" style="border:1px solid #C7C7C7;
+		height:158px;width:448px;maring-top:1px;background-color:white;" src="http://blog.sina.com.cn/main_v5/ria/blank2.html"></iframe>
+					<textarea id="commentArea" tabindex="1" style="display:none;"></textarea>
+					</div>
+					<div id="mobileComment" style="float:left;display:none;">
+						<textarea id="mbCommentTa" style="width:438px;height:150px;border:1px solid #C7C7C7;line-height:18px;padding:5px;"></textarea>
+					</div>
+					<div class="faceblk" id="faceWrap">
+						<div id="smilesSortShow" class="faceline1">
+						</div>
+						<ul id="smilesRecommended" class="faceline01"></ul>
+					</div>
+					<div class="clearit"></div>
+				</div>
+				<div class="formLogin">
+					<div class="SG_floatL"> 
+					<p id="commentlogin" style="display:none;"><span>登录名：</span><input type="text" style="width: 115px;" id="login_name" tabindex="2"/>   <span>密码：</span><input type="password" style="width: 115px;" id="login_pass" tabindex="3"/>   <a href="http://login.sina.com.cn/getpass.html" target="_blank">找回密码</a>   <a href="http://login.sina.com.cn/signup/signup.php?entry=blog&src=blogicp&srcuid=1842764911" target="_blank">注册</a>	<input type="checkbox" id="login_remember"/><label for="login_remember" style="display:inline-block;" title="建议在网吧/公用电脑上取消该选项">记住登录状态</label></p><p id="commentloginM" style="display:none;"><span>昵&nbsp;&nbsp;&nbsp;称：</span><input type="text" style="width: 115px;" id="comment_anonyous"  value="新浪网友"/ tabindex="2" disabled></p><p id="quote_comment_p"><input type="checkbox" id="bb"> <label for="bb"><img height="18" align="absmiddle" width="18" title="" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" class="SG_icon SG_icon110">分享到微博 <img height="15" align="absmiddle" width="15" title="新" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" class="SG_icon SG_icon11"></label>&nbsp;&nbsp;&nbsp;<input type="checkbox" id="cbCommentQuote" /><label for="cbCommentQuote">评论并转载此博文</label><img class="SG_icon SG_icon11" src="http://simg.sinajs.cn/blog7style/images/common/sg_trans.gif" width="15" height="15" title="新" align="absmiddle" /></p><p><span>验证码：</span><input type="text" style="width: 46px;" id="login_check" tabindex="4" onclick="return false;"/>  <a class="SG_linka" id='check_show'>请点击后输入验证码</a><img id="comment_check_img" align="absmiddle"  style="display:none;"/>  <a id="comment_get_vcode" href="#" onclick="return false;">收听验证码</a></p>
+					</div>
+
+					<span style="display: none; color: rgb(153, 153, 153); margin-left: 10px;" id="login_remember_caution"></span>
+
+											<div class="SG_floatR" id="anonymity_cont"><input type="checkbox" id="anonymity"/><label for="anonymity">匿名评论</label></div>
+									</div>
+				<div class="formBtn">
+					<a href="javascript:;" onclick="return false;" class="SG_aBtn" tabindex="5"><cite id="postcommentid">发评论</cite></a>
+					<p class="SG_txtc">以上网友发言只代表其个人观点，不代表新浪网的观点或立场。</p>
+				</div>
+			</div>
+		</div>
+				<div class="clearit"></div>
+		
+				<div class="articalfrontback articalfrontback2 clearfix">
+						  <div class="SG_floatL"><span class="SG_txtb">&lt;&nbsp;前一篇</span><a href="http://blog.sina.com.cn/s/blog_6dd65c6f0100t37x.html">MySQL存储过程中使用SELECT&nbsp;…INTO语句为变量赋值</a></div>
+									  <div class="SG_floatR"><span class="SG_txtb">后一篇&nbsp;&gt;</span><a href="http://blog.sina.com.cn/s/blog_6dd65c6f0100t755.html">MySQL&nbsp;添加列，修改列，删除列的sql语句写法</a></div>
+					</div>
+		<div class="clearit"></div>
+				
+	</div>
+	<!--博文正文 end -->
+		<script type="text/javascript">
+			var voteid="";
+		</script>
+
+            </div>       
+            <div class="SG_connFoot"></div>
+          </div>
+</div>
+	<!--第二列start-->
+	
+	<!--第三列start-->
+	<div id="column_3" class="SG_colWnone"><div style="width:0px;height:0.1px;margin:0px;">&nbsp;&nbsp;</div></div>
+	<!--第三列end-->
+
+	
+    </div>
+   <!--主题内容结束 -->
+  
+
+	<div id="diggerFla" style="position:absolute;left:0px;top:0px;width:0px"></div>
+    <div class="sinablogfooter" id="sinablogfooter"  style="position:relative;">
+      
+      <p class="SG_linka"><a href="http://control.blog.sina.com.cn/admin/advice/advice_list.php" target="_blank">新浪BLOG意见反馈留言板</a>　<a href="javascript:;" onclick="window.open ('http://control.blog.sina.com.cn/admin/advice/impeach.php?url=http%3A//blog.sina.com.cn/s/blog_4cf7b4ec0100eudp.html%3Ftj%3D1', '','height=495, width=510, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');">不良信息反馈</a>　电话：4006900000 提示音后按1键（按当地市话标准计费）　欢迎批评指正</p>
+   
+      <p class="SG_linka"><a href="http://corp.sina.com.cn/chn/" target="_blank">新浪简介</a> | <a href="http://corp.sina.com.cn/eng/" target="_blank">About Sina</a> | <a href="http://emarketing.sina.com.cn/" target="_blank">广告服务</a> | <a href="http://www.sina.com.cn/contactus.html" target="_blank">联系我们</a> | <a href="http://corp.sina.com.cn/chn/sina_job.html" target="_blank">招聘信息</a> | <a href="http://www.sina.com.cn/intro/lawfirm.shtml" target="_blank">网站律师</a> | <a href="http://english.sina.com" target="_blank">SINA English</a> | <a href="http://members.sina.com.cn/apply/" target="_blank">会员注册</a> | <a href="http://help.sina.com.cn/" target="_blank">产品答疑</a> </p>
+      <p class="copyright SG_linka"> Copyright &copy; 1996 - 2015 SINA Corporation,  All Rights Reserved</p>
+      <p class="SG_linka"> 新浪公司 <a href="http://www.sina.com.cn/intro/copyright.shtml" target="_blank">版权所有</a></p>
+	  <a href="http://www.bj.cyberpolice.cn/index.jsp"  target="_blank" class="gab_link"></a>
+    </div>
+  </div>
+</div>
+<div id="swfbox"></div>
+<script id="PVCOUNTER_FORIE" type="text/javascript"></script>
+</body>
+<script type="text/javascript">
+var scope = {
+    $newTray : 1,
+    $setDomain : true,
+    $uid : "1842764911",
+    $PRODUCT_NAME : "blog7",      //blog7photo,blog7icp
+    $pageid : "article",
+    $key :  "1f878ee962e7867c1bb6be1cc609324c",
+    $uhost : "zlianxiang",
+    $ownerWTtype :"",
+    $private: {"pageset":0,"tj":0,"adver":0,"sms":0,"ad":0,"blogsize":0,"cms":0,"hidecms":0,"top":0,"invitationset":0,"p4p":0,"spamcms":0,"init7":1,"quote":0,"foot":0,"isprivate":0,"headpic":1,"t_sina":1842764911,"oauth_token":1,"oauth_token_secret":1,"uname":"\u8fde\u957f\u540c\u5b66","p_push_t":0,"p_get_t":0,"daRenState":"2","medal7":2,"articleclass":"117"},
+    $is_photo_vip:0,
+		 $nClass:0,
+		 $articleid:"6dd65c6f0100t3u5",
+		 $sort_id:113,
+		 $cate_id:"",
+		 $isCommentAllow:0,
+		 $album_pic:"",
+		 $pn_x_rank:0,
+		 $x_quote_c:"1",
+		 $flag2008:"",
+		     component_lists:{"2":{"size":730,"list":[920]},"1":{"size":210,"list":[901,903,904,47]}},
+    formatInfo:1,
+    UserPic:[{"pid":"","repeat":"repeat-x","align-h":"center","align-v":"top","apply":"0"},{"pid":"","repeat":"repeat-x","align-h":"center","align-v":"top","apply":"0"},{"pid":"","repeat":"repeat-x","align-h":"center","align-v":"top","apply":"0"}],
+    UserBabyPic:{"photoX":0,"photoY":0,"photoURL":null,"angle":0,"zoom":0,"maskX":0,"maskY":0,"maskURL":null,"frameURL":null},
+    UserColor:1,
+    backgroundcolor:"rgb(214, 211, 205)",
+    tpl:"4_9",
+    reclist:0    };
+var $encrypt_code = "3787af3f12eba7be0833ac45787970ac";
+</script>
+
+<script type="text/javascript" src="http://sjs.sinajs.cn/blog7common/js/boot.js"></script>
+<script type="text/javascript">__load_js();</script>
+<script type="text/javascript">__render_page();</script>
+
+
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=b436f96b-ce3c-469f-93ca-9c0c406fcf10&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+<script type="text/javascript" charset="utf-8">
+        bShare.addEntry({pic: "", title:"分享自Sean  《在mysql中的存储过程中使用事务transaction》", summary:"一. 在处理事务时，使用SQLException捕获SQL错误，然后处理； 按照这个推论，我们必须在MySQL存储过程中捕获...  (来自 @头条博客)"});
+     </script>
+<script type="text/javascript" src="http://sjs.sinajs.cn/xblogtheme/js/blog680-min.js"></script>
+<script type="text/javascript">
+        var slotArr = ['atcTitLi_SLOT_41', 'atcTitLi_SLOT_42','loginBarActivity']; //广告位id
+        var sourceArr = ['SLOT_41','SLOT_42','SLOT_43,SLOT_47,SLOT_48'];  //广告资源id
+        SinaBlog680.staticBox(slotArr, sourceArr);
+</script>
+</html>

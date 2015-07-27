@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>mysql存储过程详解_Mysql_脚本之家</title>
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/30825.htm">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/30825.htm">
+<script type="text/javascript">
+if((navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)))
+{
+    location.replace("http://m.jb51.net/article/30825.htm");
+}
+</script>
+<meta name="keywords" content="mysql存储过程" />
+<meta name="description" content="我们常用的操作数据库语言SQL语句在执行的时候需要要先编译，然后执行，而存储过程（Stored Procedure）是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数（如果该存储过程带有参数）来调用执行它" />
+<link rel="stylesheet" href="http://img.jb51.net/skin/blue/global.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://img.jb51.net/skin/blue/content.css" type="text/css" media="all" />
+<link type="text/css" rel="stylesheet" href="/jslib/syntaxhighlighter/styles/shCore.css" />
+<link type="text/css" rel="Stylesheet" href="/jslib/syntaxhighlighter/styles/shThemeDefault.css" />
+<script type="text/javascript" src="http://img.jb51.net/js/function.js"></script>
+</head>
+<body>
+<DIV id=topnav>
+<div class="wrap">
+<DIV id=toptext>脚 本 之 家 www.jb51.net</DIV>
+<UL id=topnavlist>
+<script type="text/javascript" charset="gb2312">dy("top");</script>
+</UL>
+</div>
+</DIV>
+<div class="wrap">
+<div id="dxy_logo">
+<div id="logo_l"><a href="http://www.jb51.net" title="脚本之家" target="_blank"><img src="http://www.jb51.net/images/logo.gif" alt="脚本之家" /></a></div>
+<div id="logo_m"></div>
+<div id="logo_r"></div>
+</div><!--导航开始-->
+<div id="nav_top">
+<ul>
+<li class="current"><a href="http://www.jb51.net">首页</a></li>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li class="last"><a href="http://www.jb51.net/hack/">网络安全</a></li>
+</ul>
+</div><!--导航结束-->
+<div class=blank3></div>
+<div class="subnav">
+<ul><li><a href='/list/list_113_1.htm' title="MsSql">MsSql</a></li>
+<li><a href='/list/list_112_1.htm' title="Mysql">Mysql</a></li>
+<li><a href='/list/list_105_1.htm' title="Access">Access</a></li>
+<li><a href='/list/list_154_1.htm' title="oracle">oracle</a></li>
+<li><a href='/list/list_155_1.htm' title="DB2">DB2</a></li>
+<li><a href='/list/list_236_1.htm' title="mssql2008">mssql2008</a></li>
+<li><a href='/list/list_210_1.htm' title="mssql2005">mssql2005</a></li>
+<li><a href='/list/list_215_1.htm' title="SQLite">SQLite</a></li>
+<li><a href='/list/list_224_1.htm' title="PostgreSQL">PostgreSQL</a></li>
+<li><a href='/list/list_239_1.htm' title="MongoDB">MongoDB</a></li>
+<li><a href='/list/list_242_1.htm' title="Redis">Redis</a></li>
+<li><a href='/list/list_132_1.htm' title="数据库文摘">数据库文摘</a></li>
+<li><a href='/list/list_133_1.htm' title="数据库其它">数据库其它</a></li>
+</ul>
+</div>
+<div class=blank3></div>
+<DIV class="search">
+<UL><LI class=search-hot><SPAN>特色栏目：</SPAN>
+<A href="http://www.jb51.net/list/list_114_1.htm" target='_blank'>vbscript</A> 
+<A href="http://www.jb51.net/list/list_6_1.htm" target='_blank'>正则表达式</A> 
+<A href="http://www.jb51.net/list/list_3_1.htm" target='_blank'>javascript</A>
+<A href="http://www.jb51.net/list/list_106_1.htm" target='_blank'>批处理</A>
+<A href="http://s.jb51.net">服务器软件</A> 
+<A href="http://sc.jb51.net/?txt" target="_blank" style="color:red">素材下载</A> 
+</LI><LI class=search-box>
+<div class="sall">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="keyword_input">
+    <input type="submit" value="搜索" class="s_btn">
+</form></div>
+</LI></UL>
+</div>
+<div class=blank3></div>
+<DIV class="tonglanad">
+<script type="text/javascript">var tougao="mdxy-dxy";var lmname="Mysql";dy("bdtl");</script>
+</div>
+<div class=blank3></div>
+<div id="tonglan1"></div>
+<div class=blank3></div>
+<div class="dxy_main">
+<div class="dxy_main_l">
+<div id="art_con">
+<div id="daohang">页面导航：  <a href='/'>首页</a> → <a href="/list/index_104.htm" title="数据库">数据库</a> → <a href="/list/list_112_1.htm" title="Mysql">Mysql</a> → 正文内容 mysql存储过程<div class="blank3"></div></div>
+<div class=blank3></div>
+<h1>mysql存储过程详解</h1>
+<div id="art_info">
+作者：  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 类型：转载 
+</div><!--end art_info-->
+<div class=blank3></div>
+<div id="art_demo">我们常用的操作数据库语言SQL语句在执行的时候需要要先编译，然后执行，而存储过程（Stored Procedure）是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数（如果该存储过程带有参数）来调用执行它</div>
+<div class=blank3></div>
+<div id="con_all">
+<script type="text/javascript">dy("bcall");</script>
+</div>
+<div id="art_content">
+<!--NEWSZW_HZH_BEGIN-->
+<STRONG>1.存储过程简介</STRONG> <br><br>我们常用的操作数据库语言SQL语句在执行的时候需要要先编译，然后执行，而存储过程（Stored Procedure）是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数（如果该存储过程带有参数）来调用执行它。 <br><br>一个存储过程是一个可编程的函数，它在数据库中创建并保存。它可以有SQL语句和一些特殊的控制结构组成。当希望在不同的应用程序或平台上执行相同的函数，或者封装特定功能时，存储过程是非常有用的。数据库中的存储过程可以看做是对编程中面向对象方法的模拟。它允许控制数据的访问方式。 <br><br>存储过程通常有以下优点： <br><br>(1).存储过程增强了SQL语言的功能和灵活性。存储过程可以用流控制语句编写，有很强的灵活性，可以完成复杂的判断和较复杂的运算。 <br><br>(2).存储过程允许标准组件是编程。存储过程被创建后，可以在程序中被多次调用，而不必重新编写该存储过程的SQL语句。而且数据库专业人员可以随时对存储过程进行修改，对应用程序源代码毫无影响。 <br><br>(3).存储过程能实现较快的执行速度。如果某一操作包含大量的Transaction-SQL代码或分别被多次执行，那么存储过程要比批处理的执行速度快很多。因为存储过程是预编译的。在首次运行一个存储过程时查询，优化器对其进行分析优化，并且给出最终被存储在系统表中的执行计划。而批处理的Transaction-SQL语句在每次运行时都要进行编译和优化，速度相对要慢一些。 <br><br>(4).存储过程能过减少网络流量。针对同一个数据库对象的操作（如查询、修改），如果这一操作所涉及的Transaction-SQL语句被组织程存储过程，那么当在客户计算机上调用该存储过程时，网络中传送的只是该调用语句，从而大大增加了网络流量并降低了网络负载。 <br><br>(5).存储过程可被作为一种安全机制来充分利用。系统管理员通过执行某一存储过程的权限进行限制，能够实现对相应的数据的访问权限的限制，避免了非授权用户对数据的访问，保证了数据的安全。 <br><br><STRONG>2. 关于MySQL的存储过程 <BR></STRONG><BR>存储过程是数据库存储的一个重要的功能，但是MySQL在5.0以前并不支持存储过程，这使得MySQL在应用上大打折扣。好在MySQL 5.0终于开始已经支持存储过程，这样即可以大大提高数据库的处理速度，同时也可以提高数据库编程的灵活性。 <br><br><STRONG>3. MySQL存储过程的创建 <br><br></STRONG>(1). 格式 <br><br>MySQL存储过程创建的格式：CREATE PROCEDURE 过程名 ([过程参数[,...]]) <BR>[特性 ...] 过程体 <br><br>这里先举个例子： <br><br>mysql&gt; DELIMITER // <BR>mysql&gt; CREATE PROCEDURE proc1(OUT s int) <BR>-&gt; BEGIN <BR>-&gt; SELECT COUNT(*) INTO s FROM user; <BR>-&gt; END <BR>-&gt; // <BR>mysql&gt; DELIMITER ; <br><br>注： <br><br>（1）这里需要注意的是DELIMITER //和DELIMITER ;两句，DELIMITER是分割符的意思，因为MySQL默认以";"为分隔符，如果我们没有声明分割符，那么编译器会把存储过程当成SQL语句进行处理，则存储过程的编译过程会报错，所以要事先用DELIMITER关键字申明当前段分隔符，这样MySQL才会将";"当做存储过程中的代码，不会执行这些代码，用完了之后要把分隔符还原。 <br><br>（2）存储过程根据需要可能会有输入、输出、输入输出参数，这里有一个输出参数s，类型是int型，如果有多个参数用","分割开。 <br><br>（3）过程体的开始与结束使用BEGIN与END进行标识。 <br><br>这样，我们的一个MySQL存储过程就完成了，是不是很容易呢?看不懂也没关系，接下来，我们详细的讲解。 <br><br>(2). 声明分割符 <br><br>其实，关于声明分割符，上面的注解已经写得很清楚，不需要多说，只是稍微要注意一点的是：如果是用MySQL的Administrator管理工具时，可以直接创建，不再需要声明。 <br><br>(3). 参数 <br><br>MySQL存储过程的参数用在存储过程的定义，共有三种参数类型,IN,OUT,INOUT,形式如： <br><br>CREATE PROCEDURE([[IN |OUT |INOUT ] 参数名 数据类形...]) <br><br>IN 输入参数:表示该参数的值必须在调用存储过程时指定，在存储过程中修改该参数的值不能被返回，为默认值 <br><br>OUT 输出参数:该值可在存储过程内部被改变，并可返回 <br><br>INOUT 输入输出参数:调用时指定，并且可被改变和返回 <br><br>Ⅰ. IN参数例子 <br><br>创建: <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE demo_in_parameter(IN p_in int) <BR>-&gt; BEGIN <BR>-&gt; SELECT p_in; <BR>-&gt; SET p_in=2; <BR>-&gt; SELECT p_in; <BR>-&gt; END; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>执行结果: <br><br><BR>mysql &gt; SET @p_in=1; <BR>mysql &gt; CALL demo_in_parameter(@p_in); <BR>+------+ <BR>| p_in | <BR>+------+ <BR>| 1 | <BR>+------+ <br><br>+------+ <BR>| p_in | <BR>+------+ <BR>| 2 | <BR>+------+ <br><br>mysql&gt; SELECT @p_in; <BR>+-------+ <BR>| @p_in | <BR>+-------+ <BR>| 1 | <BR>+-------+ <br><br>以上可以看出，p_in虽然在存储过程中被修改，但并不影响@p_id的值 <br><br>Ⅱ.OUT参数例子 <br><br>创建: <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE demo_out_parameter(OUT p_out int) <BR>-&gt; BEGIN <BR>-&gt; SELECT p_out; <BR>-&gt; SET p_out=2; <BR>-&gt; SELECT p_out; <BR>-&gt; END; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>执行结果: <br><br><BR>mysql &gt; SET @p_out=1; <BR>mysql &gt; CALL sp_demo_out_parameter(@p_out); <BR>+-------+ <BR>| p_out | <BR>+-------+ <BR>| NULL | <BR>+-------+ <br><br>+-------+ <BR>| p_out | <BR>+-------+ <BR>| 2 | <BR>+-------+ <br><br>mysql&gt; SELECT @p_out; <BR>+-------+ <BR>| p_out | <BR>+-------+ <BR>| 2 | <BR>+-------+ <br><br>Ⅲ. INOUT参数例子 <br><br>创建: <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE demo_inout_parameter(INOUT p_inout int) <BR>-&gt; BEGIN <BR>-&gt; SELECT p_inout; <BR>-&gt; SET p_inout=2; <BR>-&gt; SELECT p_inout; <BR>-&gt; END; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>执行结果: <br><br>mysql &gt; SET @p_inout=1; <BR>mysql &gt; CALL demo_inout_parameter(@p_inout) ; <BR>+---------+ <BR>| p_inout | <BR>+---------+ <BR>| 1 | <BR>+---------+ <br><br>+---------+ <BR>| p_inout | <BR>+---------+ <BR>| 2 | <BR>+---------+ <br><br>mysql &gt; SELECT @p_inout; <BR>+----------+ <BR>| @p_inout | <BR>+----------+ <BR>| 2 | <BR>+----------+ <br><br>(4). 变量 <br><br>Ⅰ. 变量定义 <br><br>DECLARE variable_name [,variable_name...] datatype [DEFAULT value]; <br><br>其中，datatype为MySQL的数据类型，如:int, float, date, varchar(length) <br><br>例如: <br><br>DECLARE l_int int unsigned default 4000000; <BR>DECLARE l_numeric number(8,2) DEFAULT 9.95; <BR>DECLARE l_date date DEFAULT '1999-12-31'; <BR>DECLARE l_datetime datetime DEFAULT '1999-12-31 23:59:59'; <BR>DECLARE l_varchar varchar(255) DEFAULT 'This will not be padded'; <br><br>Ⅱ. 变量赋值 <br><br>SET 变量名 = 表达式值 [,variable_name = expression ...] <br><br>Ⅲ. 用户变量 <br><br>ⅰ. 在MySQL客户端使用用户变量 <br><br>mysql &gt; SELECT 'Hello World' into @x; <BR>mysql &gt; SELECT @x; <BR>+-------------+ <BR>| @x | <BR>+-------------+ <BR>| Hello World | <BR>+-------------+ <BR>mysql &gt; SET @y='Goodbye Cruel World'; <BR>mysql &gt; SELECT @y; <BR>+---------------------+ <BR>| @y | <BR>+---------------------+ <BR>| Goodbye Cruel World | <BR>+---------------------+ <br><br>mysql &gt; SET @z=1+2+3; <BR>mysql &gt; SELECT @z; <BR>+------+ <BR>| @z | <BR>+------+ <BR>| 6 | <BR>+------+ <BR>ⅱ. 在存储过程中使用用户变量 <br><br>mysql &gt; CREATE PROCEDURE GreetWorld( ) SELECT CONCAT(@greeting,' World'); <BR>mysql &gt; SET @greeting='Hello'; <BR>mysql &gt; CALL GreetWorld( ); <BR>+----------------------------+ <BR>| CONCAT(@greeting,' World') | <BR>+----------------------------+ <BR>| Hello World | <BR>+----------------------------+ <br><br>ⅲ. 在存储过程间传递全局范围的用户变量 <br><br>mysql&gt; CREATE PROCEDURE p1() SET @last_procedure='p1'; <BR>mysql&gt; CREATE PROCEDURE p2() SELECT CONCAT('Last procedure was ',@last_proc); <BR>mysql&gt; CALL p1( ); <BR>mysql&gt; CALL p2( ); <BR>+-----------------------------------------------+ <BR>| CONCAT('Last procedure was ',@last_proc | <BR>+-----------------------------------------------+ <BR>| Last procedure was p1 | <BR>+-----------------------------------------------+ <br><br>注意: <br><br>①用户变量名一般以@开头 <BR>②滥用用户变量会导致程序难以理解及管理 <br><br>(5). 注释 <br><br>MySQL存储过程可使用两种风格的注释 <br><br>双模杠：-- <br><br>该风格一般用于单行注释 <BR>c风格： 一般用于多行注释 <BR>例如： <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc1 --name存储过程名 <BR>-&gt; (IN parameter1 INTEGER) <BR>-&gt; BEGIN <BR>-&gt; DECLARE variable1 CHAR(10); <BR>-&gt; IF parameter1 = 17 THEN <BR>-&gt; SET variable1 = 'birds'; <BR>-&gt; ELSE <BR>-&gt; SET variable1 = 'beasts'; <BR>-&gt; END IF; <BR>-&gt; INSERT INTO table1 VALUES (variable1); <BR>-&gt; END <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>4. MySQL存储过程的调用 <br><br>用call和你过程名以及一个括号，括号里面根据需要，加入参数，参数包括输入参数、输出参数、输入输出参数。具体的调用方法可以参看上面的例子。 <br><br>5. MySQL存储过程的查询 <br><br>我们像知道一个数据库下面有那些表，我们一般采用show tables;进行查看。那么我们要查看某个数据库下面的存储过程，是否也可以采用呢？答案是，我们可以查看某个数据库下面的存储过程，但是是令一钟方式。 <br><br>我们可以用 <br><br>select name from mysql.proc where db='数据库名'; <br><br>或者 <br><br>select routine_name from information_schema.routines where routine_schema='数据库名'; <br><br>或者 <br><br>show procedure status where db='数据库名'; <br><br>进行查询。 <br><br>如果我们想知道，某个存储过程的详细，那我们又该怎么做呢？是不是也可以像操作表一样用describe 表名进行查看呢？ <br><br>答案是：我们可以查看存储过程的详细，但是需要用另一种方法： <br><br>SHOW CREATE PROCEDURE 数据库.存储过程名; <br><br>就可以查看当前存储过程的详细。 <br><br>6.MySQL存储过程的修改 <br><br>ALTER PROCEDURE <br><br>更改用CREATE PROCEDURE 建立的预先指定的存储过程，其不会影响相关存储过程或存储功能。 <br><br>7. MySQL存储过程的删除 <br><br>删除一个存储过程比较简单，和删除表一样： <br><br>DROP PROCEDURE <br><br>从MySQL的表格中删除一个或多个存储过程。 <br><br>8. MySQL存储过程的控制语句 <br><br>(1). 变量作用域 <br><br>内部的变量在其作用域范围内享有更高的优先权，当执行到end。变量时，内部变量消失，此时已经在其作用域外，变量不再可见了，应为在存储 <BR>过程外再也不能找到这个申明的变量，但是你可以通过out参数或者将其值指派 <BR>给会话变量来保存其值。 <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc3() <BR>-&gt; begin <BR>-&gt; declare x1 varchar(5) default 'outer'; <BR>-&gt; begin <BR>-&gt; declare x1 varchar(5) default 'inner'; <BR>-&gt; select x1; <BR>-&gt; end; <BR>-&gt; select x1; <BR>-&gt; end; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>(2). 条件语句 <br><br>Ⅰ. if-then -else语句 <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc2(IN parameter int) <BR>-&gt; begin <BR>-&gt; declare var int; <BR>-&gt; set var=parameter+1; <BR>-&gt; if var=0 then <BR>-&gt; insert into t values(17); <BR>-&gt; end if; <BR>-&gt; if parameter=0 then <BR>-&gt; update t set s1=s1+1; <BR>-&gt; else <BR>-&gt; update t set s1=s1+2; <BR>-&gt; end if; <BR>-&gt; end; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>Ⅱ. case语句： <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc3 (in parameter int) <BR>-&gt; begin <BR>-&gt; declare var int; <BR>-&gt; set var=parameter+1; <BR>-&gt; case var <BR>-&gt; when 0 then <BR>-&gt; insert into t values(17); <BR>-&gt; when 1 then <BR>-&gt; insert into t values(18); <BR>-&gt; else <BR>-&gt; insert into t values(19); <BR>-&gt; end case; <BR>-&gt; end; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>(3). 循环语句 <br><br>Ⅰ. while ···· end while： <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc4() <BR>-&gt; begin <BR>-&gt; declare var int; <BR>-&gt; set var=0; <BR>-&gt; while var&lt;6 do <BR>-&gt; insert into t values(var); <BR>-&gt; set var=var+1; <BR>-&gt; end while; <BR>-&gt; end; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>Ⅱ. repeat···· end repeat： <br><br>它在执行操作后检查结果，而while则是执行前进行检查。 <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc5 () <BR>-&gt; begin <BR>-&gt; declare v int; <BR>-&gt; set v=0; <BR>-&gt; repeat <BR>-&gt; insert into t values(v); <BR>-&gt; set v=v+1; <BR>-&gt; until v&gt;=5 <BR>-&gt; end repeat; <BR>-&gt; end; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>Ⅲ. loop ·····end loop: <br><br>loop循环不需要初始条件，这点和while 循环相似，同时和repeat循环一样不需要结束条件, leave语句的意义是离开循环。 <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc6 () <BR>-&gt; begin <BR>-&gt; declare v int; <BR>-&gt; set v=0; <BR>-&gt; LOOP_LABLE:loop <BR>-&gt; insert into t values(v); <BR>-&gt; set v=v+1; <BR>-&gt; if v &gt;=5 then <BR>-&gt; leave LOOP_LABLE; <BR>-&gt; end if; <BR>-&gt; end loop; <BR>-&gt; end; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>Ⅳ. LABLES 标号： <br><br>标号可以用在begin repeat while 或者loop 语句前，语句标号只能在合法的语句前面使用。可以跳出循环，使运行指令达到复合语句的最后一步。 <br><br>(4). ITERATE迭代 <br><br>Ⅰ. ITERATE: <br><br>通过引用复合语句的标号,来从新开始复合语句 <br><br>mysql &gt; DELIMITER // <BR>mysql &gt; CREATE PROCEDURE proc10 () <BR>-&gt; begin <BR>-&gt; declare v int; <BR>-&gt; set v=0; <BR>-&gt; LOOP_LABLE:loop <BR>-&gt; if v=3 then <BR>-&gt; set v=v+1; <BR>-&gt; ITERATE LOOP_LABLE; <BR>-&gt; end if; <BR>-&gt; insert into t values(v); <BR>-&gt; set v=v+1; <BR>-&gt; if v&gt;=5 then <BR>-&gt; leave LOOP_LABLE; <BR>-&gt; end if; <BR>-&gt; end loop; <BR>-&gt; end; <BR>-&gt; // <BR>mysql &gt; DELIMITER ; <br><br>9.MySQL存储过程的基本函数 <br><br>(1).字符串类 <br><br>CHARSET(str) //返回字串字符集 <BR>CONCAT (string2 [,... ]) //连接字串 <BR>INSTR (string ,substring ) //返回substring首次在string中出现的位置,不存在返回0 <BR>LCASE (string2 ) //转换成小写 <BR>LEFT (string2 ,length ) //从string2中的左边起取length个字符 <BR>LENGTH (string ) //string长度 <BR>LOAD_FILE (file_name ) //从文件读取内容 <BR>LOCATE (substring , string [,start_position ] ) 同INSTR,但可指定开始位置 <BR>LPAD (string2 ,length ,pad ) //重复用pad加在string开头,直到字串长度为length <BR>LTRIM (string2 ) //去除前端空格 <BR>REPEAT (string2 ,count ) //重复count次 <BR>REPLACE (str ,search_str ,replace_str ) //在str中用replace_str替换search_str <BR>RPAD (string2 ,length ,pad) //在str后用pad补充,直到长度为length <BR>RTRIM (string2 ) //去除后端空格 <BR>STRCMP (string1 ,string2 ) //逐字符比较两字串大小, <BR>SUBSTRING (str , position [,length ]) //从str的position开始,取length个字符, <BR>注：mysql中处理字符串时，默认第一个字符下标为1，即参数position必须大于等于1 <br><br>mysql&gt; select substring('abcd',0,2); <BR>+-----------------------+ <BR>| substring('abcd',0,2) | <BR>+-----------------------+ <br><br>+-----------------------+ <BR>1 row in set (0.00 sec) <br><br>mysql&gt; select substring('abcd',1,2); <BR>+-----------------------+ <BR>| substring('abcd',1,2) | <BR>+-----------------------+ <BR>| ab | <BR>+-----------------------+ <BR>1 row in set (0.02 sec) <BR>TRIM([[BOTH|LEADING|TRAILING] [padding] FROM]string2) //去除指定位置的指定字符 <BR>UCASE (string2 ) //转换成大写 <BR>RIGHT(string2,length) //取string2最后length个字符 <BR>SPACE(count) //生成count个空格 <br><br>(2).数学类 <br><br>ABS (number2 ) //绝对值 <BR>BIN (decimal_number ) //十进制转二进制 <BR>CEILING (number2 ) //向上取整 <BR>CONV(number2,from_base,to_base) //进制转换 <BR>FLOOR (number2 ) //向下取整 <BR>FORMAT (number,decimal_places ) //保留小数位数 <BR>HEX (DecimalNumber ) //转十六进制 <BR>注：HEX()中可传入字符串，则返回其ASC-11码，如HEX('DEF')返回4142143 <BR>也可以传入十进制整数，返回其十六进制编码，如HEX(25)返回19 <BR>LEAST (number , number2 [,..]) //求最小值 <BR>MOD (numerator ,denominator ) //求余 <BR>POWER (number ,power ) //求指数 <BR>RAND([seed]) //随机数 <BR>ROUND (number [,decimals ]) //四舍五入,decimals为小数位数] <br><br>注：返回类型并非均为整数，如： <BR>(1)默认变为整形值 <br><br>mysql&gt; select round(1.23); <BR>+-------------+ <BR>| round(1.23) | <BR>+-------------+ <BR>| 1 | <BR>+-------------+ <BR>1 row in set (0.00 sec) <br><br>mysql&gt; select round(1.56); <BR>+-------------+ <BR>| round(1.56) | <BR>+-------------+ <BR>| 2 | <BR>+-------------+ <BR>1 row in set (0.00 sec) <br><br>(2)可以设定小数位数，返回浮点型数据 <br><br>mysql&gt; select round(1.567,2); <BR>+----------------+ <BR>| round(1.567,2) | <BR>+----------------+ <BR>| 1.57 | <BR>+----------------+ <BR>1 row in set (0.00 sec) <BR>SIGN (number2 ) // <br><br>(3).日期时间类 <br><br>ADDTIME (date2 ,time_interval ) //将time_interval加到date2 <BR>CONVERT_TZ (datetime2 ,fromTZ ,toTZ ) //转换时区 <BR>CURRENT_DATE ( ) //当前日期 <BR>CURRENT_TIME ( ) //当前时间 <BR>CURRENT_TIMESTAMP ( ) //当前时间戳 <BR>DATE (datetime ) //返回datetime的日期部分 <BR>DATE_ADD (date2 , INTERVAL d_value d_type ) //在date2中加上日期或时间 <BR>DATE_FORMAT (datetime ,FormatCodes ) //使用formatcodes格式显示datetime <BR>DATE_SUB (date2 , INTERVAL d_value d_type ) //在date2上减去一个时间 <BR>DATEDIFF (date1 ,date2 ) //两个日期差 <BR>DAY (date ) //返回日期的天 <BR>DAYNAME (date ) //英文星期 <BR>DAYOFWEEK (date ) //星期(1-7) ,1为星期天 <BR>DAYOFYEAR (date ) //一年中的第几天 <BR>EXTRACT (interval_name FROM date ) //从date中提取日期的指定部分 <BR>MAKEDATE (year ,day ) //给出年及年中的第几天,生成日期串 <BR>MAKETIME (hour ,minute ,second ) //生成时间串 <BR>MONTHNAME (date ) //英文月份名 <BR>NOW ( ) //当前时间 <BR>SEC_TO_TIME (seconds ) //秒数转成时间 <BR>STR_TO_DATE (string ,format ) //字串转成时间,以format格式显示 <BR>TIMEDIFF (datetime1 ,datetime2 ) //两个时间差 <BR>TIME_TO_SEC (time ) //时间转秒数] <BR>WEEK (date_time [,start_of_week ]) //第几周 <BR>YEAR (datetime ) //年份 <BR>DAYOFMONTH(datetime) //月的第几天 <BR>HOUR(datetime) //小时
+<!--NEWSZW_HZH_END-->
+
+<div id="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="/article/53302.htm" title="MySQL 存储过程中执行动态SQL语句的方法" target="_blank">MySQL 存储过程中执行动态SQL语句的方法</a></li><li><a href="/article/51029.htm" title="MySql学习心得之存储过程" target="_blank">MySql学习心得之存储过程</a></li><li><a href="/article/39471.htm" title="mysql 导入导出数据库以及函数、存储过程的介绍" target="_blank">mysql 导入导出数据库以及函数、存储过程的介绍</a></li><li><a href="/article/32139.htm" title="mysql存储过程 游标 循环使用介绍" target="_blank">mysql存储过程 游标 循环使用介绍</a></li><li><a href="/article/27996.htm" title="MySQL动态创建表，数据分表的存储过程" target="_blank">MySQL动态创建表，数据分表的存储过程</a></li><li><a href="/article/27085.htm" title="mysql多次调用存储过程的问题" target="_blank">mysql多次调用存储过程的问题</a></li><li><a href="/article/24814.htm" title="MySQL存储过程例子(包含事务，输出参数，嵌套调用)" target="_blank">MySQL存储过程例子(包含事务，输出参数，嵌套调用)</a></li><li><a href="/article/23574.htm" title="mysql 存储过程中变量的定义与赋值操作" target="_blank">mysql 存储过程中变量的定义与赋值操作</a></li><li><a href="/article/19587.htm" title="MySQL 有输入输出参数的存储过程实例" target="_blank">MySQL 有输入输出参数的存储过程实例</a></li><li><a href="/article/15769.htm" title="MySQL5创建存储过程的示例" target="_blank">MySQL5创建存储过程的示例</a></li><li><a href="/article/7032.htm" title="mysql中存储过程、函数的一些问题" target="_blank">mysql中存储过程、函数的一些问题</a></li><li><a href="/article/53652.htm" title="Mysql存储过程学习笔记--建立简单的存储过程" target="_blank">Mysql存储过程学习笔记--建立简单的存储过程</a></li></ul>
+<div id="con_da2">
+<script type="text/javascript">dy("baidu580");</script>
+</div>
+</div>
+<div id="con_bo"></div>
+</div>
+<div class=blank3></div>
+<div id="shoucang">
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+        <a class="bds_qzone">QQ空间</a>
+        <a class="bds_tsina">新浪微博</a>
+        <a class="bds_tqq">腾讯微博</a>
+        <a class="bds_tsohu">搜狐微博</a>
+        <a class="bds_renren">人人网</a>
+        <a class="bds_kaixin001">开心网</a>
+        <a class="bds_baidu">百度搜藏</a>
+        <span class="bds_more">更多</span>
+		<a class="shareCount"></a>
+    </div>
+</div>
+<div class=blank3></div>
+<div class="tags">
+<strong>Tags：</strong><a href="http://img.jb51.net/tag/mysql%B4%E6%B4%A2%B9%FD%B3%CC/1.htm" target="_blank" title="搜索关于mysql存储过程的文章">mysql存储过程</a> 
+</div>
+<div class=blank3></div>
+<div class="con_ff">
+<A title=复制本文链接发给你QQ/MSN上的好友 href="javascript: copyUserHomeToClipBoard()" 
+rel=nofollow class=button_link>复制链接</A><a href="javascript:addBookmark(document.title,document.location.href)" class=button_link>收藏本文</a><a href="javascript:doPrint();" class="button_link">打印本文</a><a href="javascript:closeWindow()" class="button_link">关闭本文</a><a href='/index.htm' class=button_link>返回首页</a>
+</div>
+<div id="prenext">
+<div id='prv'>上一篇：<a href='/article/30824.htm' title='mysql 数据库基础笔记'>mysql 数据库基础笔记</a></div><div id='next'>下一篇：<a href='/article/69739.htm'>MySQL存储过程中实现执行动态SQL语句的方法</a></div>
+</div>
+<div class=blank3></div>
+<DIV id=relatedarticle>
+<H2>相关文章</H2>
+<ul><li><span>2009-11-11</span><a href="/article/21137.htm" title="MySQL不支持InnoDB的解决方法" target="_blank">MySQL不支持InnoDB的解决方法</a></li><li><span>2015-05-05</span><a href="/article/65775.htm" title="获取MySQL的表中每个userid最后一条记录的方法" target="_blank">获取MySQL的表中每个userid最后一条记录的方法</a></li><li><span>2013-02-02</span><a href="/article/33808.htm" title="使用bin-log日志还原数据库的例子" target="_blank">使用bin-log日志还原数据库的例子</a></li><li><span>2012-01-01</span><a href="/article/29442.htm" title="MySQL交叉表实现分享" target="_blank">MySQL交叉表实现分享</a></li><li><span>2014-12-12</span><a href="/article/58727.htm" title="mysql技巧：提高插入数据(添加记录)的速度" target="_blank">mysql技巧：提高插入数据(添加记录)的速度</a></li><li><span>2014-08-08</span><a href="/article/53828.htm" title="深入探寻mysql自增列导致主键重复问题的原因" target="_blank">深入探寻mysql自增列导致主键重复问题的原因</a></li><li><span>2013-04-04</span><a href="/article/35267.htm" title="mysql解决远程不能访问的二种方法" target="_blank">mysql解决远程不能访问的二种方法</a></li><li><span>2013-01-01</span><a href="/article/33369.htm" title="6G数据库的导入 报各种错误的解决办法" target="_blank">6G数据库的导入 报各种错误的解决办法</a></li><li><span>2012-12-12</span><a href="/article/32636.htm" title="Mysql auto_increment 重新计数(让id从1开始)" target="_blank">Mysql auto_increment 重新计数(让id从1开始)</a></li><li><span>2014-07-07</span><a href="/article/52518.htm" title="MySQL整型数据溢出的解决方法" target="_blank">MySQL整型数据溢出的解决方法</a></li></ul>
+<DIV class=clear></DIV></DIV>
+<div class="sm"><script type="text/javascript" charset="gb2312">dy("bdtxt");</script></div>
+<DIV id=comments>
+<H2>文章评论</H2>
+<div id="commentList">
+<div class="ds-thread" data-category="" data-thread-key="art_30825" data-title="mysql存储过程详解" data-author-key="" data-url="http://www.jb51.net/article/30825.htm"></div>
+</div>
+</div>
+<div class=blank3></div>
+<div class="sm"><script type="text/javascript" charset="gb2312">dy("sm");</script></div>
+<div class=blank3></div>
+<div id="hm_t_3717"></div>
+<div class=blank3></div>
+</div>
+</div><!--end dxy_mainl-->
+<div class="dxy_main_r">
+<div class="rbg" id="art_1"><script type="text/javascript">dy("r1");</script></div>
+<div class=blank3></div>
+<DIV class="r_title"><H6>最 近 更 新</H6></div>
+<div class="rightContent">
+<ul><li><a href="/article/30101.htm" title="MYSQL 浅谈MyISAM 存储引擎" target="_blank">MYSQL 浅谈MyISAM 存储引擎</a></li><li><a href="/article/37996.htm" title="基于Mysql存储引擎的深入分析" target="_blank">基于Mysql存储引擎的深入分析</a></li><li><a href="/article/38740.htm" title="MySQL分表实现上百万上千万记录分布存储的批量查询设计模式详解" target="_blank">MySQL分表实现上百万上千万记录分布存储的</a></li><li><a href="/article/66671.htm" title="MySQL中的max()函数使用教程" target="_blank">MySQL中的max()函数使用教程</a></li><li><a href="/article/66697.htm" title="MySQL中的RAND()函数使用详解" target="_blank">MySQL中的RAND()函数使用详解</a></li><li><a href="/article/51480.htm" title="MySQL远程连接丢失问题解决方法（Lost connection to MySQL server）" target="_blank">MySQL远程连接丢失问题解决方法（Lost co</a></li><li><a href="/article/26594.htm" title="phpmyadmin中为站点设置mysql权限的图文方法" target="_blank">phpmyadmin中为站点设置mysql权限的图文方</a></li><li><a href="/article/53201.htm" title="安装MySQL后include目录下没有找到libmysql.lib" target="_blank">安装MySQL后include目录下没有找到libmys</a></li><li><a href="/article/64562.htm" title="介绍使用WordPress时10个常用的MySQL查询" target="_blank">介绍使用WordPress时10个常用的MySQL查询</a></li><li><a href="/article/51482.htm" title="mysql清除log-bin日志的方法" target="_blank">mysql清除log-bin日志的方法</a></li></ul>
+</div>
+<div class=blank3></div>
+<div id="art_2"><script type="text/javascript">dy("r2");</script></div>
+<div class=blank3></div>
+<DIV class="r_title"><H6>热 点 排 行</H6></div>
+<div class="hotContent">
+<ul class="toplist"><li class="light"><SPAN class=r_num>1</SPAN><a href="/article/23876.htm" title="mysql安装图解 mysql图文安装教程(详细说明)" target="_blank">mysql安装图解 mysql图文安装教程</a></li><li class="light"><SPAN class=r_num>2</SPAN><a href="/article/26505.htm" title="Can''t connect to MySQL server on localhost (10061)解决方法" target="_blank">Can''t connect to MySQL server</a></li><li class="light"><SPAN class=r_num>3</SPAN><a href="/article/15386.htm" title="超详细mysql left join,right join,inner join用法分析" target="_blank">超详细mysql left join,right jo</a></li><li><SPAN class=r_num>4</SPAN><a href="/article/22734.htm" title="Mysql命令行导入sql数据" target="_blank">Mysql命令行导入sql数据</a></li><li><SPAN class=r_num>5</SPAN><a href="/article/27458.htm" title="Mysql字符串截取函数SUBSTRING的用法说明" target="_blank">Mysql字符串截取函数SUBSTRING的</a></li><li><SPAN class=r_num>6</SPAN><a href="/article/25686.htm" title="MySQL数据库备份与恢复方法" target="_blank">MySQL数据库备份与恢复方法</a></li><li><SPAN class=r_num>7</SPAN><a href="/article/23966.htm" title="MySQL日期数据类型、时间类型使用总结" target="_blank">MySQL日期数据类型、时间类型使用</a></li><li><SPAN class=r_num>8</SPAN><a href="/article/25257.htm" title="MYSQL 数据库导入导出命令" target="_blank">MYSQL 数据库导入导出命令</a></li><li><SPAN class=r_num>9</SPAN><a href="/article/23781.htm" title="MySQL server has gone away 问题的解决方法" target="_blank">MySQL server has gone away 问题</a></li><li><SPAN class=r_num>10</SPAN><a href="/article/21984.htm" title="windows下mysql忘记root密码的解决方法" target="_blank">windows下mysql忘记root密码的解</a></li></ul>
+</div>
+<div class=blank3></div>
+<div id="art_3"><script type="text/javascript">dy("r3");</script></div>
+<div class=blank3></div>
+<div id="baidu300"><script type="text/javascript">dy("baidu300_2");</script></div>
+</DIV><!--end mainr-->
+<div class=clear></div>
+</div><!--end main2-->
+</div>
+<div class="blank3"></div>
+
+<div id="footer">
+  <div id="footerinfo">
+   <div id="footercontent"><a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - <a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - <a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  <a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  <a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - <a href="tencent://message/?uin=461478385&Site=http://www.jb51.net" target="_blank">投诉建议</a> - <a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a></div>
+    <div id="footercopyrights">CopyRight &copy; 2006-2015 <a href="http://www.jb51.net">脚本之家</a> JB51.Net , All Rights Reserved</div>
+  </div>
+  <DIV class=ewm><IMG alt="脚本之家官方微信" src="http://img.jb51.net/images/weixin_jb51.gif"></DIV>
+</div>
+<!-- Baidu Button BEGIN -->
+<div id="logo_m_tp"><script type="text/javascript">dy("logo_m");</script></div>
+<div id="logo_r_tp"><script type="text/javascript">dy("logo_r");</script></div>
+<div id="tonglan1_tp"><script type="text/javascript">dy("tonglan1");</script></div>
+<script type="text/javascript" src="http://img.jb51.net/jslib/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://img.jb51.net/js/foot.js"></script>
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="/jslib/syntaxhighlighter/scripts/shAutoloader.js"></script>
+<script type="text/javascript"> 
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+</script>
+<div class="tongji"><script type="text/javascript" src="http://img.jb51.net/inc/tongji.js"></script></div>
+<script type="text/javascript" src="http://www.jb51.net/pl.asp?id=30825"></script>
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=50347" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<!-- Baidu Button END -->
+<!-- Duoshuo Comment BEGIN -->
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+var duoshuoQuery = {short_name:"jb51"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</body>
+</html>
+<!-- published at 2015-7-20 16:23:39By dxycms qq:461478385  -->
