@@ -1,15 +1,116 @@
-nodejs������Ҫ�ĸ���ģ��˵��
-mocha��Mocha is a feature-rich JavaScript test framework running on node.js and the browser, making asynchronous testing simple and fun.��
-chai��Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework.��
-sinon��Standalone test spies, stubs and mocks for JavaScript.��
-zombie (ҳ���¼�ģ��Zombie.js is a lightweight framework for testing client-side JavaScript code in a simulated environment. No browser required.)
-supertest(�ӿڲ��� Super-agent driven library for testing node.js HTTP servers using a fluent API)
-superagent
-istanbul (js���Ը�����ͳ�ƹ��ߣ����Ա���)a JS code coverage tool written in JS
+﻿nodejs测试需要的各个模块说明
 
-"dependencies": {
+安装服务器自动重载模块
+npm install --save-dev supervisor
+
+安装测试模块
+mkdir test
+touch gulpfile.js
+
+npm install --save-dev mocha
+npm install --save-dev chai
+npm install --save-dev sinon
+npm install --save-dev supertest
+npm install --save-dev zombie
+单元测试需要的各个模块说明:
+mocha（Mocha is a feature-rich JavaScript test framework running on node.js and the browser, making asynchronous testing simple and fun.）
+chai（Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework.）
+sinon（Standalone test spies, stubs and mocks for JavaScript.）
+zombie (页面事件模拟Zombie.js is a lightweight framework for testing client-side JavaScript code in a simulated environment. No browser required.)
+supertest(接口测试 Super-agent driven library for testing node.js HTTP servers using a fluent API)
+superagent（SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.）
+istanbul (js测试覆盖率统计工具，a JS code coverage tool written in JS)
+
+自动测试和代码测试覆盖率法1：基于gulp
+
+
+修改gulpfile.js
+auto test
+代码测试覆盖率
+npm install --save-dev gulp 
+npm install --save-dev gulp-mocha 
+npm install --save-dev gulp-istanbul
+
+创建gulpfile.js
+
+var gulp = require(‘gulp’); 
+var istanbul = require(‘gulp-istanbul’); 
+var mocha = require(‘gulp-mocha’);
+
+gulp.task(‘test’, function (cb) { 
+	gulp.src([‘db/*/.js’])
+	.pipe(istanbul()) // Covering files 
+	.on(‘finish’, function () { 
+		gulp.src([‘test/*.js’]) 
+		.pipe(mocha()) 
+		.pipe(istanbul.writeReports()) // Creating the reports after tests runned 
+		.on(‘end’, cb); 
+	});
+});
+
+gulp.task(‘default’,[‘test’], function() { 
+	gulp.watch([’./db/*/’,’./test/*/’], [‘test’]); 
+});
+
+gulp.task(‘watch’,[‘test’], function() { 
+	gulp.watch([’./db/*/’,’./test/*/’], [‘test’]); 
+}); 
+
+测试
+node_modules/.bin/gulp
+这时，你试试修改测试或源文件试试，看看会不会自动触发测试
+
+当然，如果你喜欢只是测试一次，可以这样做
+node_modules/.bin/gulp test
+
+如果你不熟悉gulp，可以在这里https://github.com/i5ting/js-tools-best-practice/blob/master/doc/Gulp.md学习
+
+修改package.json
+"scripts": { 
+"start": "./node_modules/.bin/supervisor ./bin/www", 
+"test": "./node_modules/.bin/mocha -u tdd" 
+},
+
+"devdependencies": {
     "mocha": "*",
     "chai":"*",
     "sinon": "",
     "supertest":""  
-  }
+}
+
+
+自动测试和代码测试覆盖率法2：基于cli
+安装依赖npm包
+npm install --save-dev mocha
+npm install --save-dev istanbul
+
+在package.json里scripts增加
+"test": "./node_modules/.bin/mocha --reporter spec",
+"test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
+"test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
+
+然后测试
+npm test
+npm run test-cov
+npm run test-travis
+这里想自动化会有点麻烦，还是建议接触gulp
+如果不了npm run命令，请参阅 https://github.com/i5ting/npm-run-test
+
+TDD 流程
+先编写一个失败测试，然后编写应用代码让测试通过，最后再按需重构代码。
+因为很多测试工具都使用红色表示失败测试，使用绿色表示通过的测试，
+所以这个流程有时也叫“遇红-变绿-重构”循环。
+
+
+测试相关网址
+https://github.com/visionmedia/mocha
+http://visionmedia.github.io/mocha/
+http://mochajs.org/
+https://github.com/chaijs/chai
+http://chaijs.com/
+http://sinonjs.org/
+http://zombie.labnotes.org/
+https://github.com/tj/supertest（api test文档）
+https://github.com/tj/superagent/blob/master/test/node/agency.js（api test示例）
+https://github.com/i5ting/js-tools-best-practice/blob/master/doc/Gulp.md
+https://github.com/SBoudrias/gulp-istanbul

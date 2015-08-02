@@ -1,0 +1,1166 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+    
+    
+    <title>js-tools-best-practice/Gulp.md at master · streakq/js-tools-best-practice</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="streakq/js-tools-best-practice" name="twitter:title" /><meta content="js-tools-best-practice - js tools best practice " name="twitter:description" /><meta content="https://avatars2.githubusercontent.com/u/8610230?v=3&amp;s=400" name="twitter:image:src" />
+      <meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars2.githubusercontent.com/u/8610230?v=3&amp;s=400" property="og:image" /><meta content="streakq/js-tools-best-practice" property="og:title" /><meta content="https://github.com/streakq/js-tools-best-practice" property="og:url" /><meta content="js-tools-best-practice - js tools best practice " property="og:description" />
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="web-socket" href="wss://live.github.com/_sockets/MTMxNjI3MDg6M2U4ZGUzNzkwYTYzOTAwMjllMzg0MTRhMWFjOTMwNmU6M2Y5MGNmNTBkYWVlMTJjZjIzNTdkYzJkNDE0MzRjZGQ5ZGU5NDc5MTEyZWE1N2YzYWIzYWNmYzRhNzFjNmZhOA==--078d05300f8f505fc24c245155481052638fee5d">
+    <meta name="pjax-timeout" content="1000">
+    <link rel="sudo-modal" href="/sessions/sudo_modal">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_source" data-pjax-transient>
+
+        <meta name="google-analytics" content="UA-3769691-2">
+
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="71584ACD:6D91:290AC7E:55BDBE52" name="octolytics-dimension-request_id" /><meta content="13162708" name="octolytics-actor-id" /><meta content="redstorm82" name="octolytics-actor-login" /><meta content="19bd2c3f55f6b33fc1c167698eb1255be3c12bc7620891757a718470d80febb9" name="octolytics-actor-hash" />
+    
+    <meta content="Rails, view, blob#show" data-pjax-transient="true" name="analytics-event" />
+    <meta class="js-ga-set" name="dimension1" content="Logged In">
+      <meta class="js-ga-set" name="dimension4" content="Current repo nav">
+    <meta name="is-dotcom" content="true">
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="redstorm82">
+
+      <link rel="icon" sizes="any" mask href="https://assets-cdn.github.com/pinned-octocat.svg">
+      <meta name="theme-color" content="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <!-- </textarea> --><!-- '"` --><meta content="authenticity_token" name="csrf-param" />
+<meta content="DDB1R7xwO+KsVRT4KLvxQ98ljyxdMAC6PTpfayByQKP1ICDtrAHA8jsSg9OlLF3uiEpW4pcE52rvQTA4K71hdA==" name="csrf-token" />
+    
+
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github/index-c7126cd67871e693a9f863b7a0e99879ca39079b15a8784f8b543c03bf14ad72.css" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2/index-87247f16e6450ef54cb0eda3f8f1484e33a3f18c7a7d3df1f76f67cba36a8d6d.css" media="all" rel="stylesheet" />
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="f8fdf7d6713452aadb5c847c2e94f51b">
+
+      
+  <meta name="description" content="js-tools-best-practice - js tools best practice ">
+  <meta name="go-import" content="github.com/streakq/js-tools-best-practice git https://github.com/streakq/js-tools-best-practice.git">
+
+  <meta content="8610230" name="octolytics-dimension-user_id" /><meta content="streakq" name="octolytics-dimension-user_login" /><meta content="23529750" name="octolytics-dimension-repository_id" /><meta content="streakq/js-tools-best-practice" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="true" name="octolytics-dimension-repository_is_fork" /><meta content="22454933" name="octolytics-dimension-repository_parent_id" /><meta content="i5ting/js-tools-best-practice" name="octolytics-dimension-repository_parent_nwo" /><meta content="22454933" name="octolytics-dimension-repository_network_root_id" /><meta content="i5ting/js-tools-best-practice" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/streakq/js-tools-best-practice/commits/master.atom" rel="alternate" title="Recent Commits to js-tools-best-practice:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_in  env-production windows vis-public fork page-blob">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div class="wrapper">
+      
+      
+      
+
+
+
+        <div class="header header-logged-in true" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+  <span class="mega-octicon octicon-mark-github"></span>
+</a>
+
+
+      <div class="site-search repo-scope js-site-search" role="search">
+          <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/streakq/js-tools-best-practice/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="/streakq/js-tools-best-practice/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label class="js-chromeless-input-container form-control">
+    <div class="scope-badge">This repository</div>
+    <input type="text"
+      class="js-site-search-focus js-site-search-field is-clearable chromeless-input"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search"
+      aria-label="Search this repository"
+      data-global-scope-placeholder="Search GitHub"
+      data-repo-scope-placeholder="Search"
+      tabindex="1"
+      autocapitalize="off">
+  </label>
+</form>
+      </div>
+
+      <ul class="header-nav left" role="navigation">
+        <li class="header-nav-item">
+          <a href="/pulls" class="js-selected-navigation-item header-nav-link" data-ga-click="Header, click, Nav menu - item:pulls context:user" data-hotkey="g p" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls">
+            Pull requests
+</a>        </li>
+        <li class="header-nav-item">
+          <a href="/issues" class="js-selected-navigation-item header-nav-link" data-ga-click="Header, click, Nav menu - item:issues context:user" data-hotkey="g i" data-selected-links="/issues /issues/assigned /issues/mentioned /issues">
+            Issues
+</a>        </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://gist.github.com/" data-ga-click="Header, go to gist, text:gist">Gist</a>
+          </li>
+      </ul>
+
+    
+<ul class="header-nav user-nav right" id="user-links">
+  <li class="header-nav-item">
+      <span class="js-socket-channel js-updatable-content"
+        data-channel="notification-changed:redstorm82"
+        data-url="/notifications/header">
+      <a href="/notifications" aria-label="You have unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s" data-ga-click="Header, go to notifications, icon:unread" data-hotkey="g n">
+          <span class="mail-status unread"></span>
+          <span class="octicon octicon-inbox"></span>
+</a>  </span>
+
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link tooltipped tooltipped-s js-menu-target" href="/new"
+       aria-label="Create new…"
+       data-ga-click="Header, create new, icon:add">
+      <span class="octicon octicon-plus left"></span>
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <ul class="dropdown-menu dropdown-menu-sw">
+        
+<a class="dropdown-item" href="/new" data-ga-click="Header, create new repository">
+  New repository
+</a>
+
+
+  <a class="dropdown-item" href="/organizations/new" data-ga-click="Header, create new organization">
+    New organization
+  </a>
+
+
+
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-header">
+    <span title="streakq/js-tools-best-practice">This repository</span>
+  </div>
+    <a class="dropdown-item" href="/streakq/js-tools-best-practice/issues/new" data-ga-click="Header, create new issue">
+      New issue
+    </a>
+
+      </ul>
+    </div>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link name tooltipped tooltipped-s js-menu-target" href="/redstorm82"
+       aria-label="View profile and more"
+       data-ga-click="Header, show menu, icon:avatar">
+      <img alt="@redstorm82" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/13162708?v=3&amp;s=40" width="20" />
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <div class="dropdown-menu dropdown-menu-sw">
+        <div class="dropdown-header header-nav-current-user css-truncate">
+          Signed in as <strong class="css-truncate-target">redstorm82</strong>
+        </div>
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" href="/redstorm82" data-ga-click="Header, go to profile, text:your profile">
+          Your profile
+        </a>
+        <a class="dropdown-item" href="/stars" data-ga-click="Header, go to starred repos, text:your stars">
+          Your stars
+        </a>
+        <a class="dropdown-item" href="/explore" data-ga-click="Header, go to explore, text:explore">
+          Explore
+        </a>
+        <a class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">
+          Help
+        </a>
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">
+          Settings
+        </a>
+
+        <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/logout" class="logout-form" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="25kFhcTzC29jptdyb67lK6S6P2VbbUMVj54krroYdhMvkONIghhOXDxeCsxN5A2/fXHdROTCj1JScdmQNsHdDw==" /></div>
+          <button class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
+            Sign out
+          </button>
+</form>      </div>
+    </div>
+  </li>
+</ul>
+
+
+    
+  </div>
+</div>
+
+        
+
+        
+<div class="flash-global js-notice flash-error">
+<div class="container">
+
+
+
+
+
+
+
+
+
+    <h2>One of our mostly harmless robots seems to think you are not a human.</h2>
+    <p>
+      Because of that, it’s hidden your profile from the public. If you really are human, please <a href="/support">contact support</a> to have your profile reinstated.
+    </p>
+    <p>We promise we won’t require DNA proof of your humanity.</p>
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+      <div id="start-of-content" class="accessibility-aid"></div>
+          <div class="site" itemscope itemtype="http://schema.org/WebPage">
+    <div id="js-flash-container">
+      
+    </div>
+    <div class="pagehead repohead instapaper_ignore readability-menu ">
+      <div class="container">
+
+        <div class="clearfix">
+          
+<ul class="pagehead-actions">
+
+  <li>
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="BJpt7M0zUGB9N5lihiuNb8/QxDDccPowaQULaNfY1ppxmH25syz07KCooXGZde+4vtBaFxpseQHTAYSqm6goYw==" /></div>    <input id="repository_id" name="repository_id" type="hidden" value="23529750" />
+
+      <div class="select-menu js-menu-container js-select-menu">
+        <a href="/streakq/js-tools-best-practice/subscription"
+          class="btn btn-sm btn-with-count select-menu-button js-menu-target" role="button" tabindex="0" aria-haspopup="true"
+          data-ga-click="Repository, click Watch settings, action:blob#show">
+          <span class="js-select-button">
+            <span class="octicon octicon-eye"></span>
+            Watch
+          </span>
+        </a>
+        <a class="social-count js-social-count" href="/streakq/js-tools-best-practice/watchers">
+          2
+        </a>
+
+        <div class="select-menu-modal-holder">
+          <div class="select-menu-modal subscription-menu-modal js-menu-content" aria-hidden="true">
+            <div class="select-menu-header">
+              <span class="select-menu-title">Notifications</span>
+              <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+            </div>
+
+            <div class="select-menu-list js-navigation-container" role="menu">
+
+              <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input checked="checked" id="do_included" name="do" type="radio" value="included" />
+                  <span class="select-menu-item-heading">Not watching</span>
+                  <span class="description">Be notified when participating or @mentioned.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-eye"></span>
+                    Watch
+                  </span>
+                </div>
+              </div>
+
+              <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input id="do_subscribed" name="do" type="radio" value="subscribed" />
+                  <span class="select-menu-item-heading">Watching</span>
+                  <span class="description">Be notified of all conversations.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-eye"></span>
+                    Unwatch
+                  </span>
+                </div>
+              </div>
+
+              <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input id="do_ignore" name="do" type="radio" value="ignore" />
+                  <span class="select-menu-item-heading">Ignoring</span>
+                  <span class="description">Never be notified.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-mute"></span>
+                    Stop ignoring
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+</form>
+  </li>
+
+  <li>
+    
+  <div class="js-toggler-container js-social-container starring-container ">
+
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/streakq/js-tools-best-practice/unstar" class="js-toggler-form starred js-unstar-button" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="4+gcPh3ulWtEPbz64aDhHgVrwn7ahy/KfHWA/p4qKz/GMaTS1ZknlFzF2uOJJsBexX3hjVVOq+UaDTBAqi9ZfQ==" /></div>
+      <button
+        class="btn btn-sm btn-with-count js-toggler-target"
+        aria-label="Unstar this repository" title="Unstar streakq/js-tools-best-practice"
+        data-ga-click="Repository, click unstar button, action:blob#show; text:Unstar">
+        <span class="octicon octicon-star"></span>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="/streakq/js-tools-best-practice/stargazers">
+          16
+        </a>
+</form>
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/streakq/js-tools-best-practice/star" class="js-toggler-form unstarred js-star-button" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="wkhqgKLHEwmbMzGbocqx/T2WsCGQsBbEwFX+/OeDZUjh/aTrk+DnBVwIC2DJABR2Q8I3Dfov0t5Dubp0DlYytg==" /></div>
+      <button
+        class="btn btn-sm btn-with-count js-toggler-target"
+        aria-label="Star this repository" title="Star streakq/js-tools-best-practice"
+        data-ga-click="Repository, click star button, action:blob#show; text:Star">
+        <span class="octicon octicon-star"></span>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="/streakq/js-tools-best-practice/stargazers">
+          16
+        </a>
+</form>  </div>
+
+  </li>
+
+        <li>
+          <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/streakq/js-tools-best-practice/fork" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="nwg62rf4R4WhE8D9yQgKZY2CRDDytJArx1hPbwhpCKs9xG+I+7wMxIWeTXbLYWuPOVyiSRLnwuDGkDxRtn0RxA==" /></div>
+            <button
+                type="submit"
+                class="btn btn-sm btn-with-count"
+                data-ga-click="Repository, show fork modal, action:blob#show; text:Fork"
+                title="Fork your own copy of streakq/js-tools-best-practice to your account"
+                aria-label="Fork your own copy of streakq/js-tools-best-practice to your account">
+              <span class="octicon octicon-repo-forked"></span>
+              Fork
+            </button>
+            <a href="/streakq/js-tools-best-practice/network" class="social-count">8</a>
+</form>        </li>
+
+</ul>
+
+          <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public ">
+            <span class="mega-octicon octicon-repo-forked"></span>
+            <span class="author"><a href="/streakq" class="url fn" itemprop="url" rel="author"><span itemprop="title">streakq</span></a></span><!--
+         --><span class="path-divider">/</span><!--
+         --><strong><a href="/streakq/js-tools-best-practice" data-pjax="#js-repo-pjax-container">js-tools-best-practice</a></strong>
+
+            <span class="page-context-loader">
+              <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+            </span>
+
+              <span class="fork-flag">
+                <span class="text">forked from <a href="/i5ting/js-tools-best-practice">i5ting/js-tools-best-practice</a></span>
+              </span>
+          </h1>
+        </div>
+
+      </div>
+    </div>
+
+      <div class="container">
+        <div class="repository-with-sidebar repo-container new-discussion-timeline ">
+          <div class="repository-sidebar clearfix">
+              
+
+<nav class="sunken-menu repo-nav js-repo-nav js-sidenav-container-pjax js-octicon-loaders"
+     role="navigation"
+     data-pjax="#js-repo-pjax-container"
+     data-issue-count-url="/streakq/js-tools-best-practice/issues/counts">
+  <ul class="sunken-menu-group">
+    <li class="tooltipped tooltipped-w" aria-label="Code">
+      <a href="/streakq/js-tools-best-practice" aria-label="Code" aria-selected="true" class="js-selected-navigation-item selected sunken-menu-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /streakq/js-tools-best-practice">
+        <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Issues">
+        <a href="/streakq/js-tools-best-practice/issues" aria-label="Issues" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /streakq/js-tools-best-practice/issues">
+          <span class="octicon octicon-issue-opened"></span> <span class="full-word">Issues</span>
+          <span class="js-issue-replace-counter"></span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+    <li class="tooltipped tooltipped-w" aria-label="Pull requests">
+      <a href="/streakq/js-tools-best-practice/pulls" aria-label="Pull requests" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g p" data-selected-links="repo_pulls /streakq/js-tools-best-practice/pulls">
+          <span class="octicon octicon-git-pull-request"></span> <span class="full-word">Pull requests</span>
+          <span class="js-pull-replace-counter"></span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Wiki">
+        <a href="/streakq/js-tools-best-practice/wiki" aria-label="Wiki" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g w" data-selected-links="repo_wiki /streakq/js-tools-best-practice/wiki">
+          <span class="octicon octicon-book"></span> <span class="full-word">Wiki</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+  </ul>
+  <div class="sunken-menu-separator"></div>
+  <ul class="sunken-menu-group">
+
+    <li class="tooltipped tooltipped-w" aria-label="Pulse">
+      <a href="/streakq/js-tools-best-practice/pulse" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-selected-links="pulse /streakq/js-tools-best-practice/pulse">
+        <span class="octicon octicon-pulse"></span> <span class="full-word">Pulse</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+
+    <li class="tooltipped tooltipped-w" aria-label="Graphs">
+      <a href="/streakq/js-tools-best-practice/graphs" aria-label="Graphs" class="js-selected-navigation-item sunken-menu-item" data-selected-links="repo_graphs repo_contributors /streakq/js-tools-best-practice/graphs">
+        <span class="octicon octicon-graph"></span> <span class="full-word">Graphs</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+  </ul>
+
+
+</nav>
+
+                <div class="only-with-full-nav">
+                    
+<div class="js-clone-url clone-url open"
+  data-protocol-type="http">
+  <h3><span class="text-emphasized">HTTPS</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://github.com/streakq/js-tools-best-practice.git" readonly="readonly" aria-label="HTTPS clone URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="js-clone-url clone-url "
+  data-protocol-type="ssh">
+  <h3><span class="text-emphasized">SSH</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="git@github.com:streakq/js-tools-best-practice.git" readonly="readonly" aria-label="SSH clone URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="js-clone-url clone-url "
+  data-protocol-type="subversion">
+  <h3><span class="text-emphasized">Subversion</span> checkout URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://github.com/streakq/js-tools-best-practice" readonly="readonly" aria-label="Subversion checkout URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+
+  <div class="clone-options">You can clone with
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone" class="inline-form js-clone-selector-form is-enabled" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="FH7BOqNmi3Fxd9JUGCyuoTV/Dxt5XgeT99Y+3maidk07rV7ud3n9Y9j6g1OkVdCfn0bUCt+ghsv9QeBKBczxJA==" /></div><button class="btn-link js-clone-selector" data-protocol="http" type="submit">HTTPS</button></form>, <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone" class="inline-form js-clone-selector-form is-enabled" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="iuNo8ZOk1AuB4twmSoauil1DCSlQVozeUXn3NPraLWyAISHwXvraevR1KLHREG6iWsunQ+w7A5x90sE0T9ZGFA==" /></div><button class="btn-link js-clone-selector" data-protocol="ssh" type="submit">SSH</button></form>, or <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone" class="inline-form js-clone-selector-form is-enabled" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="drpi8dZ8pJGeKiv+SSnXb9+CRFUhtugVVMQ3S+jYCYqRUdY5YqnriZh7/0NpCssu7MUbGA0tdC4k/k0lHHzE+A==" /></div><button class="btn-link js-clone-selector" data-protocol="subversion" type="submit">Subversion</button></form>.
+    <a href="https://help.github.com/articles/which-remote-url-should-i-use" class="help tooltipped tooltipped-n" aria-label="Get help on which URL is right for you.">
+      <span class="octicon octicon-question"></span>
+    </a>
+  </div>
+    <a href="github-windows://openRepo/https://github.com/streakq/js-tools-best-practice" class="btn btn-sm sidebar-button" title="Save streakq/js-tools-best-practice to your computer and use it in GitHub Desktop." aria-label="Save streakq/js-tools-best-practice to your computer and use it in GitHub Desktop.">
+      <span class="octicon octicon-device-desktop"></span>
+      Clone in Desktop
+    </a>
+
+                  <a href="/streakq/js-tools-best-practice/archive/master.zip"
+                     class="btn btn-sm sidebar-button"
+                     aria-label="Download the contents of streakq/js-tools-best-practice as a zip file"
+                     title="Download the contents of streakq/js-tools-best-practice as a zip file"
+                     rel="nofollow">
+                    <span class="octicon octicon-cloud-download"></span>
+                    Download ZIP
+                  </a>
+                </div>
+          </div>
+          <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container>
+
+            
+
+<a href="/streakq/js-tools-best-practice/blob/0bc953627e25dc98cb12eb807699391892545881/doc/Gulp.md" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+<!-- blob contrib key: blob_contributors:v21:39b4f21f9c051163ad0df98b9b123d90 -->
+
+  <div class="file-navigation js-zeroclipboard-container">
+    
+<div class="select-menu js-menu-container js-select-menu left">
+  <span class="btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w"
+    data-ref="master"
+    title="master"
+    role="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <i>Branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </span>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <span class="select-menu-title">Switch branches/tags</span>
+        <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open selected"
+               href="/streakq/js-tools-best-practice/blob/master/doc/Gulp.md"
+               data-name="master"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <span class="select-menu-item-text css-truncate-target" title="master">
+                master
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    <div class="btn-group right">
+      <a href="/streakq/js-tools-best-practice/find/master"
+            class="js-show-file-finder btn btn-sm empty-icon tooltipped tooltipped-nw"
+            data-pjax
+            data-hotkey="t"
+            aria-label="Quickly jump between files">
+        <span class="octicon octicon-list-unordered"></span>
+      </a>
+      <button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </div>
+
+    <div class="breadcrumb js-zeroclipboard-target">
+      <span class="repo-root js-repo-root"><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/streakq/js-tools-best-practice" class="" data-branch="master" data-pjax="true" itemscope="url"><span itemprop="title">js-tools-best-practice</span></a></span></span><span class="separator">/</span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/streakq/js-tools-best-practice/tree/master/doc" class="" data-branch="master" data-pjax="true" itemscope="url"><span itemprop="title">doc</span></a></span><span class="separator">/</span><strong class="final-path">Gulp.md</strong>
+    </div>
+  </div>
+
+<include-fragment class="commit commit-loader file-history-tease" src="/streakq/js-tools-best-practice/contributors/master/doc/Gulp.md">
+  <div class="file-history-tease-header">
+    Fetching contributors&hellip;
+  </div>
+
+  <div class="participation">
+    <p class="loader-loading"><img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32-EAF2F5.gif" width="16" /></p>
+    <p class="loader-error">Cannot retrieve contributors at this time</p>
+  </div>
+</include-fragment>
+<div class="file">
+  <div class="file-header">
+    <div class="file-actions">
+
+      <div class="btn-group">
+        <a href="/streakq/js-tools-best-practice/raw/master/doc/Gulp.md" class="btn btn-sm " id="raw-url">Raw</a>
+          <a href="/streakq/js-tools-best-practice/blame/master/doc/Gulp.md" class="btn btn-sm js-update-url-with-hash">Blame</a>
+        <a href="/streakq/js-tools-best-practice/commits/master/doc/Gulp.md" class="btn btn-sm " rel="nofollow">History</a>
+      </div>
+
+        <a class="octicon-btn tooltipped tooltipped-nw"
+           href="github-windows://openRepo/https://github.com/streakq/js-tools-best-practice?branch=master&amp;filepath=doc%2FGulp.md"
+           aria-label="Open this file in GitHub for Windows"
+           data-ga-click="Repository, open with desktop, type:windows">
+            <span class="octicon octicon-device-desktop"></span>
+        </a>
+
+            <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/streakq/js-tools-best-practice/edit/master/doc/Gulp.md" class="inline-form" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="LlCXOJ7h9zqHwsnde57HNIiPNGU1nAZVZ4gh9zlyIQrGNbaeOFpAbDXlGrIPpA6H1NsB89Ou44z9FBWMC+HUcQ==" /></div>
+              <button class="octicon-btn tooltipped tooltipped-n" type="submit" aria-label="Fork this project and edit the file" data-hotkey="e" data-disable-with>
+                <span class="octicon octicon-pencil"></span>
+              </button>
+</form>
+          <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/streakq/js-tools-best-practice/delete/master/doc/Gulp.md" class="inline-form" data-form-nonce="46062b3d9ca95909fb9b38cc67de2ae402c85e8e" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="tDpwBhi6ZzVbw61UNnTbAEhBK/isW4Us9VgfsncTZpmQPip+oo82lt3ItDQGM6+dISwiYjSDQpJL/p20vLP6EA==" /></div>
+            <button class="octicon-btn octicon-btn-danger tooltipped tooltipped-n" type="submit" aria-label="Fork this project and delete this file" data-disable-with>
+              <span class="octicon octicon-trashcan"></span>
+            </button>
+</form>    </div>
+
+    <div class="file-info">
+        427 lines (283 sloc)
+        <span class="file-info-divider"></span>
+      8.797 kB
+    </div>
+  </div>
+  
+  <div id="readme" class="blob instapaper_body">
+    <article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1><a id="user-content-gulp" class="anchor" href="#gulp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gulp</h1>
+
+<h2><a id="user-content-什么是gulp" class="anchor" href="#什么是gulp" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是Gulp</h2>
+
+<p>gulp.js 是一种基于流的，代码优于配置的新一代构建工具。</p>
+
+<p>Gulp 和 Grunt 类似。但相比于 Grunt 的频繁的 IO 操作，Gulp 的流操作，能更快地完成构建。</p>
+
+<h2><a id="user-content-gulp安装" class="anchor" href="#gulp安装" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gulp安装</h2>
+
+<p>Gulp基于 Node.js </p>
+
+<pre><code>npm install -g gulp
+npm install —-save-dev gulp
+</code></pre>
+
+<h2><a id="user-content-hello-world" class="anchor" href="#hello-world" aria-hidden="true"><span class="octicon octicon-link"></span></a>hello world</h2>
+
+<p>create gulpfile and run hello world demo</p>
+
+<pre><code>var gulp = require('gulp');
+
+gulp.task('default', function() {
+    console.log('hello world')
+});
+</code></pre>
+
+<p>then run</p>
+
+<pre><code>gulp
+</code></pre>
+
+<h2><a id="user-content-custom-task-with-name-compress" class="anchor" href="#custom-task-with-name-compress" aria-hidden="true"><span class="octicon octicon-link"></span></a>custom task with name <code>compress</code></h2>
+
+<pre><code>var gulp = require('gulp');
+
+gulp.task('compress', function() {
+    console.log('hello world')
+});
+</code></pre>
+
+<p>then run</p>
+
+<pre><code>gulp compress
+</code></pre>
+
+<h2><a id="user-content-use-uglify-plugin" class="anchor" href="#use-uglify-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>use uglify plugin</h2>
+
+<p>now we need to minify the js files,so we need uglify plugin</p>
+
+<h3><a id="user-content-安装-gulp-uglify" class="anchor" href="#安装-gulp-uglify" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装 gulp-uglify</h3>
+
+<pre><code>npm install gulp-uglify --save-dev
+</code></pre>
+
+<h2><a id="user-content---save-dev" class="anchor" href="#--save-dev" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>--save-dev</code></h2>
+
+<p>see package.json</p>
+
+<pre><code>{
+    devDependences:{
+        'gulp-uglify':'*'
+    }
+}
+</code></pre>
+
+<p>this mean ....</p>
+
+<h2><a id="user-content-use-in-gulpfile" class="anchor" href="#use-in-gulpfile" aria-hidden="true"><span class="octicon octicon-link"></span></a>use in gulpfile</h2>
+
+<pre><code>var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+
+gulp.task('default', function() {
+    gulp.src('src/*.js')
+        .pipe(uglify())   //压缩js
+        .pipe(gulp.dest('dist'))
+});
+</code></pre>
+
+<p>NOTE</p>
+
+<ul>
+<li>require</li>
+<li>usage</li>
+</ul>
+
+<p>then run</p>
+
+<pre><code>gulp 
+</code></pre>
+
+<p>then open dist dir</p>
+
+<pre><code>open dist
+</code></pre>
+
+<p>check if lt_tab.js is compressed.</p>
+
+<h2><a id="user-content-use-rename-plugin" class="anchor" href="#use-rename-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>use rename plugin</h2>
+
+<p>we found its name is not <code>*.min.js</code>,so we need to rename the compressed result file name.</p>
+
+<p>use gulp-rename npm </p>
+
+<h2><a id="user-content-安装-gulp-rename" class="anchor" href="#安装-gulp-rename" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装 gulp-rename</h2>
+
+<pre><code>npm install gulp-rename --save-dev
+</code></pre>
+
+<h2><a id="user-content---save-dev-1" class="anchor" href="#--save-dev-1" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>--save-dev</code></h2>
+
+<p>see package.json</p>
+
+<pre><code>{
+    devDependences:{
+        'gulp-rename':'*'
+    }
+}
+</code></pre>
+
+<p>this mean ....</p>
+
+<h2><a id="user-content-use-in-gulpfile-1" class="anchor" href="#use-in-gulpfile-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>use in gulpfile</h2>
+
+<pre><code>var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+
+
+gulp.task('default', function() {
+    gulp.src('src/*.js')
+        .pipe(uglify())   //压缩js
+        .pipe(rename(function (path) {
+            path.extname = ".min.js"    //重命名压缩后的js
+        }))
+        .pipe(gulp.dest('dist'))
+});
+</code></pre>
+
+<p>then run</p>
+
+<pre><code>gulp 
+</code></pre>
+
+<p>then open dist dir</p>
+
+<pre><code>open dist
+</code></pre>
+
+<p>check if lt_tab.min.js is existed.</p>
+
+<h2><a id="user-content-使用watch" class="anchor" href="#使用watch" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用watch</h2>
+
+<p>说明watch是内置的task，用于监控文件变动</p>
+
+<pre><code>var gulp = require('gulp');
+
+gulp.task('default', function() {
+  gulp.watch('./src/**/*', ['src']);
+});
+
+gulp.task('src', function(done) {
+    console.log('gulp watch log info : src directory changed.');
+});
+</code></pre>
+
+<p>启动gulp,然后修改index.js，控制台输入<code>gulp watch log info : src directory changed.</code>即代表成功</p>
+
+<pre><code> demo5 git:(master) ✗ gulp 
+[21:43:10] Using gulpfile ~/Workspace/github/js-tools-best-practice/gulp-demo/demo5/gulpfile.js
+[21:43:10] Starting 'default'...
+[21:43:10] Finished 'default' after 11 ms
+[21:43:17] Starting 'src'...
+gulp watch log info : src directory changed.
+</code></pre>
+
+<h2><a id="user-content-作业依赖" class="anchor" href="#作业依赖" aria-hidden="true"><span class="octicon octicon-link"></span></a>作业依赖</h2>
+
+<p>看demo6，和demo5的代码基本上一样</p>
+
+<pre><code>var gulp = require('gulp');
+
+gulp.task('default',['watch'],function() {
+    console.log('default task');
+});
+
+gulp.task('watch', function() {
+  gulp.watch('./src/**/*', ['src']);
+});
+
+gulp.task('src', function(done) {
+    console.log('gulp watch log info : src directory changed.');
+});
+</code></pre>
+
+<p>注意</p>
+
+<pre><code>gulp.task('default',['watch'],function() {
+    console.log('default task');
+});
+</code></pre>
+
+<p>这里的task有3个参数，</p>
+
+<ol>
+<li>default是方法名称，只有default比较奇怪，会默认调用。相当于c里的main方法</li>
+<li><code>['watch']</code>这是依赖的作业列表，它们是由顺序的，按数组顺序依次执行</li>
+<li>第三个参数是成功执行完上面的依赖作业后执行的回调函数</li>
+</ol>
+
+<p>改一下：</p>
+
+<pre><code>gulp.task('default',['watch','task_2','task_3'],function() {
+    console.log('依赖作业终于执行完了，下面是我的舞台....');
+});
+</code></pre>
+
+<h2><a id="user-content-concat" class="anchor" href="#concat" aria-hidden="true"><span class="octicon octicon-link"></span></a>concat</h2>
+
+<p>合并代码</p>
+
+<pre><code>var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var concat  = require('gulp-concat');
+
+gulp.task('default', function() {
+    gulp.src('src/*.js')
+        .pipe(uglify())
+        .pipe(rename(function (path) {
+            path.extname = ".min.js"
+        }))
+        .pipe(concat('trans.min.js'))
+        .pipe(gulp.dest('toc/js'));
+});
+</code></pre>
+
+<p>说明：会把src下得每个js都压缩，然后concat合并成一个trans.min.js，并放到toc/js目录下面</p>
+
+<h2><a id="user-content-use-with-shelljs" class="anchor" href="#use-with-shelljs" aria-hidden="true"><span class="octicon octicon-link"></span></a>use with shelljs</h2>
+
+<p>see demo 8</p>
+
+<pre><code>var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var concat  = require('gulp-concat');
+
+require('shelljs/global');
+
+
+gulp.task('default', function() {
+    gulp.src('src/*.js')
+        .pipe(uglify())
+        .pipe(rename(function (path) {
+            path.extname = ".min.js"
+        }))
+        .pipe(concat('trans.min.js'))
+        .pipe(gulp.dest('toc/js'));
+
+    cp('-R', 'lib/*', 'toc/lib/');
+});
+</code></pre>
+
+<p>需求：我需要把lib下的所有js文件，放到toc/lib下，查看<a href="http://gulpjs.com/plugins/%E6%97%A0%E5%92%8Ccp%E6%88%96copy%E6%9C%89%E5%85%B3%E7%9A%84%E6%8F%92%E4%BB%B6%EF%BC%8Cso">http://gulpjs.com/plugins/无和cp或copy有关的插件，so</a></p>
+
+<p>用shell写的</p>
+
+<pre><code>cp -rf  lib/* toc/lib/
+</code></pre>
+
+<p>需要用到shelljs</p>
+
+<pre><code>cp('-R', 'lib/*', 'toc/lib/');
+</code></pre>
+
+<p>是不是很简单啊？</p>
+
+<p>ShellJS is a portable (Windows/Linux/OS X) implementation of Unix shell commands on top of the Node.js API. You can use it to eliminate your shell script's dependency on Unix while still keeping its familiar and powerful commands. You can also install it globally so you can run it from outside Node projects - say goodbye to those gnarly Bash scripts!</p>
+
+<p><a href="http://documentup.com/arturadib/shelljs">http://documentup.com/arturadib/shelljs</a></p>
+
+<h2><a id="user-content-reload-usage" class="anchor" href="#reload-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>reload usage</h2>
+
+<p>可以使用browsersync的gulp插件，这个比较方便</p>
+
+<p>先安装依赖</p>
+
+<pre><code>npm install browser-sync gulp --save-dev
+</code></pre>
+
+<p>具体task写法</p>
+
+<pre><code>var gulp        = require('gulp');
+var browserSync = require('browser-sync');
+
+// Static server
+gulp.task('browser-sync', function() {
+    browserSync({
+        server: {
+            baseDir: "./"
+        }
+    });
+});
+</code></pre>
+
+<p>更多api参见<a href="http://www.browsersync.io/docs/gulp/">http://www.browsersync.io/docs/gulp/</a></p>
+
+<h2><a id="user-content-git-pages分支自动推送" class="anchor" href="#git-pages分支自动推送" aria-hidden="true"><span class="octicon octicon-link"></span></a>git pages分支自动推送</h2>
+
+<p>详见[gulp-gh-pages插件教程]</p>
+
+<ul>
+<li><a href="https://github.com/i5ting/gp-pages-import-test">https://github.com/i5ting/gp-pages-import-test</a></li>
+</ul>
+
+<h2><a id="user-content-项目实战" class="anchor" href="#项目实战" aria-hidden="true"><span class="octicon octicon-link"></span></a>项目实战</h2>
+
+<pre><code>require('shelljs/global');
+
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var concat  = require('gulp-concat');
+var minify_css = require('gulp-minify-css');
+
+/**
+ * js minify
+ */ 
+gulp.task('js', function() {
+    gulp.src('src/*.js')
+        .pipe(uglify())
+        .pipe(rename(function (path) {
+            path.extname = ".min.js"
+        }))
+        .pipe(concat('trans.min.js'))
+        .pipe(gulp.dest('toc/js'));
+
+    cp('-Rf', 'lib/*', 'toc/lib/');
+});
+
+/**
+ * clean js &amp;&amp; css dist
+ */ 
+gulp.task('clean', function() {
+    rm('-rf', 'toc/css');
+    rm('-rf', 'toc/js');
+});
+
+
+/**
+ * css minify
+ */ 
+gulp.task('css', function() {
+    rm('-rf', 'toc/css');
+
+  gulp.src('css/*.css')
+    .pipe(minify_css({keepBreaks:false}))
+        .pipe(concat('trans.min.css'))
+    .pipe(gulp.dest('toc/css'));
+
+    cp('-Rf', 'css/zTreeStyle', 'toc/css/');
+});
+
+
+/**
+ * default
+ */ 
+gulp.task('default', ['clean','js','css']);
+</code></pre>
+
+<p>这是我自己的项目里使用的。其实clean应该有插件的。这里用shelljs写的，大同小异。</p>
+
+<h2><a id="user-content-write-a-gulp-plugin" class="anchor" href="#write-a-gulp-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>write a gulp plugin</h2>
+
+<h2><a id="user-content-read-gulp-source" class="anchor" href="#read-gulp-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>read gulp source</h2>
+
+<h2><a id="user-content-node-stream" class="anchor" href="#node-stream" aria-hidden="true"><span class="octicon octicon-link"></span></a>node stream</h2>
+
+<h2><a id="user-content-concution" class="anchor" href="#concution" aria-hidden="true"><span class="octicon octicon-link"></span></a>concution</h2>
+
+<p>.....</p>
+
+<h2><a id="user-content-best-practice" class="anchor" href="#best-practice" aria-hidden="true"><span class="octicon octicon-link"></span></a>best practice</h2>
+
+<p>我发现gulp-load-plugin模块十分有用，它能够自动地从package.json中加载任意Gulp插件然后把它们附加到一个对象上。它的基本用法如下所示：</p>
+
+<pre><code>var gulpLoadPlugins = require('gulp-load-plugins'),
+    plugins = gulpLoadPlugins();
+</code></pre>
+
+<p>你可以把所有代码写到一行，但是我并不推荐这样做。</p>
+
+<p>在执行那些代码之后，插件对象就已经包含了插件，并使用“驼峰式”的方式进行命名（例如，gulp-ruby-sass将被加载成plugins.rubySass），这样就可以很方便地使用了：</p>
+
+<pre><code>var gulp = require('gulp'),
+   gulpLoadPlugins = require('gulp-load-plugins'),
+   plugins = gulpLoadPlugins();
+
+gulp.task('js', function () {
+  return gulp.src('js/*.js')
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('default'))
+    .pipe(plugins.uglify())
+    .pipe(plugins.concat('app.js'))
+    .pipe(gulp.dest('build'));
+});
+</code></pre>
+
+<p>more see <a href="https://github.com/jackfranklin/gulp-load-plugins">https://github.com/jackfranklin/gulp-load-plugins</a></p>
+
+<h2><a id="user-content-url" class="anchor" href="#url" aria-hidden="true"><span class="octicon octicon-link"></span></a>url</h2>
+
+<ul>
+<li><a href="/streakq/js-tools-best-practice/blob/master/doc/gruntjs.org">grunt</a></li>
+<li><a href="http://gulpjs.com/plugins/">gulp plugins</a></li>
+<li><a href="https://www.npmjs.org/package/gulp-uglify/">gulp-uglify</a></li>
+<li><a href="https://www.npmjs.org/package/gulp-rename/">gulp-rename</a></li>
+<li><a href="http://www.tuicool.com/articles/n2Uj2y">Gulp.js：比 Grunt 更简单的自动化的项目构建利器</a></li>
+<li><a href="http://gulpjs.com/">官方网站</a></li>
+<li><a href="https://github.com/wearefractal/gulp/">使用文档</a></li>
+<li><a href="http://gratimax.github.io/search-gulp-plugins/">插件列表</a></li>
+<li><a href="http://zhuanlan.zhihu.com/TLA42/19711450">Grunt Gulp 战斗法师</a></li>
+<li><a href="http://blog.nodejitsu.com/npmawesome-9-gulp-plugins/">awesome-9-gulp-plugins/</a></li>
+<li><a href="http://julienrenaux.fr/2014/05/25/introduction-to-gulp-js-with-practical-examples/">introduction-to-gulp-js-with-practical-examples/</a></li>
+<li><a href="http://987.tw/2014/07/09/gulpru-men-zhi-nan/">gulpru-men-zhi-nan</a></li>
+</ul>
+</article>
+  </div>
+
+</div>
+
+<a href="#jump-to-line" rel="facebox[.linejump]" data-hotkey="l" style="display:none">Jump to Line</a>
+<div id="jump-to-line" style="display:none">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="" class="js-jump-to-line-form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+    <input class="linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" aria-label="Jump to line" autofocus>
+    <button type="submit" class="btn">Go</button>
+</form></div>
+
+          </div>
+        </div>
+        <div class="modal-backdrop"></div>
+      </div>
+  </div>
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2015 <span title="0.07857s from github-fe137-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-suggester-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="fullscreen-contents js-fullscreen-contents" placeholder="" aria-label=""></textarea>
+      <div class="suggester-container">
+        <div class="suggester fullscreen-suggester js-suggester js-navigation-container"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="#" class="exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w" aria-label="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="#" class="theme-switcher js-theme-switcher tooltipped tooltipped-w"
+      aria-label="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <a href="#" class="octicon octicon-x flash-close js-ajax-error-dismiss" aria-label="Dismiss error"></a>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-eedcd4970c51d77d26b12825fc1fb1fbd554a880c0a8649a9cac6b63f1ee7cff.js"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github/index-1af8eb3fd83c34afcee37eae4704e57d3bb35ccacee5574545665527ae02d731.js"></script>
+      
+      
+  </body>
+</html>
+
