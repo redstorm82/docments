@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>带你入门带你飞Ⅱ 使用Mocha + Chai + SuperTest测试Restful API in node.js - WadeXu - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=VDh8zSH1vx51MDqRT7hK220akQ58FjlaaeGuWBPhfOA1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/HabaHaba/bundle-HabaHaba.css?v=Zo8PfphqodA44_wbJuqBW0oJ5ivns_p5H70Wylw_1s01"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wade-xu/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wade-xu/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wade-xu/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'wade-xu', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=JoVOWMb-iZn6s7f1mHI0Z_8uEB-CbY41K0NgN6_Ttzc1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<table width="100%" class="Framework" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="2">
+			
+<div id="top">
+<table width="100%" cellpadding="8" cellspacing="0">
+	<tr>
+		<td nowrap>
+			<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wade-xu/">Wade Xu</a></h1>
+			-- 拓展测试的边界
+		</td>
+	</tr>
+</table>
+</div>
+<div id="sub">
+<div class="BlogStats">posts - 15, comments - 47, trackbacks - 0, articles - 0</div></div>
+
+
+</td>
+	</tr>
+	<tr>
+		<td class="LeftCell">
+			<div id="leftmenu">
+                
+                    
+<h3>导航</h3>
+<ul>
+	<li>
+		<a id="MyLinks2_HomeLink" href="http://www.cnblogs.com/">博客园</a>
+	<li>
+		<a id="MyLinks2_MyHomeLink" href="http://www.cnblogs.com/wade-xu/">首页</a>
+	<li>
+		<a id="MyLinks2_NewPostLink" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>
+	<li>
+		<a id="MyLinks2_ContactLink" accesskey="9" rel="nofollow" href="http://msg.cnblogs.com/send/WadeXu">联系</a>
+	<li>
+		<a id="MyLinks2_XMLLink" href="http://www.cnblogs.com/wade-xu/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a><a id="MyLinks2_Syndication" href="http://www.cnblogs.com/wade-xu/rss">订阅</a>
+	<li>
+		<a id="MyLinks2_Admin" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+                    
+<h3>公告</h3>
+<div id="news">
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+                    <div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+                    <div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+                	        
+			</div>
+		</td>
+		<td class="MainCell" width="100%">
+			<div id="main">
+				
+<div id="post_detail">
+	<div class="post">
+		<div class="posthead">
+			<h2>
+				<a id="cb_post_title_url" class="singleposttitle" href="http://www.cnblogs.com/wade-xu/p/4673460.html">带你入门带你飞Ⅱ 使用Mocha + Chai + SuperTest测试Restful API in node.js</a>
+			</h2>
+ 			Posted on <span id="post-date">2015-07-28 09:56</span> <a href='http://www.cnblogs.com/wade-xu/'>WadeXu</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=4673460" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(4673460);return false;">收藏</a>
+			<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=211757,cb_entryId=4673460,cb_blogApp=currentBlogApp,cb_blogUserGuid='21bf92c7-2a9a-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2015/7/28 9:56:00';loadViewCount(cb_entryId);</script>
+			
+		</div>
+		<div class="postbody"><div id="cnblogs_post_body"><div class="cnblogs_code">
+<p><span style="font-size: 14px;"><strong>目录</strong></span><br />　　1. 简介<br />　　2. 准备开始<br />　　3. Restful API测试实战<br />  　　　　　　Example 1 - GET<br />			　　　　　　Example 2 - Post<br />    	　　　　　　Example 3 - Put<br />			　　　　　　Example 4 - Delete<br />　　4. Troubleshooting<br />　　5. 参考文档</p>
+
+
+
+</div>
+<p>&nbsp;</p>
+<h2>简介</h2>
+<p>经过上一篇文章的介绍，相信你已经对mocha, chai有一定的了解了， 本篇主要讲述如何用supertest来测试nodejs项目中的Restful API, 项目基于express框架。</p>
+<p>SuperTest 是 SuperAgent一个扩展, 一个轻量级 HTTP AJAX 请求库.</p>
+<p>SuperTest provides high-level abstractions for testing node.js API endpoint responses with easy to understand assertions.</p>
+<p>&nbsp;</p>
+<h2>准备开始</h2>
+<p>npm安装命令</p>
+<div class="cnblogs_code">
+<pre>npm install supertest</pre>
+</div>
+<p><span style="line-height: 1.5;">&nbsp;</span></p>
+<p><span style="line-height: 1.5;">nodejs项目文件目录结构如下</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre>├── config
+│   └── config.json
+├── controllers
+│   └── dashboard
+│       └── widgets
+│           └── index.js
+├── models
+│   └── widgets.js
+├── lib
+│   └── jdbc.js
+├── package.json
+└── test
+    └── controllers
+        └── dashboard
+            └── widgets
+                └── index_IntegrationTest.js </pre>
+</div>
+<p>测试代码写在index_IntegrationTest.js这个文件中</p>
+<p>&nbsp;</p>
+<h2>Restful API测试实战</h2>
+<p><span style="line-height: 1.5;">测试依赖库</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">var</span> express = require('express'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> kraken = require('kraken-js'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> request = require('supertest'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> chai = require('chai'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> assert = chai.assert;</pre>
+</div>
+<p>##转载注明出处：<a id="Editor_Edit_hlEntryLink" title="view: 带你入门带你飞Ⅱ" href="http://www.cnblogs.com/wade-xu/p/4673460.html" target="_blank">http://www.cnblogs.com/wade-xu/p/4673460.html</a>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Example 1 - GET</h3>
+<p>Controller/dashboard/widgets/index.js</p>
+<div class="cnblogs_code">
+<pre>var _widgets = require('../../../models/widgets.js'<span>);
+
+module.exports = function<span>(router) {
+
+  router.get('/', function<span>(req, res) {
+    _widgets.getWidgets(req.user.id)
+            .then(function<span>(widgets){
+              return<span> res.json(widgets);
+            })
+            .catch(function<span>(err){
+              return<span> res.json ({
+                code: '000-0001'<span>,
+                message: 'failed to get widgets:'+<span>err
+              });
+            });
+  });
+};</span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p>&nbsp;</p>
+<p>测试代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">var</span> kraken = require('kraken-js'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> express = require('express'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> request = require('supertest'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> aweb = require('acxiom-web'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> chance = <span style="color: #0000ff;">new</span>(require('chance'<span style="color: #000000;">))();
+</span><span style="color: #0000ff;">var</span> chai = require('chai'<span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> assert =<span style="color: #000000;"> chai.assert;
+
+describe(</span>'/dashboard/widgets', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+
+  </span><span style="color: #0000ff;">var</span><span style="color: #000000;"> app, mock;
+
+  before(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+    app </span>=<span style="color: #000000;"> express();
+    app.on(</span>'start'<span style="color: #000000;">, done);
+
+    app.use(kraken({
+      basedir: process.cwd(),
+      onconfig: </span><span style="color: #0000ff;">function</span><span style="color: #000000;">(config, next) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">some config info</span>
+<span style="color: #000000;">
+        next(</span><span style="color: #0000ff;">null</span><span style="color: #000000;">, config);
+      }
+    }));
+
+    mock </span>= app.listen(1337<span style="color: #000000;">);
+
+  });
+
+  after(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+    mock.close(done);
+  });
+
+  it(</span>'get widgets', <span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+    request(mock)
+      .get(</span>'/dashboard/widgets/'<span style="color: #000000;">)
+      .set(</span>'Accept', 'application/json'<span style="color: #000000;">)
+      .expect(</span>200<span style="color: #000000;">)
+      .expect(</span>'Content-Type', 'application/json; charset=utf-8'<span style="color: #000000;">)
+      .end(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(err, res) {
+        </span><span style="color: #0000ff;">if</span> (err) <span style="color: #0000ff;">return</span><span style="color: #000000;"> done(err);
+        assert.isArray(res.body, </span>'return widgets object'<span style="color: #000000;">);
+        done();
+      });
+  });
+
+});</span></pre>
+</div>
+<p>&nbsp;</p>
+<h3>Example 2 - Post</h3>
+<p>被测代码：</p>
+<div class="cnblogs_code">
+<pre>  router.post('/', <span style="color: #0000ff;">function</span><span style="color: #000000;">(req, res) {
+    _widgets.addWidget(req.user.id, req.body.widget)
+            .then(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(widget){
+              </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> res.json(widget);
+            })
+            .</span><span style="color: #0000ff;">catch</span>(<span style="color: #0000ff;">function</span><span style="color: #000000;">(err){
+              </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> res.json ({
+                code: </span>'000-0002'<span style="color: #000000;">,
+                message: </span>'failed to add widget:' +<span style="color: #000000;"> err
+              });
+            });
+  });</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>测试代码：</p>
+<div class="cnblogs_code">
+<pre>  it('add widgets', <span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+   </span><span style="color: #0000ff;">var</span> body =<span style="color: #000000;"> {
+    widget: {
+    type: </span>'billing'<span style="color: #000000;">,
+    color: </span>'blue'<span style="color: #000000;">,
+    location: {
+        x: </span>'1'<span style="color: #000000;">,
+        y: </span>'5'<span style="color: #000000;">
+      }
+     }
+    };
+
+    request(mock)
+      .post(</span>'/dashboard/widgets/'<span style="color: #000000;">)
+      .send(body)
+      .expect(</span>200<span style="color: #000000;">)
+      .expect(</span>'Content-Type', /json/<span style="color: #000000;">)
+      .end(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(err, res) {
+        </span><span style="color: #0000ff;">if</span> (err) <span style="color: #0000ff;">return</span><span style="color: #000000;"> done(err);
+        assert.equal(res.body.type, </span>'billing'<span style="color: #000000;">);
+        assert.equal(res.body.color, </span>'blue'<span style="color: #000000;">);
+        done();
+      });
+  });</span></pre>
+</div>
+<p>##转载注明出处：<a id="Editor_Edit_hlEntryLink" title="view: 带你入门带你飞Ⅱ" href="http://www.cnblogs.com/wade-xu/p/4673460.html" target="_blank">http://www.cnblogs.com/wade-xu/p/4673460.html</a>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Example 3 - Put</h3>
+<p>被测代码</p>
+<div class="cnblogs_code">
+<pre>  router.put('/color/:id', <span style="color: #0000ff;">function</span><span style="color: #000000;">(req, res) {
+    _widgets.changeWidgetColor(req.params.id, req.body.color)
+            .then(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(status){
+              </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> res.json(status);
+            })
+            .</span><span style="color: #0000ff;">catch</span>(<span style="color: #0000ff;">function</span><span style="color: #000000;">(err){
+              </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> res.json ({
+                code: </span>'000-0004'<span style="color: #000000;">,
+                message: </span>'failed to change widget color:' +<span style="color: #000000;"> err
+              });
+            });
+  });</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>测试代码</p>
+<div class="cnblogs_code">
+<pre>  describe('change widget color', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+    </span><span style="color: #0000ff;">var</span> id = ''<span style="color: #000000;">;
+    before(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+      </span><span style="color: #0000ff;">var</span> body =<span style="color: #000000;"> {
+        widget: {
+          type: </span>'billing'<span style="color: #000000;">,
+          color: </span>'blue'<span style="color: #000000;">,
+          location: {
+            x: </span>'1'<span style="color: #000000;">,
+            y: </span>'5'<span style="color: #000000;">
+          }
+        }
+      };
+
+      request(mock)
+        .post(</span>'/dashboard/widgets/'<span style="color: #000000;">)
+        .send(body)
+        .expect(</span>200<span style="color: #000000;">)
+        .expect(</span>'Content-Type', /json/<span style="color: #000000;">)
+        .end(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(err, res) {
+          </span><span style="color: #0000ff;">if</span> (err) <span style="color: #0000ff;">return</span><span style="color: #000000;"> done(err);
+          id </span>=<span style="color: #000000;"> res.body.id;</span><span style="color: #000000;">
+          done();
+        });
+
+    });
+
+    it(</span>'change widget color to white', <span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+      </span><span style="color: #0000ff;">var</span> body =<span style="color: #000000;"> {
+        color: </span>'white'<span style="color: #000000;">
+      };
+
+      request(mock)
+        .put(</span>'/dashboard/widgets/color/' +<span style="color: #000000;"> id)
+        .send(body)
+        .expect(</span>200<span style="color: #000000;">)
+        .expect({
+          status: </span>'success'<span style="color: #000000;">
+        })
+        .expect(</span>'Content-Type', /json/<span style="color: #000000;">)
+        .end(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(err, res) {
+          </span><span style="color: #0000ff;">if</span> (err) <span style="color: #0000ff;">return</span><span style="color: #000000;"> done(err);
+          done();
+        });
+    });
+  });</span></pre>
+</div>
+<p>在这个测试case中，前提是要先create 一个widget, 拿到id之后你才可以针对这个刚创建的widget修改, 所以在it之前用了 before 做数据准备。</p>
+<p>&nbsp;</p>
+<h3>Example 4 - Delete</h3>
+<p>被测代码</p>
+<div class="cnblogs_code">
+<pre>  router.<span style="color: #0000ff;">delete</span>('/:id', <span style="color: #0000ff;">function</span><span style="color: #000000;">(req, res) {
+    _widgets.deleteWidget(req.user.id, req.params.id)
+            .then(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(status){
+              </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> res.json(status);
+            })
+            .</span><span style="color: #0000ff;">catch</span>(<span style="color: #0000ff;">function</span><span style="color: #000000;">(err){
+              </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> res.json ({
+                code: </span>'000-0003'<span style="color: #000000;">,
+                message: </span>'failed to delete widget:' +<span style="color: #000000;"> err
+              });
+            });
+  });</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="line-height: 1.5;">测试代码</span></p>
+<div class="cnblogs_code">
+<pre>  describe('delete widget', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+    </span><span style="color: #0000ff;">var</span> id = ''<span style="color: #000000;">;
+    before(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+      </span><span style="color: #0000ff;">var</span> body =<span style="color: #000000;"> {
+        widget: {
+          type: </span>'billing'<span style="color: #000000;">,
+          color: </span>'blue'<span style="color: #000000;">,
+          location: {
+            x: </span>'1'<span style="color: #000000;">,
+            y: </span>'5'<span style="color: #000000;">
+          }
+        }
+      };
+
+      request(mock)
+        .post(</span>'/dashboard/widgets/'<span style="color: #000000;">)
+        .send(body)
+        .expect(</span>200<span style="color: #000000;">)
+        .expect(</span>'Content-Type', /json/<span style="color: #000000;">)
+        .end(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(err, res) {
+          </span><span style="color: #0000ff;">if</span> (err) <span style="color: #0000ff;">return</span><span style="color: #000000;"> done(err);
+          id </span>=<span style="color: #000000;"> res.body.id;
+          done();
+        });
+
+    });
+
+    it(</span>'delete a specific widget', <span style="color: #0000ff;">function</span><span style="color: #000000;">(done) {
+      request(mock)
+        .del(</span>'/dashboard/widgets/' +<span style="color: #000000;"> id)
+        .expect(</span>200<span style="color: #000000;">)
+        .expect(</span>'Content-Type', /json/<span style="color: #000000;">)
+        .end(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(err, res) {
+          </span><span style="color: #0000ff;">if</span> (err) <span style="color: #0000ff;">return</span><span style="color: #000000;"> done(err);
+          assert.deepEqual(res.body, {
+            status: </span>'success'<span style="color: #000000;">
+          });
+          done();
+        });
+    });
+  });</span></pre>
+</div>
+<p>注意这里用的是del 不是 delete, Supertest提供的delete方法是del, 不是delete</p>
+<p>&nbsp;</p>
+<p>##转载注明出处：<a id="Editor_Edit_hlEntryLink" title="view: 带你入门带你飞Ⅱ" href="http://www.cnblogs.com/wade-xu/p/4673460.html" target="_blank">http://www.cnblogs.com/wade-xu/p/4673460.html</a>&nbsp;</p>
+<p>&nbsp;</p>
+<p>测试结果如下：</p>
+<p><img src="http://images0.cnblogs.com/blog2015/713188/201507/241731188499833.jpg" alt="" /></p>
+<p>&nbsp;</p>
+<h2>Troubleshooting</h2>
+<p>&nbsp;1. 当你用request().delete() 时报错TypeError: undefined is not a function</p>
+<p>换成request().del()</p>
+<p>&nbsp;&nbsp;</p>
+<h2>参考文档</h2>
+<p>Mocha:&nbsp;<a href="http://mochajs.org/" target="_blank">http://mochajs.org/</a></p>
+<p>Chai:&nbsp;<a href="http://chaijs.com/" target="_blank">http://chaijs.com/</a></p>
+<p>SuperTest:&nbsp;<a href="https://www.npmjs.com/package/supertest" target="_blank">https://www.npmjs.com/package/supertest</a></p>
+<p>&nbsp;</p>
+<p><strong>感谢阅读，如果您觉得本文的内容对您的学习有所帮助，您可以点击右下方的推荐按钮，您的鼓励是我创作的动力。</strong></p>
+<p>##转载注明出处：<a id="Editor_Edit_hlEntryLink" title="view: 带你入门带你飞Ⅱ" href="http://www.cnblogs.com/wade-xu/p/4673460.html" target="_blank">http://www.cnblogs.com/wade-xu/p/4673460.html</a>&nbsp;<a id="Editor_Edit_hlEntryLink" title="view: 使用Mocha + Chai + Sinon单元测试Node.js" href="http://www.cnblogs.com/wade-xu/p/4665250.html" target="_blank"><br /></a></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+</div>
+	</div></div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); 
+    fixPostBodyFormat();
+</script>
+<script type='text/javascript'>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+    (function () {
+        if (enableGoogleAd) {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') +
+              '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+  })();
+</script>
+<script type='text/javascript'>
+    try {
+        if (enableGoogleAd) {
+            googletag.cmd.push(function() {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C2', [468, 60], 'div-gpt-ad-1433581717989-0').addService(googletag.pubads());
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1433581717989-1').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.pubads().collapseEmptyDivs();
+            googletag.enableServices();
+            });
+        };
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1433581717989-1' style='height:250px; width:300px;'>
+    <script type='text/javascript'>
+        try {
+            if (enableGoogleAd) {
+                googletag.cmd.push(function () { googletag.display('div-gpt-ad-1433581717989-1'); });
+            } else {
+                $('#div-gpt-ad-1433581717989-1').hide();
+            }
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+<div id="under_post_news"></div>
+<div id="google_ad_c2" class="c_ad_block">
+<div id='div-gpt-ad-1433581717989-0' style='height:60px; width:468px;'>
+<script type='text/javascript'>
+try {
+    if (enableGoogleAd) {
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1433581717989-0'); });
+    } else {
+        $('#div-gpt-ad-1433581717989-0').hide();
+    }
+} catch (e) { }
+</script>
+</div>
+</div>
+<div id="under_post_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="FooterCell">
+			
+<p id="footer">
+	Powered by: 
+	<br />
+	
+	<a id="Footer1_Hyperlink3" NAME="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br />
+	Copyright &copy; WadeXu
+</p>
+		</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

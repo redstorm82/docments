@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8" />
+<title>Unobtrusive JavaScript - Wikipedia, the free encyclopedia</title>
+<meta name="generator" content="MediaWiki 1.26wmf15" />
+<link rel="alternate" href="android-app://org.wikipedia/http/en.m.wikipedia.org/wiki/Unobtrusive_JavaScript" />
+<link rel="alternate" type="application/x-wiki" title="Edit this page" href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit" />
+<link rel="edit" title="Edit this page" href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit" />
+<link rel="apple-touch-icon" href="/static/apple-touch/wikipedia.png" />
+<link rel="shortcut icon" href="/static/favicon/wikipedia.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Wikipedia (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="//en.wikipedia.org/w/api.php?action=rsd" />
+<link rel="copyright" href="//creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="Wikipedia Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="canonical" href="https://en.wikipedia.org/wiki/Unobtrusive_JavaScript" />
+<link rel="stylesheet" href="//en.wikipedia.org/w/load.php?debug=false&amp;lang=en&amp;modules=ext.pygments%2Cwikihiero%7Cext.uls.nojs%7Cext.visualEditor.viewPageTarget.noscript%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles%7Cwikibase.client.init&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="//en.wikipedia.org/w/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: global:resourceloader:filter:minify-css:7:de1ab5287c9076b96eedd3f97a84a7b6 */</style>
+<script src="//en.wikipedia.org/w/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Unobtrusive_JavaScript","wgTitle":"Unobtrusive JavaScript","wgCurRevisionId":650062033,"wgRevisionId":650062033,"wgArticleId":9136218,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["CS1 errors: dates","JavaScript","Web accessibility","Responsive web design"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Unobtrusive_JavaScript","wgRelevantArticleId":9136218,"wgIsProbablyEditable":true,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":true,"wikilove-recipient":"","wikilove-anon":0,"wgPoweredByHHVM":true,"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":false,"publish":false},"wgBetaFeaturesFeatures":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","usePageImages":true,"usePageDescriptions":true},"wgGatherShouldShowTutorial":true,"wgULSAcceptLanguageList":["en-us","en"],"wgULSCurrentAutonym":"English","wgFlaggedRevsParams":{"tags":{"status":{"levels":1,"quality":2,"pristine":3}}},"wgStableRevisionId":null,"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}","wgNoticeProject":"wikipedia","wgWikibaseItemId":"Q2298909"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});
+/* cache key: global:resourceloader:filter:minify-js:7:b2706269305541eba923c165462b22c4 */
+}</script>
+<script>if(window.mw){
+mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","ext.centralauth.centralautologin","ext.imageMetrics.head","ext.visualEditor.viewPageTarget.init","ext.uls.init","ext.uls.interface","ext.centralNotice.bannerController","skins.vector.js"]);
+}</script>
+<link rel="dns-prefetch" href="//meta.wikimedia.org" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/static/1.26wmf15/skins/Vector/csshover.min.htc")}</style><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Unobtrusive_JavaScript skin-vector action-view">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+							<div id="siteNotice"><!-- CentralNotice --></div>
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">Unobtrusive JavaScript</h1>
+									<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From Wikipedia, the free encyclopedia</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><table class="vertical-navbox nowraplinks" style="float:right;clear:right;width:22.0em;margin:0 0 1.0em 1.0em;background:#f9f9f9;border:1px solid #aaa;padding:0.2em;border-spacing:0.4em 0;text-align:center;line-height:1.4em;font-size:88%;width:auto">
+<tr>
+<td style="padding-top:0.4em;line-height:1.2em;background:#F0DB4F">Part of a <a href="/wiki/Category:JavaScript" title="Category:JavaScript">series</a> on</td>
+</tr>
+<tr>
+<th style="padding:0.2em 0.4em 0.2em;padding-top:0;font-size:145%;line-height:1.2em;background:#F0DB4F"><a href="/wiki/JavaScript" title="JavaScript">JavaScript</a></th>
+</tr>
+<tr>
+<td class="plainlist" style="padding:0 0.1em 0.4em">
+<ul>
+<li><a href="/wiki/JavaScript_syntax" title="JavaScript syntax">JavaScript syntax</a></li>
+<li><a href="/wiki/JavaScript_library" title="JavaScript library">JavaScript library</a></li>
+<li><strong class="selflink">Unobtrusive JavaScript</strong></li>
+<li><a href="/wiki/JavaScript_engine" title="JavaScript engine">JavaScript engine</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+<th style="padding:0.1em;background:#e4e4f0">Lists of Frameworks and Libraries</th>
+</tr>
+<tr>
+<td class="plainlist" style="padding:0 0.1em 0.4em">
+<ul>
+<li><a href="/wiki/List_of_Ajax_frameworks#JavaScript" title="List of Ajax frameworks">Ajax frameworks</a></li>
+<li><a href="/wiki/Comparison_of_web_application_frameworks#JavaScript" title="Comparison of web application frameworks">JavaScript web application frameworks</a></li>
+<li><a href="/wiki/Comparison_of_JavaScript_frameworks" title="Comparison of JavaScript frameworks">Comparison of JavaScript frameworks</a></li>
+<li><a href="/wiki/List_of_JavaScript_libraries" title="List of JavaScript libraries">List of JavaScript libraries</a></li>
+<li><a href="/wiki/List_of_unit_testing_frameworks#JavaScript" title="List of unit testing frameworks">JavaScript unit testing frameworks</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="plainlist" style="padding:0 0.1em 0.4em"><b><a href="/wiki/JSON" title="JSON">JavaScript Object Notation</a></b></td>
+</tr>
+<tr>
+<td class="plainlist" style="padding:0 0.1em 0.4em">
+<p><i>See also</i></p>
+<ul>
+<li><a href="/wiki/ECMAScript" title="ECMAScript">ECMAScript</a></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-size:115%">
+<div class="plainlinks hlist navbar mini">
+<ul>
+<li class="nv-view"><a href="/wiki/Template:JavaScriptSidebar" title="Template:JavaScriptSidebar"><span title="View this template">v</span></a></li>
+<li class="nv-talk"><a href="/wiki/Template_talk:JavaScriptSidebar" title="Template talk:JavaScriptSidebar"><span title="Discuss this template">t</span></a></li>
+<li class="nv-edit"><a class="external text" href="//en.wikipedia.org/w/index.php?title=Template:JavaScriptSidebar&amp;action=edit"><span title="Edit this template">e</span></a></li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+<p><b>Unobtrusive JavaScript</b> is a general approach to the use of <a href="/wiki/JavaScript" title="JavaScript">JavaScript</a> in <a href="/wiki/Web_page" title="Web page">web pages</a>. Though the term is not formally defined, its basic principles are generally understood to include:</p>
+<ul>
+<li><a href="/wiki/Separation_of_concerns" title="Separation of concerns">Separation</a> of functionality (the "behavior layer") from a Web page's <a href="/wiki/Markup_language" title="Markup language">structure/content</a> and <a href="/wiki/Style_sheet_(web_development)" title="Style sheet (web development)">presentation</a><sup id="cite_ref-1" class="reference"><a href="#cite_note-1"><span>[</span>1<span>]</span></a></sup></li>
+<li>Best practices to avoid the problems of traditional JavaScript programming (such as <a href="/wiki/Web_browser" title="Web browser">browser</a> inconsistencies and lack of <a href="/wiki/Scalability" title="Scalability">scalability</a>)</li>
+<li><a href="/wiki/Progressive_enhancement" title="Progressive enhancement">Progressive enhancement</a> to support <a href="/wiki/User_agents" title="User agents" class="mw-redirect">user agents</a> that may not support advanced JavaScript functionality<sup id="cite_ref-2" class="reference"><a href="#cite_note-2"><span>[</span>2<span>]</span></a></sup></li>
+</ul>
+<p></p>
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#A_new_paradigm"><span class="tocnumber">1</span> <span class="toctext">A new paradigm</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Separation_of_behavior_from_markup"><span class="tocnumber">2</span> <span class="toctext">Separation of behavior from markup</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Namespaces"><span class="tocnumber">3</span> <span class="toctext">Namespaces</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Degrading_gracefully"><span class="tocnumber">4</span> <span class="toctext">Degrading gracefully</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Best_practices"><span class="tocnumber">5</span> <span class="toctext">Best practices</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#See_also"><span class="tocnumber">6</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#References"><span class="tocnumber">7</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+<p></p>
+<h2><span class="mw-headline" id="A_new_paradigm">A new paradigm</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit&amp;section=1" title="Edit section: A new paradigm">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>JavaScript historically has had a reputation for being a clumsy language unsuitable for serious application development.<sup id="cite_ref-3" class="reference"><a href="#cite_note-3"><span>[</span>3<span>]</span></a></sup><sup id="cite_ref-4" class="reference"><a href="#cite_note-4"><span>[</span>4<span>]</span></a></sup> This has been largely due to inconsistent implementations of the language itself and the <a href="/wiki/Document_Object_Model" title="Document Object Model">Document Object Model</a> (DOM)<sup id="cite_ref-5" class="reference"><a href="#cite_note-5"><span>[</span>5<span>]</span></a></sup> in various browsers, and the widespread use of <a href="/wiki/Software_bug" title="Software bug">buggy</a> copy-and-paste code. <a href="/wiki/Runtime_error" title="Runtime error" class="mw-redirect">Runtime errors</a> were so common (and so difficult to debug) that few programmers even tried to fix them, as long as the script behaved more or less the way it was supposed to;<sup id="cite_ref-6" class="reference"><a href="#cite_note-6"><span>[</span>6<span>]</span></a></sup> scripts often failed completely in some browsers.</p>
+<p>Some web developers have been promoting graceful degradation since 1994.<sup id="cite_ref-7" class="reference"><a href="#cite_note-7"><span>[</span>7<span>]</span></a></sup></p>
+<p>The recent emergence of <a href="/wiki/Web_standards" title="Web standards">standards-compliant browsers</a>, JavaScript frameworks and high-quality debugging tools have made organized, scalable JavaScript code possible, and the emergence of <a href="/wiki/Ajax_(programming)" title="Ajax (programming)">Ajax</a> interfaces has made it desirable. Whereas JavaScript was once reserved for relatively simple and non-critical tasks such as form <a href="/wiki/Data_validation" title="Data validation">validation</a> and decorative novelties, it is now being used to write large, complex <a href="/wiki/Codebase" title="Codebase">codebases</a> that are often part of a site's core functionality. <a href="/wiki/Run_time_(program_lifecycle_phase)" title="Run time (program lifecycle phase)">Run time</a> errors and unpredictable behavior are no longer minor annoyances; they are fatal flaws.</p>
+<p>Advocates of unobtrusive JavaScript see it as part of the larger <a href="/wiki/Web_standards" title="Web standards">Web standards</a> movement; much as the demand for cross-browser compatibility has driven the increasing emphasis on standardized markup and <a href="/wiki/Cascading_Style_Sheets" title="Cascading Style Sheets">style</a>, the increasing demand for <a href="/wiki/Rich_Internet_application" title="Rich Internet application">rich Internet applications</a> is driving the movement toward better practices with the use of JavaScript. The concept of <i>unobtrusiveness</i> in relation to JavaScript programming was coined in 2002 by <a href="/wiki/Stuart_Langridge" title="Stuart Langridge">Stuart Langridge</a><sup id="cite_ref-8" class="reference"><a href="#cite_note-8"><span>[</span>8<span>]</span></a></sup> in the article "<a rel="nofollow" class="external text" href="http://www.kryogenix.org/code/browser/aqlists/">Unobtrusive DHTML, and the power of unordered lists</a>".<sup id="cite_ref-9" class="reference"><a href="#cite_note-9"><span>[</span>9<span>]</span></a></sup> In the article Langridge argues for a way to keep all JavaScript code, including event handlers, outside of the HTML. Stuart Langridge has since expanded upon this thought in book<sup id="cite_ref-10" class="reference"><a href="#cite_note-10"><span>[</span>10<span>]</span></a></sup> and article format.<sup id="cite_ref-11" class="reference"><a href="#cite_note-11"><span>[</span>11<span>]</span></a></sup></p>
+<p>Other authors have tried to refine and define the essential elements of the unobtrusive paradigm. David Flanagan's seminal <i>JavaScript: The Definitive Guide</i> says that while there is no specific formula, there are three main goals:</p>
+<ol>
+<li>To separate JavaScript from HTML markup, as well as keeping modules of JavaScript independent of other modules.</li>
+<li>Unobtrusive JavaScript should degrade gracefully - all content should be available without all or any of the JavaScript running successfully.</li>
+<li>Unobtrusive JavaScript should not degrade the accessibility of the HTML, and ideally should improve it, whether the user has personal disabilities or are using an unusual, or unusually configured, browser.<sup id="cite_ref-Flanagan2006_12-0" class="reference"><a href="#cite_note-Flanagan2006-12"><span>[</span>12<span>]</span></a></sup></li>
+</ol>
+<p>The <a href="/wiki/Web_Standards_Project" title="Web Standards Project">Web Standards Project</a> describes four benefits of unobtrusive DOM scripting in their <i>JavaScript Manifesto</i>.</p>
+<ol>
+<li><b>Usability:</b> An unobtrusive DOM script does not draw the attention of the user - visitors use it without thinking about it.</li>
+<li><b>Graceful degradation:</b> Unobtrusive DOM scripts never generate error messages, in any browser, even when they fail. If features cannot be presented properly, they silently disappear.</li>
+<li><b>Accessibility:</b> If any script fails, the page still delivers its core functions and information via the markup, stylesheets and/or server-side scripting.</li>
+<li><b>Separation:</b> For the benefit of other and future web developers, all JavaScript code is maintained separately, without impacting other files of script, markup or code.<sup id="cite_ref-13" class="reference"><a href="#cite_note-13"><span>[</span>13<span>]</span></a></sup></li>
+</ol>
+<p>For the Paris Web Conference in 2007, Christian Heilmann identified seven rules of Unobtrusive JavaScript.</p>
+<ol>
+<li>Do not make any assumptions: <a href="/wiki/Defensive_programming" title="Defensive programming">Defensive programming</a> techniques should allow for the possibilities that JavaScript may not run, the browser may not support expected methods, the HTML may have changed, unexpected input devices may be in use and other scripts may either not be present or may be encroaching on the global namespace.</li>
+<li>Find your hooks and relationships, such as IDs and other aspects of the expected HTML.</li>
+<li>Leave traversing individual DOM objects to the experts, such as to the CSS handler built into the browser where possible.</li>
+<li>Understand browsers and users, particularly how they fail, what assumptions they make, and unusual configurations or usages.</li>
+<li>Understand <a href="/wiki/DOM_events" title="DOM events">events</a>, including how they 'bubble' and the features of the <code>Event</code> object that is passed to most event handlers.</li>
+<li>Play well with other scripts by avoiding global function and variable names.</li>
+<li>Work for the next developer by using self-explanatory variable and function names, creating logical and readable code, making dependencies obvious, and commenting any code that still might confuse.<sup id="cite_ref-Heilmann_14-0" class="reference"><a href="#cite_note-Heilmann-14"><span>[</span>14<span>]</span></a></sup></li>
+</ol>
+<h2><span class="mw-headline" id="Separation_of_behavior_from_markup">Separation of behavior from markup</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit&amp;section=2" title="Edit section: Separation of behavior from markup">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Traditionally, JavaScript was often placed inline together with an HTML document's markup. For example, the following is a typical implementation of JavaScript form validation when written inline:</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"date"</span> <span class="na">onchange=</span><span class="s">"validateDate()"</span> <span class="nt">/&gt;</span>
+</pre></div>
+<p>Adherents to "Unobtrusive JavaScript" argue that the purpose of markup is to describe a document's structure, not its programmatic behavior and that combining the two negatively impacts a site's maintainability for similar reasons that combining <a href="/wiki/Separation_of_presentation_and_content" title="Separation of presentation and content">content and presentation</a> does. They also argue that inline event handlers are harder to use and maintain, when one needs to set handlers for several events on a single element, when one wants to set the same event handler on several elements, or when one is using <a href="/wiki/Event_(computing)#Delegate_event_model" title="Event (computing)">event delegation</a>. Nor can they be used with custom events.</p>
+<p>The unobtrusive solution is to register the necessary event handlers programmatically, rather than inline. Rather than adding the <code>onchange</code> attribute explicitly as above, the relevant element(s) are simply identified, for example by <code>class</code>, <code>id</code> or some other means in the markup:</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"date"</span> <span class="na">id=</span><span class="s">"date"</span> <span class="nt">/&gt;</span>
+</pre></div>
+<p>A script that runs when the page is first loaded into the browser can then look for the relevant element(s) and set them up accordingly:</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'date'</span><span class="p">).</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">validateDate</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<h2><span class="mw-headline" id="Namespaces">Namespaces</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit&amp;section=3" title="Edit section: Namespaces">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Unobtrusive JavaScript should add as little as possible to the global <a href="/wiki/Object_(computer_science)" title="Object (computer science)">object</a> or global <a href="/wiki/Namespace" title="Namespace">namespace</a> of the environment in which it runs. Other scripts may override any variable or function that is created in the global namespace, and this can lead to unexpected failures that are difficult to debug. JavaScript does not have a built-in explicit namespace mechanism, but the desired effects are easy to produce using the language's facilities. Flanagan suggests the use of the developer's own domain name, dotted segments reversed, as a single global name to publish that is very likely to be unique, in the style developed in the <a href="/wiki/Java_(programming_language)" title="Java (programming language)">Java</a> language.<sup id="cite_ref-15" class="reference"><a href="#cite_note-15"><span>[</span>15<span>]</span></a></sup></p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre>
+<span class="kd">var</span> <span class="nx">org</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">org</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">org</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">org</span> <span class="o">!=</span> <span class="s1">'object'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"org already exists and is not an object."</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">org</span><span class="p">.</span><span class="nx">example</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">org</span><span class="p">.</span><span class="nx">example</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">org</span><span class="p">.</span><span class="nx">example</span> <span class="o">!=</span> <span class="s1">'object'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"org.example already exists and is not an object."</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<p>While variables, functions and objects of all kinds can be further defined within such namespace objects, it is usually recommended to use <a href="/wiki/Closure_(computer_programming)" title="Closure (computer programming)">closures</a> within the namespace to further <a href="/wiki/Information_hiding" title="Information hiding">isolate</a> what will become <a href="/wiki/Class_(computer_science)#Information_hiding_and_encapsulation" title="Class (computer science)" class="mw-redirect">private</a> variables and functions, as well as to export what will be the public <a href="/wiki/Interface_(computing)" title="Interface (computing)">interface</a> of each module of functionality. The code above could be followed directly by the following:<sup id="cite_ref-Heilmann_14-1" class="reference"><a href="#cite_note-Heilmann-14"><span>[</span>14<span>]</span></a></sup></p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre>
+<span class="nx">org</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">Highlight</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Define private data and functions</span>
+    <span class="kd">var</span> <span class="nx">highlightId</span> <span class="o">=</span> <span class="s1">'x'</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">setHighlight</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">highlightId</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Return public pointers to functions or properties</span>
+    <span class="c1">// that are to be public.</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">goGreen</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">setHighlight</span><span class="p">(</span><span class="s1">'green'</span><span class="p">);</span> <span class="p">},</span>
+        <span class="nx">goBlue</span><span class="o">:</span>  <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">setHighlight</span><span class="p">(</span><span class="s1">'blue'</span><span class="p">);</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}();</span> <span class="c1">//End closure definition and invoke it.</span>
+</pre></div>
+<p>From any other module, these public methods could be invoked in either way as follows</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre>
+<span class="nx">org</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">Highlight</span><span class="p">.</span><span class="nx">goBlue</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">org</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">Highlight</span><span class="p">;</span>
+<span class="nx">h</span><span class="p">.</span><span class="nx">goGreen</span><span class="p">();</span>
+</pre></div>
+<p>In this way, each module-writer's code is contained in private or in a unique namespace and cannot interfere with or intrude upon any other code at any time.</p>
+<h2><span class="mw-headline" id="Degrading_gracefully">Degrading gracefully</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit&amp;section=4" title="Edit section: Degrading gracefully">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="hatnote relarticle mainarticle">Main article: <a href="/wiki/Graceful_degradation" title="Graceful degradation" class="mw-redirect">graceful degradation</a></div>
+<p>Writing an event listener that detects the loading of the HTML page and then adds relevant listeners to other events on the page, as well as other behaviors as required, can solve the problem of separating JavaScript functionality from HTML markup. The use of client-side JavaScript libraries such as <a href="/wiki/JQuery" title="JQuery">jQuery</a>, <a href="/wiki/MooTools" title="MooTools">MooTools</a> or <a href="/wiki/Prototype_JavaScript_Framework" title="Prototype JavaScript Framework">Prototype</a> can simplify this process and help ensure that individual browser and browser version implementation details are <a href="/wiki/Abstraction_(computer_science)" title="Abstraction (computer science)">hidden</a> and catered for. Keeping most of the JavaScript out of the default namespace helps ensure that it is as unobtrusive as possible in that sense. A further criterion of unobtrusive JavaScript that is often cited is to ensure that added behavior degrades gracefully on those browsers with unexpected configurations, and those on which the user may have disabled JavaScript altogether.<sup id="cite_ref-Flanagan2006_12-1" class="reference"><a href="#cite_note-Flanagan2006-12"><span>[</span>12<span>]</span></a></sup></p>
+<p>This requirement is a basic tenet of <a href="/wiki/Web_accessibility" title="Web accessibility">web accessibility</a>, to ensure that JavaScript-enhanced websites are not only usable by people of all abilities and disabilities but that all users - whatever their computing platform - get equal access to all the site's information and functionality. Sometimes there is extra work involved in achieving this, but web accessibility is not an optional extra in many countries. For example in the UK, the <a href="/wiki/Equality_Act_2010" title="Equality Act 2010">Equality Act 2010</a>, while it does not refer explicitly to website accessibility, makes it illegal to discriminate against people with disabilities and applies to anyone providing any service in the public, private and voluntary sectors.<sup id="cite_ref-16" class="reference"><a href="#cite_note-16"><span>[</span>16<span>]</span></a></sup> While a lot of effort may be put into designing and implementing a slick <a href="/wiki/Client-side" title="Client-side">client-side</a> user interface in unobtrusive JavaScript, it will not remain unobtrusive to a user without client-side scripting if they find that they cannot access published information. To meet this goal, it is often necessary to implement equivalent, albeit clunkier, <a href="/wiki/Server-side" title="Server-side">server-side</a> functionality that will be available without the use of JavaScript at all.</p>
+<p>Take, for example, a webpage where thumbnail images need JavaScript behaviours so that full-size images will appear in front of the page when the mouse is rolled over them or they are clicked. First, server-side markup should ensure that the relevant full-size image is served to users without JavaScript who click on a thumbnail. In this case the basic HTML markup may look like the following, for each thumbnail:</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+<pre>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"fullsize-image-001.png"</span> <span class="na">class=</span><span class="s">"manual-link"</span> <span class="na">title=</span><span class="s">"Click for full-size image"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"image-001-thumb.png"</span> <span class="na">class=</span><span class="s">"thumb"</span> <span class="na">width=</span><span class="s">"50"</span> <span class="na">height=</span><span class="s">"50"</span> <span class="na">alt=</span><span class="s">"Image 1 shows... etc"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+<p>This will work as it is without JavaScript. Unobtrusive JavaScript, in this case, during page-load, could find all the <code>a</code> elements that have a class of <code>manual-link</code> and remove them from the page DOM. It could then find all the images of class <code>thumb</code> and attach an <code>onmouseover</code> or an <code>onclick</code> event handler that is specified in-line to provide the slick behaviour. For example, when invoked the event handler may send an Ajax request to the server for the full-size image, then add a <code>div</code> to the page DOM invoking existing <a href="/wiki/CSS" title="CSS" class="mw-redirect">CSS</a> so it appears in front of existing content, which itself may become partially greyed out. The <code>div</code> will need a close button, perhaps a visual 'spinner' to show that data is loading, etc. Finally, when the Ajax data arrives, the handler hides the spinner and inserts the full-size image into the new <code>div</code> for display.</p>
+<p>This way, all the client-side functionality depends on the same JavaScript function. If that function succeeds, it begins by removing the basic, manual behavior, and goes on to add the client-side scripted behavior. If the script fails for whatever reason, the manual behavior remains in place and remains functional.</p>
+<h2><span class="mw-headline" id="Best_practices">Best practices</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit&amp;section=5" title="Edit section: Best practices">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Though the essence of unobtrusive JavaScript is the concept of an added separate behavior layer, advocates of the paradigm generally subscribe to a number of related principles, such as:</p>
+<ul>
+<li><a href="/wiki/DOM_Scripting" title="DOM Scripting" class="mw-redirect">DOM Scripting</a>, i.e. adherence to the <a href="/wiki/World_Wide_Web_Consortium" title="World Wide Web Consortium">W3C</a> <a href="/wiki/Document_Object_Model" title="Document Object Model">DOM</a> and event model, and avoidance of browser-specific extensions.</li>
+<li><a href="/wiki/Progressive_enhancement" title="Progressive enhancement">Capability detection</a>, i.e. testing for specific functionality before it is used.<sup id="cite_ref-17" class="reference"><a href="#cite_note-17"><span>[</span>17<span>]</span></a></sup> In particular this is seen as the opposite of browser detection.</li>
+<li>More generally, JavaScript best practices often parallel those in other programming languages, such as <a href="/wiki/Information_hiding" title="Information hiding">encapsulation</a> and <a href="/wiki/Abstraction_layer" title="Abstraction layer">abstraction layers</a>, avoidance of <a href="/wiki/Global_variable" title="Global variable">global variables</a>, meaningful <a href="/wiki/Naming_conventions_(programming)" title="Naming conventions (programming)" class="mw-redirect">naming conventions</a>, use of appropriate <a href="/wiki/Design_patterns" title="Design patterns" class="mw-redirect">design patterns</a>, and systematic <a href="/wiki/Software_testing" title="Software testing">testing</a>. Such principles are essential to large-scale software development, but have not been widely observed in JavaScript programming in the past; their adoption is seen as an essential component of JavaScript's transition from a "toy" language to a tool for serious development.</li>
+</ul>
+<h2><span class="mw-headline" id="See_also">See also</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit&amp;section=6" title="Edit section: See also">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<ul>
+<li><a href="/wiki/Graceful_degradation" title="Graceful degradation" class="mw-redirect">Graceful degradation</a></li>
+<li><a href="/wiki/Progressive_enhancement" title="Progressive enhancement">Progressive enhancement</a></li>
+</ul>
+<h2><span class="mw-headline" id="References">References</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit&amp;section=7" title="Edit section: References">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="reflist columns references-column-count references-column-count-2" style="-moz-column-count: 2; -webkit-column-count: 2; column-count: 2; list-style-type: decimal;">
+<ol class="references">
+<li id="cite_note-1"><span class="mw-cite-backlink"><b><a href="#cite_ref-1">^</a></b></span> <span class="reference-text"><span class="citation web">Keith, Jeremy (2006-06-20). <a rel="nofollow" class="external text" href="http://www.alistapart.com/articles/behavioralseparation">"Behavioral Separation"</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.aufirst=Jeremy&amp;rft.au=Keith%2C+Jeremy&amp;rft.aulast=Keith&amp;rft.btitle=Behavioral+Separation&amp;rft.date=2006-06-20&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fwww.alistapart.com%2Farticles%2Fbehavioralseparation&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-2"><span class="mw-cite-backlink"><b><a href="#cite_ref-2">^</a></b></span> <span class="reference-text"><span class="citation web">Olsson, Tommy (2007-02-06). <a rel="nofollow" class="external text" href="http://accessites.org/site/2007/02/graceful-degradation-progressive-enhancement/">"Graceful Degradation &amp; Progressive Enhancement"</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.aufirst=Tommy&amp;rft.aulast=Olsson&amp;rft.au=Olsson%2C+Tommy&amp;rft.btitle=Graceful+Degradation+%26+Progressive+Enhancement&amp;rft.date=2007-02-06&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Faccessites.org%2Fsite%2F2007%2F02%2Fgraceful-degradation-progressive-enhancement%2F&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-3"><span class="mw-cite-backlink"><b><a href="#cite_ref-3">^</a></b></span> <span class="reference-text"><span class="citation web">Crockford, Douglas (2007-01-24). <a rel="nofollow" class="external text" href="http://yuiblog.com/blog/2007/01/24/video-crockford-tjpl/">"The JavaScript Programming Language"</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.au=Crockford%2C+Douglas&amp;rft.aufirst=Douglas&amp;rft.aulast=Crockford&amp;rft.btitle=The+JavaScript+Programming+Language&amp;rft.date=2007-01-24&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fyuiblog.com%2Fblog%2F2007%2F01%2F24%2Fvideo-crockford-tjpl%2F&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-4"><span class="mw-cite-backlink"><b><a href="#cite_ref-4">^</a></b></span> <span class="reference-text"><span class="citation web">Crockford, Douglas (2006-11-27). <a rel="nofollow" class="external text" href="http://yuiblog.com/blog/2006/11/27/video-crockford-advjs/">"Advanced JavaScript"</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.au=Crockford%2C+Douglas&amp;rft.aufirst=Douglas&amp;rft.aulast=Crockford&amp;rft.btitle=Advanced+JavaScript&amp;rft.date=2006-11-27&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fyuiblog.com%2Fblog%2F2006%2F11%2F27%2Fvideo-crockford-advjs%2F&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-5"><span class="mw-cite-backlink"><b><a href="#cite_ref-5">^</a></b></span> <span class="reference-text"><span class="citation web">Crockford, Douglas (2006-10-20). <a rel="nofollow" class="external text" href="http://yuiblog.com/blog/2006/10/20/video-crockford-domtheory/">"An Inconvenient API: The Theory of the Dom"</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.au=Crockford%2C+Douglas&amp;rft.aufirst=Douglas&amp;rft.aulast=Crockford&amp;rft.btitle=An+Inconvenient+API%3A+The+Theory+of+the+Dom&amp;rft.date=2006-10-20&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fyuiblog.com%2Fblog%2F2006%2F10%2F20%2Fvideo-crockford-domtheory%2F&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-6"><span class="mw-cite-backlink"><b><a href="#cite_ref-6">^</a></b></span> <span class="reference-text"><span class="citation web">Crockford, Douglas (2007-06-08). <a rel="nofollow" class="external text" href="http://yuiblog.com/blog/2007/06/08/video-crockford-goodstuff/">"JavaScript: The Good Parts"</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.au=Crockford%2C+Douglas&amp;rft.aufirst=Douglas&amp;rft.aulast=Crockford&amp;rft.btitle=JavaScript%3A+The+Good+Parts&amp;rft.date=2007-06-08&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fyuiblog.com%2Fblog%2F2007%2F06%2F08%2Fvideo-crockford-goodstuff%2F&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-7"><span class="mw-cite-backlink"><b><a href="#cite_ref-7">^</a></b></span> <span class="reference-text">Aaron Gustafson. <a rel="nofollow" class="external text" href="http://alistapart.com/article/understandingprogressiveenhancement">"Understanding Progressive Enhancement"</a>. 2008.</span></li>
+<li id="cite_note-8"><span class="mw-cite-backlink"><b><a href="#cite_ref-8">^</a></b></span> <span class="reference-text"><span class="citation web"><a rel="nofollow" class="external text" href="http://www.netmag.co.uk/zine/dhtml-1/building-dynamic-websites">"Building dynamic websites"</a>. 2006-08-09<span class="reference-accessdate">. Retrieved <span class="nowrap">2010-05-18</span></span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.btitle=Building+dynamic+websites&amp;rft.date=2006-08-09&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fwww.netmag.co.uk%2Fzine%2Fdhtml-1%2Fbuilding-dynamic-websites&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-9"><span class="mw-cite-backlink"><b><a href="#cite_ref-9">^</a></b></span> <span class="reference-text"><span class="citation web">Langridge, Stuart (November 2002). <a rel="nofollow" class="external text" href="http://www.kryogenix.org/code/browser/aqlists/">"Unobtrusive DHTML, and the power of unordered lists"</a><span class="reference-accessdate">. Retrieved <span class="nowrap">2008-08-07</span></span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.aufirst=Stuart&amp;rft.au=Langridge%2C+Stuart&amp;rft.aulast=Langridge&amp;rft.btitle=Unobtrusive+DHTML%2C+and+the+power+of+unordered+lists&amp;rft.date=November+2002&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fwww.kryogenix.org%2Fcode%2Fbrowser%2Faqlists%2F&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-10"><span class="mw-cite-backlink"><b><a href="#cite_ref-10">^</a></b></span> <span class="reference-text"><span class="citation book">Langridge, Stuart (2005). <i>DHTML Utopia:Modern Web Design Using JavaScript &amp; DOM</i>. SitePoint. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/0-9579218-9-6" title="Special:BookSources/0-9579218-9-6">0-9579218-9-6</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.aufirst=Stuart&amp;rft.au=Langridge%2C+Stuart&amp;rft.aulast=Langridge&amp;rft.btitle=DHTML+Utopia%3AModern+Web+Design+Using+JavaScript+%26+DOM&amp;rft.date=2005&amp;rft.genre=book&amp;rft.isbn=0-9579218-9-6&amp;rft.pub=SitePoint&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span> (Reference to the first edition, since it shows how the author pioneered the concept.)</span></li>
+<li id="cite_note-11"><span class="mw-cite-backlink"><b><a href="#cite_ref-11">^</a></b></span> <span class="reference-text">E.g.: <span class="citation web">Langridge, Stuart (2005-06-01). <a rel="nofollow" class="external text" href="http://articles.sitepoint.com/article/dhtml-utopia-modern-web-design">"DHTML Utopia: Modern Web Design Using JavaScript &amp; DOM"</a><span class="reference-accessdate">. Retrieved <span class="nowrap">2000-11-03</span></span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.aufirst=Stuart&amp;rft.au=Langridge%2C+Stuart&amp;rft.aulast=Langridge&amp;rft.btitle=DHTML+Utopia%3A+Modern+Web+Design+Using+JavaScript+%26+DOM&amp;rft.date=2005-06-01&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Farticles.sitepoint.com%2Farticle%2Fdhtml-utopia-modern-web-design&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span> <span style="font-size:100%" class="error citation-comment">Check date values in: <code style="color:inherit; border:inherit; padding:inherit;">|accessdate=</code> (<a href="/wiki/Help:CS1_errors#bad_date" title="Help:CS1 errors">help</a>)</span></span></li>
+<li id="cite_note-Flanagan2006-12"><span class="mw-cite-backlink">^ <a href="#cite_ref-Flanagan2006_12-0"><sup><i><b>a</b></i></sup></a> <a href="#cite_ref-Flanagan2006_12-1"><sup><i><b>b</b></i></sup></a></span> <span class="reference-text"><span class="citation book">Flanagan, David (2006). <i>JavaScript: The Definitive Guide</i> (5th ed.). O'Reilly &amp; Associates. p.&#160;241. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/0-596-10199-6" title="Special:BookSources/0-596-10199-6">0-596-10199-6</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.aufirst=David&amp;rft.au=Flanagan%2C+David&amp;rft.aulast=Flanagan&amp;rft.btitle=JavaScript%3A+The+Definitive+Guide&amp;rft.date=2006&amp;rft.edition=5th&amp;rft.genre=book&amp;rft.isbn=0-596-10199-6&amp;rft.pages=241&amp;rft.pub=O%27Reilly+%26+Associates&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-13"><span class="mw-cite-backlink"><b><a href="#cite_ref-13">^</a></b></span> <span class="reference-text"><span class="citation web"><a rel="nofollow" class="external text" href="http://www.webstandards.org/action/dstf/manifesto/">"The JavaScript Manifesto"</a>. The Web Standards Project<span class="reference-accessdate">. Retrieved <span class="nowrap">8 Feb</span> 2011</span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.btitle=The+JavaScript+Manifesto&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fwww.webstandards.org%2Faction%2Fdstf%2Fmanifesto%2F&amp;rft.pub=The+Web+Standards+Project&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-Heilmann-14"><span class="mw-cite-backlink">^ <a href="#cite_ref-Heilmann_14-0"><sup><i><b>a</b></i></sup></a> <a href="#cite_ref-Heilmann_14-1"><sup><i><b>b</b></i></sup></a></span> <span class="reference-text"><span class="citation web">Heilmann, Christian (2007). <a rel="nofollow" class="external text" href="http://icant.co.uk/articles/seven-rules-of-unobtrusive-javascript/">"The seven rules of Unobtrusive JavaScript"</a><span class="reference-accessdate">. Retrieved <span class="nowrap">8 Feb</span> 2011</span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.aufirst=Christian&amp;rft.au=Heilmann%2C+Christian&amp;rft.aulast=Heilmann&amp;rft.btitle=The+seven+rules+of+Unobtrusive+JavaScript&amp;rft.date=2007&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Ficant.co.uk%2Farticles%2Fseven-rules-of-unobtrusive-javascript%2F&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-15"><span class="mw-cite-backlink"><b><a href="#cite_ref-15">^</a></b></span> <span class="reference-text"><span class="citation book">Flanagan, David (2006). "10". <i>JavaScript: The Definitive Guide</i> (5th ed.). O'Reilly &amp; Associates. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/0-596-10199-6" title="Special:BookSources/0-596-10199-6">0-596-10199-6</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.atitle=10&amp;rft.aufirst=David&amp;rft.au=Flanagan%2C+David&amp;rft.aulast=Flanagan&amp;rft.btitle=JavaScript%3A+The+Definitive+Guide&amp;rft.date=2006&amp;rft.edition=5th&amp;rft.genre=bookitem&amp;rft.isbn=0-596-10199-6&amp;rft.pub=O%27Reilly+%26+Associates&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-16"><span class="mw-cite-backlink"><b><a href="#cite_ref-16">^</a></b></span> <span class="reference-text"><span class="citation web"><a rel="nofollow" class="external text" href="http://www.legislation.gov.uk/ukpga/2010/15/contents">"Equality Act 2010"</a>. Her Majesty’s Stationery Office<span class="reference-accessdate">. Retrieved <span class="nowrap">7 September</span> 2011</span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AUnobtrusive+JavaScript&amp;rft.btitle=Equality+Act+2010&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F2010%2F15%2Fcontents&amp;rft.pub=Her+Majesty%E2%80%99s+Stationery+Office&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&#160;</span></span></span></li>
+<li id="cite_note-17"><span class="mw-cite-backlink"><b><a href="#cite_ref-17">^</a></b></span> <span class="reference-text"><a rel="nofollow" class="external free" href="http://dev.opera.com/articles/view/using-capability-detection/">http://dev.opera.com/articles/view/using-capability-detection/</a></span></li>
+</ol>
+</div>
+<table class="navbox" style="border-spacing:0">
+<tr>
+<td style="padding:2px">
+<table class="nowraplinks collapsible autocollapse navbox-inner" style="border-spacing:0;background:transparent;color:inherit">
+<tr>
+<th scope="col" class="navbox-title" colspan="2">
+<div class="plainlinks hlist navbar mini">
+<ul>
+<li class="nv-view"><a href="/wiki/Template:JavaScript" title="Template:JavaScript"><span title="View this template" style=";;background:none transparent;border:none;">v</span></a></li>
+<li class="nv-talk"><a href="/wiki/Template_talk:JavaScript" title="Template talk:JavaScript"><span title="Discuss this template" style=";;background:none transparent;border:none;">t</span></a></li>
+<li class="nv-edit"><a class="external text" href="//en.wikipedia.org/w/index.php?title=Template:JavaScript&amp;action=edit"><span title="Edit this template" style=";;background:none transparent;border:none;">e</span></a></li>
+</ul>
+</div>
+<div style="font-size:114%"><a href="/wiki/JavaScript" title="JavaScript">JavaScript</a></div>
+</th>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Static_code_analysis" title="Static code analysis" class="mw-redirect">Code analysis</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/JSHint" title="JSHint">JSHint</a></li>
+<li><a href="/wiki/JSLint" title="JSLint">JSLint</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Compiler" title="Compiler">Compilers</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/CoffeeScript" title="CoffeeScript">CoffeeScript</a></li>
+<li><a href="/wiki/Emscripten" title="Emscripten">Emscripten</a></li>
+<li><a href="/wiki/Google_Closure_Compiler" title="Google Closure Compiler" class="mw-redirect">Google Closure Compiler</a></li>
+<li><a href="/wiki/Google_Web_Toolkit" title="Google Web Toolkit">Google Web Toolkit</a></li>
+<li><a href="/wiki/Morfik" title="Morfik">Morfik</a></li>
+<li><a href="/wiki/TypeScript" title="TypeScript">TypeScript</a></li>
+<li><a href="/wiki/AtScript" title="AtScript">AtScript</a></li>
+<li><a href="/wiki/Opa_(programming_language)" title="Opa (programming language)">Opa</a></li>
+<li><a href="/wiki/Haxe" title="Haxe">Haxe</a></li>
+<li><a href="/wiki/ClojureScript" title="ClojureScript" class="mw-redirect">ClojureScript</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Concepts</th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Ajax_(programming)" title="Ajax (programming)">Ajax</a></li>
+<li><a href="/wiki/Client-side_JavaScript" title="Client-side JavaScript" class="mw-redirect">Client-side</a></li>
+<li><a href="/wiki/Dynamic_HTML" title="Dynamic HTML">Dynamic HTML</a></li>
+<li><a href="/wiki/JavaScript_library" title="JavaScript library">JavaScript library</a></li>
+<li><a href="/wiki/JavaScript_syntax" title="JavaScript syntax">JavaScript syntax</a></li>
+<li><strong class="selflink">Unobtrusive JavaScript</strong></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Debugger" title="Debugger">Debuggers</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Firebug_(web_development)" title="Firebug (web development)" class="mw-redirect">Firebug</a></li>
+<li><a href="/wiki/Microsoft_Script_Debugger" title="Microsoft Script Debugger">Microsoft Script Debugger</a></li>
+<li><a href="/wiki/Microsoft_Script_Editor" title="Microsoft Script Editor">Microsoft Script Editor</a></li>
+<li><a href="/wiki/Microsoft_Visual_Studio" title="Microsoft Visual Studio">Microsoft Visual Studio</a></li>
+<li><a href="/wiki/Opera_Dragonfly" title="Opera Dragonfly">Opera Dragonfly</a></li>
+<li><a href="/wiki/Visual_Web_Developer_Express" title="Visual Web Developer Express" class="mw-redirect">Microsoft Visual Web Developer Express</a></li>
+<li><a href="/wiki/Venkman" title="Venkman">Venkman</a></li>
+<li><a href="/wiki/Web_Inspector" title="Web Inspector" class="mw-redirect">Web Inspector</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Documentation_generator" title="Documentation generator">Doc generators</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/JSDoc" title="JSDoc">JSDoc</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Editors</th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Online_JavaScript_IDE" title="Online JavaScript IDE">Online JavaScript IDE</a></li>
+<li><a href="/wiki/Comparison_of_JavaScript-based_source_code_editors" title="Comparison of JavaScript-based source code editors">Comparison of JavaScript-based source code editors</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Engines</th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Comparison_of_layout_engines_(ECMAScript)" title="Comparison of layout engines (ECMAScript)">Comparison of layout engines</a></li>
+<li><a href="/wiki/List_of_ECMAScript_engines" title="List of ECMAScript engines">List of ECMAScript engines</a></li>
+<li><a href="/wiki/JavaScript_engine#JavaScript_engines" title="JavaScript engine">List of JavaScript engines</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Software_framework" title="Software framework">Frameworks</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Comparison_of_JavaScript_frameworks" title="Comparison of JavaScript frameworks">Comparison of JavaScript frameworks</a></li>
+<li><a href="/wiki/List_of_JavaScript_libraries" title="List of JavaScript libraries">List of JavaScript libraries</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Related <a href="/wiki/Programming_language" title="Programming language">languages</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/ActionScript" title="ActionScript">ActionScript</a></li>
+<li><a href="/wiki/Asm.js" title="Asm.js">asm.js</a></li>
+<li><a href="/wiki/CoffeeScript" title="CoffeeScript">CoffeeScript</a></li>
+<li><a href="/wiki/Dart_(programming_language)" title="Dart (programming language)">Dart</a></li>
+<li><a href="/wiki/ECMAScript" title="ECMAScript">ECMAScript</a></li>
+<li><a href="/wiki/JavaScript_OSA" title="JavaScript OSA">JavaScript OSA</a></li>
+<li><a href="/wiki/JScript" title="JScript">JScript</a></li>
+<li><a href="/wiki/TypeScript" title="TypeScript">TypeScript</a></li>
+<li><a href="/wiki/AtScript" title="AtScript">AtScript</a></li>
+<li><a href="/wiki/VBScript" title="VBScript">VBScript</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Related <a href="/wiki/Technology" title="Technology">technologies</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Cascading_Style_Sheets" title="Cascading Style Sheets">Cascading Style Sheets</a></li>
+<li><a href="/wiki/Document_Object_Model" title="Document Object Model">Document Object Model</a></li>
+<li><a href="/wiki/HTML" title="HTML">HTML</a></li>
+<li><a href="/wiki/JSON" title="JSON">JSON</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Package_manager" title="Package manager">Package managers</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Npm_(software)" title="Npm (software)">npm</a></li>
+<li><a href="/wiki/NuGet" title="NuGet">NuGet</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Server-side_JavaScript" title="Server-side JavaScript" class="mw-redirect">Server-side</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Active_Server_Pages" title="Active Server Pages">Active Server Pages</a></li>
+<li><a href="/wiki/CommonJS" title="CommonJS">CommonJS</a></li>
+<li><a href="/wiki/JSGI" title="JSGI">JSGI</a></li>
+<li><a href="/wiki/Node.js" title="Node.js">Node.js</a></li>
+<li><a href="/wiki/Wakanda_(software)" title="Wakanda (software)">Wakanda</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="/wiki/Unit_testing" title="Unit testing">Unit testing</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Jasmine_(JavaScript_framework)" title="Jasmine (JavaScript framework)">Jasmine</a></li>
+<li><a href="/wiki/JSUnit" title="JSUnit">JSUnit</a></li>
+<li><a href="/wiki/QUnit" title="QUnit">QUnit</a></li>
+<li><a href="/wiki/List_of_unit_testing_frameworks#JavaScript" title="List of unit testing frameworks">List of JavaScript unit testing frameworks</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">People</th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px">
+<div style="padding:0em 0.25em">
+<ul>
+<li><a href="/wiki/Douglas_Crockford" title="Douglas Crockford">Douglas Crockford</a></li>
+<li><a href="/wiki/Brendan_Eich" title="Brendan Eich">Brendan Eich</a></li>
+<li><a href="/wiki/John_Resig" title="John Resig">John Resig</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+
+<!-- 
+NewPP limit report
+Parsed by mw1086
+CPU time usage: 0.256 seconds
+Real time usage: 0.291 seconds
+Preprocessor visited node count: 1045/1000000
+Preprocessor generated node count: 0/1500000
+Post‐expand include size: 46048/2097152 bytes
+Template argument size: 9/2097152 bytes
+Highest expansion depth: 7/40
+Expensive parser function count: 0/500
+Lua time usage: 0.095/10.000 seconds
+Lua memory usage: 2.66 MB/50 MB
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  224.010      1 - -total
+ 57.11%  127.938      1 - Template:Reflist
+ 34.12%   76.430     12 - Template:Cite_web
+ 16.04%   35.935      1 - Template:JavaScriptSidebar
+ 14.75%   33.045      1 - Template:Sidebar
+ 10.74%   24.056      1 - Template:JavaScript
+  9.29%   20.806      1 - Template:Navbox
+  6.04%   13.539      3 - Template:Cite_book
+  4.84%   10.840      1 - Template:Main
+  0.97%    2.179      1 - Template:Column-count
+-->
+
+<!-- Saved in parser cache with key enwiki:pcache:idhash:9136218-0!*!0!!en!*!* and timestamp 20150725113127 and revision id 650062033
+ -->
+<noscript><img src="//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript></div>					<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="https://en.wikipedia.org/w/index.php?title=Unobtrusive_JavaScript&amp;oldid=650062033">https://en.wikipedia.org/w/index.php?title=Unobtrusive_JavaScript&amp;oldid=650062033</a>"					</div>
+				<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Help:Category" title="Help:Category">Categories</a>: <ul><li><a href="/wiki/Category:JavaScript" title="Category:JavaScript">JavaScript</a></li><li><a href="/wiki/Category:Web_accessibility" title="Category:Web accessibility">Web accessibility</a></li><li><a href="/wiki/Category:Responsive_web_design" title="Category:Responsive web design">Responsive web design</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Hidden categories: <ul><li><a href="/wiki/Category:CS1_errors:_dates" title="Category:CS1 errors: dates">CS1 errors: dates</a></li></ul></div></div>				<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-createaccount"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=Unobtrusive+JavaScript&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li><li id="pt-login"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=Unobtrusive+JavaScript" title="You're encouraged to log in; however, it's not mandatory. [o]" accesskey="o">Log in</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li  id="ca-nstab-main" class="selected"><span><a href="/wiki/Unobtrusive_JavaScript"  title="View the content page [c]" accesskey="c">Article</a></span></li>
+															<li  id="ca-talk"><span><a href="/wiki/Talk:Unobtrusive_JavaScript"  title="Discussion about the content page [t]" accesskey="t" rel="discussion">Talk</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 id="p-variants-label">
+							<span>Variants</span><a href="#"></a>
+						</h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="/wiki/Unobtrusive_JavaScript" >Read</a></span></li>
+															<li id="ca-edit"><span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=edit"  title="Edit this page [e]" accesskey="e">Edit</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=history"  title="Past versions of this page [h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 id="p-cactions-label"><span>More</span><a href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/w/index.php" id="searchform">
+							<div id="simpleSearch">
+							<input type="search" name="search" placeholder="Search" title="Search Wikipedia [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search Wikipedia for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if one exists" id="searchButton" class="searchButton" />							</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="/wiki/Main_Page"  title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id='p-navigation' aria-labelledby='p-navigation-label'>
+			<h3 id='p-navigation-label'>Navigation</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-mainpage-description"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li><li id="n-contents"><a href="/wiki/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li><li id="n-featuredcontent"><a href="/wiki/Portal:Featured_content" title="Featured content – the best of Wikipedia">Featured content</a></li><li id="n-currentevents"><a href="/wiki/Portal:Current_events" title="Find background information on current events">Current events</a></li><li id="n-randompage"><a href="/wiki/Special:Random" title="Load a random article [x]" accesskey="x">Random article</a></li><li id="n-sitesupport"><a href="https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_en.wikipedia.org&amp;uselang=en" title="Support us">Donate to Wikipedia</a></li><li id="n-shoplink"><a href="//shop.wikimedia.org" title="Visit the Wikimedia Shop">Wikipedia store</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-interaction' aria-labelledby='p-interaction-label'>
+			<h3 id='p-interaction-label'>Interaction</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-help"><a href="/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li><li id="n-aboutsite"><a href="/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li><li id="n-portal"><a href="/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li><li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-contactpage"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact page</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+			<h3 id='p-tb-label'>Tools</h3>
+
+			<div class="body">
+									<ul>
+						<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/Unobtrusive_JavaScript" title="List of all English Wikipedia pages containing links to this page [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/Unobtrusive_JavaScript" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-upload"><a href="/wiki/Wikipedia:File_Upload_Wizard" title="Upload files [u]" accesskey="u">Upload file</a></li><li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li><li id="t-permalink"><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;oldid=650062033" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-info"><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;action=info" title="More information about this page">Page information</a></li><li id="t-wikibase"><a href="//www.wikidata.org/wiki/Q2298909" title="Link to connected data repository item [g]" accesskey="g">Wikidata item</a></li><li id="t-cite"><a href="/w/index.php?title=Special:CiteThisPage&amp;page=Unobtrusive_JavaScript&amp;id=650062033" title="Information on how to cite this page">Cite this page</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-coll-print_export' aria-labelledby='p-coll-print_export-label'>
+			<h3 id='p-coll-print_export-label'>Print/export</h3>
+
+			<div class="body">
+									<ul>
+						<li id="coll-create_a_book"><a href="/w/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=Unobtrusive+JavaScript">Create a book</a></li><li id="coll-download-as-rdf2latex"><a href="/w/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=Unobtrusive+JavaScript&amp;oldid=650062033&amp;writer=rdf2latex">Download as PDF</a></li><li id="t-print"><a href="/w/index.php?title=Unobtrusive_JavaScript&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-lang' aria-labelledby='p-lang-label'>
+			<h3 id='p-lang-label'>Languages</h3>
+
+			<div class="body">
+									<ul>
+						<li class="interlanguage-link interwiki-ar"><a href="//ar.wikipedia.org/wiki/%D8%AC%D8%A7%D9%81%D8%A7_%D8%B3%D9%83%D8%B1%D9%8A%D8%A8%D8%AA_%D8%A7%D9%84%D9%85%D8%AE%D9%81%D9%8A%D8%A9" title="جافا سكريبت المخفية – Arabic" lang="ar" hreflang="ar">العربية</a></li><li class="interlanguage-link interwiki-de"><a href="//de.wikipedia.org/wiki/Unobtrusive_JavaScript" title="Unobtrusive JavaScript – German" lang="de" hreflang="de">Deutsch</a></li><li class="interlanguage-link interwiki-es"><a href="//es.wikipedia.org/wiki/JavaScript_no_obstructivo" title="JavaScript no obstructivo – Spanish" lang="es" hreflang="es">Español</a></li><li class="interlanguage-link interwiki-fa"><a href="//fa.wikipedia.org/wiki/%D8%AC%D8%A7%D9%88%D8%A7%D8%A7%D8%B3%DA%A9%D8%B1%DB%8C%D9%BE%D8%AA_%D9%85%D8%AD%D8%AC%D9%88%D8%A8" title="جاوااسکریپت محجوب – Persian" lang="fa" hreflang="fa">فارسی</a></li><li class="interlanguage-link interwiki-fr"><a href="//fr.wikipedia.org/wiki/Javascript_discret" title="Javascript discret – French" lang="fr" hreflang="fr">Français</a></li><li class="interlanguage-link interwiki-ru"><a href="//ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%BD%D0%B0%D0%B2%D1%8F%D0%B7%D1%87%D0%B8%D0%B2%D1%8B%D0%B9_JavaScript" title="Ненавязчивый JavaScript – Russian" lang="ru" hreflang="ru">Русский</a></li><li class="interlanguage-link interwiki-sr"><a href="//sr.wikipedia.org/wiki/Nenametljiv_JavaScript" title="Nenametljiv JavaScript – Serbian" lang="sr" hreflang="sr">Српски / srpski</a></li><li class="interlanguage-link interwiki-zh"><a href="//zh.wikipedia.org/wiki/Unobtrusive_JavaScript" title="Unobtrusive JavaScript – Chinese" lang="zh" hreflang="zh">中文</a></li><li class="uls-p-lang-dummy"><a href="#"></a></li>					</ul>
+				<div class='after-portlet after-portlet-lang'><span class="wb-langlinks-edit wb-langlinks-link"><a href="//www.wikidata.org/wiki/Q2298909#sitelinks-wikipedia" title="Edit interlanguage links" class="wbc-editpage">Edit links</a></span></div>			</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 5 March 2015, at 22:50.</li>
+											<li id="footer-info-copyright">Text is available under the <a rel="license" href="//en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a><a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/" style="display:none;"></a>;
+additional terms may apply.  By using this site, you agree to the <a href="//wikimediafoundation.org/wiki/Terms_of_Use">Terms of Use</a> and <a href="//wikimediafoundation.org/wiki/Privacy_policy">Privacy Policy</a>. Wikipedia® is a registered trademark of the <a href="//www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="//wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+											<li id="footer-places-disclaimer"><a href="/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+											<li id="footer-places-contact"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact Wikipedia</a></li>
+											<li id="footer-places-developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Developers</a></li>
+											<li id="footer-places-mobileview"><a href="//en.m.wikipedia.org/w/index.php?title=Unobtrusive_JavaScript&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+							<a href="//wikimediafoundation.org/"><img src="/static/images/wikimedia-button.png" srcset="/static/images/wikimedia-button-1.5x.png 1.5x, /static/images/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation"/></a>						</li>
+											<li id="footer-poweredbyico">
+							<a href="//www.mediawiki.org/"><img src="//en.wikipedia.org/static/1.26wmf15/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="//en.wikipedia.org/static/1.26wmf15/resources/assets/poweredby_mediawiki_132x47.png 1.5x, //en.wikipedia.org/static/1.26wmf15/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>						</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>if(window.jQuery)jQuery.ready();</script><script>if(window.mw){
+mw.loader.state({"ext.globalCssJs.site":"ready","ext.globalCssJs.user":"ready","site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<link rel="stylesheet" href="//en.wikipedia.org/w/load.php?debug=false&amp;lang=en&amp;modules=ext.cite.styles%7Cext.gadget.DRN-wizard%2CReferenceTooltips%2CWatchlistGreenIndicators%2Ccharinsert%2Cfeatured-articles-links%2CrefToolbar%2Cswitcher%2Cteahouse%7Cext.wikimediaBadges&amp;only=styles&amp;skin=vector&amp;*" />
+<script>if(window.mw){
+mw.loader.load(["ext.cite.a11y","mediawiki.toc","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.cirrusSearch.loggingSchema","ext.imageMetrics.loader","ext.eventLogging.subscriber","ext.wikimediaEvents","ext.wikimediaEvents.statsd","ext.wikimediaEvents.geoFeatures","ext.navigationTiming","ext.gadget.teahouse","ext.gadget.ReferenceTooltips","ext.gadget.WatchlistGreenIndicators","ext.gadget.DRN-wizard","ext.gadget.charinsert","ext.gadget.refToolbar","ext.gadget.switcher","ext.gadget.featured-articles-links","ext.visualEditor.targetLoader","schema.UniversalLanguageSelector","ext.uls.eventlogger","ext.uls.interlanguage"],null,true);
+}</script>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"//en.wikipedia.org/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=site\u0026amp;only=scripts\u0026amp;skin=vector\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script>
+<script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":94,"wgHostname":"mw1092"});
+}</script>
+	</body>
+</html>

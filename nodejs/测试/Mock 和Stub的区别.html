@@ -1,0 +1,1018 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>   
+    
+     
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+     <script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/46aae4d1e2371e4aa769798941cef698/allmobilize.min.js"></script>
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>软件测试- 3 - Mock 和Stub的区别 - lilybear101的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="由于一直没有完全搞明白Mock和Stub的区别，所以查了很多文章，而这一篇是做好的：http://yuan.iteye.com/blog/470418尤其是8楼，Frostred的发言，描述地相当清楚具体，转帖到此，以作日后的参考：很高兴前面的一点文字能对你有所帮助。事实上，写东西时候，也是对自己的思想整理和精炼的过程，所以可以说是互相帮助吧。你要是有什么疑问或不同意见，可" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://static.csdn.net/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/dark1/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/lilybear101/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://static.csdn.net/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/lilybear101">lilybear101的专栏</a></h2>
+            <h3>在好好生活的前提下，努力地学习！</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/lilybear101?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/lilybear101?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/lilybear101/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "lilybear101";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/lilybear101";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+<a href="http://static.blog.csdn.net/bole/index.html"><font color=red>
+CSDN博乐 举荐之美</font></a>
+&nbsp;&nbsp;&nbsp;
+  
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/46685615">
+<font color=blue>程序员必须要会算法吗?
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/47026325">
+<font color=red>【面向专家】极客头条使用体验征文 
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://huiyi.csdn.net/activity/product/goods_list?project_id=2175;identy_id=1491
+">
+<font color=blue>活用UML—打造软件设计高手
+</font></a>
+&nbsp;&nbsp;&nbsp;</div>                        </div>
+                        
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/search-service/main.js"></script>
+
+
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+
+
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Repost"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/lilybear101/article/details/6938646">
+        软件测试- 3 - Mock 和Stub的区别            
+        </a>
+        </span>
+    </h1>
+</div>
+
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="/lilybear101/article/category/921590" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">大学那些课</a> 
+        </span>
+    <span class="link_postdate">2011-11-05 15:47</span>
+    <span class="link_view" title="阅读次数">2550人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shoucang']);collectArticle('软件测试- 3 - Mock 和Stub的区别','6938646');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report"  onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_jubao']);report(6938646,2);return false;" title="举报">举报</a></span>
+    
+</div>
+<div class="tag2box"><a href='http://www.csdn.net/tag/%e8%bd%af%e4%bb%b6%e6%b5%8b%e8%af%95' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">软件测试</a><a href='http://www.csdn.net/tag/%e6%b5%8b%e8%af%95' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">测试</a><a href='http://www.csdn.net/tag/blog' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">blog</a><a href='http://www.csdn.net/tag/object' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">object</a><a href='http://www.csdn.net/tag/service' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">service</a><a href='http://www.csdn.net/tag/dao' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">dao</a></div>
+
+  
+    
+<div id="article_content" class="article_content">
+
+<p>由于一直没有完全搞明白Mock和Stub的区别，所以查了很多文章，而这一篇是做好的：</p>
+<p><a href="http://yuan.iteye.com/blog/470418">http://yuan.iteye.com/blog/470418</a><br>
+</p>
+<p>尤其是8楼，Frostred的发言，描述地相当清楚具体，转帖到此，以作日后的参考：</p>
+<p><br>
+</p>
+<p><span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px">很高兴前面的一点文字能对你有所帮助。事实上，写东西时候，也是对自己的思想整理和精炼的过程，所以可以说是互相帮助吧。你要是有什么疑问或不同意见，可以指出来，我们可以再深入探讨。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">好了，下面说说我对Mock/Stub区别的看法。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">首先，我想再强调一下使用Mock/Stub的目的，那就是，去代替那些被测试代码所依赖的，但不可信赖东西。不管这些东西是什麽，当然最终表现出的还是class。 如class BlogDao, 它不可信赖是因为它访问数据库，class ConfigReader, 它不可信赖是因为它访问配置文件。class MyStringParser，
+ 它不可信赖是因为它有很多逻辑，而且还没有对它进行足够的测试。当然，如果你对它进行足够的测试，你也可以认为它可以信赖。例如，你有一个class MyStringProcessor, 它用到了MyStringParser， 当你测试MyStringProcessor 时，你就有选择是隔离MyStringParser 还是不隔离。注意这一选择是建立在你是否认为MyStringParser 可以信赖的基础上，而不是创建的成本是否很高的基础上。当然，在现实生活中，创建的成本高，往往意味着它用到了外部资源，而用到外部资源也就意味着它不可信赖，也就是它必须被隔离。这也是很多人误以为“创建的成本是否很高”就是判断是否需要隔离的条件。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">以上又废了好多话强调使用Mock/Stub的目的，不过我一直认为理解目的是最重要的，目的理解了，其它就容易明白了。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">Back to Mock/Stub, 不知你注意了没有，我一直没用Mock这个词做动词，我用的是“代替”或 “隔离”，在这里“代替”和“隔离”是一个意思 。（“隔离”或许更准确些，但“代替”更容易理解，而Mock（动词）是一可非常不准确的词）。那么我们用什么来代替或隔离呢？答案是，Stub / Mock objects。那么，为什么会有Stub
+ / Mock 的区别呢。这是因为Stub / Mock 在测试中扮演的角色有细微的差别，这一差别其实又取决于“被隔离对象”在“被测试对象”里扮演角色的差别（对不起写得有点绕嘴，希望你能看明白）。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">其实，分得细点，不只有Stub / Mock，还有其它类型。如，在 xUnit Test Patterns 这本书里，它把这类对象统称为Test Double（因为stunt double 在电影里是替身的意思）。具体的类型有</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• Dummy Object</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• Test Stub</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• Test Spy</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• Mock Object</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• Fake Object</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">其中，Fake Object是指一个假的（相对于现实要用到的），但完整的实现。如， InMemoryBlogDao，相对于 SqlBlogDao，它不真的访问数据库，但它是一个对 BlogDao 接口 的完整实现。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">其他的类型，我认为，Dummy Object，Test Stub，Test Spy基本可以归为Stub，剩下的Mock Object 当然是Mock。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">首先看Dummy Object，测试代码需要Dummy Object是因为有了它才能通过编译，测试才能跑起来，但其实测试中可能根本就用不到它。例如，创建BlogService 需要 BlogDao，但你可能测试BlogService 的一个方法，它根本就没用到BlogDao。此时，你可以用 new BlogService(new
+ NullBlogDao()),&nbsp; NullBlogDao 就是Dummy Object，因为它的存在只是为了通过编译，它根本就不参与测试。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">Test Stub 参与测试， 但你不在乎它是何时何地以何种方式参与测试的，它的存在是为了让测试跑起来。非常常见的情况是你需要它提供一些返回&#20540;。例如，你可以用HttpContextStub 来代替真正的HttpContext， 用它提供例如SessionId, ResquestParameter 之类的&#20540;。你的测试可能会用到这些&#20540;，但你不会去验证是不是getSessionId()
+ 被调用了，更不会去验证它是何时何地以何种方式被调用的。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">Test Spy 不但参与测试，你还要验证它的参与产生了某种结果。如BlogService 例子。你可以定义一个TestSpy：</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">public class BlogDaoTestSpy implements BlogDao {</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">public Blog savedBlog = null;</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">public void save(Blog blog) {</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">savedBlog = blog;</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">}</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">}</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">那么你的测试可写成这样：</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">@Test&nbsp;&nbsp;</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">public void testSaveBlog(){&nbsp;&nbsp;</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">Blog blog = new Blog();&nbsp;&nbsp;&nbsp;&nbsp;</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">blogService.save(blog);&nbsp;&nbsp;</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">assertEqual(blog, ((BlogDaoTestSpy)blogDao).savedBlog);</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">}&nbsp;&nbsp;</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">注意，在测试中我们验证了blogService.save(blog) 会导致blogDao的savedBlog 产生变化，但我们不去验证blogDao是以何种形式参与测试而导致这一变化的。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">下面终于该Mock Object 出场了，事实上，你的测试就是很好的Mock例子。在测试中，你验证了如果blogService.save(blog) 被调用，blogDao的save(blog) 一定也会被调用，而且被调用时，参数一定是 blog。也就是说，你验证了blogDao必须以这种特定的形式参与测试。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">通过比较，我们可以看到，从Dummy Objec到 Mock Object，测试代码对TestDouble 的要求越来越强，验证的内容也越来越强。这种强制约有好处也有坏处，不过，总的来说，我们希望够用就行。换句话来说，如果能验证代码的正确性，如果Stub够用，就不要用Mock，因为Stub比Mock简单，Stub 对被测代码的制约也小的多，所以被测代码改起来也更容易。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">为什么有些时候必须用Mock呢？一个常见的情况是需要参与的方法没有返回&#20540;。例如blogDAO.save(blog)。首先，我想说的是，这行代码非常重要，是一定要测试到的。不然的话，你把这行从BlogService中删掉，都没有测试报错，这显然不对。问题是blogDAO.save(blog) 没有返回&#20540;，我们怎么才能知道它被正确调用了呢。当然，我们可以用TestSpy，象上面的例子。不过，一般的Dynamic
+ Mock framework 都不支持象上面那类的TestSpy，所以你要手写TestSpy。如果你不愿手写，我认为用Mock是完全可以接受的。这里我还想说的是，它没有“深入到DAO的接口设计中去了”， 因为你的测试只是验证blogDao的save(blog) 会被调用，而没有验证save(blog)的结果是不是正确。如果你验证save(blog)的结果是不是正确，那才是“深入到DAO的接口设计中去了”。所以总的来说，我认为你用Mock 测试是perfectl valid。一点小毛病是，在测试中，你没必要去setTitle(&quot;title&quot;)，
+ setContent(&quot;content&quot;)，setCreatedTime(new Date())，这些跟你要测的东西没有任何关系。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">一些comments：</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">“测试代码本来只需要知道传什么参数给Service，并且预期测试Service返回什么&#20540;就够了，管它DAO调用什么方法干嘛？”</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">--理想情况下是，问题是， Service没有返回&#20540;，更讨厌的是，连DAO都没有返回&#20540;，我们有不能让它沉到太平洋里去，那怎么测试，只好用没办法的办法，验证blogDao的save(blog)将 被调用。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">“整个Service的实现对测试代码应该是不可见的“</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">--理想情况下是，现实中常常不是，尤其是Service class 自己没什么逻辑，but just some interaction with other classes. 例如，Service class 接受一个DTO参数， 然后，用Mapper 把它Map 成Entity object，用Validator 去 validate，
+ 用 logger 写 一个 log， 最后用DAO 存到数据库。这种情况下，你不得不做一些基于Mock 的Interactive 测试。</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">最后，我的观点，</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• 尽量少用 Mock</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• 该用Mock的时候就用，Mock没什么可怕的</span><br style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">
+<span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">• 明白测试的目的是最重要的</span><br>
+</p>
+<p><span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left"><br>
+</span></p>
+<p><span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left"><br>
+</span></p>
+<p><span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left">如果参见这篇博文的人想知道更多，或者英文足够好，这篇老外写的文章，非常地不错：</span></p>
+<p><span style="font-family:Helvetica,Tahoma,Arial,sans-serif; line-height:18px; text-align:left"><a href="http://martinfowler.com/articles/mocksArentStubs.html">http://martinfowler.com/articles/mocksArentStubs.html</a>，Mocks Aren't Stubs.<br>
+<br>
+</span></p>
+    
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox" style="float: right;">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--192.168.100.36-->
+<ul class="article_next_prev">
+            <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/lilybear101/article/details/6938254';">上一篇</span><a href="/lilybear101/article/details/6938254" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">软件测试- 2 - 简单的带Annotation和不带Annotation的Junit测试</a></li>
+            <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='/lilybear101/article/details/6939454';">下一篇</span><a href="/lilybear101/article/details/6939454" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">软件测试- 4 - 软件测试工具比较</a></li>
+</ul>
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+</div>
+  
+
+    <dl class="blog-associat-tag">
+        <dt>主题推荐</dt>
+        <dd>
+                <a href="http://www.csdn.net/tag/数据库" target="_blank" class="blog-tage-red" >数据库</a> 
+                <a href="http://www.csdn.net/tag/软件测试" target="_blank" class="blog-tage-red" >软件测试</a> 
+                <a href="http://www.csdn.net/tag/对象" target="_blank" class="blog-tage-red" >对象</a> 
+                <a href="http://www.csdn.net/tag/生活" target="_blank" class="blog-tage-red" >生活</a> 
+                <a href="http://www.csdn.net/tag/class" target="_blank" class="blog-tage-red" >class</a> 
+        </dd>
+    </dl> 
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(../images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+
+</style>
+
+<dl class="blog-ass-articl" id="res-relatived" > 
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="http://csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "6938646",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    </div>  
+
+    
+     <div id="res"  data-mod="popu_36"  class="tracking-ad" style="width: 42%;float: left;margin-right: 30px;"></div>
+   
+</dl>
+
+<div id="job_blog_reco">
+<script src="http://c.csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script>
+   
+     <script type="text/javascript">
+         csdn.position.show({
+         sourceType: "blog",
+         tplType: "blogDetail",
+         searchType: "detail",
+         searchKey: "6938646",
+             username: "",
+         containerId: "job_blog_reco"
+        }); 
+    </script>
+
+</div>
+
+<script type="text/javascript">
+    var searchtitletags = '软件测试- 3 - Mock 和Stub的区别' + ',' + '数据库,软件测试,对象,生活,class';
+    searchService({
+        index: 'blog',
+        query: searchtitletags,
+        from: 5,
+        size: 5,
+        appendTo: '#res',
+        url: 'recommend',
+        his: 2,
+        client: "blog_cf_enhance",
+        tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+    });
+
+ </script>   
+
+
+
+    <div id="ad_cen">
+   
+          <script type="text/javascript">
+              new Ad(4, 'ad_cen');
+          </script>
+    </div>
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '6938646';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+    <script type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);
+        
+        /*
+        if($("#comment_content").length>0)
+        {
+            $("#quick-reply").show();
+
+            $("#quick-reply").click(function(){
+                setEditorFocus();
+            });
+        }       
+     
+        var d_top = $('#d-top-a');
+
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+        */
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div class="tag_list">
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/数据库" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone " target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/云计算" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace " target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/大数据" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+</div>
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });
+        },200);  
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }    
+
+</script>
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+            <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/lilybear101" target="_blank">
+    <img src="http://avatar.csdn.net/6/2/2/1_lilybear101.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/lilybear101" class="user_name" target="_blank">lilybear101</a></span>
+</div>
+<div class="interact">
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_guanzhu'])"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=lilybear101','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>116033次</span></li>
+    <li>积分：<span>3174</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog5.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：3174 </div>
+        </span>  </li>
+    <li>排名：<span>第5188名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>216篇</span></li>
+    <li>转载：<span>50篇</span></li>
+    <li>译文：<span>6篇</span></li>
+    <li>评论：<span>28条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script>
+<div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/813265" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Android</a><span>(39)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/601377" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Audit</a><span>(8)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/813263" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C++</a><span>(14)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/813264" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Java</a><span>(18)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/813269" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Linux</a><span>(3)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/813283" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">SQL</a><span>(7)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/601214" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">个人备忘</a><span>(10)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/813666" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">图像处理</a><span>(5)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/813274" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">基本算法</a><span>(19)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/601212" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">边边角角</a><span>(18)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/696514" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">日记</a><span>(71)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/816051" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">设计模式</a><span>(10)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/601215" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">随便写写</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/845843" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Windows</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/891962" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">网站开发</a><span>(21)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/921590" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">大学那些课</a><span>(11)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/1065203" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">iOs</a><span>(7)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/lilybear101/article/category/1075611" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">其他</a><span>(0)</span>
+            </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="http://blog.csdn.net/lilybear101/article/month/2012/06">2012年06月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2012/05">2012年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2012/04">2012年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2012/03">2012年03月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2012/02">2012年02月</a><span>(16)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2012/01">2012年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/12">2011年12月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/11">2011年11月</a><span>(16)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/10">2011年10月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/09">2011年09月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/08">2011年08月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/07">2011年07月</a><span>(24)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/06">2011年06月</a><span>(22)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/05">2011年05月</a><span>(56)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/04">2011年04月</a><span>(42)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2011/01">2011年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2010/11">2010年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2010/07">2010年07月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2010/06">2010年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2010/05">2010年05月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2010/04">2010年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2010/03">2010年03月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2010/02">2010年02月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2009/10">2009年10月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2009/09">2009年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lilybear101/article/month/2009/07">2009年07月</a><span>(2)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/lilybear101/article/details/5285611" title="[转]如何查看SQL2000的版本号">[转]如何查看SQL2000的版本号</a><span>(4933)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6524982" title="VM上搭建IPhone开发环境">VM上搭建IPhone开发环境</a><span>(4093)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/7230869" title="IPhone Dev Notes - 2 - 屏幕旋转">IPhone Dev Notes - 2 - 屏幕旋转</a><span>(3090)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6938646" title="软件测试- 3 - Mock 和Stub的区别">软件测试- 3 - Mock 和Stub的区别</a><span>(2550)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6867251" title="制作字幕 ass格式">制作字幕 ass格式</a><span>(2485)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/7249703" title="会计科目表">会计科目表</a><span>(2069)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6426644" title="Android Dev Notes - 14 - 关于SQLite3 命令行">Android Dev Notes - 14 - 关于SQLite3 命令行</a><span>(2047)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6531856" title="在Tomcat上搭建网站开发环境">在Tomcat上搭建网站开发环境</a><span>(1894)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6447916" title="Android Dev Notes - 20 - 关于字符串和字节流的转换">Android Dev Notes - 20 - 关于字符串和字节流的转换</a><span>(1759)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/7350812" title="Paxos - 分布式表决算法">Paxos - 分布式表决算法</a><span>(1472)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/lilybear101/article/details/6361031" title="20100425">20100425</a><span>(3)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6338217" title="20110421">20110421</a><span>(3)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6413640" title="Java Dev Notes - 3 - 关于JSON">Java Dev Notes - 3 - 关于JSON</a><span>(2)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/4634697" title="【转】Java学习资料汇总">【转】Java学习资料汇总</a><span>(2)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6372125" title="20110429">20110429</a><span>(2)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6343367" title="20110423">20110423</a><span>(2)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6399659" title="Android Dev Notes - 12- 关于定位">Android Dev Notes - 12- 关于定位</a><span>(2)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/6327429" title="20110416">20110416</a><span>(2)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/7021155" title="自以为是 Java API Bug的2行为">自以为是 Java API Bug的2行为</a><span>(2)</span>
+</li>
+<li>
+<a href="/lilybear101/article/details/5306436" title="SQL 版本和补丁">SQL 版本和补丁</a><span>(2)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend"></ul>
+</div>
+<script type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/lilybear101/article/details/6577897#comments">Android Dev Notes - 24- 关于长连接和短连接</a>
+    <p style="margin:0px;"><a href="/yytongy" class="user_name">yytongy</a>:
+你好，木有注释
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/7021155#comments">自以为是 Java API Bug的2行为</a>
+    <p style="margin:0px;"><a href="/lilybear101" class="user_name">lilybear101</a>:
+@ganqierwu:啊，明白了，Thanks，我好2啊！
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/7021155#comments">自以为是 Java API Bug的2行为</a>
+    <p style="margin:0px;"><a href="/ganqierwu" class="user_name">ganqierwu</a>:
+dot意味着regex里面的任意字符，需要转义。试试下面的程序。    public class T...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/6431798#comments">Android Dev Notes - 19 - 关于Animation</a>
+    <p style="margin:0px;"><a href="/love_android_2011" class="user_name">love_android_2011</a>:
+感谢笔者的分享....
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/6399659#comments">Android Dev Notes - 12- 关于定位</a>
+    <p style="margin:0px;"><a href="/lilybear101" class="user_name">lilybear101</a>:
+回复 ganqierwu：恩，
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/6399659#comments">Android Dev Notes - 12- 关于定位</a>
+    <p style="margin:0px;"><a href="/ganqierwu" class="user_name">ganqierwu</a>:
+这些让我想到了，2008年夏天的时候我做一个利用google Earth的application的时...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/6413640#comments">Java Dev Notes - 3 - 关于JSON</a>
+    <p style="margin:0px;"><a href="/lilybear101" class="user_name">lilybear101</a>:
+回复 ganqierwu：恩，有空一定去看，现在我继续我的单例模式，基础太差，真的很苦，桌上摊着3本...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/6413640#comments">Java Dev Notes - 3 - 关于JSON</a>
+    <p style="margin:0px;"><a href="/ganqierwu" class="user_name">ganqierwu</a>:
+关于json，请看http://www.json.org/google有一个开源项目叫Gson的可以...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/6384136#comments">设计模式学习笔记 - 3 - 装饰者模式</a>
+    <p style="margin:0px;"><a href="/ma3228877" class="user_name">ma3228877</a>:
+恩好。。
+    </p>
+    </li>
+    <li>
+   
+         <a href="/lilybear101/article/details/6372125#comments">20110429</a>
+    <p style="margin:0px;"><a href="/lilybear101" class="user_name">lilybear101</a>:
+回复 ganqierwu：可以放假了，兔子，开心了吧？
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=609523"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript" src="http://zz.csdn.net/js/count.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://static.csdn.net/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://c.csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+
+</body>
+</html>

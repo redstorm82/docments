@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8"/>
+  <meta name='description' content='CNode：Node.js专业中文社区'>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="keywords" content="nodejs, node, express, connect, socket.io"/>
+  <meta name="apple-itunes-app" content="app-id=954734793">
+  <!-- see http://smerity.com/articles/2013/where_did_all_the_http_referrers_go.html -->
+  <meta name="referrer" content="always">
+
+  
+  <meta name="author" content="EDP@TaoBao" />
+  
+  <meta property="wb:webmaster" content="617be6bd946c6b96" />
+  
+
+  <link title="RSS" type="application/rss+xml" rel="alternate" href="/rss"/>
+
+  
+  <link rel="icon" href="//dn-cnodestatic.qbox.me/public/images/cnode_icon_32.png" type="image/x-icon"/>
+  
+
+  <!-- style -->
+  <link rel="stylesheet" href="//dn-cnodestatic.qbox.me/public/stylesheets/index.min.36689462.min.css" media="all" />
+
+
+  <!-- scripts -->
+  <script src="//dn-cnodestatic.qbox.me/public/index.min.4dde195f.min.js"></script>
+
+
+  
+  <title>用于测试rest api的nodejs测试框架 - CNode</title>
+  
+  <meta content="_csrf" name="csrf-param">
+  <meta content="XfiH0CEN-ITwNKdlhpo1y3OFIUaSdBwiB_H0" name="csrf-token">
+</head>
+<body>
+<!-- navbar -->
+<div class='navbar'>
+  <div class='navbar-inner'>
+    <div class='container'>
+      <a class='brand' href='/'>
+        
+          <img src="//dn-cnodestatic.qbox.me/public/images/cnodejs_light.svg" />
+        
+      </a>
+
+      <form id='search_form' class='navbar-search' action="/search">
+        <input type='text' id='q' name='q' class='search-query span3' value=''/>
+      </form>
+      <ul class='nav pull-right'>
+        <li><a href='/'>首页</a></li>
+        
+        <li><a href='/getstart'>新手入门</a></li>
+        <li><a href='/api'>API</a></li>
+        
+        <li><a href="/about" target="">关于</a></li>
+        
+        
+        <li><a href='/signup'>注册</a></li>
+        <li><a href='/signin'>登录</a></li>
+        
+      </ul>
+      <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div id='main'>
+  <div id='sidebar'>
+  <div class='panel'>
+    <div class='header'>
+      <span class='col_fade'>作者</span>
+    </div>
+    <div class='inner'>
+      <div class='user_card'>
+  <div>
+    <a class='user_avatar' href="/user/codelint">
+      <img src="/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F9d7ec1e190a9299e8360c58848ea7e16%3Fs%3D48" title="codelint"/>
+    </a>
+    <span class='user_name'><a class='dark' href="/user/codelint">codelint</a></span>
+
+    <div class='board clearfix'>
+      <div class='floor'>
+        <span class='big'>积分: 10 </span>
+      </div>
+    </div>
+    <div class="space clearfix"></div>
+    <span class="signature">
+        “
+        
+            What is worth doing is worth doing well.
+        
+        ”
+    </span>
+  </div>
+</div>
+
+
+
+    </div>
+  </div>
+
+  
+    
+<div class='panel'>
+  <div class='inner ads'>
+
+    
+      
+      <a href="http://www.rongcloud.cn/" target="_blank" class="banner sponsor_outlink"
+    data-label="rongcloud">
+        <img src="//dn-cnode.qbox.me/FmMTa1PNYP3gig6q1yoYz1QncUYL">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="http://100offer.com/join/cnode71?utm_source=cnode71&utm_medium=dis&utm_campaign=cnode71" target="_blank" class="banner sponsor_outlink"
+    data-label="100offer">
+        <img src="//dn-cnode.qbox.me/FojExpHUPJ_1iG7qDOJvnRQ7RmnX">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="https://www.wilddog.com/" target="_blank" class="banner sponsor_outlink"
+    data-label="wilddog">
+        <img src="//dn-cnode.qbox.me/FgF7oZaTe70WOGoM-FB9r_f4kRPH">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="http://videojj.com/" target="_blank" class="banner sponsor_outlink"
+    data-label="videojj">
+        <img src="//dn-cnode.qbox.me/FuBkApd_djji3AtnUm4i4A0aAO6S">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="http://www.jiankongbao.com/" target="_blank" class="banner sponsor_outlink"
+    data-label="jiankongbao">
+        <img src="//dn-cnode.qbox.me/FgqoCO3YpU7B5jdG_7GPhVnXc1eG">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="https://talk.ai/?s=cnodejs" target="_blank" class="banner sponsor_outlink"
+    data-label="teambition">
+        <img src="//dn-cnode.qbox.me/FsJ2QW9zAHLvrPgC767PvuMWBkRQ">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="https://bearychat.com/" target="_blank" class="banner sponsor_outlink"
+    data-label="bearychat">
+        <img src="//dn-cnode.qbox.me/Foy27SgPGvfuZ3w9rSGik4crv8oW">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="http://www.apicloud.com/" target="_blank" class="banner sponsor_outlink"
+    data-label="apicloud">
+        <img src="//dn-cnode.qbox.me/FsmD61Bf12f7l4zTXp6hoJ-6D4Ao">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="https://cnodejs.org/topic/559e927f3d79442724b9f1e2" target="_blank" class="banner sponsor_outlink"
+    data-label="shimo">
+        <img src="//dn-cnode.qbox.me/FsIC6DBRkw1sfVF5V0G-Qc5UOYZP">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="http://www.oneapm.com/ai/feature.html?utm_source=cnode&utm_medium=billboard&utm_term=master&utm_campaign=JulyTechAds&from=maadfiseno" target="_blank" class="banner sponsor_outlink"
+    data-label="oneapm">
+        <img src="//dn-cnode.qbox.me/FiHabJNEMPYpbpxZJd4maf8EY1fF">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="https://www.jpush.cn/" target="_blank" class="banner sponsor_outlink"
+    data-label="jpush">
+        <img src="//dn-cnode.qbox.me/FjckLnF0VNcXA3yiD_11Hd5xBxIR">
+      </a>
+    
+      
+        <div class="sep10"></div>
+      
+      <a href="https://tower.im/?s=cnodejs" target="_blank" class="banner sponsor_outlink"
+    data-label="tower">
+        <img src="//dn-cnode.qbox.me/FptAiXgArDRK-0Rd5UdPqA8zJlWy">
+      </a>
+    
+  </div>
+</div>
+
+  
+
+  <div class='panel'>
+    <div class='header'>
+      <span class='col_fade'>作者其它话题</span>
+    </div>
+    <div class='inner'>
+      
+      <ul class='unstyled'>
+        <li>
+  <div><a class='dark topic_title' href="/topic/4f16442ccae1f4aa2700106f" title="三个郁闷的错误……搞了一下午……">三个郁闷的错误……搞了一下午……</a>
+  </div>
+</li>
+
+      </ul>
+      
+    </div>
+  </div>
+
+  <div class='panel'>
+    <div class='header'>
+      <span class='col_fade'>无人回复的话题</span>
+    </div>
+    <div class='inner'>
+      
+      <ul class='unstyled'>
+        <li>
+  <div><a class='dark topic_title' href="/topic/55bc6b02f36f579657fc5544" title="MongoDB连接问题？">MongoDB连接问题？</a>
+  </div>
+</li>
+<li>
+  <div><a class='dark topic_title' href="/topic/55baed56f36f579657fc543a" title="在Windows服务器上开启SNMP代理程序">在Windows服务器上开启SNMP代理程序</a>
+  </div>
+</li>
+<li>
+  <div><a class='dark topic_title' href="/topic/55badfedf36f579657fc53f9" title="mongodb 简单测试,同一个索引字段不同值查询,结果集越大,吞吐率越低.">mongodb 简单测试,同一个索引字段不同值查询,结果集越大,吞吐率越低.</a>
+  </div>
+</li>
+<li>
+  <div><a class='dark topic_title' href="/topic/55b9e214f36f579657fc52e9" title="node 开发使用ccap生成验证码返回buffer 乱码">node 开发使用ccap生成验证码返回buffer 乱码</a>
+  </div>
+</li>
+<li>
+  <div><a class='dark topic_title' href="/topic/55b9d2b3f36f579657fc52c8" title="前后端分离项目实践分析">前后端分离项目实践分析</a>
+  </div>
+</li>
+
+      </ul>
+      
+    </div>
+  </div>
+</div>
+
+<div id='content'>
+  <div class='panel'>
+    <div class='header topic_header'>
+      <span class="topic_full_title">
+
+        
+
+
+        用于测试rest api的nodejs测试框架
+      </span>
+      <div class="action">
+      
+      </div>
+      <div class="changes">
+        <span>
+          发布于 4年前
+        </span>
+        <span>
+          作者 <a href="/user/codelint">codelint</a>
+        </span>
+        <span>
+          4384 次浏览
+        </span>
+        
+        
+      </div>
+      
+    </div>
+    <div class='inner topic'>
+
+      <div class='topic_content'>
+        <div class="markdown-text"><p>一直不知道怎么测试rest api，或者说没有一个比较方便的方法来测试rest api。后来想了一下，测试一个api是否可行其实不过就是给予一些参数，然后发起一个请求，获得响应，检查返回的值是否与预想的一致，一致则正确</p>
+<br /><p>于是用nodejs写了一段代码，用来测是rest请求（http请求）。整体的思路，希望减少测试的逻辑代码量。即使提供测试数据成为编写测试用例的主要工作量。于是写了一个RestTester对象，用于接受测试数据，以及测试上下文。即只要提高测试数据和测试服务器的相关信息。</p>
+<br />
+<br /><ul>
+<br />   <li>测试数据（case）:</li>
+<br /><ul>
+<br />   <li>input（http请求数据）：（http方法（GET/POST），请求时使用的headers，如果是post请提供body的数据，body为一个json，目前仅支持json格式的body）</li>
+<br />   <li>expect（预期值）：预想要返回的结果（相应码，headers，json body）</li>
+<br />   <li>setup/before/after/teardown为该测试特定阶段执行的方法（可选）（具体意义见下文）</li>
+<br /></ul>
+<br />   <li>测试服务器的相关信息：</li>
+<br /><ul>
+<br />   <li>server（nodejs的server对象）（可选，不提供则服务器不由测试程序启动）</li>
+<br />   <li>host（主机名）</li>
+<br />   <li>port（端口）</li>
+<br />   <li>timeout（请求超时时间）</li>
+<br />   <li>encoding（编码）</li>
+<br /></ul>
+<br /></ul>
+<br /><p>下图为该测试框架的一个简单的流程图：<a href="http://inotseeyou.com/wp-content/uploads/2011/12/testful.jpg"><img src="http://inotseeyou.com/wp-content/uploads/2011/12/testful.jpg" alt="这是一副关于testful的测试简单流程图" width="654" height="591" /></a></p>
+<br /><p>整个测试过程均串行执行，即测试用例是一个接一个进行测试，而非并行测试。各阶段附加的方法，也是串行执行。使每个测试用例间串行，主要考虑到测试用例与测试用例之间可能会共用同一个数据库，在setup和teardown可能会相互影响。</p>
+<br /><p>另外为每个阶段附加方法的形式有两种，一即写在测试用例的定义里（前面提到）；还有就是通过RestTester的onSetup/onTeardown/onBefore/onAfter/onInit/onClose方法来添加，每个方法的一个参数，均为一个函数，当方法结束时，请调用这个函数，以告知，所添加的阶段方法执行完毕。如：</p>
+<br />
+<br /><pre>var tester = new RestTester(...)
+<br />tester.onSetup(functon(next, title, case){
+<br />   //todo do what you want to do during setup period
+<br />   next();
+<br />});</pre>
+<br /><p>在每个阶段执行完后，RestTester都会触发相应的事件。</p>
+<br /><p>详细内容见：<a href="https://github.com/codelint/testful" target="_blank">https://github.com/codelint/testful</a></p></div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+
+<div class="replies_history">
+  <div class="inner_content"></div>
+  <div class="anchor"></div>
+</div>
+
+
+
+
+<script type="text/javascript">
+  (function(){
+    var timer = null; //对话框延时定时器
+    // 初始化 $('.replies_history')
+    var $repliesHistory = $('.replies_history');
+    var $repliesHistoryContent = $repliesHistory.find('.inner_content');
+    $repliesHistory.hide();
+    // END
+    // 鼠标移入对话框清除隐藏定时器；移出时隐藏对话框
+    $repliesHistory.on('mouseenter', function(){
+      clearTimeout(timer);
+    }).on('mouseleave', function(){
+      $repliesHistory.fadeOut('fast');
+    });
+    // 显示被 at 用户的本页评论
+    if ($('.reply2_item').length === 0) {
+      // 只在流式评论布局中使用
+
+      $('#content').on('mouseenter', '.reply_content a', function (e) {
+        clearTimeout(timer);
+        var $this = $(this);
+        if ($this.text()[0] === '@') {
+          var thisText = $this.text().trim();
+          var loginname = thisText.slice(1);
+          var offset = $this.offset();
+          var width = $this.width();
+          var mainOffset = $('#main').offset();
+          $repliesHistory.css('left', offset.left-mainOffset.left+width+10); // magic number
+          $repliesHistory.css('top', offset.top-mainOffset.top-10); // magic number
+          $repliesHistory.css({
+            'z-index': 1,
+          });
+          $repliesHistoryContent.empty();
+          var chats = [];
+          var replyToId = $this.closest('.reply_item').attr('reply_to_id');
+          while (replyToId) {
+            var $replyItem = $('.reply_item[reply_id=' + replyToId + ']');
+            var replyContent = $replyItem.find('.reply_content').text().trim();
+            if (replyContent.length > 0) {
+              chats.push([
+                $($replyItem.find('.user_avatar').html()).attr({
+                  height: '30px',
+                  width: '30px',
+                }), // avatar
+                (replyContent.length>300?replyContent.substr(0,300)+'...':replyContent), // reply content
+                '<a href="#'+replyToId+'" class="scroll_to_original" title="查看原文">↑</a>'
+              ]);
+            }
+            replyToId = $replyItem.attr('reply_to_id');
+          }
+          if(chats.length > 0) {
+            chats.reverse();
+
+            $repliesHistoryContent.append('<div class="title">查看对话</div>');
+            chats.forEach(function (pair, idx) {
+              var $chat = $repliesHistoryContent.append('<div class="item"></div>');
+              $chat.append(pair[0]); // 头像
+              $chat.append($('<span>').text(pair[1])); // 内容
+              $chat.append(pair[2]); // 查看原文 anchor
+            });
+            $repliesHistory.fadeIn('fast');
+          }else{
+            $repliesHistory.hide();
+          }
+        }
+      }).on('mouseleave', '.reply_content a', function (e) {
+        timer = setTimeout(function(){
+          $repliesHistory.fadeOut('fast');
+        }, 500);
+      });
+    }
+    // END 显示被 at 用户的本页评论
+  })();
+
+  // 点赞
+  $('.up_btn').click(function (e) {
+    var $this = $(this);
+    var replyId = $this.closest('.reply_area').attr('reply_id');
+    $.ajax({
+      url: '/reply/' + replyId + '/up',
+      method: 'POST',
+    }).done(function (data) {
+      if (data.success) {
+        $this.removeClass('invisible');
+        var currentCount = Number($this.next('.up-count').text().trim()) || 0;
+        if (data.action === 'up') {
+          $this.next('.up-count').text(currentCount + 1);
+          $this.addClass('uped');
+        } else {
+          if (data.action === 'down') {
+            $this.next('.up-count').text(currentCount - 1);
+            $this.removeClass('uped');
+          }
+        }
+      } else {
+        alert(data.message);
+      }
+    }).fail(function (xhr) {
+      if (xhr.status === 403) {
+        alert('请先登录，登陆后即可点赞。');
+      }
+    });
+  });
+  // END 点赞
+</script>
+
+</div>
+<div id='backtotop'>回到顶部</div>
+<div id='footer'>
+  <div id='footer_main'>
+    <div class="links">
+      <a class='dark' href='/rss'>RSS</a>
+      |
+      <a class='dark' href='https://github.com/cnodejs/nodeclub/'>源码地址</a>
+    </div>
+
+    <div class='col_fade'>
+  <p>服务器搭建在
+    <a href="https://www.digitalocean.com/?refcode=eba02656eeb3" target="_blank"
+      class="sponsor_outlink" data-label="digitalocean">
+      <img src="//dn-cnodestatic.qbox.me/public/images/digitalocean.png" title="digitalocean"
+      alt="digitalocean" width="92px"/>
+    </a>
+  ，存储赞助商为
+    <a href="http://www.qiniu.com/?ref=cnode" target="_blank"
+      class="sponsor_outlink" data-label="qiniu_bottom">
+      <img src="//dn-cnodestatic.qbox.me/public/images/qiniu.png" title="七牛云存储"
+      alt="七牛云存储" width="115px"/>
+    </a>
+  </p>
+</div>
+
+
+  </div>
+</div>
+<div id="sidebar-mask"></div>
+
+
+<script>
+  // google analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script',"/agent?&url=https%3A%2F%2Fwww.google-analytics.com%2Fanalytics.js",'ga');
+
+  ga('create', 'UA-41753901-5', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<div style="display:none;">
+  <script src="//s95.cnzz.com/z_stat.php?id=1254020586&web_id=1254020586" language="JavaScript"></script>
+</div>
+
+
+</body>
+</html>

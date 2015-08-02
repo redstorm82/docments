@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <title>Mocha - the fun, simple, flexible JavaScript test framework</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="css/normalize.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/pygments.css"/>
+  <link rel="shortcut icon" href="favicon.ico"/>
+
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+
+
+  <body>
+
+    <script>
+window.onload = function () { window.document.body.classList.add('onload'); }
+</script>
+<header>
+  <h1><a href="http://mochajs.org/">Mocha</a></h1>
+  <p id="tag"><em>simple</em>, <em>flexible</em>, <em>fun</em></p>
+</header>
+
+
+    <section id="content">
+      <p>Mocha is a feature-rich JavaScript test framework running on <a href="http://nodejs.org">Node.js</a> and the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases. Hosted on <a href="https://github.com/mochajs/mocha">GitHub</a>.</p>
+
+<p><a href="https://gitter.im/mochajs/mocha"><img src="//badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
+
+<h2 id="features">Features</h2>
+
+<ul>
+<li>browser support</li>
+<li>simple async support, including promises</li>
+<li>test coverage reporting</li>
+<li>string diff support</li>
+<li>javascript API for running tests</li>
+<li>proper exit status for CI support etc</li>
+<li>auto-detects and disables coloring for non-ttys</li>
+<li>maps uncaught exceptions to the correct test case</li>
+<li>async test timeout support</li>
+<li>test-specific timeouts</li>
+<li>growl notification support</li>
+<li>reports test durations</li>
+<li>highlights slow tests</li>
+<li>file watcher support</li>
+<li>global variable leak detection</li>
+<li>optionally run tests that match a regexp</li>
+<li>auto-exit to prevent &quot;hanging&quot; with an active loop</li>
+<li>easily meta-generate suites &amp; test-cases</li>
+<li>mocha.opts file support</li>
+<li>clickable suite titles to filter test execution</li>
+<li>node debugger support</li>
+<li>detects multiple calls to <code>done()</code></li>
+<li>use any assertion library you want</li>
+<li>extensible reporting, bundled with 9+ reporters</li>
+<li>extensible test DSLs or &quot;interfaces&quot;</li>
+<li>before, after, before each, after each hooks</li>
+<li>arbitrary transpiler support (coffee-script etc)</li>
+<li>TextMate bundle</li>
+<li>and more!</li>
+</ul>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<!-- INDEX -->
+
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#assertions">Assertions</a></li>
+<li><a href="#synchronous-code">Synchronous Code</a></li>
+<li><a href="#asynchronous-code">Asynchronous Code</a></li>
+<li><a href="#hooks">Hooks</a></li>
+<li><a href="#pending-tests">Pending Tests</a></li>
+<li><a href="#exclusive-tests">Exclusive Tests</a></li>
+<li><a href="#inclusive-tests">Inclusive Tests</a></li>
+<li><a href="#dynamically-generating-tests">Dynamically Generating Tests</a></li>
+<li><a href="#timeouts">Timeouts</a></li>
+<li><a href="#diffs">Diffs</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#interfaces">Interfaces</a></li>
+<li><a href="#reporters">Reporters</a></li>
+<li><a href="#running-mocha-in-the-browser">Running Mocha in the Browser</a></li>
+<li><a href="#mocha-opts"><code>mocha.opts</code></a></li>
+<li><a href="#the-test-directory">The <code>test/</code> Directory</a></li>
+<li><a href="#editor-plugins">Editor Plugins</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#testing-mocha">Testing Mocha</a></li>
+<li><a href="#more-information">More Information</a></li>
+</ul>
+
+<!-- /INDEX -->
+
+<h2 id="installation">Installation</h2>
+
+<p>Install with <a href="http://npmjs.org">npm</a>:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install -g mocha
+</code></pre></div>
+<h2 id="getting-started">Getting Started</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>npm install -g mocha
+<span class="nv">$ </span>mkdir <span class="nb">test</span>
+<span class="nv">$ $EDITOR</span> <span class="nb">test</span>/test.js
+</code></pre></div>
+<p>In your editor:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;assert&quot;</span><span class="p">)</span>
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should return -1 when the value is not present&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Back in the terminal:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span> mocha
+
+  .
+
+  ✔ <span class="m">1</span> <span class="nb">test complete</span> <span class="o">(</span>1ms<span class="o">)</span>
+</code></pre></div>
+<h2 id="assertions">Assertions</h2>
+
+<p>Mocha allows you to use any assertion library you want, if it throws an error, it will work! This means you can utilize libraries such as <a href="https://github.com/shouldjs/should.js">should.js</a>, node&#39;s regular <code>assert</code> module, or others. The following is a list of known assertion libraries for node and/or the browser:</p>
+
+<ul>
+<li><a href="https://github.com/shouldjs/should.js">should.js</a> BDD style shown throughout these docs</li>
+<li><a href="https://github.com/LearnBoost/expect.js">expect.js</a> expect() style assertions</li>
+<li><a href="http://chaijs.com/">chai</a> expect(), assert() and should style assertions</li>
+<li><a href="https://github.com/visionmedia/better-assert">better-assert</a> c-style self-documenting assert()</li>
+</ul>
+
+<h2 id="synchronous-code">Synchronous Code</h2>
+
+<p>When testing synchronous code, omit the callback and Mocha will automatically continue on to the next test.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should return -1 when the value is not present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="asynchronous-code">Asynchronous Code</h2>
+
+<p>Testing asynchronous code with Mocha could not be simpler! Simply invoke the callback when your test is complete. By adding a callback (usually named <code>done</code>) to <code>it()</code> Mocha will know that it should wait for completion.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#save()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should save without error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s1">&#39;Luna&#39;</span><span class="p">);</span>
+      <span class="nx">user</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+        <span class="nx">done</span><span class="p">();</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>To make things even easier, the <code>done()</code> callback accepts an error, so we may use this directly:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#save()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should save without error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s1">&#39;Luna&#39;</span><span class="p">);</span>
+      <span class="nx">user</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">done</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="working-with-promises">Working with Promises</h3>
+
+<p>Alternately, instead of using the <code>done()</code> callback, you may return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>. This is useful if the APIs you are testing return promises instead of taking callbacks:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">clear</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">save</span><span class="p">([</span><span class="nx">tobi</span><span class="p">,</span> <span class="nx">loki</span><span class="p">,</span> <span class="nx">jane</span><span class="p">]);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#find()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;respond with matching records&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;User&#39;</span> <span class="p">}).</span><span class="nx">should</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">length</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>(The latter example uses <a href="https://www.npmjs.com/package/chai-as-promised">Chai as Promised</a> for fluent promise assertions.)</p>
+
+<h2 id="hooks">Hooks</h2>
+
+<p>Mocha provides the hooks <code>before()</code>, <code>after()</code>, <code>beforeEach()</code>, and <code>afterEach()</code>, which can be used to set up preconditions and clean up after your tests.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;hooks&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// runs before all tests in this block</span>
+  <span class="p">});</span>
+
+  <span class="nx">after</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// runs after all tests in this block</span>
+  <span class="p">});</span>
+
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// runs before each test in this block</span>
+  <span class="p">});</span>
+
+  <span class="nx">afterEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// runs after each test in this block</span>
+  <span class="p">});</span>
+
+  <span class="c1">// test cases</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="describing-hooks">Describing Hooks</h3>
+
+<p>All hooks can be invoked with an optional description, making it easier to pinpoint errors in your tests.  If hooks are given named functions, those names will be used if no description is supplied.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// beforeEach hook</span>
+<span class="p">});</span>
+
+<span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span> <span class="nx">namedFun</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// beforeEach:namedFun</span>
+<span class="p">});</span>
+
+<span class="nx">beforeEach</span><span class="p">(</span><span class="s1">&#39;some description&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// beforeEach:some description</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="asynchronous-hooks">Asynchronous Hooks</h3>
+
+<p>All &quot;hooks&quot; (<code>before()</code>, <code>after()</code>, <code>beforeEach()</code>, <code>afterEach()</code>) may be sync or async as well, behaving much like a regular test-case. For example, you may wish to populate database with dummy content before each test:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Connection&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Connection</span><span class="p">,</span> 
+    <span class="nx">tobi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s1">&#39;tobi&#39;</span><span class="p">),</span> 
+    <span class="nx">loki</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s1">&#39;loki&#39;</span><span class="p">),</span> 
+    <span class="nx">jane</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s1">&#39;jane&#39;</span><span class="p">);</span>
+
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">clear</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+      <span class="nx">db</span><span class="p">.</span><span class="nx">save</span><span class="p">([</span><span class="nx">tobi</span><span class="p">,</span> <span class="nx">loki</span><span class="p">,</span> <span class="nx">jane</span><span class="p">],</span> <span class="nx">done</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#find()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;respond with matching records&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">db</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;User&#39;</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">length</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+        <span class="nx">done</span><span class="p">();</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="root-level-hooks">Root-Level Hooks</h3>
+
+<p>You may also pick any file and add &quot;root&quot;-level hooks.  For example, add <code>beforeEach()</code> outside of all <code>describe()</code> blocks.  This will cause the callback to <code>beforeEach()</code> to run before any test case, regardless of the file it lives in (this is because Mocha has a hidden <code>describe()</code> block, called the &quot;root suite&quot;).</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;before every test in every file&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="delayed-root-suite">Delayed Root Suite</h3>
+
+<p>If you need to perform asynchronous operations before any of your suites are run, you may delay the root suite.  Simply run Mocha with the <code>--delay</code> flag.  This will provide a special function, <code>run()</code>, in the global context.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// do some setup</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;my suite&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">});</span>
+
+  <span class="nx">run</span><span class="p">();</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="pending-tests">Pending Tests</h2>
+
+<p>&quot;Pending&quot;--as in &quot;someone should write these test cases eventually&quot;--test-cases are simply those without a callback:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// pending test below</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should return -1 when the value is not present&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Pending tests will be reported as such.</p>
+
+<h2 id="exclusive-tests">Exclusive Tests</h2>
+
+<p>The exclusivity feature allows you to run <em>only</em> the specified suite or test-case
+ by appending <code>.only()</code> to the function.  Here&#39;s an example of executing only a particular suite:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">.</span><span class="nx">only</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><em>Note</em>: All nested suites will still be executed.</p>
+
+<p>Here&#39;s an example of executing a particular test case:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">.</span><span class="nx">only</span><span class="p">(</span><span class="s1">&#39;should return -1 unless present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should return the index when present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><em>Note</em>: Hooks, if present, will still be executed.</p>
+
+<p><em>Warning</em>: Having more than one call to <code>.only()</code> in your tests or suites may result in unexpected behavior. </p>
+
+<h2 id="inclusive-tests">Inclusive Tests</h2>
+
+<p>This feature is the inverse of <code>.only()</code>.  By appending <code>.skip()</code>, you may tell Mocha to simply ignore these suite(s) and test case(s).  Anything skipped will be marked as <a href="#pending-tests">pending</a>, and reported as such.  Here&#39;s an example of skipping an entire suite:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">.</span><span class="nx">skip</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p><em>Best practice</em>: Use <code>.skip()</code> instead of commenting tests out.</p>
+</blockquote>
+
+<p>Or a specific test-case:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">.</span><span class="nx">skip</span><span class="p">(</span><span class="s1">&#39;should return -1 unless present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should return the index when present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="dynamically-generating-tests">Dynamically Generating Tests</h2>
+
+<p>Given Mocha&#39;s use of <code>Function.prototype.call</code> and function expressions to define suites and test cases, it&#39;s straightforward to generate your tests dynamically.  No special syntax is required &mdash; plain ol&#39; JavaScript can be used to achieve functionality similar to &quot;parameterized&quot; tests, which you may have seen in other frameworks.</p>
+
+<p>Take the following example:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;assert&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">).</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">curr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="nx">curr</span><span class="p">;</span>
+  <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;add()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">tests</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>       <span class="nx">expected</span><span class="o">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="p">{</span><span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>    <span class="nx">expected</span><span class="o">:</span> <span class="mi">6</span><span class="p">},</span>
+    <span class="p">{</span><span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="nx">expected</span><span class="o">:</span> <span class="mi">10</span><span class="p">}</span>
+  <span class="p">];</span>
+
+  <span class="nx">tests</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;correctly adds &#39;</span> <span class="o">+</span> <span class="nx">test</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">&#39; args&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">add</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">args</span><span class="p">);</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nx">test</span><span class="p">.</span><span class="nx">expected</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The above code will produce a suite with three specs:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>mocha
+
+  add<span class="o">()</span>
+    ✓ correctly adds <span class="m">2</span> args
+    ✓ correctly adds <span class="m">3</span> args
+    ✓ correctly adds <span class="m">4</span> args
+</code></pre></div>
+<h2 id="test-duration">Test duration</h2>
+
+<p>Many reporters will display test duration, as well as flagging tests that are slow, as shown here with the &quot;spec&quot; reporter:</p>
+
+<p><img src="images/reporter-spec-duration.png" alt="test duration"></p>
+
+<p>To tweak what&#39;s considered &quot;slow&quot;, you can use the <code>slow()</code> method:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;something slow&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">slow</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should take long enough for me to go make a sandwich&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="timeouts">Timeouts</h2>
+
+<h3 id="suite-level">Suite-level</h3>
+
+<p>Suite-level timeouts may be applied to entire test &quot;suites&quot;, or disabled via <code>this.timeout(0)</code>. This will be inherited by all nested suites and test-cases that do not override the value.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;a suite of tests&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">timeout</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should take less than 500ms&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">){</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+  <span class="p">})</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should take less than 500ms as well&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">){</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>
+<h3 id="test-level">Test-level</h3>
+
+<p>Test-specific timeouts may also be applied, or the use of <code>this.timeout(0)</code> to disable timeouts all together:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should take less than 500ms&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">){</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">timeout</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="diffs">Diffs</h2>
+
+<p>Mocha supports the <code>err.expected</code> and <code>err.actual</code> properties of any thrown <code>AssertionError</code>s from an assertion library.  Mocha will attempt to display the difference between what was expected, and what the assertion actually saw.  Here&#39;s an example of a &quot;string&quot; diff:</p>
+
+<p><img src="images/reporter-string-diffs.png" alt="string diffs"></p>
+
+<h2 id="usage">Usage</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Usage: mocha [debug] [options] [files]
+
+Commands:
+
+  init &lt;path&gt;
+  initialize a client-side mocha setup at &lt;path&gt;
+
+Options:
+
+ -h, --help                              output usage information
+ -V, --version                           output the version number
+ -A, --async-only                        force all tests to take a callback (async)
+ -c, --colors                            force enabling of colors
+ -C, --no-colors                         force disabling of colors
+ -G, --growl                             enable growl notification support
+ -O, --reporter-options &lt;k=v,k2=v2,...&gt;  reporter-specific options
+ -R, --reporter &lt;name&gt;                   specify the reporter to use
+ -S, --sort                              sort test files
+ -b, --bail                              bail after first test failure
+ -d, --debug                             enable node&#39;s debugger, synonym for node --debug
+ -g, --grep &lt;pattern&gt;                    only run tests matching &lt;pattern&gt;
+ -f, --fgrep &lt;string&gt;                    only run tests containing &lt;string&gt;
+ -gc, --expose-gc                        expose gc extension
+ -i, --invert                            inverts --grep and --fgrep matches
+ -r, --require &lt;name&gt;                    require the given module
+ -s, --slow &lt;ms&gt;                         &quot;slow&quot; test threshold in milliseconds [75]
+ -t, --timeout &lt;ms&gt;                      set test-case timeout in milliseconds [2000]
+ -u, --ui &lt;name&gt;                         specify user-interface (bdd|tdd|exports)
+ -w, --watch                             watch files for changes
+ --check-leaks                           check for global variable leaks
+ --compilers &lt;ext&gt;:&lt;module&gt;,...          use the given module(s) to compile files
+ --debug-brk                             enable node&#39;s debugger breaking on the first line
+ --delay                                 wait for async suite definition
+ --es_staging                            enable all staged features
+ --full-trace                            display the full stack trace
+ --globals &lt;names&gt;                       allow the given comma-delimited global [names]
+ --harmony                               enable all harmony features (except typeof)
+ --harmony-collections                   enable harmony collections (sets, maps, and weak maps)
+ --harmony-generators                    enable harmony generators
+ --harmony-proxies                       enable harmony proxies
+ --harmony_arrow_functions               enable &quot;harmony arrow functions&quot; (iojs)
+ --harmony_classes                       enable &quot;harmony classes&quot; (iojs)
+ --harmony_proxies                       enable &quot;harmony proxies&quot; (iojs)
+ --harmony_shipping                      enable all shipped harmony fetaures (iojs)
+ --inline-diffs                          display actual/expected differences inline within each string
+ --interfaces                            display available interfaces
+ --no-deprecation                        silence deprecation warnings
+ --no-exit                               require a clean shutdown of the event loop: mocha will not call process.exit
+ --no-timeouts                           disables timeouts, given implicitly with --debug
+ --opts &lt;path&gt;                           specify opts path
+ --prof                                  log statistical profiling information
+ --recursive                             include sub directories
+ --reporters                             display available reporters
+ --throw-deprecation                     throw an exception anytime a deprecated function is used
+ --trace                                 trace function calls
+ --trace-deprecation                     show stack traces on deprecations
+ --watch-extensions &lt;ext&gt;,...            additional extensions to monitor with --watch
+</code></pre></div>
+<h3 id="w-watch"><code>-w, --watch</code></h3>
+
+<p>Executes tests on changes to JavaScript in the CWD, and once initially.</p>
+
+<h3 id="compilers"><code>--compilers</code></h3>
+
+<p>CoffeeScript is no longer supported out of the box. CS and similar transpilers
+may be used by mapping the file extensions (for use with --watch) and the module
+name. For example <code>--compilers coffee:coffee-script</code> with CoffeeScript 1.6- or
+<code>--compilers coffee:coffee-script/register</code> with CoffeeScript 1.7+.</p>
+
+<h3 id="b-bail"><code>-b, --bail</code></h3>
+
+<p>Only interested in the first exception? use <code>--bail</code>!</p>
+
+<h3 id="d-debug"><code>-d, --debug</code></h3>
+
+<p>Enables node&#39;s debugger support, this executes your script(s) with <code>node debug &lt;file ...&gt;</code> allowing you to step through code and break with the <code>debugger</code> statement. Note the difference between <code>mocha debug</code> and <code>mocha --debug</code>: <code>mocha debug</code> will fire up node&#39;s built-in debug client, <code>mocha --debug</code> will allow you to use a different interface — such as the Blink Developer Tools.</p>
+
+<h3 id="globals-lt-names-gt"><code>--globals &lt;names&gt;</code></h3>
+
+<p>Accepts a comma-delimited list of accepted global variable names. For example, suppose your app deliberately exposes a global named <code>app</code> and <code>YUI</code>, you may want to add <code>--globals app,YUI</code>. It also accepts wildcards. You could do <code>--globals &#39;*bar&#39;</code> and it would match <code>foobar</code>, <code>barbar</code>, etc. You can also simply pass in <code>&#39;*&#39;</code> to ignore all globals.</p>
+
+<h3 id="check-leaks"><code>--check-leaks</code></h3>
+
+<p>By default, Mocha will not check for global variables leaked while running tests, to enable this pass <code>--check-leaks</code>, to specify globals that are acceptable use <code>--globals</code>, for example <code>--globals jQuery,MyLib</code>.</p>
+
+<h3 id="r-require-lt-module-name-gt"><code>-r, --require &lt;module-name&gt;</code></h3>
+
+<p>The <code>--require</code> option is useful for libraries such as <a href="https://github.com/shouldjs/should.js">should.js</a>, so you may simply <code>--require should</code> instead of manually invoking <code>require(&#39;should&#39;)</code> within each test file. Note that this works well for <code>should</code> as it augments <code>Object.prototype</code>, however if you wish to access a module&#39;s exports you will have to require them, for example <code>var should = require(&#39;should&#39;)</code>. Furthermore, it can be used with relative paths, e.g. <code>--require ./test/helper.js</code></p>
+
+<h3 id="u-ui-lt-name-gt"><code>-u, --ui &lt;name&gt;</code></h3>
+
+<p>The <code>--ui</code> option lets you specify the interface to use, defaulting to &quot;bdd&quot;.</p>
+
+<h3 id="r-reporter-lt-name-gt"><code>-R, --reporter &lt;name&gt;</code></h3>
+
+<p>The <code>--reporter</code> option allows you to specify the reporter that will be used, defaulting to &quot;spec&quot;. This flag may also be used to utilize third-party reporters. For example if you <code>npm install mocha-lcov-reporter</code> you may then do <code>--reporter mocha-lcov-reporter</code>.</p>
+
+<h3 id="t-timeout-lt-ms-gt"><code>-t, --timeout &lt;ms&gt;</code></h3>
+
+<p>Specifies the test-case timeout, defaulting to 2 seconds. To override you may pass the timeout in milliseconds, or a value with the <code>s</code> suffix, ex: <code>--timeout 2s</code> or <code>--timeout 2000</code> would be equivalent.</p>
+
+<h3 id="s-slow-lt-ms-gt"><code>-s, --slow &lt;ms&gt;</code></h3>
+
+<p>Specify the &quot;slow&quot; test threshold, defaulting to 75ms. Mocha uses this to highlight test-cases that are taking too long.</p>
+
+<h3 id="g-grep-lt-pattern-gt"><code>-g, --grep &lt;pattern&gt;</code></h3>
+
+<p>The <code>--grep</code> option when specified will trigger mocha to only run tests matching the given <code>pattern</code> which is internally compiled to a <code>RegExp</code>.</p>
+
+<p>Suppose, for example, you have &quot;api&quot; related tests, as well as &quot;app&quot; related tests, as shown in the following snippet; One could use <code>--grep api</code> or <code>--grep app</code> to run one or the other. The same goes for any other part of a suite or test-case title, <code>--grep users</code> would be valid as well, or even <code>--grep GET</code>.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;GET /api/users&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;respond with an array of users&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;GET /users&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;respond with an array of users&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">});</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>
+<h2 id="interfaces">Interfaces</h2>
+
+<p>Mocha&#39;s &quot;interface&quot; system allows developers to choose their style of DSL.  Mocha has <strong>BDD</strong>, <strong>TDD</strong>, <strong>Exports</strong>, <strong>QUnit</strong> and <strong>Require</strong>-style interfaces.</p>
+
+<h3 id="bdd">BDD</h3>
+
+<p>The <strong>BDD</strong> interface provides <code>describe()</code>, <code>context()</code>, <code>it()</code>, <code>before()</code>, <code>after()</code>, <code>beforeEach()</code>, and <code>afterEach()</code>.</p>
+
+<p><code>context()</code> is just an alias for <code>describe()</code>, and behaves the same way; it just provides a way to keep tests easier to read and organized.</p>
+
+<blockquote>
+<p>All of the previous examples were written using the <strong>BDD</strong> interface.</p>
+</blockquote>
+<div class="highlight"><pre><code class="language-js" data-lang="js">  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">});</span>
+
+    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">context</span><span class="p">(</span><span class="s1">&#39;when not present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should not throw an error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+          <span class="p">}).</span><span class="nx">should</span><span class="p">.</span><span class="nx">not</span><span class="p">.</span><span class="k">throw</span><span class="p">();</span>
+        <span class="p">});</span>
+        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should return -1&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+      <span class="nx">context</span><span class="p">(</span><span class="s1">&#39;when present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should return the index where the element first appears in the array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div>
+<h3 id="tdd">TDD</h3>
+
+<p>The <strong>TDD</strong> interface provides <code>suite()</code>, <code>test()</code>, <code>suiteSetup()</code>, <code>suiteTeardown()</code>, <code>setup()</code>, and <code>teardown()</code>:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">suite</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setup</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">});</span>
+
+  <span class="nx">suite</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="p">(</span><span class="s1">&#39;should return -1 when not present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="exports">Exports</h3>
+
+<p>The <strong>Exports</strong> interface is much like Mocha&#39;s predecessor <a href="https://github.com/visionmedia/expresso">expresso</a>. The keys <code>before</code>, <code>after</code>, <code>beforeEach</code>, and <code>afterEach</code> are special-cased, object values are suites, and function values are test-cases:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">before</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">},</span>
+
+  <span class="s1">&#39;Array&#39;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">&#39;#indexOf()&#39;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;should return -1 when not present&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">should</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="qunit">QUnit</h3>
+
+<p>The <a href="http://qunitjs.com">QUnit</a>-inspired interface matches the &quot;flat&quot; look of QUnit, where the test suite title is simply defined before the test-cases. Like TDD, it uses <code>suite()</code> and <code>test()</code>, but resembling BDD, it also contains <code>before()</code>, <code>after()</code>, <code>beforeEach()</code>, and <code>afterEach()</code>.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">ok</span><span class="p">(</span><span class="nx">expr</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">expr</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">suite</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">);</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s1">&#39;#length&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+  <span class="nx">ok</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+  <span class="nx">ok</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="nx">ok</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="nx">ok</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">suite</span><span class="p">(</span><span class="s1">&#39;String&#39;</span><span class="p">);</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s1">&#39;#length&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">ok</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="require">Require</h3>
+
+<p>The <code>require</code> interface allows you to require the <code>describe</code> and friend words directly using <code>require</code> and call them whatever you want. This interface is also useful if you want to avoid global variables in your tests.</p>
+
+<p><em>Note</em>: The <code>require</code> interface cannot be run via the <code>node</code> executable, and must be run via <code>mocha</code>.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">testCase</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mocha&#39;</span><span class="p">).</span><span class="nx">describe</span>
+<span class="kd">var</span> <span class="nx">pre</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mocha&#39;</span><span class="p">).</span><span class="nx">before</span>
+<span class="kd">var</span> <span class="nx">assertions</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mocha&#39;</span><span class="p">).</span><span class="nx">it</span>
+<span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;assert&#39;</span><span class="p">)</span>
+
+<span class="nx">testCase</span><span class="p">(</span><span class="s1">&#39;Array&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">pre</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">});</span>
+
+  <span class="nx">testCase</span><span class="p">(</span><span class="s1">&#39;#indexOf()&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assertions</span><span class="p">(</span><span class="s1">&#39;should return -1 when not present&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="reporters">Reporters</h2>
+
+<p>Mocha reporters adjust to the terminal window, and always disable ANSI-escape coloring when the stdio streams are not associated with a TTY.</p>
+
+<h3 id="spec">Spec</h3>
+
+<p>This is the default reporter.  The &quot;spec&quot; reporter outputs a hierarchical view nested just as the test cases are.</p>
+
+<p><img src="images/reporter-spec.png" alt="spec reporter">
+<img src="images/reporter-spec-fail.png" alt="spec reporter with failure"></p>
+
+<h3 id="dot-matrix">Dot Matrix</h3>
+
+<p>The dot matrix (or &quot;dot&quot;) reporter is simply a series of dots that represent test cases, failures highlight in red, pending in blue, slow as yellow.  Good if you would like minimal output.</p>
+
+<p><img src="images/reporter-dot.png" alt="dot matrix reporter"></p>
+
+<h3 id="nyan">Nyan</h3>
+
+<p>The &quot;nyan&quot; reporter is exactly what you might expect:</p>
+
+<p><img src="images/reporter-nyan.png" alt="js nyan cat reporter"></p>
+
+<h3 id="tap">TAP</h3>
+
+<p>The TAP reporter emits lines for a <a href="http://en.wikipedia.org/wiki/Test_Anything_Protocol">Test-Anything-Protocol</a> consumer.</p>
+
+<p><img src="images/reporter-tap.png" alt="test anything protocol"></p>
+
+<h3 id="landing-strip">Landing Strip</h3>
+
+<p>The &#39;Landing Strip&#39; reporter is a gimmicky test reporter simulating a plane landing :) unicode ftw</p>
+
+<p><img src="images/reporter-landing.png" alt="landing strip plane reporter">
+<img src="images/reporter-landing-fail.png" alt="landing strip with failure"></p>
+
+<h3 id="list">List</h3>
+
+<p>The &quot;list&quot; reporter outputs a simple specifications list as test cases pass or fail, outputting the failure details at the bottom of the output.</p>
+
+<p><img src="images/reporter-list.png" alt="list reporter"></p>
+
+<h3 id="progress">Progress</h3>
+
+<p>The &quot;progress&quot; reporter implements a simple progress-bar:</p>
+
+<p><img src="images/reporter-progress.png" alt="progress bar"></p>
+
+<h3 id="json">JSON</h3>
+
+<p>The &quot;JSON&quot; reporter outputs a single large JSON object when the tests have completed (failures or not).</p>
+
+<p><img src="images/reporter-json.png" alt="json reporter"></p>
+
+<h3 id="json-stream">JSON Stream</h3>
+
+<p>The &quot;JSON stream&quot; reporter outputs newline-delimited JSON &quot;events&quot; as they occur, beginning with a &quot;start&quot; event, followed by test passes or failures, and then the final &quot;end&quot; event.</p>
+
+<p><img src="images/reporter-json-stream.png" alt="json stream reporter"></p>
+
+<h3 id="jsoncov">JSONCov</h3>
+
+<p>The &quot;JSONCov&quot; reporter is similar to the JSON reporter, however when run against a library instrumented by <a href="https://github.com/visionmedia/node-jscoverage">node-jscoverage</a> it will produce coverage output.</p>
+
+<h3 id="htmlcov">HTMLCov</h3>
+
+<p>The &quot;HTMLCov&quot; reporter extends the JSONCov reporter. The library being tested should first be instrumented by <a href="https://github.com/visionmedia/node-jscoverage">node-jscoverage</a>, this allows Mocha to capture the coverage information necessary to produce a single-page HTML report.</p>
+
+<p>For an integration example, view the mocha test coverage support <a href="https://github.com/visionmedia/express/commit/b6ee5fafd0d6c79cf7df5560cb324ebee4fe3a7f">commit</a> for Express.</p>
+
+<p><img src="images/reporter-htmlcov.png" alt="code coverage reporting"></p>
+
+<h3 id="min">Min</h3>
+
+<p>The &quot;min&quot; reporter displays the summary only, while still outputting errors on failure. This reporter works great with <code>--watch</code> as it clears the terminal in order to keep your test summary at the top.</p>
+
+<p><img src="images/reporter-min.png" alt="min reporter"></p>
+
+<h3 id="doc">Doc</h3>
+
+<p>The &quot;doc&quot; reporter outputs a hierarchical HTML body representation of your tests.  Wrap it with a header, footer, and some styling, then you have some fantastic documentation!</p>
+
+<p><img src="images/reporter-doc.png" alt="doc reporter"></p>
+
+<p>For example, suppose you have the following JavaScript:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">describe(&#39;Array&#39;, function() {
+  describe(&#39;#indexOf()&#39;, function() {
+    it(&#39;should return -1 when the value is not present&#39;, function() {
+      [1,2,3].indexOf(5).should.equal(-1);
+      [1,2,3].indexOf(0).should.equal(-1);
+    });
+  });
+});
+</code></pre></div>
+<p>The command <code>mocha --reporter doc array</code> would yield:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;suite&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Array<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;dl&gt;</span>
+    <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;suite&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>#indexOf()<span class="nt">&lt;/h1&gt;</span>
+      <span class="nt">&lt;dl&gt;</span>
+      <span class="nt">&lt;dt&gt;</span>should return -1 when the value is not present<span class="nt">&lt;/dt&gt;</span>
+      <span class="nt">&lt;dd&gt;&lt;pre&gt;&lt;code&gt;</span>[1,2,3].indexOf(5).should.equal(-1);
+[1,2,3].indexOf(0).should.equal(-1);<span class="nt">&lt;/code&gt;&lt;/pre&gt;&lt;/dd&gt;</span>
+      <span class="nt">&lt;/dl&gt;</span>
+    <span class="nt">&lt;/section&gt;</span>
+  <span class="nt">&lt;/dl&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div>
+<p>The SuperAgent request library <a href="http://visionmedia.github.io/superagent/docs/test.html">test documentation</a> was generated with Mocha&#39;s doc reporter using this simple make target:</p>
+<div class="highlight"><pre><code class="language-makefile" data-lang="makefile">  <span class="nb">test</span>-docs:
+    make <span class="nb">test </span><span class="nv">REPORTER</span><span class="o">=</span>doc <span class="se">\</span>
+      <span class="p">|</span> cat docs/head.html - docs/tail.html <span class="se">\</span>
+      &gt; docs/test.html
+</code></pre></div>
+<p>View the entire <a href="https://github.com/visionmedia/superagent/blob/master/Makefile">Makefile</a> for reference.</p>
+
+<h3 id="markdown">Markdown</h3>
+
+<p>The &quot;markdown&quot; reporter generates a markdown TOC and body for your test suite. This is great if you want to use the tests as documentation within a Github wiki page, or a markdown file in the repository that Github can render. For example here is the Connect <a href="https://github.com/senchalabs/connect/blob/90a725343c2945aaee637e799b1cd11e065b2bff/tests.md">test output</a>.</p>
+
+<h3 id="html">HTML</h3>
+
+<p>The &quot;HTML&quot; reporter is currently the only browser reporter supported by Mocha, and it looks like this:</p>
+
+<p><img src="images/reporter-html.png" alt="HTML test reporter"></p>
+
+<h3 id="undocumented-reporters">Undocumented Reporters</h3>
+
+<p>The &quot;XUnit&quot; and &quot;TeamCity&quot; reporters are also available, but someone needs to write the documentation.</p>
+
+<h2 id="running-mocha-in-the-browser">Running Mocha in the Browser</h2>
+
+<p>Mocha runs in the browser. Every release of Mocha will have new builds of <code>./mocha.js</code> and <code>./mocha.css</code> for use in the browser.</p>
+
+<h3 id="browser-specific-methods">Browser-specific methods</h3>
+
+<p>The following method(s) <em>only</em> function in a browser context:</p>
+
+<p><code>mocha.allowUncaught()</code> : If called, uncaught errors will not be absorbed by the error handler.</p>
+
+<p>A typical setup might look something like the following, where we call <code>mocha.setup(&#39;bdd&#39;)</code> to use the <strong>BDD</strong> interface before loading the test scripts, running them <code>onload</code> with <code>mocha.run()</code>.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Mocha Tests<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;mocha&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+  <span class="nt">&lt;script&gt;</span><span class="nx">mocha</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="s1">&#39;bdd&#39;</span><span class="p">)</span><span class="nt">&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;test.array.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;test.object.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;test.xhr.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+    <span class="nx">mocha</span><span class="p">.</span><span class="nx">checkLeaks</span><span class="p">();</span>
+    <span class="nx">mocha</span><span class="p">.</span><span class="nx">globals</span><span class="p">([</span><span class="s1">&#39;jQuery&#39;</span><span class="p">]);</span>
+    <span class="nx">mocha</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<h3 id="grep">Grep</h3>
+
+<p>The browser may use the <code>--grep</code> as functionality.  Append a query-string to your URL: <code>?grep=api</code>.</p>
+
+<h3 id="browser-configuration">Browser Configuration</h3>
+
+<p>Mocha options can be set via <code>mocha.setup()</code>.  Examples:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Use &quot;tdd&quot; interface.  This is a shortcut to setting the interface;</span>
+<span class="c1">// any other options must be passed via an object.</span>
+<span class="nx">mocha</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="s1">&#39;tdd&#39;</span><span class="p">);</span>
+
+<span class="c1">// This is equivalent to the above.</span>
+<span class="nx">mocha</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+  <span class="nx">ui</span><span class="o">:</span> <span class="s1">&#39;tdd&#39;</span>
+<span class="p">});</span>
+
+<span class="c1">// Use &quot;tdd&quot; interface, ignore leaks, and force all tests to be asynchronous</span>
+<span class="nx">mocha</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+  <span class="nx">ui</span><span class="o">:</span> <span class="s1">&#39;tdd&#39;</span><span class="p">,</span>
+  <span class="nx">ignoreLeaks</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">asyncOnly</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="browser-specific-option-s">Browser-specific Option(s)</h3>
+
+<p>The following option(s) <em>only</em> function in a browser context:</p>
+
+<p><code>noHighlighting</code>: If set to <code>true</code>, do not attempt to use syntax highlighting on output test code.</p>
+
+<h2 id="mocha-opts"><code>mocha.opts</code></h2>
+
+<p>Back on the server, Mocha will attempt to load <code>./test/mocha.opts</code> as a configuration file of sorts. The lines in this file are combined with any command-line arguments.  The command-line arguments take precedence.  For example, suppose you have the following <code>mocha.opts</code> file:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  --require should
+  --reporter dot
+  --ui bdd
+</code></pre></div>
+<p>This will default the reporter to <code>dot</code>, require the <code>should</code> library, and use <code>bdd</code> as the interface. With this, you may then invoke <code>mocha</code> with additional arguments, here enabling <a href="http://growl.info">Growl</a> support, and changing the reporter to <code>list</code>:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>mocha --reporter list --growl
+</code></pre></div>
+<h2 id="the-test-directory">The <code>test/</code> Directory</h2>
+
+<p>By default, <code>mocha</code> looks for the glob <code>./test/*.js</code>, so you may want to put your tests in <code>test/</code> folder.</p>
+
+<h2 id="editor-plugins">Editor Plugins</h2>
+
+<p>The following editor-related packages are available:</p>
+
+<h3 id="textmate">TextMate</h3>
+
+<p>The Mocha TextMate bundle includes snippets to make writing tests quicker and more enjoyable.  To install the bundle, clone a copy of the <a href="https://github.com/mochajs/mocha">Mocha repo</a>, and run:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make tm
+</code></pre></div>
+<h3 id="jetbrains">JetBrains</h3>
+
+<p><a href="http://jetbrains.com">JetBrains</a> provides a <a href="http://www.jetbrains.com/idea/features/nodejs.html">NodeJS plugin</a> for its suite of IDEs (IntelliJ IDEA, WebStorm, etc.), which contains a Mocha test runner, among other things.</p>
+
+<p><img src="images/jetbrains-plugin.png" alt="JetBrains Mocha Runner Plugin in Action"></p>
+
+<p>The plugin is titled <strong>NodeJS</strong>, and can be installed via <strong>Preferences</strong> &gt; <strong>Plugins</strong>, assuming your license allows it.</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>Real live example code:</p>
+
+<ul>
+<li><a href="https://github.com/visionmedia/express/tree/master/test">Express</a></li>
+<li><a href="https://github.com/senchalabs/connect/tree/master/test">Connect</a></li>
+<li><a href="https://github.com/visionmedia/superagent/tree/master/test/node">SuperAgent</a></li>
+<li><a href="https://github.com/LearnBoost/websocket.io/tree/master/test">WebSocket.io</a></li>
+<li><a href="https://github.com/mochajs/mocha/tree/master/test">Mocha</a></li>
+</ul>
+
+<h2 id="testing-mocha">Testing Mocha</h2>
+
+<p>To run Mocha&#39;s tests:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make <span class="nb">test</span>
+</code></pre></div>
+<p>Run all tests, including interfaces:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>make <span class="nb">test</span>-all
+</code></pre></div>
+<p>Alter the reporter:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ make test REPORTER=list
+</code></pre></div>
+<h2 id="more-information">More Information</h2>
+
+<p>In addition to chatting with us on <a href="https://gitter.im/mochajs/mocha">Gitter</a>, for additional information such as using spies, mocking, and shared behaviours be sure to check out the <a href="https://github.com/mochajs/mocha/wiki">Mocha Wiki</a> on GitHub. For discussions join the <a href="http://groups.google.com/group/mochajs">Google Group</a>. For a running example of Mocha, view <a href="example/tests.html">example/tests.html</a>. For the JavaScript API, view the <a href="https://github.com/mochajs/mocha/blob/master/lib/mocha.js#L51">source</a>.</p>
+
+    </section>
+
+    <footer>
+  <span>&copy; 2011 TJ Holowaychuk. All rights reserved.  Licensed <a href="http://opensource.org/licenses/MIT" target="_blank">MIT</a></span>
+</footer>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65024936-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+
+</html>

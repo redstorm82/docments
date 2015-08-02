@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>两款REST测试工具 - 51Testing软件测试网-中国软件测试人的精神家园</title>
+<meta name="keywords" content="测试,REST,test 软件测试,软件测试论坛,软件测试资料下载,软件测试工具,软件测试报告,软件测试方法,自动化测试,软件测试招聘" />
+<meta name="description" content="　　用CURL命令行测试REST API 无疑是低效率的，这里把最近使用的两款 Chrome 插件总结下　　POSTMAN　　简单易用　　REST Console　　功能强大　　使用的话用POSTMAN就够用了，但是我更喜欢 REST Console ，因为. 51Testing软件测试网，人气最旺的软件测试技术门户，提供软件测试社区交流，软件测试博客，人才服务，测试沙龙，测试杂志，测试资料下载等全方位信息服务，是国内最专业的软件测试就业培训、企业服务供应商... "/>
+<link rel="stylesheet" type="text/css" href="http://www.51testing.com/css/stylenew.css" />
+<script type="text/javascript">
+var siteUrl = "http://www.51testing.com";
+</script>
+<script language="javascript" type="text/javascript" src="http://www.51testing.com/include/js/ScrollTextnew.js"></script>
+<script language="javascript" type="text/javascript" src="http://www.51testing.com/include/js/common.js"></script>
+<script src="http://www.51testing.com/include/js/ajax.js" type="text/javascript" language="javascript"></script>
+<base target="_blank">
+</head>
+
+<body>
+<div id="container">
+<!--Logo和导航-->
+<div id="pagetitle">
+    <div class="logo">
+    <a href="http://www.51testing.com"><img width="164" height="70" src="http://www.51testing.com/imagesblog/logo.gif" alt="51Testing软件测试网"></a>
+    </div>
+    <div id="topmenu">
+
+        <ul>
+        <li><a target="_self" onclick="window.external.AddFavorite(document.location.href,document.title)" href="javascript:void(0);">加入收藏</a></li>
+        <li class="last"><a target="_blank" href="http://www.51testing.com/about.php">关于我们</a></li>
+    </ul> 
+    <br style="line-height: 0.5em;">
+        <ul>
+        <li><a target="_blank" href="http://www.51testing.com/">软件测试门户</a></li>
+        <li><a target="_blank" href="http://www.51testing.net/">软件测试培训</a></li>
+        <li><a target="_blank" href="http://bbs.51testing.com/">软件测试论坛</a></li>
+        <li><a target="_blank" href="http://www.51testing.cn">测试解决方案</a></li>
+        <li><a target="_blank" href="http://www.51testing.com/?action_news.html">文章资料精选</a></li> 
+        <li><a target="_blank" href="http://www.51testing.com/?action_blog.html">软件测试博客</a></li>       
+        <li class="last"><a target="_blank" href="http://hr.51testing.com">软件测试招聘</a></li>
+    </ul> 
+  
+    </div>
+  </div>
+<!--Logo和导航-->
+<ul class="top_banner" style="margin-top:3px;"><li>
+           
+<!--<div class="banner468"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="778" height="100">
+    <param name="movie" value="http://www.51testing.com/images/sz.swf">
+    <param name="quality" value="high">
+    <embed src="http://www.51testing.com/images/sz.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="778" height="100"></embed>
+  </object></div>-->
+<div><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="960" height="90">
+    <param name="movie" value="http://www.51testing.com/images/sz51com.swf">
+    <param name="quality" value="high">
+    <param name="wmode" value="opaque">
+    <embed src="http://www.51testing.com/images/sz51com.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="960" height="90" wmode="opaque"></embed>
+  </object></div><!--1-->
+</li>
+</ul><!--menu导航begin--><div class="main_nav" style="background: transparent url(http://www.51testing.com/imagesnew/bgc_nav.gif) repeat-x 0px 0px;height: 42px;line-height: 42px;">
+    <div style="float:left"><a href="http://www.51testing.com/?action_news" target="_blank"><img src="http://www.51testing.com/imagesnew/jingxuan_main.gif" height="42" width="126" alt="51Testing软件测试文章精选" border="none"></a></div>
+    <div style="float:right"><img src="http://www.51testing.com/imagesnew/bgc_nav_right.gif" width="5" height="42"></div>
+<ul>
+<li><a href="http://www.51testing.com/?action-category-catid-8" target="_blank">行业资讯</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-116" target="_blank">业务知识</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-90" target="_blank">软件测试技术</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-99" target="_blank">软件测试工具</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-104" target="_blank">软件测试管理</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-106" target="_blank">软件开发专栏</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-6" target="_blank">软件测试下载</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-4" target="_blank">软件测试杂志</a></li>
+<li><a href="http://www.51testing.com/?action-category-catid-5" target="_blank">软件测试沙龙</a></li>
+<li><a target="_blank" href="http://www.51testing.com/?action-category-catid-177">软件测试专题</a></li>
+<li><a target="_blank" href="http://www.51testing.com/?action-category-catid-136">丛书</a></li>
+</ul>
+
+  </div>
+<!--menu导航end-->
+
+
+<!--热门搜索-->
+<div class="search">
+<div class="left" style="padding-right:8px;"><span>您的位置：</span></div>
+<div class="left gundong">
+<ul>
+                <li><a href="http://www.51testing.com" target="_self">首页</a></li>
+ <li>&gt;&gt;&#160;<a href="http://www.51testing.com/?action-news" target="_self">文章精选</a></li>
+ <li>&gt;&gt;&#160;<a href="http://www.51testing.com/?action-category-catid-99" target="_self">软件测试工具</a></li>
+ <li>&gt;&gt;&#160;<a href="http://www.51testing.com/?action-category-catid-207" target="_self">其他测试工具</a></li>
+ <li>&gt;&gt;&#160;<a href="#" target="_self">查看资讯</a></li>
+</ul></div>
+<div class="searchR">
+<form method="post" action="http://www.51testing.com/batch.search.php" id="searchform">
+<input type="text" class="serinput" name="searchkey" id="searchkey">
+<button class="searbt" name="subjectsearch" value="true" type="submit">搜索</button>
+</form>
+</div>
+</div>
+<!--top-->
+<!--左侧内容-->
+<div class="sideL">
+<div class="block_left">
+<h1>两款REST测试工具</h1>
+<p class="articleinfo smalltxt">发布时间: 2014-8-27 10:48 &#160;&#160; 作者: HackerVirus &#160;&#160; 来源: 51Testing软件测试网采编&#160; </p>
+<p class="articlectrl">
+字体:&#160;
+<a href="javascript:doZoom('12');" target="_self">小</a>&#160;
+<a href="javascript:doZoom('14');" target="_self">中</a>&#160;
+<a href="javascript:doZoom('16');" target="_self">大</a>&#160; |
+<a href="http://www.51testing.com/batch.common.php?action=viewnews&op=up&itemid=229485&catid=96" class="viewnewsup" target="_self">上一篇</a>
+<a href="http://www.51testing.com/batch.common.php?action=viewnews&op=down&itemid=229485&catid=96" class="viewnewsdown" target="_self">下一篇</a> |
+<a href="javascript:doPrint();" class="btnprint" target="_self">打印</a>&#160; |
+<a href="http://bbs.51testing.com/thread-77515-1-1.html" target="_blank">我要投稿</a>&#160; 
+|
+<span><font color="#0000FF">推荐标签：</font>
+<a href="http://www.51testing.com/?action-tag-tagname-%C8%ED%BC%FE%B2%E2%CA%D4%B9%A4%BE%DF" target="_blank">软件测试工具</a>
+<a href="http://www.51testing.com/?action-tag-tagname-REST" target="_blank">REST</a>
+<a href="http://www.51testing.com/?action-tag-tagname-%BF%AA%D4%B4%B2%E2%CA%D4%B9%A4%BE%DF" target="_blank">开源测试工具</a>
+</span>
+</p>
+<div id="articlebody">
+<div>　　用CURL命令行测试<a href="javascript:;" onClick="javascript:tagshow(event, 'REST');" target="_self"><u><strong>REST</strong></u></a> API 无疑是低效率的，这里把最近使用的两款 Chrome 插件总结下</div><div>　　POSTMAN</div><div>　　简单易用</div><div>　　REST Console</div><div>　　功能强大</div><div>　　使用的话用POSTMAN就够用了，但是我更喜欢 REST Console ，因为她的功能非常强大和全面，一下子就能让你搞清楚你在做的事情，你用不到的功能也可以帮助你更加了解 REST, http请求的过程。</div><div>　　下面是两个的截图界面</div><div style="text-align: center;"><a href="http://www.51testing.com/batch.download.php?aid=48065" target="_blank"><img src="http://www.51testing.com/attachments/2014/08/14982672_201408271055411c4M2.jpg" border="0"></a></div><div>　　<b>1. POSTMAN <a href="javascript:;" onClick="javascript:tagshow(event, '%B2%E2%CA%D4');" target="_self"><u><strong>测试</strong></u></a>工具</b></div><div><b>　　1. Authorization</b></div><div>　　Basic Auth</div><div>　　Digest Auth</div><div>　　OAuth 1.0</div><div>　　<b>2. REQUEST METHOD</b></div><div>　　GET, PUT, POST, PATCH, DELETE, LINK, UNLINK, COPY, HEAD, OPTIONS, PURGE</div><div>　　<b>3. Request Headers</b></div><div><table style="border:1px solid #999;width:98%;background-color:#DDDDDD;font-size:12px;" align="center"><tbody><tr><td><div>Content-Type：</div><div>form-data</div><div>x-www-form-urlencoded</div><div>raw</div><div>Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryVQuD0ghtRqDehBQH</div><div>Request Payload:</div><div>------WebKitFormBoundaryVQuD0ghtRqDehBQH</div><div>Content-Disposition: form-data; name="image"</div><div>dddddd</div><div>------WebKitFormBoundaryVQuD0ghtRqDehBQH--</div><div>Content-Type:application/x-www-form-urlencoded</div><div>Form Data:</div><div>image:bbbbbbb</div><div>Content-Type:text/plain;charset=UTF-8</div><div>Request Payload:</div><div>image=aaaaaaaaaaaaaa</div></td></tr></tbody></table><div style="text-align: center;"><a href="http://www.51testing.com/batch.download.php?aid=48066" target="_blank"><img src="http://www.51testing.com/attachments/2014/08/14982672_2014082710554124cwq.jpg" border="0"></a></div><div style="text-align: center;"><br></div></div><div>　　这3种方法其中 form-data 是不支持 PUT 方法的。而用REST Console中的 Content-Type:multpart/form-data 是支持 PUT 方法的。不知道是不是bug</div><div>　<b>　4. Response Body</b></div><div>　　支持3种展示方式， 以及常用的XML和JSON格式。</div><div>　　Pretty</div><div>　　Raw</div><div>　　Preview</div><div>　　JSON/XML</div><div>　　<b>5. Response Header</b></div><div><table style="border:1px solid #999;width:98%;background-color:#DDDDDD;font-size:12px;" align="center"><tbody><tr><td><div>Connection →</div><div>Connection</div><div>Options that are desired for the connection</div><div>Keep-Alive</div><div>Content-Length →93</div><div>Content-Type →application/json; charset=UTF-8</div><div>Date →Fri, 01 Aug 2014 05:41:56 GMT</div><div>Keep-Alive →timeout=5, max=100</div><div>Server →Apache/2.2.9 (Win32) PHP/5.4.30 mod_fcgid/2.3.6</div><div>X-Powered-By →PHP/5.4.30</div></td></tr></tbody></table></div><div></div><div></div><script>
+function showQR(){
+document.getElementById("QR").style.display="block";
+}
+function hideQR(){
+document.getElementById("QR").style.display="none";
+}
+</script>
+<div id="weixin_s" style="background: url(../wx.jpg) no-repeat;width: 350px;height: 32px;display: inline-block;margin-top: 0;position: relative;"  onmouseover="showQR()" onmouseout="hideQR()">
+    <div style="margin-left:130px;margin-top:4px;"></div>
+<div class="weixin_img" id="QR" style="display: none; height: 150px;position: absolute;top: -162px;width: 150px;z-index: 10;background: #fff;">
+    <script type="text/javascript">document.write('<img src="http://chart.apis.google.com/chart?cht=qr&amp;&amp;chs=150x150&amp;chl=url" width="150" height="150" border="0" alt="微信扫描，分享到朋友圈" data-bd-imgshare-binded="1">'.replace(/url/,location.href));</script>
+    </div>
+<div style="margin-left:120px;width:500px;"><a style="color:red;font-weight:bold;" href="http://www.atstudy.com">随点随学，博为峰网校让学习如此简单>></a></div>	
+</div> 
+<span class="left marginr8"><script type="text/javascript">document.write('<iframe  frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?url=%url%&appkey=&type=5" width="103" height="24"></iframe>'.replace(/%url%/,encodeURIComponent(location.href)));</script></span>			 
+<br/>
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+            
+<div style=" height:21px;position:relative; width:100%;  margin-top:10px; *margin-bottom:7px; _margin-bottom:0px; ">         
+    <span class="pages" style=" float:right; position:relative; height:28px;"> <div class="xspace-page"><span class="xspace-totlerecord">2</span><span class="xspace-totlepages">1/2</span><span class="xspace-current">1</span><a href="http://www.51testing.com/?action-viewnews-itemid-865957-page-2">2</a><a href="http://www.51testing.com/?action-viewnews-itemid-865957-page-2">&gt;</a></div></span>
+  </div>
+  </div>
+</div>
+ <ul  class="clear marginb8"><a href="http://www.51testing.net/renzheng_istqb.htm" target="_blank"><img src="http://www.51testing.com/imagesnew/642x53.gif" width="642px" height="53" /></a></ul>
+ <!--主题推荐begin-->
+ <div class="recommend">
+ <div class="zhuti">
+ <div class="hottitle"><h3>主题推荐</h3></div>
+   <div class="msgtitlelist">
+    <ul>
+    <!--rediantuijian-->
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-241210" target="_blank" title="《51测试天地》第38期电子杂志下载"><span style='color:#0000FF;font-style:none;font-weight:none;text-decoration:none'>《51测试天地》第38期电子杂志下载</span></a></li>
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-249571" target="_blank" title="跟着大牛随时学？博为峰网校满足你！"><span style='color:#FF0000;font-style:none;font-weight:none;text-decoration:none'>跟着大牛随时学？博为峰网校满足你！</span></a></li>
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-236895" target="_blank" title="最新中国软件测试现状调查报告下载"><span style='color:#0033CC;font-style:none;font-weight:none;text-decoration:none'>最新中国软件测试现状调查报告下载</span></a></li>
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-236218" target="_blank" title="由浅入深—全面学习软件安全性测试"><span style='color:#FF0000;font-style:none;font-weight:none;text-decoration:none'>由浅入深—全面学习软件安全性测试</span></a></li>
+            
+    </ul>
+    </div>
+ </div>
+ <div class="redian">
+ <div class="hottitle"><h3>全站热点</h3></div>
+  <div class="msgtitlelist">
+    <ul>
+    <!--hotall-->
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-3569561" target="_blank" title="安全测试自学路线图">安全测试自学路线图(图)</a></li>
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-3315183" target="_blank" title="你不知道的用例编写方法">你不知道的用例编写方法</a></li>
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-3578035" target="_blank" title="《51测试天地》第三十八期电子杂志下载">《51测试天地》第三十八期电子杂志下载(图)</a></li>
+            
+            <li><a href="http://www.51testing.com/?action-viewnews-itemid-3569586" target="_blank" title="软件测试面试- 购物车功能测试用例设计">软件测试面试- 购物车功能测试用例设计</a></li>
+            
+    </ul>
+    </div>
+ </div>
+ </div>
+ <!--主题推荐end-->
+<div id="comment" class="cleanblock">
+<h3><a href="http://www.51testing.com/?action-viewcomment-itemid-865957" class="moreall" target="_blank">查看全部评论(0)</a>我来说两句</h3>
+<form id="postcomm" action="http://www.51testing.com/index.php?action-viewcomment-itemid-865957-php-1" method="post" target="_self">
+<p id="xspace-rates" class="xspace-rates0">
+<label>评分</label>
+<a href="javascript:;" onclick="setRateXML('-5', '229485');" target="_self">-5</a>
+<a href="javascript:;" onclick="setRateXML('-3', '229485');" target="_self">-3</a>
+<a href="javascript:;" onclick="setRateXML('-1', '229485');" target="_self">-1</a>
+<a href="javascript:;" onclick="setRateXML('0', '229485');" target="_self">-</a>
+<a href="javascript:;" onclick="setRateXML('1', '229485');" target="_self">+1</a>
+<a href="javascript:;" onclick="setRateXML('3', '229485');" target="_self">+3</a>
+<a href="javascript:;" onclick="setRateXML('5', '229485');" target="_self">+5</a>
+<input type="hidden" id="xspace-rates-value" name="rates" value="0">
+</p>
+<p><label for="message">内容:</label><textarea id="message" name="message" style="vertical-align: text-top; width: 80%; height: 6em;"></textarea></p>
+                
+<p class="seccodeline"><label for="seccode">验证:</label><input type="text" id="seccode" name="seccode" value="" size="20" /> <img id="imgseccode" src="http://www.51testing.com/batch.seccode.php" alt="" /></p>
+<p><button type="submit" id="submitcomm" name="submitcomm" value="submit" style="margin-left: 2.8em;">发表评论</button></p>
+<input type="hidden" id="itemid" name="itemid" value="865957" />
+</form>
+</div>
+ <!--评论-->
+ <!--专题-->
+ <div class="zhuan"><a href="http://www.51testing.com/html/index.html">手机版</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.51testing.com/html/file.html">电脑版</a></div>
+ <div id="zhuanti">
+ <div><h3>专题</h3></div>
+ <ul>
+  <li><a href="http://www.51testing.com/zhuanti/safety.htm" target="_blank"><img src="http://www.51testing.com/imagesnew/zhuanti/news_view_3.jpg" height="70" width="200"  alt="由浅入深-全面学习软件安全性测试"></a></li>
+ <li><a href="http://www.51testing.com/zhuanti/hyl.htm" target="_blank"><img src="http://www.51testing.com/imagesnew/zhuanti/news_view_1_new.jpg" height="70" width="200" alt="专访何彦霖:深度揭秘金融领域测试如何打造自动化"></a></li>
+<li><a href="http://www.51testing.com/zhuanti/jira.htm" target="_blank"><img src="http://www.51testing.com/imagesnew/zhuanti/news_view_2_new.jpg" height="70" width="200" alt="我们常用的测试管理工具—JIRA篇"></a></li>
+ </ul>
+ </div>
+ <!--专题-->
+ </div>
+<!--右侧内容-->
+<div class="block_right">
+<ul style="margin-bottom:5px;">
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="307" height="190">
+    <param name="movie" value="http://www.51testing.com/imagesnew/jutiwz.swf">
+    <param name="quality" value="high">
+    <param name="wmode" value="opaque">
+    <embed src="http://www.51testing.com/imagesnew/jutiwz.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="307" height="190" wmode="opaque"></embed>
+  </object>
+</ul>
+<!--相关阅读-->
+<div class="block_right_month">
+<div class="hottitle idxh3border"><h3>相关阅读</h3></div>
+<div class="msgtitlelist">
+    <ul>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865956" target="_blank" title="Eclipse中使用Junit编写测试用例">Eclipse中使用Junit编写测试用例(图)</a></li>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865925" target="_blank" title="Windows下使用skipfish">Windows下使用skipfish</a></li>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865922" target="_blank" title="使用LoadRunner进行服务器性能测试">使用LoadRunner进行服务器性能测试</a></li>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865921" target="_blank" title="Selenium—实现网页元素拖拽">Selenium—实现网页元素拖拽</a></li>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865661" target="_blank" title="微软Modern.IE：网站兼容性测试利器">微软Modern.IE：网站兼容性测试利器(图)</a></li>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865614" target="_blank" title="回归测试工具-KTCase">回归测试工具-KTCase</a></li>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865557" target="_blank" title="谷歌web站点安全扫描软件安装、配置和使用">谷歌web站点安全扫描软件安装、配置和...</a></li>
+<li><a href="http://www.51testing.com/?action-viewnews-itemid-865556" target="_blank" title="LoadRunner同一个脚本运行两次结果相差很大的原因">LoadRunner同一个脚本运行两次结果相差...(图)</a></li>
+    </ul>                 
+</div>    
+</div>
+<ul class="marginb8"><li><a href="http://www.51testing.com/?action-viewnews-itemid-3546217" target="_blank"><img src="http://www.51testing.com/imagesnew/flash_left.jpg" height="90" width="307" alt=""></a></li></ul>
+<!--审核等级3的日志--><div class="block_right_month">
+<div class="hottitle idxh3border"><h3>优秀博文</h3></div>
+<div class="msgtitlelist">
+    <ul>
+<li><a href="http://www.51testing.com/?uid-61753-action-viewspace-itemid-229730" title="推荐书籍《ApacheJMeter》(英文版)">推荐书籍《ApacheJMeter》(英文版)</a></li>
+<li><a href="http://www.51testing.com/?uid-293557-action-viewspace-itemid-246095" title="做了7年手工测试迷茫了怎么办？——给你的建议">做了7年手工测试迷茫了怎么办？——给...</a></li>
+<li><a href="http://www.51testing.com/?uid-363907-action-viewspace-itemid-834608" title="让测试团队慢慢死去！">让测试团队慢慢死去！</a></li>
+<li><a href="http://www.51testing.com/?uid-15022368-action-viewspace-itemid-867199" title="一个网页通用的测试用例（借鉴他人的保存，加注释）">一个网页通用的测试用例（借鉴他人的保...</a></li>
+<li><a href="http://www.51testing.com/?uid-182680-action-viewspace-itemid-829782" title="谈测试工程师的职业“晋升”之路">谈测试工程师的职业“晋升”之路</a></li>
+<li><a href="http://www.51testing.com/?uid-7844-action-viewspace-itemid-818530" title="测试过程3步走">测试过程3步走</a></li>
+<li><a href="http://www.51testing.com/?uid-293557-action-viewspace-itemid-805416" title="如何提升个人专业测试能力">如何提升个人专业测试能力</a></li>
+<li><a href="http://www.51testing.com/?uid-293557-action-viewspace-itemid-842171" title="减少缺陷漏测的系统方法体系思考（10年经验的反思）">减少缺陷漏测的系统方法体系思考（10年...</a></li>
+<li><a href="http://www.51testing.com/?uid-111742-action-viewspace-itemid-119973" title="Selenium Grid 个人理解">Selenium Grid 个人理解</a></li>
+    </ul>                 
+</div>    
+</div>
+<ul class="marginb8"><a href="http://www.boweifeng.com/htm/android2/51testing.htm" target="_blank"><img src="http://www.51testing.com/imagesnew/307x90.gif" height="90" width="307" /></a></ul>
+
+<div class="block_right_month" style="height:242px;">
+<div class="hottitle idxh3border"><h3>论坛热帖</h3></div>
+<div class="msgtitlelist">
+    <ul>
+<script type="text/javascript" src="http://bbs.51testing.com/api.php?mod=js&bid=8"></script>
+    </ul>
+    <div class="right spacestar"><a href="http://bbs.51testing.com/" target="_blank">去论坛提问>></a></div>                 
+</div>    
+</div>
+
+</div>
+<script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/50054/119915.js"></script>
+<div id="footer">
+
+                
+                
+                
+  <p>
+  <a target="_self" href="http://www.51testing.com">51Testing软件测试网</a> |
+  <a target="_self" href="http://www.51testing.com/?action_site_type_panel">快捷面板</a> |
+  <a target="_self" href="http://www.51testing.com/?action_site_type_map">站点地图</a> |
+  <a target="_self" href="mailto:webmaster@51testing.com">联系我们</a> |
+  <a target="_blank" href="http://www.51testing.com/fuwu.php">广告服务</a> |
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe50ce2796571e3c3696c82ad79779b15' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script src="http://s118.cnzz.com/stat.php?id=1740051&web_id=1740051" language="JavaScript" charset="gb2312"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+  </p>
+  <p align="center" style="color: rgb(0, 0, 0);">
+    建议使用IE 5.0以上浏览器，800×600以上分辨率,法律顾问：<a target="_blank" href="http://www.dachengnet.com">大成律师事务所</a>&#160;商建刚律师
+  <br>   
+    版权所有  <font color="#000000"> <a target="_blank" href="http://www.51testing.com">上海博为峰软件技术有限公司</a></font>  Copyright@51testing.com 2003-2015, 沪ICP备05003035号<br>
+    投诉及意见反馈：<a target="_blank" href="mailto:webmaster@51testing.com">webmaster@51testing.com</a>&#160;&#160;   业务联系：<a target="_blank" href="mailto:service@51testing.com">service@51testing.com</a>&#160;&#160;021-64471599-8017</p>
+</div>
+</div><!--container-->
+</body>
+</html>
+			<script language="javascript">
+			<!--
+			var Modified = new Date(document.lastModified);
+			var copyright = document.getElementById("xspace-copyright");
+			if(copyright) {
+				copyright.innerHTML += "Last update: <a href=\"http://www.51testing.com/index.php?action/viewnews/itemid/865957/page/1/php/1\" title=\"点击可以立即更新本页面\">"+(Modified.getYear()<200?(Modified.getYear()+1900):Modified.getYear())+"-"+(Modified.getMonth()+1)+"-"+Modified.getDate()+" "+Modified.getHours()+":"+Modified.getMinutes()+":"+Modified.getSeconds() + "</a><br>";
+			}
+			document.write('<script src="http://www.51testing.com/batch.html.php?code=http%253A%252F%252Fwww.51testing.com%252Findex.php%253Faction%252Fviewnews%252Fitemid%252F865957%252Fpage%252F1%2F1438479362%2F600%2F0%2F865957%2Fviewnews&amp;lastmodified=' + Modified.getTime() + '" type="text\/javascript" language="javascript"><\/script>');
+			//-->
+			</script>

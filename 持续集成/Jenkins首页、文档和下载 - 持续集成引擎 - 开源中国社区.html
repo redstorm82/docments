@@ -1,0 +1,1573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?t=1423294220000" />
+  <title>Jenkins首页、文档和下载 - 持续集成引擎 - 开源中国社区</title>
+  <meta name="Keywords" content="Jenkins,Jenkins是什么,Jenkins下载,Jenkins论坛,Jenkins汉化,,Java,跨平台,持续集成系统"/>  <meta name="Description" content="Jenkins 的前身是 Hudson 是一个可扩展的持续集成引擎。 主要用于： 1.持续、自动地构建/测试软件项目，如CruiseControl与DamageControl。 2.监控一些定时执行的任务。"/>    <link rel="stylesheet" href="/css/channel.css?t=1427810261000" type="text/css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/js/2011/fancybox/jquery.fancybox-1.3.4.css?t=1399607777000" media="screen" />
+  <link rel="alternate" type="application/rss+xml" title="最新开源项目" href="http://www.oschina.net/project/rss" />
+  <link rel="alternate" type="application/rss+xml" title="最新开源资讯" href="http://www.oschina.net/news/rss" />
+  <link rel="alternate" type="application/rss+xml" title="最新问题列表" href="http://www.oschina.net/question/rss" />
+  <link rel="alternate" type="application/rss+xml" title="最新翻译列表" href="http://www.oschina.net/translate/rss" />
+  <link rel="alternate" type="application/rss+xml" title="最新博客列表" href="http://www.oschina.net/blog/rss" />
+  <link rel="alternate" type="application/rss+xml" title="最新代码分享列表" href="http://www.oschina.net/code/rss" />
+  <link rel="alternate" type="application/rss+xml" title="开源中国 - 源码列表" href="http://www.oschina.net/code/source_rss" />
+    <!--添加emoji支持-->
+    <link rel="stylesheet" type="text/css" href="/js/team/grunt/dist/emoji/nature.css?t=1430349168000">
+    <link rel="stylesheet" type="text/css" href="/js/team/grunt/dist/emoji/object.css?t=1430349168000">
+    <link rel="stylesheet" type="text/css" href="/js/team/grunt/dist/emoji/people.css?t=1429214431000">
+    <link rel="stylesheet" type="text/css" href="/js/team/grunt/dist/emoji/place.css?t=1429214431000">
+    <link rel="stylesheet" type="text/css" href="/js/team/grunt/dist/emoji/Sysmbols.css?t=1429214431000">
+    <link rel="stylesheet" type="text/css" href="/js/team/grunt/dist/emoji/twemoji.css?t=1429214431000">
+
+  <script type="text/javascript" src="/js/2012/jquery-1.7.1.min.js?t=1399607778000"></script>
+  <script type="text/javascript" src="/js/2012/jquery.form.js?t=1399607778000"></script>
+  <script type="text/javascript" src="/js/2011/fancybox/jquery.fancybox-fixed.js?t=1399607777000?2014031702"></script>
+    <link rel="stylesheet" href="/js/poshytip/tip-yellowsimple/tip-yellowsimple.css?t=1399607776000" type="text/css" />
+  <script type="text/javascript" src="/js/poshytip/jquery.poshytip.min.js?t=1399607776000"></script>
+  <script type="text/javascript">
+  	g_user = {
+	id:0,
+	name:'',
+	login:false};  </script>
+    <script type="text/javascript" src="/js/2011/oschina.js?t=1399607777000"></script>
+  <script type="text/javascript" src="/js/utils.js?t=1399607775000"></script>
+  <script type="text/javascript" src="/js/channel.js?t=1428620246000?2014022501"></script>
+  <link rel="alternate" type="application/rss+xml" title="开源中国 - 最新开源项目" href="http://www.oschina.net/project/rss" />
+  </head>
+<body>
+<div id='OSC_NavTop'>
+	<div class="wp998">
+        <div id="OSC_Channels">
+        	<ul>
+        	<li class="item"><a href="http://www.oschina.net/" class='home'>首页</a></li>        	<li class="item control_select"><a href="http://www.oschina.net/project" class='project'>开源项目</a>
+				<ul class="cs_content">
+                	                	<li><a href="http://www.oschina.net/project/lang/19/java">Java 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/194/csharp">C# 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/22/php">PHP 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/21/c">C/C++ 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/26/ruby">Ruby 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/25/python">Python 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/358/go">Go开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/28/javascript">JS开源软件</a></li>
+				</ul>
+			</li>
+        	<li class="item control_select">
+				<a href="http://www.oschina.net/question" class='question'>问答</a>
+				<ul class="cs_content">
+                	<li><a href="http://www.oschina.net/question?catalog=1"> 技术问答 &raquo; </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=2"> 技术分享 &raquo; </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=3"> IT大杂烩 &raquo; </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=100"> 职业生涯 &raquo; </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=4"> 站务/建议 &raquo; </a></li>
+                	<li><a href="http://www.oschina.net/alipay"> 支付宝专区 &raquo; </a></li>
+                	<li><a href="http://www.oschina.net/mopaas"> MoPaaS专区 &raquo; </a></li>
+                	<li><a href="http://www.oschina.net/hardware"> 开源硬件专区 &raquo; </a></li>
+				</ul>
+			</li>
+        	<li class="item"><a href="http://www.oschina.net/code/list" class='code'>代码</a></li>
+        	        	<li class="item"><a href="http://www.oschina.net/blog" class='blog'>博客</a></li>
+        	<li class="item"><a href="http://www.oschina.net/translate" class='tran'>翻译</a></li>
+            <li class="item"><a href="http://www.oschina.net/news" class='news'>资讯</a></li>
+        	<li class="item control_select">
+				<a href="http://www.oschina.net/android" class='mobile'>移动开发</a>
+				<ul class="cs_content cs_mobile">
+                	<li class="android_"><a href="http://www.oschina.net/android">Android开发专区</a></li>
+                	<li class="ios_"><a href="http://www.oschina.net/ios/home">iOS开发专区</a></li>
+                	<li class="ios_"><a href="http://www.oschina.net/ios/codingList">iOS代码库</a></li>
+                	<li class="wp7_"><a href="http://www.oschina.net/wp">Windows Phone</a></li>
+				</ul>
+			</li>
+        	        	<li class="item t_job"><a href="http://job.oschina.net/" class='job'>招聘</a></li>
+									            <li class="item control_select">
+                <a href="http://city.oschina.net/" id="MyCities" title="城市圈">城市圈</a>
+							</li>
+        	</ul>
+        </div>
+		<div id="OSC_Userbar">
+                		    		当前访客身份：游客 [ <a href="http://www.oschina.net/home/login?goto_page=http%3A%2F%2Fwww.oschina.net%2Fp%2Fjenkins">登录</a> | <a href="http://www.oschina.net/home/reg">加入开源中国</a> ]
+    				</div>
+		<div class='clear'></div>
+	</div>
+
+</div>
+<div id='OSC_Banner'><div class="wp998"><a href='http://www.oschina.net/' class='Logo' title='OSChina 开源中国'>开源中国</a>
+<h1><a href='/project'>开源项目</a></h1>
+<dl>
+	<dt>当前位置：<a href='http://www.oschina.net/home/go?page=admin%2Fnew-project'>添加开源项目&raquo;</a></dt>
+	<dt>
+    	<a href="/project/tags">项目分类</a>&nbsp;&raquo;
+    	<a href="/project/tag/344/ci">持续集成系统</a>&nbsp;&raquo;    	Jenkins
+	</dt>
+</dl>
+<form action='http://www.oschina.net/search' class='search'>
+	<input type='hidden' name='scope' value='project'/>
+	<input id='channel_q' type='text' name='q' value='' placeholder='在 37878 款开源项目中搜索' class='TXT'/>
+    <button type='submit' class='BTN'>搜 索</button>
+</form>
+<div class='clear'></div></div></div>
+<div id="OSC_Screen">
+	<div id="OSC_Content" class='CenterDiv'>
+
+
+
+  
+<style>
+#SoftwareChannel {overflow:hidden;}
+.SoftwareBody {float:left;width:730px;}
+.SoftwareRight {float:right; width:250px;}
+
+
+#ZH_Header {margin:0 0 20px 0; height: 148px; background: url(/img/ZH_Header_bg.jpg) no-repeat; }
+#ZH_Header h1 {float: left; width: 400px; margin-left: 50px; display: inline;  font-size:36pt; color: #bc2f17; line-height: 130px;}
+#ZH_Header h2 { font-size: 18pt;}
+#ZH_Header h2 em {font-size: 30pt; color:#40aa53;}
+#ZH_Header p {float: right; margin-right: 55px; margin-top: 5px; width: 480px;}
+#ZH_Header p a{ padding: 0 30px 0 10px; display: inline-block; background: #557dba url(/img/ZH_tijiao.gif) 133px 7px no-repeat; line-height: 30px; font-size: 11pt; color: #fff; text-decoration: none; }
+
+#ZH_Tags {}
+
+.ZH_Tabs {background-color:#eee;height:28px;margin-bottom:10px;}
+.ZH_Tabs ul{float:left;height:28px;line-height:28px;}
+.ZH_Tabs li{float:left;font-size:10.5pt;}
+.ZH_Tabs li a{color:#000;display:block;text-decoration:None;padding:0 15px;}
+.ZH_Tabs li a.active {background-color:#557DBA;color:#fff;}
+.ZH_Tabs li a.sep{border-right:1px solid #ccc;}
+.ZH_Tabs .desc {color:#999;float:left; margin:8px 0 0 20px;}
+.ZH_Tabs .more{float:right;margin:6px 6px 0 0;text-decoration:None;}
+
+
+
+.TopZHProjects {margin:20px 2px;background:#fafcff;}
+.TopZHProjects ul li {float:left; width:48%; height:60px;padding-left:10px;margin:0 0 10px 0;}
+.TopZHProjects ul li span img {widht:48px;height:48px;}
+.TopZHProjects ul li h3 {font-size:10.5pt;}
+.TopZHProjects ul li h3 a {text-decoration:none;}
+.TopZHProjects ul li p {color:#666;font-size:9pt;margin:3px 0 0 5px; line-height: 16px;}
+
+.TopZHProjects ul li span {float: left; width: 52px; margin-right: 8px; display: inline; }
+.TopZHProjects ul li span img{ border: 1px #eee solid;}
+
+#ZH_ProjectList {margin:20px 0 0 0;}
+#ZH_ProjectList h2 {margin:0 0 30px 0;background:#557DBA;color:#fff;padding:5px;}
+
+#ZH_Tags, .ZH_top_users {margin:0px 0 0 30px;}
+#ZH_Tags strong, .ZH_top_users strong {display:block; font-size:12pt; margin:0 0 20px 0;}
+#ZH_Tags ul {line-height:22px;font-size:9pt;color:#666;margin:0 0 0 10px;}
+#ZH_Tags ul li a {font-size:12pt;text-decoration:none;margin-right:5px;}
+
+.RightProjectList ul {margin:5px;}
+.RightProjectList ul li {overflow:hidden;margin-bottom:10px;}
+.RightProjectList ul li span.date {color:#999;font-size:8pt;float:right;-webkit-text-size-adjust:none;}
+.RightProjectList ul li a {font-weight:bold;display:block;margin:0 0 5px 0;}
+.RightProjectList ul li p {color:#666;}
+
+/* 项目详细列表 */
+.ProjectList {background:#fff;}
+.ProjectList ul.List {margin:20px 5px;}
+.ProjectList ul.List li {margin:10px 0 20px 0;border-bottom:1px dashed #ddd;}
+.ProjectList ul.List li h3 {font-size:14pt;text-decoration:none;background:url('/img/r_arrow.gif') no-repeat left center;padding-left:16px;}
+.ProjectList ul.List li h3 em {font-style:normal;color:#060;}
+.ProjectList ul.List li h3 a { text-decoration:none;}
+.ProjectList ul.List li a .name {color:#060;display:inline;margin:0;}
+.ProjectList ul.List li a.projectImg {display:block;margin:10px 0;}
+.ProjectList ul.List li a.projectImg img {max-width:500px;}
+.ProjectList ul.List li a.more {font-weight:normal;color:#A00;display:block;margin:10px 0 0 0;}
+.ProjectList ul.List li a:hover {color:#FF3300;text-decoration:underline;}
+.ProjectList ul.List li p.detail {margin:5px 0 5px 15px;color:#666;font-size:9pt;line-height:20px;}
+.ProjectList ul.List li p.news {margin:10px 0 5px 0;}
+.ProjectList ul.List li p.news a {color:#333;}
+
+
+/* /project/tags */
+.CATALOGS {border:1px solid #ccc;background:#fff;}
+.CATALOGS h2 {background:#cfc;font-size:10pt;padding:3px 5px;color:#666;height:24px;}
+.CATALOGS .TOP_TAG {margin:10px 10px 20px 10px;}
+.CATALOGS .TOP_TAG h3 {border-bottom:2px solid #ccc;font-size:10.5pt;padding:0 0 3px 0;margin-bottom:10px;}
+.CATALOGS .TOP_TAG ul {line-height:26px;overflow:hidden;}
+.CATALOGS .TOP_TAG ul li {float:left;width:176px;height:24px;overflow:hidden;font-size:10pt;}
+.CATALOGS .TOP_TAG ul li a {text-decoration:None;}
+.CATALOGS .TOP_TAG ul li em {font-style:normal;font-size:8pt;color:#666;-webkit-text-size-adjust:none;}
+.CATALOGS .LANGS ul li {width:100px;}
+.CATALOGS .TOP_TAG .TAG_LINKS {margin:0 0 10px 0;}
+.CATALOGS .TOP_TAG .TAG_LINKS a {color:#A00;font-weight:bold;margin-right:20px;}
+
+.TAGS .TAG {border:1px solid #40AA53;margin-bottom:10px;}
+.TAGS .TAG h3 {
+	color:#060;
+	font-size:11pt;
+	background:#DDFFDD url('/img/all.gif') no-repeat 5px center;
+	padding:3px 5px 3px 20px;
+}
+.TAGS .TAG h3 .more {float:right;font-weight:normal;font-size:9pt;}
+.TAGS .TAG ul {
+	font-size:9.5pt;
+	padding:5px 0;
+}
+.TAGS .TAG ul li {
+	background:url('/img/a2.gif') no-repeat 5px center;
+	padding-left:18px;
+}
+.TAGS .TAG ul li a {color:#060;text-decoration:none;}
+.TAGS .TAG ul li a:hover {text-decoration:underline;color:#A00;}
+.TAGS .TAG ul li em {color:#666;font-size:9pt;font-style:normal;margin-left:5px;}
+.TAGS .TAG ul li.current {background-color:#fee;}
+.TAGS .TAG ul li.current a {color:#A00;font-weight:bold;}
+
+.TagLinks {margin:10px 0 20px 0;line-height:22px;border:1px dashed #ccc;background:#ffc;padding:3px 5px}
+.TagLinks a {font-weight:bold;color:#A00;margin:0 13px 0 3px;}
+
+/* 软件列表页 */
+.AllProjectList {overflow:hidden;}
+.AllProjectList .TagTree {float:left; width:235px;overflow-y:auto;overflow-x:hidden;}
+
+.AllProjectList .ProjectList {float:right; width:740px;padding:10px 5px;border:1px solid #ddd;}
+
+.AllProjectList .ProjectList h2 {overflow:hidden;margin:0 5px;font-size:18pt;font-weight:normal;color:#333;}
+.AllProjectList .ProjectList h2 em {font-style:normal;color:#A00;margin:0 2px 0 3px;}
+.AllProjectList .ProjectList h2 .stat {float:right;font-size:12pt;margin:5px 0 0 0;}
+.AllProjectList .ProjectList h2 .stat .selected {color:#A00;}
+.AllProjectList .ProjectList .PrefixFiler {font-size:10.5pt;margin:0 5px;}
+.AllProjectList .ProjectList .PrefixFiler a {margin-right:4px;text-decoration:none;}
+.AllProjectList .ProjectList .PrefixFiler a.current {font-weight:bold; color:#A00;}
+.AllProjectList .ProjectList .FilterForm {margin-left:5px;display:block;}
+.AllProjectList .ProjectList .FilterForm a.selected {font-weight:bold; color:#A00;}
+
+.TagTree {border:1px solid #ddd;background:#fff;}
+.TagTree a {text-decoration:none;}
+.TagTree h2 {background:#eee;color:#060;font-weight:normal;padding:5px 10px;font-size:12pt;}
+.TagTree .TopTag {margin:10px;}
+.TagTree .TopTag h3 {font-size:12pt;}
+.TagTree .TopTag h3 a {
+	display:block;
+	padding:0 10px 0 0;
+}
+.fixed{position:fixed;top:10px;}
+.AllProjectList .TagTree
+.TagTree h3 a {background: url('/img/down.gif') no-repeat right center;}
+.TagTree .opened h3 a {background: url('/img/up2.gif') no-repeat right center;}
+.TagTree .closed ul {display:none;}
+
+.TagTree .TopTag ul {margin:10px 0 20px 10px;font-size:10pt;}
+.TagTree .TopTag ul li {overflow:hidden;margin:0 0 5px 0;}
+.TagTree .TopTag ul li a {display:block;}
+.TagTree .TopTag ul li a:hover {color:#40AA53;}
+.TagTree .TopTag ul li em {
+	float:right;
+	font-style:normal;
+	color:#666;	
+    background: #f2f2f2;
+	padding:1px 2px;
+    font-size: 9pt;
+    font-style: normal;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.TagTree .TopTag ul li a.current {color:#40AA53;font-weight:bold;}
+.TagTree .TopTag ul li a.current em {background:#40AA53;color:#fff;}
+.TagTree .TopTag ul li a:hover em {background:#40AA53;color:#fff;}
+
+
+.SoftwareBody .RecommendList {margin:0 0 10px 0;background:#fafcff;}
+.SoftwareBody .HotList {margin:0 0 20px 0;background:#fafcff;}
+
+.SoftwareBody .RecommendList ul {overflow:hidden;font-size:10.5pt;margin:10px;line-height:28px;}		
+.SoftwareBody .RecommendList ul li {float:left; width: 350px;}
+.SoftwareBody .RecommendList ul li a {background:url('/img/a3.gif') no-repeat left center; padding-left:16px;text-decoration:none;}
+.SoftwareBody .RecommendList ul li a em {font-style:normal;color:#336;}
+.SoftwareBody .RecommendList ul li a:hover em {color:#C00;}
+
+.SoftwareBody .HotList ul {overflow:hidden;margin:10px;font-size:10.5pt;}
+.SoftwareBody .HotList ul li {float:left;width:350px;height:36px;overflow:hidden;}
+.SoftwareBody .HotList ul li img {float:left;width:32px;height:32px;}
+.SoftwareBody .HotList ul li span {float:left; margin:3px 0 0 10px;}
+.SoftwareBody .HotList ul li a em {font-style:normal;color:#336;}
+.SoftwareBody .HotList ul li a:hover em {color:#C00;}
+
+.RightNewsList .List li {overflow:hidden;background:url('/img/a2.gif') no-repeat left center;padding-left:16px;overflow:hidden;line-height:24px;}
+.RightNewsList .List h3 {font-size:10.5pt; float:left; font-weight:normal;}
+.RightNewsList .List .date {float:right;color:#666;}
+.RightNewsList .List li em {font-style:normal;color:#A00;margin:0 2px;} 
+
+
+.ProjectPage {overflow:hidden;}
+.ProjectPage .ProjectMain {float:left; width:732px;}
+.ProjectPage .ProjectRight {float:right; width:258px;}
+
+.ProjectPage .Project {border:1px solid #ddd; background:#fff;}
+.ProjectPage .Recommend {
+	background:#fff url('/img/recomm.gif') no-repeat 640px 5px;
+}
+.ProjectPage .Project h1.PN {overflow:hidden;margin:15px 0 10px 10px;font-size:16pt;}
+.ProjectPage .Project h1.PN img {float:left; height:48px;}
+.ProjectPage .Project h1.PN .name {float:left; margin-left:10px;}
+.ProjectPage .Project h1.PN .name a.h1 {text-decoration:none;color:#000; line-height:44px;}
+.ProjectPage .Project h1.PN .name i {font-weight:normal;font-style:normal;font-size:8pt;display:block;color:#888;}
+.ProjectPage .Project h1.PN a.edit {float:left; font-weight:normal; font-size:9pt;margin-left:10px;border:1px solid #eee; padding:3px 5px;text-decoration:none;}
+.ProjectPage .Project h1.PN a.edit:hover {background:#ffe}
+.ProjectPage .Project .Body img {max-width:700px;}
+.ProjectPage .Project .Body .detail {margin:10px;overflow:hidden;font-size:10pt;}
+.ProjectPage .Project .Body .detail p {margin-bottom:10px;}
+
+.ProjectPage .Project .ProjectEdit {overflow:hidden;border-top:1px dashed #ccc;margin:10px 0;}
+.ProjectPage .Project .ProjectEdit a {float:right;padding:2px 5px;background:#40AA53;color:#fff;text-decoration:none;margin:5px 10px 0 0;}
+.ProjectPage .Project .GithubEmbed {margin:0 10px;}
+.ProjectPage .Project .ProjectNews {margin:10px;}
+.ProjectPage .Project .ProjectNews strong {font-size:10.5pt;}
+.ProjectPage .Project .ProjectNews strong em {font-style:normal;color:#A00;margin:0 5px 0 2px;}
+
+.ProjectPage .Project .ProjectNews ul {margin:10px 0;line-height:20px;font-size:10pt;}
+.ProjectPage .Project .ProjectNews ul li {border-bottom:1px dashed #ccc;overflow:hidden;background:url('/img/a3.gif') no-repeat left center;padding-left:16px;}
+.ProjectPage .Project .ProjectNews ul li a {text-decoration:none;float:left; width:440px;}
+.ProjectPage .Project .ProjectNews ul li .stat {float:left;font-size:9pt;color:#666;width:120px;}
+.ProjectPage .Project .ProjectNews ul li .date {float:right;color:#666;font-size:9pt; width:120px; text-align:right;}
+.ProjectPage .Project .google_ads {margin-left:1px;}
+.ProjectPage .Project .attrs {
+	background:#f6f6f6;
+	border:1px solid #eee;
+	padding:5px 10px;
+	margin:0 10px;
+	font-weight:bold;
+	line-height:22px;
+}
+.ProjectPage .Project .attrs a {font-weight: normal;}
+.ProjectPage .Project .urls {margin:20px 10px;height: 30px;}
+.ProjectPage .Project .urls li {float: left;width:120px;margin-right:20px;}
+.ProjectPage .Project .urls a {
+	background:#557DBA;
+	color:#fff;
+	float:left;
+	width:120px;
+	height:30px;
+	line-height:28px;
+	font-size:12pt;
+	text-decoration:none;
+	text-align:center;
+}
+.ProjectPage .Project .urls a:hover {background:#3F669C;}
+
+
+.ProjectPosts {margin:20px 0;}
+.ProjectThreads {margin:0 10px 20px 10px;}
+.ProjectThreads table {width:100%;}
+.ProjectThreads table td {vertical-align:top;padding:10px 0 5px 0;border-bottom:1px dashed #ccc;}
+.ProjectThreads h4 {font-size:10.5pt;}
+.ProjectThreads h4 a {text-decoration:none;}
+.ProjectThreads h4 a:hover {text-decoration:underline;}
+.ProjectThreads h4 a .highlight {color:#A00;}
+.ProjectThreads h4 .stat {color:#666;font-size:9pt;margin-left:10px;font-weight:normal;float:right;}
+.ProjectThreads h4 em {color:#A00;font-style:normal;margin:0 3px 0 1px;}
+
+.ProjectThreads .portrait {width:45px;vertical-align:top;}
+.ProjectThreads .portrait img {width:32px;height:32px;border:1px solid #eee;padding:2px;background:#fff;}
+.ProjectThreads .portrait a:hover img {border:1px solid #40AA53;}
+
+.ProjectThreads .Tags {margin:5px 0;}
+
+.ProjectThreads #PopularTags {border-bottom:1px solid #fff;padding:0 0 10px 0;}
+.ProjectThreads #PopularTags th {width:20px;padding:0 0 0 2px;background:#40AA53;color:#fff;align:center;}
+.ProjectThreads #PopularTags td {padding:2px 5px;border:1px solid #40AA53;border-left:0;background:#ffc;}
+.ProjectThreads #PopularTags a {background:#eee;border-bottom:1px solid #999;}
+.ProjectThreads #PopularTags a:hover {color:#40AA53;}
+.ProjectThreads #PopularTags a:hover em {color:#40AA53;}
+
+.ProjectThreads .topic p {font-size:9pt;color:#666;}
+
+.ProjectThreads .qstat {width:140px;text-align:right;}
+.ProjectThreads .qstat a {text-decoration:none;}
+.ProjectThreads .qstat ul li {
+	float:left;
+	font-size:9pt;
+	text-align:center;
+	margin-left:3px;
+	width:42px;
+	padding:0 0 3px 0;
+}
+.ProjectThreads .qstat ul li.answer {background:#628d5a;color:#fff;}
+.ProjectThreads .qstat ul li.answer0 {color:#A00;}
+.ProjectThreads .qstat ul li.HasBestAnswer {color:#ff6;}
+.ProjectThreads .qstat ul li.vote {color:#000;}
+.ProjectThreads .qstat ul li.view {color:#666;}
+.ProjectThreads .qstat ul li em {
+	display:block;
+	padding:3px 0;
+	font-style:normal;
+	font-family:Verdana ;
+	font-weight:bold;
+	font-size:12pt;
+}
+
+.ProjectThreads a.more {float:right;margin-top:10px;color:#A00;}
+
+.ProjectObjects {margin: 20px 0;}
+.ProjectObjects ul.List {margin:10px;}
+.ProjectObjects ul.List li h3 {margin-top:20px;}
+.ProjectObjects ul.List li .outline {margin:5px 0 10px 0;font-size:9pt;color:#666;}
+.ProjectObjects ul.List li .detail {font-size:9pt;color:#666;line-height:22px;margin:5px 0 10px 0;}
+.ProjectObjects ul.List li .detail a {margin-top:10px;}
+
+.ProjectPage .ProjectRight .RightProjectList {margin-top:20px;}
+
+.ProjectPage .ProjectRight #QuestionWizard {
+	font-size:12pt;
+	text-align:center;
+	padding:8px 10px;
+	border:1px solid #ccc;
+	margin:0px 0 10px 0;
+	color:#666;
+	background:#fff;
+	overflow:hidden;
+}
+.ProjectPage .ProjectRight #QuestionWizard em {font-style:normal;color:#A00;font-weight:bold;}
+.ProjectPage .ProjectRight #QuestionWizard a {text-decoration:none;}
+.ProjectPage .ProjectRight #QuestionWizard a.rndbutton {margin:10px 10px 0 0 ;font-weight:normal;font-size:10.5pt;}
+.ProjectPage .ProjectRight #QuestionWizard img {width:50px;height:50px;}
+.ProjectPage .ProjectRight #QuestionWizard .FollowIt {margin:8px 0 0 0;font-size:10.5pt;}
+.ProjectPage .ProjectRight #QuestionWizard .FollowIt span {margin:0;padding:0;float:left;}
+
+
+.ProjectEditor {width:100%;margin-bottom:20px;}
+.ProjectEditor .notes {border:1px solid #ccc;background:#ffc;padding:10px;margin-bottom:10px;}
+.ProjectEditor .notes h3 {font-size:10.5pt;margin:5px 0 10px 0;}
+.ProjectEditor .notes ul {margin:0 20px;color:#006;list-style:disc;}
+.ProjectEditor td,.ProjectEditor th {padding:5px;}
+.ProjectEditor .tags label {margin-right:5px;}
+.ProjectEditor .tags label.SELECTED {color:#C00;}
+
+
+#DynaInfo {margin:0 0 10px 0;}
+#DynaInfo form {
+	margin:0 0 10px 0;
+	overflow:hidden;
+	position:relative;
+	border:1px solid #40AA53;
+	background:#40AA53;
+}
+#DynaInfo textarea {float:left;width:211px;height:36px;padding:2px;resize:none;overflow:auto;font-size:9pt;border:0;}
+#DynaInfo textarea:focus {border:0;}
+#DynaInfo input {float:left;width:37px;height:36px;background:#40AA53;color:#fff;border:0;}
+#DynaInfo input:hover {color:#ff0;cursor:pointer;}
+#DynaInfo #DivPubStatus {text-align:center;position:absolute;top:10px;left:80px;font-size:12pt;color:#060;display:none;}
+#DynaInfo ul.TopTweets li {margin:0 0 5px 0;padding:0 0 8px 0;border-bottom:1px dashed #ddd;}
+#DynaInfo ul.TopTweets li .portrait {float:left;width:35px;padding-top:3px;}		
+#DynaInfo ul.TopTweets li .portrait img {width:24px;height:24px;border:1px solid #ccc;padding:1px;background:#fff;}		
+#DynaInfo ul.TopTweets li .body {float:left;width:220px;overflow:hidden;font-size:9pt;}	
+#DynaInfo ul.TopTweets li .user a {color:#6cabe1;}
+#DynaInfo ul.TopTweets li .log {color:#666;word-break: break-all;}
+#DynaInfo ul.TopTweets li .log a {color:#6cabe1;word-break: break-all;}
+#DynaInfo ul.TopTweets li .log img {vertical-align:middle;}
+#DynaInfo ul.TopTweets li .time {display:block;color:#9A9A9A;margin:5px 0 0 0;}
+#DynaInfo ul.TopTweets li .time a {color:#9A9A9A;text-decoration:none;}
+#DynaInfo ul.TopTweets li .time a:hover {color:#6cabe1;}	
+#DynaInfo .pager li a {font-size:9pt;}
+
+.TopUsers ul li {float:left; width:54px; height:50px; overflow:hidden;text-align:center;margin:0 5px 10px 5px;}
+.TopUsers ul li img {width:32px;height:32px;}
+.TopUsers ul li a.name {display:block;font-size:9pt;}
+
+.ad_banner{
+	margin-bottom: 10px;
+}
+</style>
+
+
+<div class="ProjectPage">
+<div class="ProjectMain">
+	<div class="Project">
+	<h1 class='PN'>
+				<img src="/img/logo/default.gif?t=1399607809000"/>
+				<p class='name'>
+			<a href="/p/jenkins" class='h1'>持续集成引擎 <u>Jenkins</u></a>
+								</p>
+		<a href="/p/jenkins/edit" class='edit'>编辑/纠错</a>
+	</h1>
+	
+	<style type="text/css">
+#TagsSwitcher{color:#A00;}
+#RecTags,#MyTags{margin:5px 0;}
+#RecTags a.tag{line-height:24px;}
+#favor_form{width:200px;}
+#favor_form p:first-child{margin:5px 0;}
+#favor_form p {color:#666;}
+#favor_form form{min-height:85px;width:200px;}
+#favor_form form ._favor_input{display:block;margin:2px 0;width:199px;}
+#favor_form form ._favor_button{float:left;padding:2px 5px;}
+.favor_ok {text-align:center;font-size:10.5pt;width:199px;height:60px;margin-top:10px;}
+#TagsSwitcher{cursor:pointer;float:right;margin-top:10px;}
+#MyTags{display:none;width:199px;}
+#MyTags a.tag {float:left; background-color: #E0EAF1;border-bottom: 1px solid #3E6D8E;border-right: 1px solid #7F9FB6;color: #3E6D8E;font-size: 8pt;line-height: 16px;margin: 2px 2px 2px 0;padding: 2px 4px;text-decoration: none;white-space: nowrap;}
+#MyTags a.tag:hover{background-color: #3E6D8E;color: #FFF;}
+#toolbar_wrapper{padding:10px 0 5px 0;}
+.toolbar{height:33px;margin:0;padding:0;vertical-align: middle;border:1px solid #CCC;-moz-box-shadow: 0 1px 3px rgba(198,198,198,0.5);-webkit-box-shadow: 0 1px 3px rgba(198,198,198,0.5);box-shadow: 0 1px 3px rgba(198,198,198,0.5);}
+.toolbar a{text-decoration:none;color:black;}
+.share{float:left;margin:0;padding:3px 0 0 0;line-height:25px;width:280px;}
+.share_sina{float:left;background:url(/img/toolbar.gif) -1px -278px no-repeat;padding-left:25px;padding-right:5px;margin-left:3px;}
+.share_qq{float:left;background:url(/img/toolbar.gif) -1px -316px no-repeat;padding-left:25px;padding-right:5px;}
+#share_weixin {float:left;background:url('/img/weixin.gif') 5px 4px no-repeat;padding-left:25px; cursor:pointer;}
+.options{float:right;margin:3px 5px 0 5px;padding:0;height:30px;line-height:25px;}
+.tool_title {float:left;text-align:center;vertical-align:middle;margin:0 0 0 5px;line-height:33px;}
+.options .tool_title{line-height:30px;}
+.favorite{float:left;}
+.soft_collect{background: url(/img/toolbar.gif) 0 -1px no-repeat; cursor: pointer;padding-left:20px;}
+.soft_collected{background: url(/img/toolbar.gif) 1px -28px no-repeat;}
+.soft_collect_count{font-size:12pt;font-family: Arial;color:#8B0000;margin:0 10px 0 10px;}
+.soft_collect_count:hover {color:red;}
+.soft_used{float:right;margin:0 0 0 20px;padding:0;position: relative;}
+.soft_used_button{z-index: 1; position: relative; cursor: pointer;margin-left:10px;}
+.arrow_holder{background: url(/img/toolbar.gif) -1px -350px no-repeat;}
+a.soft_used_button_n{}
+a.soft_used_button_y{color:#40AA53;font-weight:bold;}
+.soft_used_level{ z-index: 99; position: absolute; top: 28px;left: 0; width: 80px; background-color: #f9f9f9; border: 1px solid #ccc;}
+.soft_used_level li{ line-height: 34px; padding-left: 30px;background: url(/img/toolbar.gif) 3px -390px no-repeat; cursor: pointer;}
+.soft_used_level li.choice{ background-color: #e9e9e9; background-position: 3px -418px}
+.soft_used_level li.level{ background-position: 3px -418px}
+.options .report{float:left;background: url(/img/toolbar.gif) 0 -113px no-repeat;padding:0 10px 0 15px;border-top:1px solid #CCC;border-bottom:1px solid #CCC;border-right:1px solid #CCC;}
+.options .vote{float:right;width:120px;margin:0 0 0 20px;padding:0 5px;border:1px solid #CCC;text-align:center;vertical-align:middle;}
+.options .vote-up-on{float:left;background: url(/img/toolbar.gif) 0 -160px no-repeat;padding-left:15px;}
+.options .vote-up-off{float:left;background: url(/img/toolbar.gif) 0 -137px no-repeat;padding-left:15px;}
+.options .vote-down-on{float:right;background: url(/img/toolbar.gif) 0 -209px no-repeat;padding-left:15px;}
+.options .vote-down-off{float:right;background: url(/img/toolbar.gif) 0 -184px no-repeat;padding-left:15px;}
+.options .vote-count-post{font-size:12pt;font-family: Arial;color: #8B0000;text-align: center;vertical-align:middle;margin:0 5px;}
+.options .news_deliver{float:left;background: url(/img/toolbar.gif) 3px -243px no-repeat;padding:0 10px 0 24px;border-top:1px solid #CCC;border-bottom:1px solid #CCC;border-right:1px solid #CCC;}
+#p_used_count{cursor:pointer;}
+</style>
+<script type='text/javascript'>
+function set_prj_exp(prj_id,level) {
+	if(level>0) {
+    	$('#soft_used_button').removeClass('soft_used_button_n')
+    		.addClass('soft_used_button_y')
+    		.attr('title','取消使用经验');
+	} else {
+		$('#soft_used_button').removeClass('soft_used_button_y')
+    		.addClass('soft_used_button_n')
+    		.attr('title','设置使用经验');
+	}
+	jQuery.get('/action/project/toggle_used?id=16487&level='+level,function(data){
+		$('#p_used_count').html('+'+data);
+	});
+	$('li[level='+level+']').addClass('level');
+}
+
+$(document).ready(function(){
+	$.ajax({
+		url:"/action/favorite/attentionUsersCount",
+		type:"get",
+		data:"id="+16487+"&type="+1,
+		success:function(msg){
+			$("#p_favor_count").html("+"+msg);
+		}
+	});
+	
+	$('#favor_trigger').click(function(){
+			add_to_favor(16487,1);
+		});
+	$('#soft_used_button').click(function(){
+			if(confirm('必须登录后才能操作，是否现在登录？')){
+    		location.href="http://www.oschina.net/home/login?goto_page="+encodeURIComponent(location.href);
+    	}
+		});
+	$('#soft_used_level').hover(null,function(){
+		$(this).hide();
+	});
+	$('#soft_used_level li').hover(function(){
+		$(this).toggleClass('choice');
+	}).click(function(){
+		var level = $(this).attr('level');
+		$('#soft_used_level li').removeClass('level');
+		set_prj_exp(16487,level);
+		$('#soft_used_level').hide();
+	});
+	
+	$('#p_used_count').click(function(){
+		jQuery.ajax({
+    		type	: 'GET',
+    		cache	: true,
+    		url		: "/widgets/used_users?id=16487",
+    		success	: function(data){
+				jQuery.fancybox(data);
+			},
+    		error	: function(html){
+    			alert("获取数据失败，代码:" +html.status+ "，请稍候再试");
+    		}
+		});
+	});
+});
+
+var favor_ok = "<p class='favor_ok'>已成功添加到收藏夹<br/><br/> <a href='null/favorites?type=1'>我的收藏夹</a> | <a href='javascript:close_favor()'>关闭</a></p>";
+function delete_favor(obi_id, obj_type){
+	if(!confirm('确定取消收藏？')) return;
+	$.post("/action/favorite/cancel?type="+obj_type+"&id="+obi_id+"&user=${g_user.id}",function(html){
+    	$('#favor_trigger').removeClass('soft_collected');
+		$('#favor_trigger').attr('title','添加到收藏');
+    	$('#p_favor_count').html('+'+html);
+		$('#favor_trigger').unbind('click');
+		$('#favor_trigger').click(function(){add_to_favor(16487,1);});
+	});
+}
+function add_to_favor(obj_id, obj_type){
+	if(confirm('必须登录后才能收藏，是否现在登录？')){
+		location.href="http://www.oschina.net/home/login?goto_page="+encodeURIComponent(location.href);
+	}
+}
+function close_favor(elem_id){
+    $('#favor_trigger').poshytip('destroy');
+}
+function setTag(tv){
+	var t = $("._favor_input");
+	var value = t.val();
+	var tags = value.replace(/，/ig,',').split(',');
+	var exist = false;
+	value = $.map(tags,function(v,i){
+		if($.trim(tv) == $.trim(v)){
+			exist = true;
+			return undefined;
+		}
+		return v;
+	}).join(',');
+	if(exist){
+		t.val(value);
+		return;
+	}
+	if(value!="")
+		t.val(value+","+tv);
+	else
+		t.val(tv)
+}
+</script>
+<div id='toolbar_wrapper'>
+	<div class='toolbar'>
+	<div class="tool_title"><b>分享到：&nbsp;</b></div>
+	<div class='share'>
+		<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a><a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","tqq","qzone","weixin","sqq"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+	</div>
+	<div class='options'>
+				<div class='soft_used'>
+			<a title="取消使用经验" class="soft_used_button soft_used_button_n" id="soft_used_button" href='javascript:;'>已用<span class='arrow_holder'>&nbsp;&nbsp;&nbsp;</span></a>
+			<span class="soft_collect_count" id="p_used_count">+25</span>
+			<ul class="soft_used_level" id="soft_used_level" style="display:none">
+				<li level="1" class="">用过</li>
+				<li level="2" class="">熟练</li>
+				<li level="3" class="">精通</li>
+				<li level="0" class="level">取消</li>
+			</ul>
+		</div>
+				<div class='favorite'>
+		<a title="收藏此软件" id="favor_trigger" class="soft_collect " href="javascript:;">收藏</a>		<span class="soft_collect_count" id="p_favor_count">+0</span>
+		</div>
+					</div>
+	</div>
+</div>	<div id='Body' class='Body'>
+		    	<div class='detail TextContent' id='p_fullcontent'>
+			<p style='margin:0 0 10px 0;'><a style="color:#A00;font-weight:bold;" href="http://city.oschina.net/zhuhai/event/244519?channel=text" target="_blank">8月22日珠海 OSC 源创会正在报名，送机械键盘和开源无码内裤</a>&nbsp;&nbsp;<img src='/img/hot3.png?t=1435877996000' align='absmiddle'/></p>
+			<p>Jenkins 的前身是 <a href="http://www.oschina.net/p/hudson">Hudson</a>&nbsp;是一个可扩展的持续集成引擎。</p><p>主要用于：</p><p>1.持续、自动地构建/测试软件项目，如CruiseControl与DamageControl。<br/>2.监控一些定时执行的任务。</p><p><img src="http://static.oschina.net/uploads/space/2013/1011/211607_EvAG_12.png" alt=""/></p>
+		</div>
+						<div class='GithubEmbed'>
+		    			    	<script type="text/javascript" src="/js/jquery/jquery.githubRepoWidget.js?t=1399607771000"></script>
+		    	<div class="github-widget" data-repo="github/jenkinsci" style="margin:10px 0;"></div>
+		        <script type="text/javascript">
+			var genGitIdent = function(ident){
+				var id = [];
+				$.each(ident.split('/'),function(i,v){
+					if(i<=2)
+						id.push(v.replace('.git','').replace(':','/'));
+				});
+				return id.join('/')+"/preview";
+			};
+			var url = ["http://jenkins-ci.org/","http://jenkins-ci.org/views/hudson-tutorials","http://mirrors.jenkins-ci.org/","https://github.com/jenkinsci"];
+			var found = false;
+			for(var i in url){
+ 				var ident = url[+i].split('git.oschina.net');
+       			if(ident.length==2 && !found){
+        			var prv = genGitIdent(ident[1]);
+					if(prv && prv.length>0){
+						document.getElementsByClassName("GithubEmbed")[0].innerHTML = "";
+						document.write('<script src="http://git.oschina.net'+prv+'" type="text\/javascript"><\/script>');
+						found = true;
+					}
+    			}else{
+					continue;
+				}
+			}
+		</script>
+		</div>
+				    	<div class='ProjectNews'>
+    		<strong><em>Jenkins</em>最新更新资讯，共<em>10</em>条&nbsp;&nbsp;(<a href="/home/go?page=admin%2Fnew-release">投递新闻</a>，<a href="/p/jenkins/news#list">查看所有&raquo;</a>)</strong>
+    		<ul>
+    		    		<li>
+    			<a href="http://my.oschina.net/xinson/blog/473027" title="【每日一博】jenkins 简单入门使用（Web）">【每日一博】jenkins 简单入门使用（Web）</a>
+    			<span class='date'>4周前</span>
+				<span class='stat'>4评/284阅</span>
+    		</li>
+    		    		<li>
+    			<a href="http://www.oschina.net/news/63453/hudson-and-jenkins-grievances" title="持续集成引擎 Hudson 和 Jenkins 的恩恩怨怨 ">持续集成引擎 Hudson 和 Jenkins 的恩恩怨怨 </a>
+    			<span class='date'>1个月前</span>
+				<span class='stat'>29评/3188阅</span>
+    		</li>
+    		    		<li>
+    			<a href="http://www.oschina.net/news/62118/jenkins-1-612-released" title="Jenkins 1.612 发布，持续集成引擎">Jenkins 1.612 发布，持续集成引擎</a>
+    			<span class='date'>3个月前</span>
+				<span class='stat'>4评/1625阅</span>
+    		</li>
+    		    		<li>
+    			<a href="http://www.oschina.net/news/61706/jenkins-1-610-released" title="Jenkins 1.610 发布，持续集成引擎">Jenkins 1.610 发布，持续集成引擎</a>
+    			<span class='date'>3个月前</span>
+				<span class='stat'>2评/1535阅</span>
+    		</li>
+    		    		<li>
+    			<a href="http://www.oschina.net/news/61473/jenkins-1-609-released" title="Jenkins 1.609 发布，持续集成引擎">Jenkins 1.609 发布，持续集成引擎</a>
+    			<span class='date'>4个月前</span>
+				<span class='stat'>3评/908阅</span>
+    		</li>
+    		    		</ul>
+    	</div>
+						<div class='google_ads'>
+						<a href="/action/visit/ad?id=1069" target="_blank" title="阿里云"><img src='http://static.oschina.net/uploads/space/2015/0601/110324_BOKr_12.jpg' border='0'/></a>
+			        </div>
+		        <ul class='attrs'>
+        <li>授权协议： <a href='http://www.oschina.net/question/12_2829' target='_blank'>MIT</a></li>
+                          <li class='lang'>开发语言： <a href="/project/lang/19/java">Java</a> 											<a href="https://github.com/jenkinsci" title="查看 Jenkins 源码" target="_blank" style='color:#A00;'>查看源码&raquo;</a>
+																	  </li>
+                  <li>操作系统：
+		  					  			<a>跨平台</a>&nbsp;		  					  </li>
+		          <li>收录时间： <a href="http://my.oschina.net/javaeye" target="_blank">鉴客</a> -&gt; <a>2011年01月12日</a>		  </li>
+        </ul>
+
+		<ul class='urls'>
+            <li><a href="/action/project/go?id=16487&p=home" title="Jenkins 网站" target="_blank">软件首页</a></li>            <li><a href="/action/project/go?id=16487&p=doc" title="Jenkins 文档" target="_blank">软件文档</a></li>                            <li><a href="/action/project/go?id=16487&p=download" title="下载 Jenkins" target="_blank">软件下载</a></li>
+            											</ul>
+				
+	</div>
+	</div>
+		
+<div class='panel ProjectPosts'>
+<div class='tabs' style="height:auto;">
+    <ul>
+    	<li><a href="#" onclick='return false;' class='active'>Jenkins问答</a></li>
+    	<li><a href="/code/tag/jenkins">Jenkins代码</a></li>
+    	<li><a href="http://www.oschina.net/search?scope=blog&q=Jenkins">Jenkins博客</a></li>	
+    </ul>
+    <div class="clear"></div>
+</div>
+
+<div class='ProjectThreads'>
+<table>
+			<tr>
+		<td class='portrait'><a href='http://my.oschina.net/zhuyichuan' target="_blank"><img src="http://static.oschina.net/uploads/user/704/1408808_50.jpg?t=1385135846000" align="absmiddle" alt="zhu_yichuan" title="zhu_yichuan" class="SmallPortrait" user="1408808"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/1408808_245036" target="_blank" title="怎么样开源中国的 push 钩子发一条如下请求 curl -X POST -v -u xxx:xxxx &quot;http://xxxxx:8080/jenkins/job/Financialsoft/build?delay=0sec&quot;" class="thread">怎么样开源中国的 push 钩子发一条如下请求 curl -X POST -v ...</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/git' class='tag project image' data-id='414' title='分布式版本控制系统 Git'>Git</a> <a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>zhu_yichuan 发表于3天前
+							，最后回答(3天前)：<a href="http://www.oschina.net/question/1408808_245036?sort=time#answers">Zoker&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/1408808_245036">
+		<ul>
+												<li class='answer'><em>1</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>55</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/1245614' target="_blank"><img src="http://static.oschina.net/uploads/user/622/1245614_50.png?t=1414419352000" align="absmiddle" alt="Gmuploader" title="Gmuploader" class="SmallPortrait" user="1245614"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/1245614_228019" target="_blank" title="jenkins如何禁用上级项目和下级项目？" class="thread"><span class="highlight">jenkins</span>如何禁用上级项目和下级项目？</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>Gmuploader 发表于5个月前
+							，最后回答(5天前)：<a href="http://www.oschina.net/question/1245614_228019?sort=time#answers">xiaoxiao2011&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/1245614_228019">
+		<ul>
+												<li class='answer'><em>2</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>396</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/2380806' target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="yiranshaqiu" title="yiranshaqiu" class="SmallPortrait" user="2380806"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2380806_238692" target="_blank" title="Jenkins创建项目，源码管理git，URL中输入http地址" class="thread"><span class="highlight">Jenkins</span>创建项目，源码管理git，URL中输入http地址...</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>yiranshaqiu 发表于2个月前
+							，最后回答(1周前)：<a href="http://www.oschina.net/question/2380806_238692?sort=time#answers">GoogleFan&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2380806_238692">
+		<ul>
+												<li class='answer'><em>3</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>294</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/2002859' target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="赤水河" title="赤水河" class="SmallPortrait" user="2002859"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2002859_212391" target="_blank" title="Jenkins构建项目时报错" class="thread"><span class="highlight">Jenkins</span>构建项目时报错</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> <a href='http://www.oschina.net/question/tag/sonar' class='tag project image' data-id='7805' title='代码质量管理平台 Sonar'>Sonar</a> <a href='http://www.oschina.net/question/tag/php' class='tag project image' data-id='967' title='动态网页脚本语言 PHP'>PHP</a> 				    		</div>
+			<p>赤水河 发表于8个月前
+							，最后回答(2周前)：<a href="http://www.oschina.net/question/2002859_212391?sort=time#answers">江边望海&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2002859_212391">
+		<ul>
+												<li class='answer'><em>3</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>258</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/allencjl' target="_blank"><img src="http://static.oschina.net/uploads/user/1136/2273475_50.jpg?t=1416223881000" align="absmiddle" alt="f0restw0w--" title="f0restw0w--" class="SmallPortrait" user="2273475"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2273475_241406" target="_blank" title="jenkins服务器时间和svn同步" class="thread"><span class="highlight">jenkins</span>服务器时间和svn同步</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> <a href='http://www.oschina.net/question/tag/subversion' class='tag project image' data-id='410' title='版本控制系统 Subversion (SVN)'>Subversion (SVN)</a> 				    		</div>
+			<p>f0restw0w-- 发表于1个月前
+							，最后回答(2周前)：<a href="http://www.oschina.net/question/2273475_241406?sort=time#answers">江边望海&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2273475_241406">
+		<ul>
+												<li class='answer'><em>1</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>35</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/GoogleFan' target="_blank"><img src="http://static.oschina.net/uploads/user/769/1539359_50.png?t=1395972483000" align="absmiddle" alt="GoogleFan" title="GoogleFan" class="SmallPortrait" user="1539359"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/1539359_243720" target="_blank" title="Jenkins Ssh Connect Refuse" class="thread"><span class="highlight">Jenkins</span> Ssh Connect Refuse</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>GoogleFan 发表于2周前
+							</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/1539359_243720">
+		<ul>
+												<li class='answer0'><em>0</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>37</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/730622' target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="水溶VC" title="水溶VC" class="SmallPortrait" user="730622"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/730622_242396" target="_blank" title="如何在Jenkins中配置pc-lint" class="thread">如何在<span class="highlight">Jenkins</span>中配置pc-lint</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>水溶VC 发表于4周前
+							</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/730622_242396">
+		<ul>
+												<li class='answer0'><em>0</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>27</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/2406773' target="_blank"><img src="http://static.oschina.net/uploads/user/1203/2406773_50.jpg?t=1435891500000" align="absmiddle" alt="tomm21" title="tomm21" class="SmallPortrait" user="2406773"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2406773_241829" target="_blank" title="Jenkins 无法远程部署项目到tomcat7" class="thread"><span class="highlight">Jenkins</span> 无法远程部署项目到tomcat7</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>tomm21 发表于1个月前
+							，最后回答(4周前)：<a href="http://www.oschina.net/question/2406773_241829?sort=time#answers">李鹏飞&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2406773_241829">
+		<ul>
+												<li class='answer'><em>3</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>132</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/1420844' target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="famoss" title="famoss" class="SmallPortrait" user="1420844"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/1420844_241374" target="_blank" title="jenkins 部署到远程tomcat" class="thread"><span class="highlight">jenkins</span> 部署到远程tomcat</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> <a href='http://www.oschina.net/question/tag/tomcat' class='tag project image' data-id='536' title='Java应用服务器 Tomcat'>Tomcat</a> 				    		</div>
+			<p>famoss 发表于1个月前
+							，最后回答(1个月前)：<a href="http://www.oschina.net/question/1420844_241374?sort=time#answers">舞维天下&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/1420844_241374">
+		<ul>
+												<li class='answer'><em>2</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>184</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/912538' target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="夜夜夜夜夜" title="夜夜夜夜夜" class="SmallPortrait" user="912538"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/912538_235734" target="_blank" title="jenkins遇到含中文路径的SVN地址时认证通不过" class="thread"><span class="highlight">jenkins</span>遇到含中文路径的SVN地址时认证通不过</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>夜夜夜夜夜 发表于3个月前
+							，最后回答(1个月前)：<a href="http://www.oschina.net/question/912538_235734?sort=time#answers">占奇&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/912538_235734">
+		<ul>
+												<li class='answer'><em>1</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>162</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/yangting880815' target="_blank"><img src="http://static.oschina.net/uploads/user/1161/2322561_50.gif?t=1425372632000" align="absmiddle" alt="单蛙" title="单蛙" class="SmallPortrait" user="2322561"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2322561_241361" target="_blank" title="jenkins api对新建的job进行配置" class="thread"><span class="highlight">jenkins</span> api对新建的job进行配置</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>单蛙 发表于1个月前
+							</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2322561_241361">
+		<ul>
+												<li class='answer0'><em>0</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>39</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/donhui' target="_blank"><img src="http://static.oschina.net/uploads/user/794/1588291_50.jpg?t=1436185119000" align="absmiddle" alt="donhui" title="donhui" class="SmallPortrait" user="1588291"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/1588291_240718" target="_blank" title="使用GIT@OSC+灵雀云，基于docker的官方jenkins镜像，构建容器，启动之后，无法通过域名访问，报503错误。" class="thread">使用GIT@OSC+灵雀云，基于docker的官方<span class="highlight">jenkins</span>镜像，构建容器...</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/docker' class='tag project image' data-id='26564' title='Linux 容器引擎 Docker'>Docker</a> <a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>donhui 发表于1个月前
+							，最后回答(1个月前)：<a href="http://www.oschina.net/question/1588291_240718?sort=time#answers">Zoker&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/1588291_240718" title="已有最佳答案">
+		<ul>
+												<li class='answer HasBestAnswer'><em>1</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>169</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/574353' target="_blank"><img src="http://static.oschina.net/uploads/user/287/574353_50.jpg?t=1379918560000" align="absmiddle" alt="LiangXC" title="LiangXC" class="SmallPortrait" user="574353"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/574353_224514" target="_blank" title="jenkins 可以做增量构建发布吗？" class="thread"><span class="highlight">jenkins</span> 可以做增量构建发布吗？</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>LiangXC 发表于6个月前
+							，最后回答(1个月前)：<a href="http://www.oschina.net/question/574353_224514?sort=time#answers">杨延庆&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/574353_224514">
+		<ul>
+												<li class='answer'><em>1</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>509</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/yangyan' target="_blank"><img src="http://static.oschina.net/uploads/user/1/2765_50.jpg?t=1347066616000" align="absmiddle" alt="小杨阿哥哥" title="小杨阿哥哥" class="SmallPortrait" user="2765"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2765_240398" target="_blank" title="Tomcat + Jenkins 做持续集成，tomcat需要重启吗？" class="thread">Tomcat + <span class="highlight">Jenkins</span> 做持续集成，tomcat需要重启吗？...</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>小杨阿哥哥 发表于1个月前
+							，最后回答(1个月前)：<a href="http://www.oschina.net/question/2765_240398?sort=time#answers">仁江&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2765_240398">
+		<ul>
+												<li class='answer'><em>4</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>279</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/u/1771452' target="_blank"><img src="http://static.oschina.net/uploads/user/885/1771452_50.jpg?t=1402325805000" align="absmiddle" alt="何聪聪GG" title="何聪聪GG" class="SmallPortrait" user="1771452"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/1771452_225004" target="_blank" title="Sonar和Svn 冲突的问题" class="thread">Sonar和Svn 冲突的问题</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/sonar' class='tag project image' data-id='7805' title='代码质量管理平台 Sonar'>Sonar</a> <a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>何聪聪GG 发表于6个月前
+							，最后回答(1个月前)：<a href="http://www.oschina.net/question/1771452_225004?sort=time#answers">阿_嚏&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/1771452_225004">
+		<ul>
+												<li class='answer'><em>7</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>696</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/ijyun' target="_blank"><img src="http://static.oschina.net/uploads/user/278/557089_50.jpeg?t=1383552022000" align="absmiddle" alt="梓州龙井" title="梓州龙井" class="SmallPortrait" user="557089"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/557089_238999" target="_blank" title="寻觅做持续交付/DevOps的小伙伴" class="thread">寻觅做持续交付/DevOps的小伙伴</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> <a href='http://www.oschina.net/question/tag/gitlab' class='tag project image' data-id='19355' title='项目管理和代码托管平台 GitLab'>GitLab</a> <a href='http://www.oschina.net/question/tag/docker' class='tag project image' data-id='26564' title='Linux 容器引擎 Docker'>Docker</a> <a href='http://www.oschina.net/question/tag/ansible' class='tag project' data-id='24634' title='计算机系统配置管理器 Ansible'>Ansible</a> <a href='http://www.oschina.net/question/tag/sonar' class='tag project image' data-id='7805' title='代码质量管理平台 Sonar'>Sonar</a> 				    		</div>
+			<p>梓州龙井 发表于2个月前
+							，最后回答(2个月前)：<a href="http://www.oschina.net/question/557089_238999?sort=time#answers">orangleliu&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/557089_238999">
+		<ul>
+												<li class='answer'><em>5</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>1020</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/yangting880815' target="_blank"><img src="http://static.oschina.net/uploads/user/1161/2322561_50.gif?t=1425372632000" align="absmiddle" alt="单蛙" title="单蛙" class="SmallPortrait" user="2322561"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2322561_237922" target="_blank" title="jenkins ant项目自动化部署的项目文件依赖问题" class="thread"><span class="highlight">jenkins</span> ant项目自动化部署的项目文件依赖问题</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>单蛙 发表于2个月前
+							，最后回答(2个月前)：<a href="http://www.oschina.net/question/2322561_237922?sort=time#answers">Feng_Yu&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2322561_237922">
+		<ul>
+												<li class='answer'><em>2</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>129</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/yangting880815' target="_blank"><img src="http://static.oschina.net/uploads/user/1161/2322561_50.gif?t=1425372632000" align="absmiddle" alt="单蛙" title="单蛙" class="SmallPortrait" user="2322561"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2322561_236973" target="_blank" title="jenkins ssh脚本出现错误后怎么才能让jenkins构建失败" class="thread"><span class="highlight">jenkins</span> ssh脚本出现错误后怎么才能让<span class="highlight">jenkins</span>构建失败...</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>单蛙 发表于2个月前
+							，最后回答(2个月前)：<a href="http://www.oschina.net/question/2322561_236973?sort=time#answers">yygc&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2322561_236973">
+		<ul>
+												<li class='answer'><em>1</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>123</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/yangting880815' target="_blank"><img src="http://static.oschina.net/uploads/user/1161/2322561_50.gif?t=1425372632000" align="absmiddle" alt="单蛙" title="单蛙" class="SmallPortrait" user="2322561"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/2322561_236017" target="_blank" title="jenkins能部署war包么？求高手" class="thread"><span class="highlight">jenkins</span>能部署war包么？求高手</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>单蛙 发表于3个月前
+							，最后回答(3个月前)：<a href="http://www.oschina.net/question/2322561_236017?sort=time#answers">wp_g4&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/2322561_236017">
+		<ul>
+												<li class='answer'><em>3</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>191</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+				<tr>
+		<td class='portrait'><a href='http://my.oschina.net/guoenzhou' target="_blank"><img src="http://static.oschina.net/uploads/user/581/1162040_50.bmp?t=1377855891000" align="absmiddle" alt="郭恩洲的博客" title="郭恩洲的博客" class="SmallPortrait" user="1162040"/></a></td>
+		<td class='topic'>
+			<h4>
+				<a href="http://www.oschina.net/question/1162040_235119" target="_blank" title="jenkins 是怎么启动jenkins.war 程序包的" class="thread"><span class="highlight">jenkins</span> 是怎么启动<span class="highlight">jenkins</span>.war 程序包的</a>
+			</h4>
+			<div class='Tags'>
+												<a href='http://www.oschina.net/question/tag/java' class='tag project image' data-id='16962' title='编程语言 Java'>Java</a> <a href='http://www.oschina.net/question/tag/jenkins' class='tag project' data-id='16487' title='持续集成引擎 Jenkins'>Jenkins</a> 				    		</div>
+			<p>郭恩洲的博客 发表于3个月前
+							，最后回答(3个月前)：<a href="http://www.oschina.net/question/1162040_235119?sort=time#answers">lightling&raquo;</a>
+						</p>				
+		</td>
+		<td class='qstat'>
+		<a href="http://www.oschina.net/question/1162040_235119">
+		<ul>
+												<li class='answer'><em>4</em>回答</li>
+			<li class='vote'><em>0</em>投票</li>
+			<li class='view'><em>171</em>浏览</li>
+		</ul>
+		</a>
+		</td>
+	</tr>
+		</table>
+<a href="http://www.oschina.net/question/tag/jenkins" class='more'>更多Jenkins的问题 &raquo;</a>
+</div>
+</div>	</div>
+<div class='ProjectRight'>
+			<div id='QuestionWizard'>
+		<p>使用 <em>Jenkins</em> 中的任何问题</p>
+		<a href='/question/ask?project=Jenkins' class='rndbutton' style='margin-left:55px;'><span>我要提问/分享</span></a>		
+	</div>
+												<div id="DynaInfo">
+    	<form id="TForm" action="/action/tweet/pub?project=16487" onkeydown="if((event.metaKey || event.ctrlKey)&&event.keyCode==13){submitMe();}" method="POST">
+			<input type='hidden' name='user' value='${g_user.id}'/>
+			<input type='hidden' name='user_code' value=''/>
+    		<div id='DivPubStatus'>已发布:)</div>
+    		<textarea name='msg' placeholder='关于这款软件你有什么要说的吗？'></textarea>
+			<input type='submit' value='动 弹'/>    		
+    	</form>
+	
+        <div class="TopTweets_content">
+			<ul class="TopTweets">
+	<li>
+		<span class='portrait'><a href="http://my.oschina.net/httpssl" target="_blank"><img src="http://static.oschina.net/uploads/user/519/1039655_50.png?t=1437304616000" align="absmiddle" alt="坚持住" title="坚持住" class="SmallPortrait" user="1039655"/></a></span>
+		<span class='body'>
+			<span class='user'><a href="http://my.oschina.net/httpssl">坚持住</a>：</span><span class='log'>准备用 <a href='http://www.oschina.net/p/jenkins' class='project' target='_blank' title='持续集成引擎Jenkins'>Jenkins</a></span>
+            <span class='time'>4个月前 (<a href="http://my.oschina.net/httpssl/tweet/5053925">0评</a>)
+											</span>
+		</span>
+		<div class='clear'></div>
+	</li>
+	<li>
+		<span class='portrait'><a href="http://my.oschina.net/u/1245614" target="_blank"><img src="http://static.oschina.net/uploads/user/622/1245614_50.png?t=1414419352000" align="absmiddle" alt="Gmuploader" title="Gmuploader" class="SmallPortrait" user="1245614"/></a></span>
+		<span class='body'>
+			<span class='user'><a href="http://my.oschina.net/u/1245614">Gmuploader</a>：</span><span class='log'>谁有在linux环境下远程部署的例子？我远程部署报错，纠结 <a href='http://www.oschina.net/p/jenkins' class='project' target='_blank' title='持续集成引擎Jenkins'>Jenkins</a></span>
+            <span class='time'>6个月前 (<a href="http://my.oschina.net/u/1245614/tweet/4829538">0评</a>)
+											</span>
+		</span>
+		<div class='clear'></div>
+	</li>
+	<li>
+		<span class='portrait'><a href="http://my.oschina.net/jack230230" target="_blank"><img src="http://static.oschina.net/uploads/user/41/82993_50.png?t=1402714881000" align="absmiddle" alt="王振威" title="王振威" class="SmallPortrait" user="82993"/></a></span>
+		<span class='body'>
+			<span class='user'><a href="http://my.oschina.net/jack230230">王振威</a>：</span><span class='log'><a href='http://www.oschina.net/p/jenkins' class='project' target='_blank' title='持续集成引擎Jenkins'>Jenkins</a> 使用默认的jvm参数，很容易刮掉</span>
+            <span class='time'>1年前 (<a href="http://my.oschina.net/jack230230/tweet/3135899">2评</a>)
+											</span>
+		</span>
+		<div class='clear'></div>
+	</li>
+	<li>
+		<span class='portrait'><a href="http://my.oschina.net/2012" target="_blank"><img src="http://static.oschina.net/uploads/user/8/16298_50.jpg?t=1437185383000" align="absmiddle" alt="开源中国首席一失足成千古风流人物以稀为贵" title="开源中国首席一失足成千古风流人物以稀为贵" class="SmallPortrait" user="16298"/></a></span>
+		<span class='body'>
+			<span class='user'><a href="http://my.oschina.net/2012">开源中国首席一失足成千古风流人物以稀为贵</a>：</span><span class='log'> 呃。。 最新版直接把jvm 跑倒了 <a href='http://www.oschina.net/p/jenkins' class='project' target='_blank' title='持续集成引擎Jenkins'>Jenkins</a></span>
+            <span class='time'>2年前 (<a href="http://my.oschina.net/2012/tweet/2855587">0评</a>)
+											</span>
+		</span>
+		<div class='clear'></div>
+	</li>
+	<li>
+		<span class='portrait'><a href="http://my.oschina.net/2012" target="_blank"><img src="http://static.oschina.net/uploads/user/8/16298_50.jpg?t=1437185383000" align="absmiddle" alt="开源中国首席一失足成千古风流人物以稀为贵" title="开源中国首席一失足成千古风流人物以稀为贵" class="SmallPortrait" user="16298"/></a></span>
+		<span class='body'>
+			<span class='user'><a href="http://my.oschina.net/2012">开源中国首席一失足成千古风流人物以稀为贵</a>：</span><span class='log'> 呃。。 最新版直接把jvm 跑倒了 <a href='http://www.oschina.net/p/jenkins' class='project' target='_blank' title='持续集成引擎Jenkins'>Jenkins</a></span>
+            <span class='time'>2年前 (<a href="http://my.oschina.net/2012/tweet/2855586">0评</a>)
+											</span>
+		</span>
+		<div class='clear'></div>
+	</li>
+</ul>
+                                                                                <ul class="pager">
+                        <li class='page current'><a href="/p/list_p_tweets?project=16487&p=1">1</a></li>            <li class='page'><a href="/p/list_p_tweets?project=16487&p=2">2</a></li>            <li class='page next'><a href="/p/list_p_tweets?project=16487&p=2">&gt;</a></li>        </ul>
+            		</div>
+		<script type='text/javascript'>
+		<!--	
+        $('#TForm').ajaxForm({
+    		dataType: 'json',
+            success: function(json) {
+				handleLogRes(json);
+            }
+        });
+		$('#DynaInfo .pager a').live('click',function(){
+			jQuery.ajax({
+        		type	: "GET",
+        		url		: $(this).attr('href'),
+        		success : function(data){
+					$('.TopTweets_content').html(data);
+				}
+        	});	
+			$('#DynaInfo .pager li').removeClass('current');
+			$(this).parent().addClass('current');
+			return false;
+		});
+		$('#c').bind('mouseover mouseout',function(){
+			$('#c_on').toggle();
+			$('#c_off').toggle();
+		});
+		function submitMe(){
+			var queryString = $('#TForm').formSerialize();
+			ajax_post("/action/tweet/pub?project=16487",queryString,function(res){
+				var json = eval('(' + res + ')'); 
+				handleLogRes(json);
+			});
+		}
+		function handleLogRes(json){
+        	if(json.msg){
+				alert(json.msg);
+        	}else if(json.log){
+				$('#TForm textarea').val(' ');
+				$('#DivPubStatus').show();
+				t = setTimeout(function(){
+					$('#DivPubStatus').hide();
+					clearTimeout(t);
+					$('#TForm textarea').val('');
+					$('#TForm textarea').focus();								
+                	jQuery.ajax({
+                		type	: "GET",
+                		url		: "/p/get_p_tweet?id="+json.log,
+                		success : function(data){
+    						$('.TopTweets').prepend(data);
+    					}
+                	});	
+				},1000);
+        	}
+		}
+		//-->
+		</script>
+	</div>
+		
+	
+	<div class='RightBlock RightProjectList'>
+		<div class="RightTitle">
+				<span class='right'><a href="/p/jenkins/similar_projects#list" class='more'>显示所有&nbsp;&raquo;</a></span>
+						共有 <em>25</em> 个类似软件</div>
+						<ul>
+						<li>
+				<a href="/p/hudson"><span style='color:#A00;'>[荐]</span>持续集成引擎 <span class='name'>Hudson</span></a>
+				<p>Hudson 是一个可扩展的持续集成引擎。 主要用于： 1.持续、自动地构建/测试软件项目...</p>
+			</li>
+						<li>
+				<a href="/p/cruisecontrol"><span style='color:#A00;'>[荐]</span>持续构建框架 <span class='name'>CruiseControl</span></a>
+				<p>CruiseControl是一个针对持续构建程序(项目持续集成)的框架,它包括一个email通知的...</p>
+			</li>
+						<li>
+				<a href="/p/continuum"><span style='color:#A00;'>[荐]</span>持续集成服务器 <span class='name'>Apache Continuum</span></a>
+				<p>Apache Continuum 是最新的 CI 服务器之一，也是值得关注的一个新进入者。Continu...</p>
+			</li>
+						<li>
+				<a href="/p/thoughtworks-go"><span style='color:#A00;'>[荐]</span>持续集成系统 <span class='name'>ThoughtWorks Go</span></a>
+				<p>ThoughtWorks Go 是 ThoughtWorks 公司的一款持续集成和发布的系统。采用 Java 语言...</p>
+			</li>
+						<li>
+				<a href="/p/strider"><span style='color:#A00;'>[荐]</span>持续集成和发布服务器 <span class='name'>Strider</span></a>
+				<p>Strider 是一个开源的持续集成和发布服务器。使用 Node.js 开发。 安装方法： $ n...</p>
+			</li>
+						<li>
+				<a href="/p/teamcity">持续集成工具 <span class='name'>TeamCity</span></a>
+				<p>TeamCity是一款功能强大的持续集成（Continue Integration）工具，包括服务器端和客...</p>
+			</li>
+						<li>
+				<a href="/p/quickbuild">持续集成和发布管理系统 <span class='name'>QuickBuild</span></a>
+				<p>QuickBuild 是一个持续集成和发布管理的服务器软件，它提供了一个统一的控制台用来...</p>
+			</li>
+						<li>
+				<a href="/p/bamboo">持续集成系统 <span class='name'>Atlassian Bamboo</span></a>
+				<p>Atlassian Bamboo 是一款持续集成构建服务器软件(Build Server)。 Bamboo的特点: 简...</p>
+			</li>
+						<li>
+				<a href="/p/cruisecontrol.net">持续集成工具 <span class='name'>CruiseControl.NET</span></a>
+				<p>CruiseControl.NET 是 .NET 平台下的持续集成工具，CruiseControl (Java) 的 .NET...</p>
+			</li>
+						<li>
+				<a href="/p/travis-ci">基于云的持续集成项目 <span class='name'>Travis CI</span></a>
+				<p>Travis CI是一个基于云的持续集成项目， 目前已经支持大部分主流语言了，比如：C，...</p>
+			</li>
+					</ul>
+			</div>
+        	<div class='RightBlock RightProjectList'>
+		<div class="RightTitle">相关软件</div>
+		<ul>
+				<li>
+			<a href="/p/jenkins-weibo"><span class='name'>Jenkins新浪微博插件</span></a>
+			<p>Jenkins新浪微博插件：做为流行持续集成领域平台Jenkins的一款开源插件，新浪微博插...</p>
+		</li>
+						<li>
+			<a href="/p/jenkins-mttr-plugins"><span class='name'>Jenkins-MTTR-plugins</span></a>
+			<p>Jenkins-MTTR-plugins 是 Jenkins 插件，可以统计作业构建的平均修复时间。...</p>
+		</li>
+						<li>
+			<a href="/p/jenkins-dashboard"><span class='name'>jenkins-dashboard</span></a>
+			<p>jenkins-dashboard 是持续集成引擎 jenkins 的用户面板。</p>
+		</li>
+						</ul>
+	</div>
+		
+		<div class="p_ad" style="margin-bottom: 40px;">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- oschina-project-250x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:250px;height:250px"
+     data-ad-client="ca-pub-7090564139599510"
+     data-ad-slot="9681670919"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>	</div>
+		
+	<div class="RightBlock TopUsers">
+		<div class="RightTitle">共有 <em id="attentent_count">267</em> 人关注 <em>Jenkins</em></div>
+		<ul>
+                        <li>
+        	<a href="http://my.oschina.net/bluesky0leon" title="zheng-lee" target="_blank"><img src="http://static.oschina.net/uploads/user/0/1168_50.jpg?t=1369102502000" align="absmiddle" alt="zheng-lee" title="zheng-lee" class="SmallPortrait" user="1168"/></a>
+        	<a href="http://my.oschina.net/bluesky0leon" class='name' title="zheng-lee" target="_blank">zheng-lee</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/polly" title="polly" target="_blank"><img src="http://static.oschina.net/uploads/user/2/4572_50.jpg?t=1370685237000" align="absmiddle" alt="polly" title="polly" class="SmallPortrait" user="4572"/></a>
+        	<a href="http://my.oschina.net/polly" class='name' title="polly" target="_blank">polly</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/ailang323" title="ailang323" target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="ailang323" title="ailang323" class="SmallPortrait" user="4888"/></a>
+        	<a href="http://my.oschina.net/ailang323" class='name' title="ailang323" target="_blank">ailang323</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/kjpioo" title="kjpioo" target="_blank"><img src="http://static.oschina.net/uploads/user/2/5287_50.jpg" align="absmiddle" alt="kjpioo" title="kjpioo" class="SmallPortrait" user="5287"/></a>
+        	<a href="http://my.oschina.net/kjpioo" class='name' title="kjpioo" target="_blank">kjpioo</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/lxrm" title="LXRM" target="_blank"><img src="http://static.oschina.net/uploads/user/7/15592_50.jpg?t=1368786453000" align="absmiddle" alt="LXRM" title="LXRM" class="SmallPortrait" user="15592"/></a>
+        	<a href="http://my.oschina.net/lxrm" class='name' title="LXRM" target="_blank">LXRM</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/shizhoubo" title="Sephiroth" target="_blank"><img src="http://static.oschina.net/uploads/user/8/16840_50.jpg?t=1368102132000" align="absmiddle" alt="Sephiroth" title="Sephiroth" class="SmallPortrait" user="16840"/></a>
+        	<a href="http://my.oschina.net/shizhoubo" class='name' title="Sephiroth" target="_blank">Sephiroth</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/oskar" title="linjie_830914" target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="linjie_830914" title="linjie_830914" class="SmallPortrait" user="19139"/></a>
+        	<a href="http://my.oschina.net/oskar" class='name' title="linjie_830914" target="_blank">linjie_830914</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/rogertian" title="rogertian" target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="rogertian" title="rogertian" class="SmallPortrait" user="19881"/></a>
+        	<a href="http://my.oschina.net/rogertian" class='name' title="rogertian" target="_blank">rogertian</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/u/24230" title="RNBThug" target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="RNBThug" title="RNBThug" class="SmallPortrait" user="24230"/></a>
+        	<a href="http://my.oschina.net/u/24230" class='name' title="RNBThug" target="_blank">RNBThug</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/yangjingwei" title="jingweiyoung" target="_blank"><img src="http://static.oschina.net/uploads/user/13/26935_50.jpg?t=1374258180000" align="absmiddle" alt="jingweiyoung" title="jingweiyoung" class="SmallPortrait" user="26935"/></a>
+        	<a href="http://my.oschina.net/yangjingwei" class='name' title="jingweiyoung" target="_blank">jingweiyoung</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/stormcc" title="stormcc" target="_blank"><img src="http://static.oschina.net/uploads/user/13/27732_50.jpg?t=1370513087000" align="absmiddle" alt="stormcc" title="stormcc" class="SmallPortrait" user="27732"/></a>
+        	<a href="http://my.oschina.net/stormcc" class='name' title="stormcc" target="_blank">stormcc</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/bearinmind" title="bear256" target="_blank"><img src="http://static.oschina.net/uploads/user/15/30951_50.jpg?t=1375930616000" align="absmiddle" alt="bear256" title="bear256" class="SmallPortrait" user="30951"/></a>
+        	<a href="http://my.oschina.net/bearinmind" class='name' title="bear256" target="_blank">bear256</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/zhchh" title="熊二" target="_blank"><img src="http://static.oschina.net/uploads/user/17/34680_50.jpg?t=1369724099000" align="absmiddle" alt="熊二" title="熊二" class="SmallPortrait" user="34680"/></a>
+        	<a href="http://my.oschina.net/zhchh" class='name' title="熊二" target="_blank">熊二</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/xiaoyu20091020" title="卡罗特" target="_blank"><img src="http://static.oschina.net/uploads/user/18/36457_50.jpg?t=1343953824000" align="absmiddle" alt="卡罗特" title="卡罗特" class="SmallPortrait" user="36457"/></a>
+        	<a href="http://my.oschina.net/xiaoyu20091020" class='name' title="卡罗特" target="_blank">卡罗特</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/fly020212" title="fly020212" target="_blank"><img src="http://static.oschina.net/uploads/user/19/38455_50.jpg?t=1417421071000" align="absmiddle" alt="fly020212" title="fly020212" class="SmallPortrait" user="38455"/></a>
+        	<a href="http://my.oschina.net/fly020212" class='name' title="fly020212" target="_blank">fly020212</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/feak" title="feewo" target="_blank"><img src="http://static.oschina.net/uploads/user/21/43141_50.jpg?t=1370341389000" align="absmiddle" alt="feewo" title="feewo" class="SmallPortrait" user="43141"/></a>
+        	<a href="http://my.oschina.net/feak" class='name' title="feewo" target="_blank">feewo</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/zzee" title="jianghf" target="_blank"><img src="http://static.oschina.net/uploads/user/21/43602_50.jpg?t=1370500489000" align="absmiddle" alt="jianghf" title="jianghf" class="SmallPortrait" user="43602"/></a>
+        	<a href="http://my.oschina.net/zzee" class='name' title="jianghf" target="_blank">jianghf</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/oss" title="summer100" target="_blank"><img src="/img/portrait.gif?t=1399607780000" align="absmiddle" alt="summer100" title="summer100" class="SmallPortrait" user="44701"/></a>
+        	<a href="http://my.oschina.net/oss" class='name' title="summer100" target="_blank">summer100</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/lightenvoy" title="lightenvoy" target="_blank"><img src="http://static.oschina.net/uploads/user/26/52717_50.jpg?t=1365651242000" align="absmiddle" alt="lightenvoy" title="lightenvoy" class="SmallPortrait" user="52717"/></a>
+        	<a href="http://my.oschina.net/lightenvoy" class='name' title="lightenvoy" target="_blank">lightenvoy</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/lilin" title="ifzer" target="_blank"><img src="http://static.oschina.net/uploads/user/27/54191_50.jpg?t=1412043024000" align="absmiddle" alt="ifzer" title="ifzer" class="SmallPortrait" user="54191"/></a>
+        	<a href="http://my.oschina.net/lilin" class='name' title="ifzer" target="_blank">ifzer</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/wen3062" title="27号" target="_blank"><img src="http://static.oschina.net/uploads/user/27/55156_50.jpg" align="absmiddle" alt="27号" title="27号" class="SmallPortrait" user="55156"/></a>
+        	<a href="http://my.oschina.net/wen3062" class='name' title="27号" target="_blank">27号</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/gai" title="老盖" target="_blank"><img src="http://static.oschina.net/uploads/user/27/55577_50.jpeg?t=1388822552000" align="absmiddle" alt="老盖" title="老盖" class="SmallPortrait" user="55577"/></a>
+        	<a href="http://my.oschina.net/gai" class='name' title="老盖" target="_blank">老盖</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/LastRitter" title="LastRitter" target="_blank"><img src="http://static.oschina.net/uploads/user/28/56674_50.jpg" align="absmiddle" alt="LastRitter" title="LastRitter" class="SmallPortrait" user="56674"/></a>
+        	<a href="http://my.oschina.net/LastRitter" class='name' title="LastRitter" target="_blank">LastRitter</a>
+        </li>
+                                <li>
+        	<a href="http://my.oschina.net/zcsls" title="GLEN" target="_blank"><img src="http://static.oschina.net/uploads/user/28/56979_50.jpg?t=1394526222000" align="absmiddle" alt="GLEN" title="GLEN" class="SmallPortrait" user="56979"/></a>
+        	<a href="http://my.oschina.net/zcsls" class='name' title="GLEN" target="_blank">GLEN</a>
+        </li>
+                		</ul>
+	</div>
+	
+	
+</div>
+</div>
+
+<script type="text/javascript" src="/js/sh309/scripts/xregexp-min.js?t=1423294217000"></script>
+<script type="text/javascript" src="/js/sh309/scripts/shCore.min.js?t=1423294217000"></script>
+<script type="text/javascript" src="/js/sh309/scripts/shAutoloader.js?t=1423294217000"></script>
+<link type="text/css" rel="stylesheet" href="/js/sh309/styles/shCore.css?t=1423294217000"/>
+<link type="text/css" rel="Stylesheet" href="/js/sh309/styles/shThemeDefault.css?t=1423294217000"/>
+
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+            'applescript			/js/sh309/scripts/shBrushAppleScript.js?t=1423294217000',
+            'actionscript3 as3		/js/sh309/scripts/shBrushAS3.js?t=1423294217000',
+            'bash shell				/js/sh309/scripts/shBrushBash.js?t=1423294217000',
+            'coldfusion cf			/js/sh309/scripts/shBrushColdFusion.js?t=1423294217000',
+            'cpp c					/js/sh309/scripts/shBrushCpp.js?t=1423294217000',
+            'obj-c objc				/js/sh309/scripts/shBrushObjC.js?t=1423294217000',
+            'c# c-sharp csharp		/js/sh309/scripts/shBrushCSharp.js?t=1423294217000',
+            'css					/js/sh309/scripts/shBrushCss.js?t=1423294217000',
+            'delphi pascal			/js/sh309/scripts/shBrushDelphi.js?t=1423294217000',
+            'diff patch pas			/js/sh309/scripts/shBrushDiff.js?t=1423294217000',
+            'erl erlang				/js/sh309/scripts/shBrushErlang.js?t=1423294217000',
+            'groovy					/js/sh309/scripts/shBrushGroovy.js?t=1423294217000',
+            'haxe hx				/js/sh309/scripts/shBrushHaxe.js?t=1423294217000',
+            'java					/js/sh309/scripts/shBrushJava.js?t=1423294217000',
+            'jfx javafx				/js/sh309/scripts/shBrushJavaFX.js?t=1423294217000',
+            'js jscript javascript	/js/sh309/scripts/shBrushJScript.js?t=1423294217000',
+            'perl pl				/js/sh309/scripts/shBrushPerl.js?t=1423294217000',
+            'php					/js/sh309/scripts/shBrushPhp.js?t=1423294217000',
+            'text plain				/js/sh309/scripts/shBrushPlain.js?t=1423294217000',
+            'py python				/js/sh309/scripts/shBrushPython.js?t=1423294217000',
+            'ruby rails ror rb		/js/sh309/scripts/shBrushRuby.js?t=1423294217000',
+            'scala					/js/sh309/scripts/shBrushScala.js?t=1423294217000',
+            'sql					/js/sh309/scripts/shBrushSql.js?t=1423294217000',
+            'vb vbnet				/js/sh309/scripts/shBrushVb.js?t=1423294217000',
+            'xml xhtml xslt html	/js/sh309/scripts/shBrushXml.js?t=1423294217000'
+    );
+    SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="/action/visit/project?id=16487" defer="defer"></script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="/js/minmax.js?t=1399607773000"></script>
+<![endif]-->
+<div class='clear'></div></div>
+	<div id="OSC_Footer" class='CenterDiv'><style>
+.oscapp {text-align:left; width:220px;}
+.oscapp span {float:left;width:140px;}
+.oscapp a {float:left;text-indent:-9999em;width:16px;margin-left:8px;}
+.oscapp a.android {background:url('/img/android.gif') no-repeat left center;}
+.oscapp a.iphone {background:url('/img/iphone.gif') no-repeat left center;}
+.oscapp a.wp7 {background:url('/img/wp7.gif') no-repeat left center;}
+</style>
+<table width='100%'><tr>
+<td align='left'>&copy; 开源中国(OSChina.NET) | <a href="http://www.oschina.net/home/aboutosc">关于我们</a> | <a href="mailto:market@oschina.net">广告联系</a> | <a href="http://weibo.com/oschina2010" target="_blank">@新浪微博</a> | <a href="http://m.oschina.net/">开源中国手机版</a> | <a href='http://www.miitbeian.gov.cn/' target='_blank' style='color:#737573;text-decoration:none;'>粤ICP备12009483号-3</a></td>
+<td class='oscapp'>
+	<span>开源中国手机客户端：</span>
+	<a href="http://www.oschina.net/app" class='android' title='Android客户端'>Android</a>
+	<a href="http://www.oschina.net/app" class='iphone' title='iPhone 客户端'>iPhone</a>
+	<a href="http://www.oschina.net/app" class='wp7' title='Windows Phone 客户端'>WP7</a>
+</td>
+</tr>
+<tr>
+<td colspan='2' align='left'>开源中国社区(OSChina.net)是工信部 <a href='http://www.copu.org.cn/' target='_blank'>开源软件推进联盟</a> 指定的官方社区</td>
+</tr>
+</table>
+<script type='text/javascript'>
+<!--
+if (top.location != self.location)top.location=self.location;
+//-->
+</script></div>
+</div>
+</body>
+</html>
+<!-- Generated by OsChina.NET (init:1[ms],page:72[ms],ip:113.88.74.205) -->

@@ -146,7 +146,7 @@ DELIMITER ;
 DELIMITER // 
 CREATE PROCEDURE proc_get_persons(OUT s ) 
 BEGIN 
-select p.id as 编号, p.LastName as 姓名, p.FirstName as 名字 , p.Birthday as yers from persons as p limit 0,10 as s
+select p.id as 编号, p.LastName as 姓名, p.FirstName as 名字 , p.Birthday as yers from persons as p limit 0,10 
 END 
 // 
 DELIMITER ; 

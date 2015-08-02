@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>使用Mocha 和Superagent 进行测试（2） - 51CTO.COM</title>
+<meta name="description" content="《Node.js项目实践：构建可扩展的Web应用》第8章使用Express.js 和Hapi 构建Node.js REST API 服务，在这一章中我们还学习了通过Mongoskin 操作MongoDB。另外，我们学习了使用Mocha 和SuperAgent 进行功能测试，以后重构代码时，它能为我们节省大量的测试和调试时间。本节为大家介绍使用Mocha 和Superagent 进行测试。
+"/>
+<meta name="keywords" content="Node.js,Web应用,Node.js项目实践：构建可扩展的Web应用"/>
+<base target="_blank" />
+<link href="http://images.51cto.com/images/art1105/css/grid.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="http://images.51cto.com/images/art/css/art_master_top.css" />
+<link href="http://book.51cto.com/images/bookspec/css/css3.css" rel="stylesheet" type="text/css" />
+<script language="javaScript" src="http://www.51cto.com/php/base_art.js"></SCRIPT>
+<script src="http://www.51cto.com/images/homepage/index_1_down.js"></script>
+<style type="text/css">
+.bds_tools a{ padding:0; margin:0;}
+</style>
+</head>
+<body >
+<!-- 导航 开始-->
+<script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/a3b9823c927173ada250e3f2f84f4703/allmobilize.min.js"></script><meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+<div id="home_top">    <div class="top_nav">        <div class="left" style="width:400px"><div class="logo_51cto" title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></div><a href="http://www.51cto.com/">首页</a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif" style="padding-top: 2px;"><a onmouseover="show(1,this);" onmouseout="popupClose();" href="http://www.51cto.com/col/35/" target="_blank">技术频道<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif"><a onmouseover="show(2,this);" onmouseout="popupClose();" href="http://www.51cto.com" target="_blank">51CTO旗下网站<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a> <a href="http://www.51cto.com/about/rss.html" target="_blank"><img src="http://images.51cto.com/files/uploadimg/20110922/143749870.gif" style="vertical-align:middle; margin-bottom: 5px; margin-left:5px;"></a>       </div>        <div class="right">            <div class="more"><a href="http://shop.51cto.com" target="_blank">云特卖</a> <img width="27" height="16" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_shequ.gif">社区：<a href="http://edu.51cto.com/" target="_blank" style="color:#CC0000">学院</a><a href="http://down.51cto.com" target="_blank">下载</a><a href="http://bbs.51cto.com" target="_blank">论坛</a><a href="http://blog.51cto.com" target="_blank">博客</a><a onmouseover="show(3,this)" onmouseout="popupClose()" href="javascript:viod(0);">更多<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a>            </div>            <span id="login_status"><div class="login" id="login_status"></div>    </span>                </div>    </div></div>
+<div class="subMenu1" id="s1" onmouseover="popupNoClose();" onmouseout="popupClose();">
+<ul>
+<li><a href="http://network.51cto.com" target="_blank">网络</a></li>
+<li><a href="http://netsecurity.51cto.com" target="_blank">安全</a></li>
+<li><a href="http://developer.51cto.com" target="_blank">开发</a></li>
+<li><a href="http://database.51cto.com" target="_blank">数据库</a></li>
+<li><a href="http://server.51cto.com" target="_blank">服务器</a></li>
+<li><a href="http://os.51cto.com" target="_blank">系统</a></li>
+<li><a href="http://virtual.51cto.com" target="_blank">虚拟化</a></li>
+<li><a href="http://cloud.51cto.com" target="_blank">云计算</a></li>
+<li><a href="http://developer.51cto.com/embed/" target="_blank">嵌入式</a></li>
+<li><a href="http://mobile.51cto.com/" target="_blank">移动开发</a></li>
+</ul>
+</div> 
+<div class="subMenu2" id="s2" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://www.51cto.com" target="_blank" title="中国领先的IT技术网站">51CTO.COM</a></li>
+<li><a href="http://www.cioage.com" target="_blank" title="中国首个专门服务于CIO的专业网站">CIOage.com</a></li>
+<li><a href="http://www.watchstor.com/" target="_blank"  title="领先的中文存储网络媒体">WatchStor.com</a></li>
+<li><a href="http://www.hc3i.cn/" target="_blank"  title="中国首家专注于数字医疗及医疗信息化的专业网站">HC3i.cn</a></li>
+</ul>
+</div>
+<script src="http://www.51cto.com/js/jquery-1.8.3.min.js"></script>
+<script>
+$(function(){
+	$(".bann").height(265);	 
+	$(".bann").css("background-color","white");
+	$(".hot").css("top","450px");
+	//$(".fixfloat").css("height","640px");
+	$(".g_13").find(".focus").css("height","640px");
+});
+var edunum=2;
+$(function(){
+	$("#change").click(function(){
+		$("#edu > ul").css("display","none");
+		var eduid='edu'+edunum;
+		$("#" + eduid).css("display","block");	
+		if(edunum<4){
+			edunum++;	
+		}else{
+			edunum=1;	
+		}							
+	});  
+});
+</script>
+
+<script src="http://www.51cto.com/head_art_more1.js"></script>
+<!-- 登陆信息 -->
+<!-- 导航 结束--> 
+ <div class="g_39 mb10">
+	<div id="tonglanad" class="fl"></div>
+	<div id="list4" class="fr">
+		<ul>
+			<li id="wordlinkad1"></li>
+			<li id="wordlinkad2"></li>
+			<li id="wordlinkad3"></li>
+			<li id="wordlinkad4"></li>
+		</ul>
+	</div>
+<br class="dle"/>
+</div>
+
+<div class="g_39 menu">
+<div class="subNav_logo"><img src="http://www.51cto.com/images/sunbanner/dushu_logo.gif" /></div>
+  <div class="subNav_l"><A href="http://book.51cto.com/" target=_blank>首页</A> | <A href="http://www.51cto.com/col/1198/" target=_blank>网络</A> | <A href="http://www.51cto.com/col/1203/" target=_blank>安全</A> | <A href="http://www.51cto.com/col/1210/" target=_blank>系统</A> | <A href="http://www.51cto.com/col/1216/" target=_blank>数据库</A> | <A href="http://www.51cto.com/col/1221/" target=_blank>开发</A> | <A href="http://www.51cto.com/col/1232/" target=_blank>Web应用</A> | <A href="http://www.51cto.com/col/1235/" target=_blank>考试认证</A> | <A href="http://www.51cto.com/col/1260/" target=_blank>职场</A> | <A href="http://www.51cto.com/col/1259/" target=_blank>管理</A> | <A href="http://publish.51cto.com/list/1192/" target=_blank>全部文章</A></div>  
+<div class="search fr">
+<dl>
+<form name=searchform action="http://www.51cto.com/php/search.php" target="_blank" method=post style="margin:0px; padding:0px;">
+<dt class="fl"><input name="keyword" type="text" class="searchInput f14 input" value="请输入关键字" onfocus="doempty(this, '请输入关键字');" onblur="doempty(this, '请输入关键字');" /></dt>
+<dd class="fl"><input type="image" src="http://images.51cto.com/images/art/newart1012/images/search.gif" /></dd></form>
+</dl>
+</div>
+<br class="dle"/>
+</div>
+<div class="g_39 b3-s-4273B3 rel">
+<!--width : 26*25 - 15 = 635px-->
+<div class="g_26 fl m_l">
+<div class="brief bgF8F8F8">
+<p class="crumb ">您所在的位置：<a href='http://book.51cto.com'>读书频道</a> &gt; <a href='http://book.51cto.com/col/1221/'>设计开发</a> &gt; <a href='http://book.51cto.com/col/1227/'>其它开发</a> &gt;  <b>使用Mocha 和Superagent 进行测试（2）</b> </p>
+<h1>使用Mocha 和Superagent 进行测试（2）</h1>
+<div class="msg">
+<div>2015-05-21 15:39  奇舞团 译  电子工业出版社 </span> 字号：<span class="f14-b"><a href="javascript:setfont(12);" target="_self">T</a></span> | <span class="f16-b"><a href="javascript:setfont(16);" target="_self">T</a></span></div>
+<div class='artHd' id='books' style='padding:5px 25px;'></div>
+<div class="fav"><a href="javascript:favorBox('open');" title="一键收藏，随时查看，分享好友！" target="_self"><img src="http://images.51cto.com/images/art/newart1012/images/Fav.gif" alt="一键收藏，随时查看，分享好友！" border="0" /></a></div>
+</div>
+<div class="brieftext">
+<p class="f14 green">《Node.js项目实践：构建可扩展的Web应用》第8章使用Express.js 和Hapi 构建Node.js REST API 服务，在这一章中我们还学习了通过Mongoskin 操作MongoDB。另外，我们学习了使用Mocha 和SuperAgent 进行功能测试，以后重构代码时，它能为我们节省大量的测试和调试时间。本节为大家介绍使用Mocha 和Superagent 进行测试。
+</p>
+<p class="ad">AD：<script src="http://www.51cto.com/js/article/keywords_ad_new.js"></script>
+</p>
+</div>
+<!--  <div style="border-left:5px solid #4065aa;height:25px; line-height:25px;margin-top:10px;background:#eef7ff;padding-left:10px;">
+<a style="text-decoration: none;color:red" target="_blank" href="http://server.51cto.com/exp/OpenPower/">IBM POWER8通过一年充分融入了“开放”基因，现在有哪些成效？快来注册观看直播，一起拥抱开源的力量。</a>
+</div> -->
+
+
+
+</div>
+<div class="tag bgF8F8F8" id="indexlist" style="display:none;">
+<ul id="indexliststr">
+</ul>
+<br class="dle"/>
+</div>
+<div class="content bgF8F8F8 f14">
+<div id="content">
+<p><p><strong>使用Mocha 和Superagent 进行测试（2）</strong></p>
+<p>接下来要测试的是更新对象。通过给superagent 的请求函数传一个参数对象，向服务端提交一些数据，然后断言这个操作返回的结果是msg=success：<br />
+&nbsp;</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>it('updates&nbsp;an&nbsp;object',&nbsp;function(done){ &nbsp;</span></span></li><li><span>superagent.put('http://localhost:3000/collections/test/'+id) &nbsp;</span></li><li class="alt"><span>.send({name:&nbsp;'Peter', &nbsp;</span></li><li><span>email:&nbsp;'peter@yahoo.com'}) &nbsp;</span></li><li class="alt"><span>.end(function(e,&nbsp;res){ &nbsp;</span></li><li><span>expect(e).to.eql(null) &nbsp;</span></li><li class="alt"><span>expect(typeofres.body).to.eql('object') &nbsp;</span></li><li><span>expect(res.body.msg).to.eql('success') &nbsp;</span></li><li class="alt"><span>done() &nbsp;</span></li><li><span>}) &nbsp;</span></li><li class="alt"><span>})&nbsp;</span></li></ol></pre>
+<p>最后两个用例，一个是还原前面做的修改，另一个是删掉这个对象，和前面两个测试用例的做法非常类似。下面是完整的ch8/rest-express/test/index.js 文件的代码：<br />
+&nbsp;</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>var&nbsp;</span><span class="attribute">superagent</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">require</span><span>('superagent') &nbsp;</span></span></li><li><span>var&nbsp;</span><span class="attribute">expect</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">require</span><span>('expect.js') &nbsp;</span></li><li class="alt"><span>describe('express&nbsp;rest&nbsp;api&nbsp;server',&nbsp;function(){ &nbsp;</span></li><li><span>var&nbsp;id &nbsp;</span></li><li class="alt"><span>it('post&nbsp;object',&nbsp;function(done){ &nbsp;</span></li><li><span>superagent.post('http://localhost:3000/collections/test') &nbsp;</span></li><li class="alt"><span>.send({&nbsp;name:&nbsp;'John', &nbsp;</span></li><li><span>email:&nbsp;'john@rpjs.co' &nbsp;</span></li><li class="alt"><span>}) &nbsp;</span></li><li><span>.end(function(e,res){ &nbsp;</span></li><li class="alt"><span>expect(e).to.eql(null) &nbsp;</span></li><li><span>expect(res.body.length).to.eql(1) &nbsp;</span></li><li class="alt"><span>expect(res.body[0]._id.length).to.eql(24) &nbsp;</span></li><li><span class="attribute">id</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">res</span><span>.body[0]._id &nbsp;</span></li><li class="alt"><span>done() &nbsp;</span></li><li><span>}) &nbsp;</span></li><li class="alt"><span>}) &nbsp;</span></li><li><span>it('retrieves&nbsp;an&nbsp;object',&nbsp;function(done){ &nbsp;</span></li><li class="alt"><span>superagent.get('http://localhost:3000/collections/test/'+id) &nbsp;</span></li><li><span>.end(function(e,&nbsp;res){ &nbsp;</span></li><li class="alt"><span>expect(e).to.eql(null) &nbsp;</span></li><li><span>expect(typeofres.body).to.eql('object') &nbsp;</span></li><li class="alt"><span>expect(res.body._id.length).to.eql(24) &nbsp;</span></li><li><span>expect(res.body._id).to.eql(id) &nbsp;</span></li><li class="alt"><span>done() &nbsp;</span></li><li><span>}) &nbsp;</span></li><li class="alt"><span>}) &nbsp;</span></li><li><span>it('retrieves&nbsp;a&nbsp;collection',&nbsp;function(done){ &nbsp;</span></li><li class="alt"><span>superagent.get('http://localhost:3000/collections/test') &nbsp;</span></li><li><span>.end(function(e,&nbsp;res){ &nbsp;</span></li><li class="alt"><span>expect(e).to.eql(null) &nbsp;</span></li><li><span>expect(res.body.length).to.be.above(0) &nbsp;</span></li><li class="alt"><span>expect(res.body.map(function&nbsp;(item){ &nbsp;</span></li><li><span>return&nbsp;item._id &nbsp;</span></li><li class="alt"><span>})).to.contain(id) &nbsp;</span></li><li><span>done() &nbsp;</span></li><li class="alt"><span>}) &nbsp;</span></li><li><span>}) &nbsp;</span></li><li class="alt"><span>it('updates&nbsp;an&nbsp;object',&nbsp;function(done){ &nbsp;</span></li><li><span>superagent.put('http://localhost:3000/collections/test/'+id) &nbsp;</span></li><li class="alt"><span>.send({name:&nbsp;'Peter', &nbsp;</span></li><li><span>email:&nbsp;'peter@yahoo.com'}) &nbsp;</span></li><li class="alt"><span>.end(function(e,&nbsp;res){ &nbsp;</span></li><li><span>expect(e).to.eql(null) &nbsp;</span></li><li class="alt"><span>expect(typeofres.body).to.eql('object') &nbsp;</span></li><li><span>expect(res.body.msg).to.eql('success') &nbsp;</span></li><li class="alt"><span>done() &nbsp;</span></li><li><span>}) &nbsp;</span></li><li class="alt"><span>}) &nbsp;</span></li><li><span>it('checks&nbsp;an&nbsp;updated&nbsp;object',&nbsp;function(done){ &nbsp;</span></li><li class="alt"><span>superagent.get('http://localhost:3000/collections/test/'+id) &nbsp;</span></li><li><span>.end(function(e,&nbsp;res){ &nbsp;</span></li><li class="alt"><span>expect(e).to.eql(null) &nbsp;</span></li><li><span>expect(typeofres.body).to.eql('object') &nbsp;</span></li><li class="alt"><span>expect(res.body._id.length).to.eql(24) &nbsp;</span></li><li><span>expect(res.body._id).to.eql(id) &nbsp;</span></li><li class="alt"><span>expect(res.body.name).to.eql('Peter') &nbsp;</span></li><li><span>done() &nbsp;</span></li><li class="alt"><span>}) &nbsp;</span></li><li><span>}) &nbsp;</span></li><li class="alt"><span>it('removes&nbsp;an&nbsp;object',&nbsp;function(done){ &nbsp;</span></li><li><span>superagent.del('http://localhost:3000/collections/test/'+id) &nbsp;</span></li><li class="alt"><span>.end(function(e,&nbsp;res){ &nbsp;</span></li><li><span>expect(e).to.eql(null) &nbsp;</span></li><li class="alt"><span>expect(typeofres.body).to.eql('object') &nbsp;</span></li><li><span>expect(res.body.msg).to.eql('success') &nbsp;</span></li><li class="alt"><span>done() &nbsp;</span></li><li><span>}) &nbsp;</span></li><li class="alt"><span>}) &nbsp;</span></li><li><span>})&nbsp;</span></li></ol></pre>
+<p>现在我们来运行这个测试，在命令行中运行$ mocha test/index.js或者npm test。不过得到的结果一定是失败，因为服务器还没有启动。</p>
+<p>如果你有多个项目，需要使用多个版本的Mocha，那么你可以把Mocha 安装到项目目录的node_modules文件夹下，然后执行：./node_modules/mocha/bin/mocha ./test。</p>
+<p>注意 默认情况下，Mocha 只返回少量的信息。如果需要得到更详细的结果，可以使用-R &lt;name&gt;参数 (即：$ mocha test -R spec 或者$ mocha test-R list)。</p>
+<p><strong>喜欢的朋友可以添加我们的微信账号：</strong></p>
+<p><strong>51CTO读书频道二维码</strong></p>
+<p><a href="http://s5.51cto.com/wyfs02/M00/6D/29/wKiom1VdjCLDCPViAAAvZIyPhIY163.jpg" target="_blank"><img  class='fit-image' onload='javascript:if(this.width>498)this.width=498;' onmousewheel = 'javascript:return big(this)' border="0" alt="" src="http://s5.51cto.com/wyfs02/M00/6D/29/wKiom1VdjCLDCPViAAAvZIyPhIY163.jpg" width="173" height="173" /></a></p>
+<p><strong><br />
+51CTO读书频道活动讨论群：342347198</strong></p><DIV align=right>【责任编辑：<A class=ln href="mailto:limian@51cto.com">book</A> TEL：（010）68476606】</DIV><br><table align='center'><tr><td><a href='http://book.51cto.com/art/201505/476946.htm'><b>回书目</b></a>&nbsp;&nbsp;&nbsp;<a href='http://book.51cto.com/art/201505/477049.htm' target='_self'><b>上一节</b></a>&nbsp;&nbsp;&nbsp;<a href='http://book.51cto.com/art/201505/477052.htm' target='_self'><b>下一节</b></a>  </td></tr></table>
+ 
+<p class="blank10"></p> 
+ 
+ 
+
+
+<div class="f12"> <span class="fl">原文：<a href="http://book.51cto.com/art/201505/477050.htm" class="blue"><b>使用Mocha 和Superagent 进行测试（2）</b></a></span> <span class="fr"><a href="http://book.51cto.com">返回读书频道首页</a></span> </div>
+<p class="blank1"></p>
+</div>
+<iframe width="600" height="239" frameborder="0" src="http://widget.weibo.com/relationship/bulkfollow.php?language=zh_cn&amp;uids=1708729084,1706976420,1422974343,1734475394,1653470065,1807469867&amp;wide=0&amp;color=C2D9F2,FFFFFF,0082CB,666666&amp;showtitle=1&amp;showinfo=1&amp;sense=0&amp;verified=1&amp;count=6&amp;refer='+encodeURIComponent(location.href)+'&amp;dpc=1" scrolling="no"></iframe>
+<style type="text/css">
+.ipadFload{ position:fixed; width:110px; height:185px; font-family:"微软雅黑"; padding-left:18px;}
+.ipadClose{ text-align:right; font-size:14px; line-height:20px;}
+</style>
+</head>
+<body>
+<div style="right: 20px; bottom: 220px; display: blcok;" class="ipadFload" id="ipadFload">
+	<div style="cursor:pointer" onclick="document.getElementById('ipadFload').style.display='none';" class="ipadClose">×</div>  
+	<div class="ipadImg"><img width="110px" height="183px" src="http://www.51cto.com/images/rside_weixin.jpg"></div>  
+</div>
+<div class="tips">
+<div style="float:left;">
+<span style="float:left; margin-top:4px;">分享到：</span>
+<!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin-right:5px; float:left;">
+        <a class="bds_qzone"></a>
+        <a class="bds_tsina"></a>
+        <a class="bds_tqq"></a>
+        <a class="bds_renren"></a>
+        <a class="bds_t163"></a>
+        <span class="bds_more"></span>
+		<a class="shareCount"></a>
+
+</div>
+<!--<div class="fl"> 
+    </div>
+--><script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=585532" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	var bds_config = {'snsKey':{'tsina':'2378297317'}};
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+
+
+
+</div><div class="fr blue"><a href="javascript:AddFavorite(document.location.href,document.title);" target="_self">收藏</a>|<a href="javascript:window.print();" target="_self">打印</a>|<a id="msnqqcopy" title="分享本资源给好友" target="_self">复制</a></div>
+</div>
+</div>
+<!--内容 end-->
+<p class="blank10"></p>
+<div class='comment center'>
+	<div class='inner center' id="cmscmt_iframe"></div>
+</div>
+<script type="text/javascript" id="UYScript" src="http://comment.51cto.com/static/js/api_js/iframe_cmt.js" async=""></script>
+
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg pl15">关于<a href='http://www.51cto.com/php/search.php?keyword=Node.js' target='_blank' class='underline'>Node.js</a>&nbsp;&nbsp;<a href='http://www.51cto.com/php/search.php?keyword=Web%D3%A6%D3%C3' target='_blank' class='underline'>Web应用</a>&nbsp;&nbsp;<a href='http://www.51cto.com/php/search.php?keyword=Node.js%CF%EE%C4%BF%CA%B5%BC%F9%A3%BA%B9%B9%BD%A8%BF%C9%C0%A9%D5%B9%B5%C4Web%D3%A6%D3%C3' target='_blank' class='underline'>Node.js项目实践：构建可扩展的Web应用</a>的更多文章</div>
+<div class="reltag">
+<ul class="fl list02">
+  <li><a href="http://book.51cto.com/art/201505/477058.htm" title="重构：使用Hapi 搭建REST API 服务器（2）">重构：使用Hapi 搭建REST API 服务器（2）</a></li><li><a href="http://book.51cto.com/art/201505/477057.htm" title="重构：使用Hapi 搭建REST API 服务器（1）">重构：使用Hapi 搭建REST API 服务器（1）</a></li><li><a href="http://book.51cto.com/art/201505/477055.htm" title="使用Express 和Mongoskin 实现REST API 服务器（3）">使用Express 和Mongoskin 实现REST API 服</a></li><li><a href="http://book.51cto.com/art/201505/477053.htm" title="使用Express 和Mongoskin 实现REST API 服务器（2）">使用Express 和Mongoskin 实现REST API 服</a></li><li><a href="http://book.51cto.com/art/201505/477052.htm" title="使用Express 和Mongoskin 实现REST API 服务器（1）">使用Express 和Mongoskin 实现REST API 服</a></li>
+</ul>
+<div class="fr">
+<div class="h5 f12"><a href="http://book.51cto.com/art/201307/402913.htm" title="iOS Web应用开发: 运用HTML5、CSS3与JavaScript"><b>iOS Web应用开发: 运用HTML5、CSS3与JavaSc</b></a></div>
+<a href="http://book.51cto.com/art/201307/402913.htm" title="iOS Web应用开发: 运用HTML5、CSS3与JavaScript"><img src="http://s3.51cto.com/wyfs01/M00/10/4B/wKioOVHjlQeivx21AAAjgjhAw_Y540.gif" alt="iOS Web应用开发: 运用HTML5、CSS3与JavaScript" width="100" height="80" border="0" /></a>
+<p class="c666">本书的重点是使用HTML5、CSS3 及JavaScript 等Web 标准来为iOS <a class="blue"href="http://book.51cto.com/art/201307/402913.htm" title="iOS Web应用开发: 运用HTML5、CSS3与JavaScript">[详细]</a></p>
+</div>
+</div>
+<!--reltag end-->
+</div>
+<p class="blank10"></p>
+
+<!--box end-->
+<p class="blank10"></p>
+<div class="relart fl bor">
+<div class="titbg">
+<h3 class="fl t1">栏目热门</h3>
+<a href="/click/1227" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+  
+	  <li><a href="http://book.51cto.com/art/201408/448416.htm" title="Spark亚太研究院系列丛书——Spark实战高手之路  从零开始">Spark亚太研究院系列丛书——Spark实战高手</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201411/456391.htm" title="Arduino魔法书：实现梦想的工具和技术">Arduino魔法书：实现梦想的工具和技术</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201409/452481.htm" title="Cocos2D-X权威指南（第2版）">Cocos2D-X权威指南（第2版）</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201411/456485.htm" title="从零开始学C语言（第2版）">从零开始学C语言（第2版）</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201408/449252.htm" title="Ruby基础教程（第4版）">Ruby基础教程（第4版）</a></li>
+	  
+</ul>
+</div>
+<div class="cathot fr bor">
+<div class="titbg">
+<h3 class="fl t1">同期最新</h3>
+<a href="/col/1227" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+	
+	  <li><a href="http://book.51cto.com/art/201505/477049.htm" title="使用Mocha 和Superagent 进行测试">使用Mocha 和Superagent 进行测试</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201505/477047.htm" title="项目依赖">项目依赖</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201505/477046.htm" title="RESTful API 基础">RESTful API 基础</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201505/477044.htm" title="小结">小结</a></li>
+	  
+	  <li><a href="http://book.51cto.com/art/201505/477043.htm" title="配置EveryauthTwitter 模块（2）">配置EveryauthTwitter 模块（2）</a></li>
+	  
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1"><a href="http://book.51cto.com">读书频道</a></h3>
+<span class="pl10">频道导航</span></div>
+ <UL class=xtlist>
+<LI><SPAN class=tit>网络维护</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1199/">网络管理</A>|<A href="http://book.51cto.com/col/1200/">布线</A>|<A href="http://book.51cto.com/col/1201/">网络协议</A>|<A href="http://book.51cto.com/col/1211/">服务器与存储</A>|<A href="http://book.51cto.com/col/1202/">Cisco</A>|</DIV></LI>
+<LI><SPAN class=tit>安全</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1208/">网络安全</A>|<A href="http://book.51cto.com/col/1207/">数据安全</A>|<A href="http://book.51cto.com/col/1205/">病毒</A>|<A href="http://book.51cto.com/col/1204/">综合</A></DIV></LI>
+<LI><SPAN class=tit>操作系统</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1213">Linux</A>|<A href="http://book.51cto.com/col/1212">Windows</A>|<A href="http://book.51cto.com/col/1214">Unix</A>|<A href="http://book.51cto.com/col/1215">其他</A></DIV></LI>
+<LI><SPAN class=tit>数据库</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1217/">Oracle</A>|<A href="http://book.51cto.com/col/1218/">SQL Server</A>|<A href="http://book.51cto.com/col/1219/">MySQL</A>|<A href="http://book.51cto.com/col/1220/">综合</A></DIV></LI>
+<LI><SPAN class=tit>设计开发</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1222">.Net系列</A>|<A href="http://book.51cto.com/col/1223">Java系列</A>|<A href="http://book.51cto.com/col/1224">C++</A>|<A href="http://book.51cto.com/col/1225">数据库开发</A>|<A href="http://book.51cto.com/col/1226">网站开发|<A href="http://book.51cto.com/col/1227">其他开发|<A href="http://book.51cto.com/col/1228">软件工程</A></DIV></LI>
+<LI><SPAN class=tit>网络应用</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1232/">Web应用</A>|<A href="http://book.51cto.com/col/1234/">ERP/BI</A>|<A href="http://book.51cto.com/col/1231/">Office</A></DIV></LI>
+<LI><SPAN class=tit>考试认证</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1236/">综合</A>|<A href="http://book.51cto.com/col/1237/">软考</A>|<A href="http://book.51cto.com/col/1238/">网工</A>|<A href="http://book.51cto.com/col/1240/">等考</A></DIV></LI>
+<LI class=last><SPAN class=tit>管理生活</SPAN> 
+<DIV><A href="http://book.51cto.com/col/1259/">企业管理</A>|<A href="http://book.51cto.com/col/1260/">技术职场</A></DIV></LI></UL> 
+</div> 
+<p class="blank10"></p>
+<DIV class=leftbotcon>
+<DIV class="bor jdlist">
+<DIV class=titbg>
+<H3 class=t2>热点推荐</H3></DIV>
+<UL>
+<LI><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://mobile.51cto.com/mobile-182392.htm"><IMG src="http://images.51cto.com/files/uploadimg/20100202/153546162.jpg"></A> 
+<DIV class=name><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</A></DIV></LI>
+<LI><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://developer.51cto.com/art/201106/266369.htm"><IMG src="http://images.51cto.com/files/uploadimg/20110608/133620622.jpg"></A> 
+<DIV class=name><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</A></DIV></LI>
+<LI><A href="http://developer.51cto.com/art/200907/133407.htm"><IMG src="http://images.51cto.com/files/uploadimg/20090702/134217922.jpg"></A> 
+<DIV class=name><A href="http://developer.51cto.com/art/200907/133407.htm">HTML5 下一代Web开发标准详解</A></DIV></LI>
+<LI><A href="http://developer.51cto.com/art/201104/257581.htm"><IMG src="http://images.51cto.com/files/uploadimg/20110426/123123954.jpg"></A> 
+<DIV class=name><A href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</A></DIV></LI>
+<LI><A href="http://os.51cto.com/art/200706/49181.htm"><IMG src="http://images.51cto.com/files/uploadimg/20070613/195816929.jpg"></A> 
+<DIV class=name><A href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</A></DIV></LI></UL></DIV>
+<P class=blank10></P>
+<DIV class="bor hotTag"><STRONG>热门标签：</STRONG> <A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-2]);" href="http://os.51cto.com/windows/">windows频道</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://mobile.51cto.com/">移动开发</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://cloud.51cto.com/">云计算</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://mobile.51cto.com/mobile/objc/">objective-c</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://developer.51cto.com/art/200907/133407.htm">html5</A> </DIV></DIV>
+<div class="leftbotbox"> </div>
+</div>
+<!--left end-->
+<div class="g_13 fr">
+<div class="focus fixfloat"> 
+ <img width="298" style="border: 1px solid #CCCCCC; margin:5px 0px 5px;" src="http://www.51cto.com/images/weixin.jpg"><div class="hot">
+<ul>
+<li class="tit"><em>热点</em> <a href="http://book.51cto.com/art/201110/298391.htm">黑客：计算机革命的英雄</a> </li>
+<li class="con"><dl><dt><a href="http://book.51cto.com/art/201110/298391.htm"><img border="0" src="http://images.51cto.com/files/uploadimg/20111107/105906683.jpg"/></a></dt>
+<dd>本书描述了黑客用默默无闻的行动为数字世界照亮了一条道路的故事。 </dd>
+</dl></li></ul><ol class="hotlist"><li><a href="http://book.51cto.com/art/201108/282390.htm">Linux服务器配置全程实录</a></li><li><a href="http://book.51cto.com/art/201107/278179.htm">揭秘--优秀PPT这样制作</a></li></ol></div>
+<p>
+<script language="JavaScript" src="http://www.51cto.com/ad/art/hzh/ad.js" type="text/javascript"></script>
+</p>
+</div>
+<div class="bor vlist" id="edu">
+	<div class="titbg">
+    <h3 class="fl t1"><a href="http://edu.51cto.com/" target="_blank">视频课程</a></h3>
+    <a class="tmore" id="change" style="cursor:pointer">换一换</a>
+    </div>
+    
+    	<ul class="plist01" id="edu1"><li><a class="ico" href="http://edu.51cto.com/course/course_id-3682.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3682.html"  target="_blank"><img title="CORELDWAW超级速成10天精通完全自学视频课程" alt="CORELDWAW超级速成10天精通完全自学视频课程" src="http://s6.51cto.com/wyfs02/M01/6D/10/wKiom1VbAmvAEofKAAFlqYQIMhw384.jpg" height="80" width="100"></a><h5><a title="CORELDWAW超级速成10天精通完全自学视频课程" href="http://edu.51cto.com/course/course_id-3682.html"  target="_blank">CORELDWAW超级速成10天精通完全自学视频课程</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-8411615.html"  target="_blank">吴勇</a></p><p> 7人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-3681.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3681.html"  target="_blank"><img title="2015思科CCNA培训路由交换综合实验讲解视频课程" alt="2015思科CCNA培训路由交换综合实验讲解视频课程" src="http://s6.51cto.com/wyfs02/M02/6D/0A/wKioL1Va-U3wyftcAAG66ruvNlE601.jpg" height="80" width="100"></a><h5><a title="2015思科CCNA培训路由交换综合实验讲解视频课程" href="http://edu.51cto.com/course/course_id-3681.html"  target="_blank">2015思科CCNA培训路由交换综合实验讲解视频课</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-4283205.html"  target="_blank">蓝德文</a></p><p> 657人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-3678.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3678.html"  target="_blank"><img title="云计算Docker虚拟化公益大讲坛 （5.21号即将开始）" alt="云计算Docker虚拟化公益大讲坛 （5.21号即将开始）" src="http://s6.51cto.com/wyfs02/M01/6D/0E/wKiom1Va7LbgVn3CAAGC8o37oBQ265.jpg" height="80" width="100"></a><h5><a title="云计算Docker虚拟化公益大讲坛 （5.21号即将开始）" href="http://edu.51cto.com/course/course_id-3678.html"  target="_blank">云计算Docker虚拟化公益大讲坛 （5.21号即将</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-10220506.html"  target="_blank">王老师</a></p><p> 0人学习过</p></div></li></ul><ul class="plist01" id="edu2" style="display:none"><li><a class="ico" href="http://edu.51cto.com/course/course_id-3674.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3674.html"  target="_blank"><img title="OneThink快速入门基础视频课程" alt="OneThink快速入门基础视频课程" src="http://s6.51cto.com/wyfs02/M02/6C/F6/wKioL1VZRNajXSV5AAFPkxxXHw0336.jpg" height="80" width="100"></a><h5><a title="OneThink快速入门基础视频课程" href="http://edu.51cto.com/course/course_id-3674.html"  target="_blank">OneThink快速入门基础视频课程</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-2435109.html"  target="_blank">张长志</a></p><p> 57人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-3673.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3673.html"  target="_blank"><img title="SharePoint 2013 简易入门系列培训视频课程" alt="SharePoint 2013 简易入门系列培训视频课程" src="http://s6.51cto.com/wyfs02/M00/6C/F6/wKiom1VYVH2D7rvPAADvH_uInUY035.jpg" height="80" width="100"></a><h5><a title="SharePoint 2013 简易入门系列培训视频课程" href="http://edu.51cto.com/course/course_id-3673.html"  target="_blank">SharePoint 2013 简易入门系列培训视频课程</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-8355508.html"  target="_blank">黄波</a></p><p> 253人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-3672.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3672.html"  target="_blank"><img title="Oracle数据库实例核心技术解析_超越OCP精通Oracle视频教程培训05" alt="Oracle数据库实例核心技术解析_超越OCP精通Oracle视频教程培训05" src="http://s6.51cto.com/wyfs02/M02/6C/F0/wKioL1VYMfmQ0qMnAAGxwt6DM4o202.jpg" height="80" width="100"></a><h5><a title="Oracle数据库实例核心技术解析_超越OCP精通Oracle视频教程培训05" href="http://edu.51cto.com/course/course_id-3672.html"  target="_blank">Oracle数据库实例核心技术解析_超越OCP精通Or</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-8020378.html"  target="_blank">风哥</a></p><p> 84人学习过</p></div></li></ul><ul class="plist01" id="edu3" style="display:none"><li><a class="ico" href="http://edu.51cto.com/course/course_id-3671.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3671.html"  target="_blank"><img title="Oracle数据库创建与安装_超越OCP精通Oracle视频教程培训02~04" alt="Oracle数据库创建与安装_超越OCP精通Oracle视频教程培训02~04" src="http://s6.51cto.com/wyfs02/M00/6C/F5/wKiom1VYLWbzFCkQAAGwLDUxFgI732.jpg" height="80" width="100"></a><h5><a title="Oracle数据库创建与安装_超越OCP精通Oracle视频教程培训02~04" href="http://edu.51cto.com/course/course_id-3671.html"  target="_blank">Oracle数据库创建与安装_超越OCP精通Oracle视</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-8020378.html"  target="_blank">风哥</a></p><p> 86人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-3670.html"  target="_blank" ></a><a  href="http://edu.51cto.com/course/course_id-3670.html"  target="_blank"><img title="3D Unity移动端海战游戏架构设计精讲视频课程" alt="3D Unity移动端海战游戏架构设计精讲视频课程" src="http://s6.51cto.com/wyfs02/M00/6C/FB/wKiom1VZRb7y9sG4AAMY_nSXESE892.jpg" height="80" width="100"></a><h5><a title="3D Unity移动端海战游戏架构设计精讲视频课程" href="http://edu.51cto.com/course/course_id-3670.html"  target="_blank">3D Unity移动端海战游戏架构设计精讲视频课程</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-943299.html"  target="_blank">姜雪伟</a></p><p> 29人学习过</p></div></li></ul>
+	
+</div>
+<div class="rank">
+<div class="tlt">
+      <h3>文章排行</h3>
+      <a onmouseover="change_top10(3);" id="top_3">本月</a><a onmouseover="change_top10(2);" id="top_2">本周</a><a onmouseover="change_top10(1);" class="myon" id="top_1">24小时</a> </div>
+ <div id="top10_1" style="display: block;" class="list"><ul>
+<li><a href="http://book.51cto.com/art/201408/448416.htm" target="_blank" title="Spark亚太研究院系列丛书——Spark实战">Spark亚太研究院系列丛书——Spark实战</a>
+<li><a href="http://book.51cto.com/art/201412/460060.htm" target="_blank" title="Hadoop实战手册">Hadoop实战手册</a>
+<li><a href="http://book.51cto.com/art/201501/463505.htm" target="_blank" title="物联网设计: 从原型到产品">物联网设计: 从原型到产品</a>
+<li><a href="http://book.51cto.com/art/201501/463652.htm" target="_blank" title="Linux Shell编程从初学到精通（第2版）">Linux Shell编程从初学到精通（第2版）</a>
+<li><a href="http://book.51cto.com/art/201110/298391.htm" target="_blank" title="黑客">黑客</a>
+<li><a href="http://book.51cto.com/art/201412/459291.htm" target="_blank" title="C++数据结构与算法（第4版）">C++数据结构与算法（第4版）</a>
+<li><a href="http://book.51cto.com/art/200808/85036.htm" target="_blank" title="Servlet/JSP深入详解：基于Tomcat的Web">Servlet/JSP深入详解：基于Tomcat的Web</a>
+<li><a href="http://book.51cto.com/art/201412/461060.htm" target="_blank" title="程序员思维修炼">程序员思维修炼</a>
+<li><a href="http://book.51cto.com/art/200706/49300.htm" target="_blank" title="计算机网络技术">计算机网络技术</a>
+<li><a href="http://book.51cto.com/art/201501/463792.htm" target="_blank" title="Spark大数据处理技术">Spark大数据处理技术</a>
+</ul></div>
+<div id="top10_2" style="display: none;" class="list"><ul>
+<li><a href="http://book.51cto.com/art/201502/464937.htm" target="_blank" title="专业色彩搭配设计师必备宝典">专业色彩搭配设计师必备宝典</a>
+<li><a href="http://book.51cto.com/art/201502/464972.htm" target="_blank" title="HIT富人投资要诀">HIT富人投资要诀</a>
+<li><a href="http://book.51cto.com/art/201502/464983.htm" target="_blank" title="混搭新主张">混搭新主张</a>
+<li><a href="http://book.51cto.com/art/201502/464992.htm" target="_blank" title="筑﹒作：话空间 创幸福">筑﹒作：话空间 创幸福</a>
+<li><a href="http://book.51cto.com/art/201502/465002.htm" target="_blank" title="2015年全国会计专业技术资格考试辅导教">2015年全国会计专业技术资格考试辅导教</a>
+<li><a href="http://book.51cto.com/art/201109/293514.htm" target="_blank" title="悟道：一位IT高管20年的职场心经">悟道：一位IT高管20年的职场心经</a>
+<li><a href="http://book.51cto.com/art/200704/46276.htm" target="_blank" title="网络工程师必读——网络工程基础">网络工程师必读——网络工程基础</a>
+<li><a href="http://book.51cto.com/art/201310/414338.htm" target="_blank" title="C#高级编程（第8版）">C#高级编程（第8版）</a>
+<li><a href="http://book.51cto.com/art/201110/298391.htm" target="_blank" title="黑客">黑客</a>
+<li><a href="http://book.51cto.com/art/201007/211888.htm" target="_blank" title="鸟哥的Linux私房菜 基础学习篇（第三版">鸟哥的Linux私房菜 基础学习篇（第三版</a>
+</ul></div>
+<div id="top10_3" style="display: none;" class="list"><ul>
+<li><a href="http://book.51cto.com/art/201501/463652.htm" target="_blank" title="Linux Shell编程从初学到精通（第2版）">Linux Shell编程从初学到精通（第2版）</a>
+<li><a href="http://book.51cto.com/art/201501/463505.htm" target="_blank" title="物联网设计: 从原型到产品">物联网设计: 从原型到产品</a>
+<li><a href="http://book.51cto.com/art/201501/463443.htm" target="_blank" title="九败一胜：美团创始人王兴创业十年">九败一胜：美团创始人王兴创业十年</a>
+<li><a href="http://book.51cto.com/art/201501/463163.htm" target="_blank" title="敏捷思维：移动互联网和大数据时代IT企">敏捷思维：移动互联网和大数据时代IT企</a>
+<li><a href="http://book.51cto.com/art/201501/463792.htm" target="_blank" title="Spark大数据处理技术">Spark大数据处理技术</a>
+<li><a href="http://book.51cto.com/art/201501/463261.htm" target="_blank" title="3D打印：正在到来的工业革命">3D打印：正在到来的工业革命</a>
+<li><a href="http://book.51cto.com/art/201501/463565.htm" target="_blank" title="ASP.NET Web API设计">ASP.NET Web API设计</a>
+<li><a href="http://book.51cto.com/art/201501/463770.htm" target="_blank" title="Oracle查询优化改写技巧与案例">Oracle查询优化改写技巧与案例</a>
+<li><a href="http://book.51cto.com/art/201501/463884.htm" target="_blank" title="程序员面试笔试宝典（第2版）">程序员面试笔试宝典（第2版）</a>
+<li><a href="http://book.51cto.com/art/201501/463627.htm" target="_blank" title="正则表达式必知必会（第2版）（修订本">正则表达式必知必会（第2版）（修订本</a>
+</ul></div>
+ 
+ </div>
+<p class="blank1"></p>
+
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点专题</h3>
+<a href="http://book.51cto.com/speclist/1227" class="tmore">更多&gt;&gt;</a></div>
+<ul class="plist01">
+<li><a href="http://book.51cto.com/art/201505/476946.htm" title="Node.js项目实践：构建可扩展的Web应用"><img src="http://s4.51cto.com/wyfs02/M01/6D/1F/wKiom1VcbJKzO6rYAAAgRxoyyRI399.gif" alt="Node.js项目实践：构建可扩展的Web应用" width="100" height="80" /></a>
+<h5><a href="http://book.51cto.com/art/201505/476946.htm" title="Node.js项目实践：构建可扩展的Web应用">Node.js项目实践：构</a></h5>
+<div class="c666">《Node.js项目实践：构建可扩展的Web应用》用专业的讲</div>
+</li><li><a href="http://book.51cto.com/art/201505/476943.htm" title="做自己——鬼脚七自媒体第一季（第2版）"><img src="http://s9.51cto.com/wyfs02/M02/6D/1E/wKiom1VcYDiysdy5AAA62jVMa1c037.gif" alt="做自己——鬼脚七自媒体第一季（第2版）" width="100" height="80" /></a>
+<h5><a href="http://book.51cto.com/art/201505/476943.htm" title="做自己——鬼脚七自媒体第一季（第2版）">做自己——鬼脚七自媒</a></h5>
+<div class="c666">当我们习惯了在社会上带着面具的时候，真实成为了一件</div>
+</li><li><a href="http://book.51cto.com/art/201505/476939.htm" title="整合微营销——洞察本质，把握时代，抢占先机"><img src="http://s5.51cto.com/wyfs02/M02/6D/1E/wKiom1VcXeSzzrqTAAATwfyZIb0880.gif" alt="整合微营销——洞察本质，把握时代，抢占先机" width="100" height="80" /></a>
+<h5><a href="http://book.51cto.com/art/201505/476939.htm" title="整合微营销——洞察本质，把握时代，抢占先机">整合微营销——洞察本</a></h5>
+<div class="c666">随着时代的发展，新的事物不断涌现。能够看准时机，拥</div>
+</li> 
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tagCloud">
+<div class="tlt">
+<h3>热点标签</h3>
+</div>
+<div class="taglist"><A title=网络管理 href="http://book.51cto.com/col/1199/">网络管理</A> <A title=Windows href="http://book.51cto.com/col/1212/">Windows</A> <A title=Linux href="http://book.51cto.com/col/1213/">Linux</A> <A title="SQL Server" href="http://book.51cto.com/col/1218/">SQL Server</A> <A title=Oracle href="http://book.51cto.com/col/1217/">Oracle</A> <A class=imp title=Java系列 href="http://book.51cto.com/col/1223/">Java系列</A> <A title=软件工程 href="http://book.51cto.com/col/1228/">软件工程</A> <A title=.Net系列 href="http://book.51cto.com/col/1222/">.Net系列</A> <A title=Web开发 href="http://book.51cto.com/col/1226/">Web开发</A> <A title=技术职场 href="http://book.51cto.com/col/1260/">技术职场</A></div>
+</div>
+<div class="rss">
+<ul>
+<li class="lin f12-c"><a href="http://news.51cto.com/col/1323/"><strong>点击这里查看样刊</strong></a></li>
+<li>
+<dl>
+<dt> </dt>
+<dd><a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="http://images.51cto.com/images/art0910/images/dingy.gif" /></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">全站热点</h3>
+</div>
+<div class="webhot fixfloat">
+<ul>
+
+<li>
+  <a href="http://netsecurity.51cto.com/secu/sangfor/second_fw2015/index.html"  title="第二代防火墙标准发布会在京召开"><img src="http://s7.51cto.com/wyfs02/M01/59/7B/wKiom1TUJ9bT683GAAAfQM8b6R0993.jpg" /></a>
+  <div><a href="http://netsecurity.51cto.com/secu/sangfor/second_fw2015/index.html"  title="第二代防火墙标准发布会在京召开">第二代防火墙标准发布会在京召开</a></div>
+</li>
+
+<li>
+  <a href="http://netsecurity.51cto.com/art/201412/462049.htm"  title="12306数据泄露“献礼”圣诞夜"><img src="http://s1.51cto.com/wyfs02/M00/57/81/wKiom1Sb9_DTIQb9AAAgirl-WPc865.jpg" /></a>
+  <div><a href="http://netsecurity.51cto.com/art/201412/462049.htm"  title="12306数据泄露“献礼”圣诞夜">12306数据泄露“献礼”圣诞夜</a></div>
+</li>
+
+</ul>
+</div>
+<p class="blank1"></p>
+<ul class="list03">
+
+<li><a href="http://netsecurity.51cto.com/art/201505/476367.htm"  title="家庭和办公路由器被劫持以发动DDoS攻击">家庭和办公路由器被劫持以发动DDoS攻</a></li>
+
+<li><a href="http://cloud.51cto.com/art/201505/476359.htm"  title="EMC混合云解决方案Enterprise Hybrid Cloud升级">EMC混合云解决方案Enterprise Hybrid</a></li>
+
+<li><a href="http://netsecurity.51cto.com/art/201505/476356.htm"  title="ARP攻击原理简析及防御措施">ARP攻击原理简析及防御措施</a></li>
+
+<li><a href="http://mobile.51cto.com/comment-476355.htm"  title="就这样成为一个糟糕的程序员">就这样成为一个糟糕的程序员</a></li>
+
+<li><a href="http://developer.51cto.com/art/201505/476354.htm"  title="C++中的指针与引用详细解读">C++中的指针与引用详细解读</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">读书</h3>
+</div>
+  
+<div class="catbook"><a href="http://book.51cto.com/art/200704/45749.htm" title="Oracle 10g应用指导与案例精讲"><img src="http://images.51cto.com/files/uploadimg/20070830/154941169.gif" width="66" height="98" border="0" /></a>
+<h5><a href="http://book.51cto.com/art/200704/45749.htm">Oracle 10g应用指导与案例精讲</a></h5>
+<div class="c666 text">本书作者结合自己多年实践经验，从Oracle开发应用中遇到的问题着手，全面系统地介绍Oracle的安装与卸载、数据字典、安全管理以及</div>
+</div>
+
+
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/200710/58100.htm" title="征服Python—语言基础与典型应用">征服Python—语言基础与典型应用</a></li>
+
+<li><a href="http://book.51cto.com/art/200710/58179.htm" title="Microsoft SQL Server 2005技术内幕:T-SQL程序设计">Microsoft SQL Server 2005技术内幕:T-SQL程序设</a></li>
+
+<li><a href="http://book.51cto.com/art/200710/58274.htm" title="软件设计师考试考前冲刺预测卷及考点解析">软件设计师考试考前冲刺预测卷及考点解析</a></li>
+
+<li><a href="http://book.51cto.com/art/200710/58355.htm" title="网络工程师考试考前冲刺预测卷及考点解析">网络工程师考试考前冲刺预测卷及考点解析</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1 fl">博文推荐</h3>
+<a class="tmore" href="http://blog.51cto.com/">更多&gt;&gt;</a></div>
+
+<ul class="list03">
+ <li><a href="http://followwind.blog.51cto.com/2577579/460287/" target="_blank" title="flex 联机游戏开发 - 五子棋游戏:(二)人性化选择">flex 联机游戏开发 - 五子棋游戏:(二</a></li><li><a href="http://xudeqiang.blog.51cto.com/224075/460285/" target="_blank" title="云计算时代 企业何去何从">云计算时代 企业何去何从</a></li><li><a href="http://zqtiger.blog.51cto.com/178841/460274/" target="_blank" title="再论计算机知识的学习">再论计算机知识的学习</a></li><li><a href="http://richardzhu.blog.51cto.com/916712/460220/" target="_blank" title="年末裁员事件背后的启示录（1）">年末裁员事件背后的启示录（1）</a></li>
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tj">
+<div class="tlt">
+<h3>最新热帖</h3>
+<a class="more" href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</a></div>
+<ul>
+<li><a href="http://bbs.51cto.com/thread-682482-1.html" target="_blank" title="一道局域网布线的基础题目">一道局域网布线的基础题目</a></li><li><a href="http://bbs.51cto.com/thread-609530-1.html" target="_blank" title="一次RAID0崩溃的思考">一次RAID0崩溃的思考</a></li><li><a href="http://bbs.51cto.com/thread-550558-1.html" target="_blank" title="【JAVA EE企业级开发四步走完全攻略】">【JAVA EE企业级开发四步走完全攻略</a></li><li><a href="http://bbs.51cto.com/thread-26429-1.html" target="_blank" title="通用WAP网站生成系统(PowerDiamond) v.1">通用WAP网站生成系统(PowerDiamond) </a></li><li><a href="http://bbs.51cto.com/thread-11063-1.html" target="_blank" title="八类大学毕业生求职时不受欢迎">八类大学毕业生求职时不受欢迎</a></li>
+</ul>
+</div>
+<div class="picAD">
+<iframe class="bann" frameborder="0" src="http://www.51cto.com/iframe/article/baidu.htm" scrolling="No" style=" background-color:#DBDBDB; height:250px; width:300px; padding:0px;margin:0px;overflow:hidden;"></iframe>
+</div>
+</div>
+<p class="blank1"></p> 
+<!--leftbotcon end-->
+</div> 
+<div class="subweb">
+<h4>51CTO旗下网站</h4>
+<div>
+<a target="_blank" href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>
+<a target="_blank" href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>
+<a target="_blank" href="http://www.cioage.com/">中国首个CIO网站 CIOage</a>
+<a target="_blank" href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+</div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="http://images.51cto.com/images/copy_right/copy_right.js"></script></div></div>
+<script src="http://logs.51cto.com/rizhi/count/count.js"></script>
+<script type="text/javascript">
+
+	$("#uyan_cmt_list").next().remove();	
+	$("#uyan_cmt_list").next().css("display","none");	
+</script>
+<style>
+.Nfloat {
+    position: fixed;
+    right: 2%;
+    top: 35%;
+    z-index: 801;
+}
+</style>
+
+
+<!-- 新监测代码 -->
+<!-- 新监测代码 -->
+<div id="MyMoveAd" style="display:none">
+<span id="wordlink_1"><script src="http://www.51cto.com/ad/art/wordlink/wordlink1.js"></script></span>
+<span id="wordlink_2"><script src="http://www.51cto.com/ad/art/wordlink/wordlink2.js"></script></span>
+<span id="wordlink_3"><script src="http://www.51cto.com/ad/art/wordlink/wordlink3.js"></script></span>
+<span id="wordlink_4"><script src="http://www.51cto.com/ad/art/wordlink/wordlink4.js"></script></span>
+<span id="pinglun"><script language="JavaScript" src="http://www.51cto.com/php/getArtCount.php?artid=477050&type=all"></script></span>
+<span id="tonglan"><script language="JavaScript" src="http://www.51cto.com/ad/art/tonglan/ad.js"></script></span>
+<span id="wordlink"><script language="JavaScript" src="http://www.51cto.com/ad/art/wordlink/ad.js"></script></span>
+<script src="http://www.51cto.com/ad/art/wordlink/ad.js"></script>
+<span id="bookss"><script language="JavaScript" src="http://www.51cto.com/php/getBookData.php?artid=476946"></script></span>
+</div>   
+<script language="javascript" src="http://www.51cto.com/js/article/favorite.js"></script>
+
+<script language="javaScript" src="http://www.51cto.com/php/dialog_utf8.js"></SCRIPT>
+<script language="javaScript" src="http://www.51cto.com/mail.js"></script>  
+<script type="text/javascript" src="http://home.51cto.com/apps/favorite/Tpl/default/Public/js/favorbox.js"></script>
+<script language="javascript" src="http://images.51cto.com/images/art/newart1012/clipboard.js"></script>
+<script language="javaScript"> 
+	var thistid=477050; 
+	
+	//收藏按钮
+	var favor_url = 'http://book.51cto.com/art/201505/477050.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = '使用Mocha 和Superagent 进行测试（2）';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://book.51cto.com/art/201505/477050.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://book.51cto.com/art/201505/477050.htm][u]使用Mocha 和Superagent 进行测试（2）[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</script> 
+<script src=" http://home.51cto.com/index.php?s=/Index/getLoginStatus/reback/http%253A%252F%252Fbook.51cto.com%252Fart%252F201505%252F477050.htm" charset='utf-8'></script>
+<script src="http://www.51cto.com/php/count.php?view=yes&artID=477050" language="javascript"></script>
+<script language="javascript">
+document.getElementById('books').innerHTML = document.getElementById("bookss").innerHTML; 
+</script>
+
+</body>
+</html>

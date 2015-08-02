@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta property="qc:admins" content="15317273575564615446375"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, maximum-scale=1, user-scalable=no"/>
+    <meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"/>
+    <meta name="apple-itunes-app" content="app-id=958101793, app-argument=">
+    <title>node测试基础 - SegmentFault</title>
+    <script>
+        window.onerror = function(errorMessage, scriptURI, lineNumber, columnNumber, error) {
+
+            if (errorMessage.indexOf('Script error.') > -1){
+                return;
+            }
+            return console.warn({
+                message: errorMessage,
+                script: scriptURI,
+                line: lineNumber,
+                columnNumber: columnNumber,
+                error: error
+            });
+        };
+    </script>
+
+            <meta name="description" content="前言 到了开发的后期，测试工作往往是重中之重，但是测试本身又十分繁琐与复杂。对于使用js的朋友，对于我接下来要讲的内容绝对不会陌生，对，就是大名鼎鼎的摩卡！由于为我的好友开发的后端框架Zeta做测试工作，..."/>
+    
+            <meta name="keywords"
+              content="node.js mocha 测试"/>
+    
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="SegmentFault"/>
+    <link rel="shortcut icon" href="//static.segmentfault.com/global/img/favicon.30f7204d.ico"/>
+    <link rel="apple-touch-icon" href="//static.segmentfault.com/global/img/touch-icon.c78b1075.png">
+
+    <meta name="msapplication-TileColor" content="#009a61"/>
+    <meta name="msapplication-square150x150logo" content="//static.segmentfault.com/global/img/touch-icon.c78b1075.png"/>
+
+    <meta name="userId" value="" id="SFUserId"/>
+    <meta name="userRank" value="" id="SFUserRank"/>
+
+    <link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="/feeds/questions">
+    <link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="/feeds/blogs">
+    
+    
+    
+            <link rel="stylesheet" href="//static.segmentfault.com/build/global/css/global.8215ef27.css"/>
+                    <link rel="stylesheet" href="//static.segmentfault.com/build/blog/css/blog_all.26aea8a4.css"/>
+                <link rel="stylesheet" href="//static.segmentfault.com/build/global/css/responsive.e0cdf0fc.css"/>
+        
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//static.segmentfault.com/global/css/ie.css?"/>
+    <script src="//static.segmentfault.com/global/js/html5shiv.js?"></script>
+    <script src="//static.segmentfault.com/global/js/respond.js?"></script>
+    <![endif]-->
+
+</head>
+<body class="blog-post">
+<!--[if lt IE 9]>
+<div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank"
+                                                                                                        class="alert-link"
+                                                                                                        href="http://browsehappy.com">立即升级</a>
+</div>
+<![endif]-->
+
+
+<div class="global-nav">
+    <nav class="container nav">
+        <div class="dropdown m-menu">
+            <a href="javascript:void(0);" id="dLabel" class="visible-xs-block m-toptools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-align-justify"></span>
+                <span class="mobile-menu__unreadpoint"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li class="mobile-menu__item"><a href="/questions/newest">问答</a></li>
+                <li class="mobile-menu__item"><a href="/blogs">文章</a></li>
+                <li class="mobile-menu__item"><a href="/events">活动</a></li>
+                <li class="mobile-menu__item"><a href="/tags">标签</a></li>
+                <li class="mobile-menu__item"><a href="/users">榜单</a></li>
+                <li class="mobile-menu__item"><a href="/sites">子站</a></li>
+                            </ul>
+        </div>
+
+        <h1 class="logo"><a  class="sf" href="/">SegmentFault</a></h1>
+
+                <a href="/user/login" class="visible-xs-block pull-right m-ask m-toptools"><span class="glyphicon glyphicon-log-in"></span></a>
+        
+        <form action="/search" class="header-search pull-left hidden-sm hidden-xs">
+            <button type="submit" class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button>
+            <input id="searchBox" name="q" type="text" placeholder="输入关键字搜索" class="form-control" value="">
+        </form>
+
+        <ul class="menu list-inline pull-left hidden-xs">
+            <li class="menu__item"><a href="/questions/newest">问答</a></li>
+            <li class="menu__item"><a href="/blogs">文章</a></li>
+            <li class="menu__item"><a href="/events">活动</a></li>
+            <li class="menu__item"><a href="/users">榜单</a></li>
+            <li class="menu__item dropdown hoverDropdown">
+                <a data-toggle="dropdown" href="/sites" class="more dropdownBtn">
+                    &middot;&middot;&middot;<span class="sr-only">更多</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/jobs">职位</a></li>
+                    <li><a href="/tags">标签</a></li>
+                    <li><a href="/sites">子站</a></li>
+                    <li><a href="/app">移动 App</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="opts pull-right list-inline hidden-xs">
+                    <!-- <li class="opts__item">赶快加入吧 <a id="sfLogin" href="/user/login" class="SFLogin em ml10" onClick="_gaq.push(['_trackEvent', 'Button', 'Click', 'Login']);">立即登录</a></li> -->
+            <li class="opts__item message has-unread">
+                <a target="_blank" href="/tour">
+                    <span class="sr-only">消息</span>
+                    <span id="messageCount" class="glyphicon glyphicon-envelope"></span>
+                </a>
+            </li>
+            <li class="opts__item">
+                <a href="/user/login" class="SFLogin em ml10" onClick="_gaq.push(['_trackEvent', 'Button', 'Click', 'Login']);">立即登录</a>
+            </li>
+                    </ul>
+    </nav>
+</div>
+
+<div class="wrap">
+    <div class="post-topheader custom-suemi">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <ol class="breadcrumb">
+                        <li><a href="/blogs">文章</a></li>
+                        <li><a href="/blog/suemi">suemi</a></li>
+                        <li class="active">文章详情</li>
+                    </ol>
+                    <h1 class="h3 title" id="articleTitle" data-id="1190000002437819"><a href="/a/1190000002437819"> node测试基础</a></h1>
+                    <div class="author" data-username="suemi" data-userslug="suemi" data-useravatar="http://sfault-avatar.b0.upaiyun.com/230/146/2301467446-550bddbdad804_huge128" >
+                        <a href="/u/suemi" class="mr5"><img class="avatar-24 mr10" src="http://sfault-avatar.b0.upaiyun.com/230/146/2301467446-550bddbdad804_huge128" alt="suemi"><strong>suemi</strong></a> <strong class="text-black mr10">461</strong>
+                        2014年12月22日 发布
+                                                                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="widget-action--ver list-unstyled">
+                        <li>
+                                                                                            <button type="button" class="btn btn-success btn-sm" data-id="1190000002437819" id="sideLike">推荐</button>
+                                                                                        <strong id="sideLiked">1</strong> 推荐
+                        </li>
+                        <li>
+                                                                                            <button type="button" id="sideBookmark" class="btn btn-default btn-sm" data-id="1190000002437819" data-id="1190000002437819" data-type="article">收藏</button>
+                                                                                        <strong id="sideBookmarked">3</strong> 收藏，<strong class="no-stress">1.4k</strong> 浏览
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- end .post-topheader -->
+
+    <div class="container mt30">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main">
+
+                                                <div class="article fmt">
+                    
+<h3>前言</h3>
+
+<p>到了开发的后期，测试工作往往是重中之重，但是测试本身又十分繁琐与复杂。对于使用js的朋友，对于我接下来要讲的内容绝对不会陌生，对，就是大名鼎鼎的摩卡！由于为我的好友开发的后端框架Zeta做测试工作，所以开始接触这一类测试工具和测试流程，就把我的学习经验分享给大家吧。</p>
+
+<h3>mocha</h3>
+
+<p>mocha的使用方法十分简单，就是两个语句describe和it</p>
+
+<h4>describe</h4>
+
+<pre><code>js</code><code>describe('req.get',function(){
+    describe('res.json',function(){
+    });
+});
+</code></pre>
+
+<p>被describe的回调所包裹的是一个测试流程，使用describe可以很好地为测试表明目的和区分层次</p>
+
+<h4>it</h4>
+
+<pre><code>js</code><code>describe('Array.index',function(){
+    it('should return -1 when not found',function(){
+        var tmp=[1,2,3];
+        tmp.indexOf(4).should.equal(-1);
+    });
+});
+</code></pre>
+
+<p>it的第一个参数是个字符串，你可以把它看做是你测试样例的期望结果，其实没有什么实际意义，不会对测试样例的运行有什么影响。<br>
+上面的例子是对于同步的，如果有异步回调怎么办呢？</p>
+
+<pre><code>js</code><code>describe('db.save',function(){
+    it('should save the doc',function(done){
+        doc.save(function(err,doc){
+            if(err) done(err);
+            if(!doc) done(err);
+            done();
+        });
+    });
+});
+</code></pre>
+
+<p>done是链的最后一个步骤，调用done既不会往下执行，done(err)则说明失败。</p>
+
+<h3>chai</h3>
+
+<p>chai是一个断言工具，提供了一些比较受欢迎的断言写法，这里主要介绍两个，should和expect。</p>
+
+<h4>should</h4>
+
+<pre><code>js</code><code>var should=require('chai').should();
+res.text.should.equal('hi,world');
+req.path.should.include('users');
+foo.should.have.length(3);
+</code></pre>
+
+<p>从上面的例子大家可以领会should的写法了。</p>
+
+<h4>expect</h4>
+
+<pre><code>js</code><code>var expect=require('chai').expect;
+expect(foo).to.be.a('string');
+expect(foo).to.equal('bar');
+expect(foo).to.have.length(3);
+expect(beverages).to.have.property('tea').with.length(3);
+</code></pre>
+
+<p>chai的使用十分人性化，符合自然语言的规律，就不多提了。</p>
+
+<h3>supertest</h3>
+
+<p>对后端测试的时候难免会发起请求，supertest为我们提供了这样的功能。</p>
+
+<pre><code>js</code><code>var request=require('supertest');
+request(app).
+    get('/foo').
+    expect(200).
+    expect('Content-Type','application/json').
+    end(function(err,res){
+        if(err) throw err;
+    });
+</code></pre>
+
+<p>要模拟异步ajax怎么办呢</p>
+
+<pre><code>js</code><code>//json上传
+request(app).
+    post('/foo').
+    send({key:'value'}).
+    expect(200);
+//表单提交
+request(app).
+    post('/foo').
+    type('form').
+    send({key:value});
+//上传文件
+request(app).
+    post('/foo').
+    attach('field','filepath').
+    ....
+</code></pre>
+
+<p>要设置一些东西怎么办呢？</p>
+
+<pre><code>js</code><code>request(app).
+    post('/hh').
+    send({key:val}).
+    set('Accept-laguange','zh-cn').
+    set('Cookie',['user=suemi','passwd=*******']).
+    ...
+</code></pre>
+
+<p>supertest主要使用的就是expect和end了，通过例子，大家也很清楚基本的用法了，对于详细的API可以参考官网。</p>
+
+<h3>完整示例</h3>
+
+<p>最后给大家带来一个我自己写的完整示例。</p>
+
+<pre><code>js</code><code>var Zeta=require('../../'),
+    assert=require('assert'),
+    request=require('supertest'),
+    demo=Zeta.module('demo',[]),
+    should=require('chai').should();
+demo.load();
+
+describe('singleHandler',function(done){
+    it('should get hello',function(){
+        demo.handler('h1',function($scope){
+            $scope.res.writeHead(200,{'Content-Type':'text/plain'});
+            $scope.res.write('hello,world');
+            $scope.res.end();
+        });
+        demo.get('/test','h1');
+        request(demo.server())
+        .get('/test')
+        .expect(200)
+        .end(function(err,res){
+            if(err) throw err;
+            res.text.should.equal('hello,world');
+        });
+    });
+    it('should cover the previous one',function(done){
+        demo.handler('h1',function($scope){
+            $scope.res.writeHead(200,{'Content-Type':'text/plain'});
+            $scope.res.write('hi,world');
+            $scope.res.end();
+        });
+        request(demo.server(true)).
+            get('/test').
+            expect(200).
+            end(function(err,res){
+                if(err) done(err);
+                res.text.should.equal('hi,world');
+                done();
+            });
+    });
+});
+
+</code></pre>
+
+<p>测试效果截图如下<br><img src="/img/bVkolO" alt="图片描述"></p>
+
+                </div>
+                                
+                <div class="clearfix">
+
+                    <ul class="taglist--inline pull-left">
+                                                <li class="tagPopup"><a class="tag" href="/t/node.js/blogs" data-toggle="popover" data-img="http://sfault-avatar.b0.upaiyun.com/740/312/74031254-1040000000089918_huge100" data-placement="top" data-original-title="node.js" data-id="1040000000089918">node.js</a></li>
+                                                <li class="tagPopup"><a class="tag" href="/t/mocha/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="mocha" data-id="1040000000364429">mocha</a></li>
+                                                <li class="tagPopup"><a class="tag" href="/t/%E6%B5%8B%E8%AF%95/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="测试" data-id="1040000000135606">测试</a></li>
+                                            </ul>
+
+                </div>
+                <div class="clearfix mt10">
+                    <ul class="article-operation list-inline pull-left">
+                        <li><a href="/a/1190000002437819" class="text-muted">链接</a></li>
+                                                                                                <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown">更多<b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li><a href="#911" data-toggle="modal" data-target="#911" data-type="article" data-id="1190000002437819" data-typetext="文章">举报</a></li>
+                                                                                                                                                                                                        </ul>
+                        </li>
+                    </ul>
+                    <div class="pull-right post-share">
+                        <div class="widget-share" data-text="node测试基础">
+</div>
+
+                    </div>
+                </div>
+
+                <div class="text-center mt10">
+                
+                    <button type="button" id="mainLike" data-id="1190000002437819" class="btn btn-success btn-lg mr10">
+                        1 推荐
+                    </button>
+                
+                                    <button type="button" id="mainBookmark" data-type="article" data-id="1190000002437819" class="btn btn-default btn-lg ">
+                        收藏
+                    </button>
+                                </div>
+
+                
+                                <div class="recommend-post pt30 mt40 mb30 border-top">
+                    <h4 class="mt0">你可能感兴趣的文章</h4>
+                    <ul class="widget-links list-unstyled">
+                                                <li class="widget-links__item">
+                            <a href="/a/1190000002921481" title="Nodejs单元测试小结">Nodejs单元测试小结</a>
+                            <small class="text-muted">
+                                16 收藏，880 浏览
+                            </small>
+                        </li>
+                                                <li class="widget-links__item">
+                            <a href="/a/1190000002984199" title="译/如何开始node.js之旅">译/如何开始node.js之旅</a>
+                            <small class="text-muted">
+                                2 收藏，104 浏览
+                            </small>
+                        </li>
+                                                <li class="widget-links__item">
+                            <a href="/a/1190000002596477" title="node mocha command 小抄">node mocha command 小抄</a>
+                            <small class="text-muted">
+                                240 浏览
+                            </small>
+                        </li>
+                                            </ul>
+                </div>
+                                <!-- <ul class="list-unstyled text-muted mt30">
+                                        <li>上一篇：<a href="/a/1190000002433453">Web实战之文章阅览与编辑</a></li>
+                                                            <li class="mt5">下一篇：<a href="/a/1190000002448251">mocha的时序问题</a></li>
+                                    </ul> -->
+
+                <h2 class="h4 post-comment-title">讨论区</h2>
+                <div class="widget-comments" id="comment-1190000002437819" data-id="1190000002437819">
+        <div class="widget-comments__item hover-show" id="1050000002447861">
+        <div class="votes widget-vote">
+            <button class="like" data-id="1050000002447861" type="button" data-do="like" data-type="comment"></button>
+            <span class="count">0</span>
+        </div>
+        <div class="comment-content wordbreak">
+                                    <div class="content fmt">
+                
+<p>还是叫摩卡比较好，免得误导别人了</p>
+
+            </div>
+            <p class="comment-meta">
+                <a href="/c/1050000002447861" class="text-muted">#1</a> <a href="/u/faceair" class="commentUser" data-userid="1030000000315239" data-username="faceair" data-userslug="" data-useravatar="http://sfault-avatar.b0.upaiyun.com/237/498/2374980879-1030000000315239_medium40">
+                    <strong>faceair</strong>
+                </a>
+                &middot;
+                2014年12月27日
+                &middot;
+                <a href="javascript:void(0);" class="commentReply" data-userid="1030000000315239" data-id="1050000002447861" data-username="faceair">回复</a>
+
+                <span class="pull-right commentTools hover-show-obj">
+                                                            <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000002447861" data-typetext="评论" data-placement="top" title="举报">举报</a>
+                </span>
+            </p>
+        </div>
+    </div>
+        <div class="widget-comments__item hover-show" id="1050000002447876">
+        <div class="votes widget-vote">
+            <button class="like" data-id="1050000002447876" type="button" data-do="like" data-type="comment"></button>
+            <span class="count">0</span>
+        </div>
+        <div class="comment-content wordbreak">
+                                    <span>回复 <a href="/u/faceair" target="_blank">faceair</a>：</span>
+                        <div class="content fmt">
+                
+<p>额。。。。有理</p>
+
+            </div>
+            <p class="comment-meta">
+                <a href="/c/1050000002447876" class="text-muted">#2</a> <a href="/u/suemi" class="commentUser" data-userid="1030000002404586" data-username="suemi" data-userslug="" data-useravatar="http://sfault-avatar.b0.upaiyun.com/230/146/2301467446-550bddbdad804_medium40">
+                    <strong>suemi</strong>
+                </a>
+                &middot;
+                2014年12月27日
+                &middot;
+                <a href="javascript:void(0);" class="commentReply" data-userid="1030000002404586" data-id="1050000002447876" data-username="suemi">回复</a>
+
+                <span class="pull-right commentTools hover-show-obj">
+                                                            <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000002447876" data-typetext="评论" data-placement="top" title="举报">举报</a>
+                </span>
+            </p>
+        </div>
+    </div>
+        <div class="widget-comments__item hover-show" id="1050000002573343">
+        <div class="votes widget-vote">
+            <button class="like" data-id="1050000002573343" type="button" data-do="like" data-type="comment"></button>
+            <span class="count">0</span>
+        </div>
+        <div class="comment-content wordbreak">
+                                    <div class="content fmt">
+                
+<p>非常好的总结</p>
+
+            </div>
+            <p class="comment-meta">
+                <a href="/c/1050000002573343" class="text-muted">#3</a> <a href="/u/jigi" class="commentUser" data-userid="1030000000514255" data-username="王吉" data-userslug="" data-useravatar="http://sfault-avatar.b0.upaiyun.com/489/597/489597954-1030000000514255_medium40">
+                    <strong>王吉</strong>
+                </a>
+                &middot;
+                3月2日
+                &middot;
+                <a href="javascript:void(0);" class="commentReply" data-userid="1030000000514255" data-id="1050000002573343" data-username="王吉">回复</a>
+
+                <span class="pull-right commentTools hover-show-obj">
+                                                            <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000002573343" data-typetext="评论" data-placement="top" title="举报">举报</a>
+                </span>
+            </p>
+        </div>
+    </div>
+        <div class="widget-comments__item hover-show" id="1050000002731190">
+        <div class="votes widget-vote">
+            <button class="like" data-id="1050000002731190" type="button" data-do="like" data-type="comment"></button>
+            <span class="count">0</span>
+        </div>
+        <div class="comment-content wordbreak">
+                                    <div class="content fmt">
+                
+<p>request(demo.server(true)).<br>
+...<br>
+     end(function(err,res){<br>
+                done();<br>
+      });<br>
+...<br>
+这里好像只能测试到 res 吧，能否有方法能测试到req</p>
+
+            </div>
+            <p class="comment-meta">
+                <a href="/c/1050000002731190" class="text-muted">#4</a> <a href="/u/lioff" class="commentUser" data-userid="1030000002731158" data-username="lioff" data-userslug="" data-useravatar="//static.segmentfault.com/global/img/user-40.png">
+                    <strong>lioff</strong>
+                </a>
+                &middot;
+                5月5日
+                &middot;
+                <a href="javascript:void(0);" class="commentReply" data-userid="1030000002731158" data-id="1050000002731190" data-username="lioff">回复</a>
+
+                <span class="pull-right commentTools hover-show-obj">
+                                                            <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000002731190" data-typetext="评论" data-placement="top" title="举报">举报</a>
+                </span>
+            </p>
+        </div>
+    </div>
+        <div class="widget-comments__item hover-show" id="1050000002731360">
+        <div class="votes widget-vote">
+            <button class="like" data-id="1050000002731360" type="button" data-do="like" data-type="comment"></button>
+            <span class="count">0</span>
+        </div>
+        <div class="comment-content wordbreak">
+                                    <span>回复 <a href="/u/lioff" target="_blank">lioff</a>：</span>
+                        <div class="content fmt">
+                
+<p>因为不方便直接直接测试req，才测试res来推测req的</p>
+
+            </div>
+            <p class="comment-meta">
+                <a href="/c/1050000002731360" class="text-muted">#5</a> <a href="/u/suemi" class="commentUser" data-userid="1030000002404586" data-username="suemi" data-userslug="" data-useravatar="http://sfault-avatar.b0.upaiyun.com/230/146/2301467446-550bddbdad804_medium40">
+                    <strong>suemi</strong>
+                </a>
+                &middot;
+                5月5日
+                &middot;
+                <a href="javascript:void(0);" class="commentReply" data-userid="1030000002404586" data-id="1050000002731360" data-username="suemi">回复</a>
+
+                <span class="pull-right commentTools hover-show-obj">
+                                                            <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000002731360" data-typetext="评论" data-placement="top" title="举报">举报</a>
+                </span>
+            </p>
+        </div>
+    </div>
+        <div class="widget-comments__item hover-show" id="1050000002736493">
+        <div class="votes widget-vote">
+            <button class="like" data-id="1050000002736493" type="button" data-do="like" data-type="comment"></button>
+            <span class="count">0</span>
+        </div>
+        <div class="comment-content wordbreak">
+                                    <span>回复 <a href="/u/suemi" target="_blank">suemi</a>：</span>
+                        <div class="content fmt">
+                
+<p>了解了，将req 上需要测的通过res 返回来</p>
+
+            </div>
+            <p class="comment-meta">
+                <a href="/c/1050000002736493" class="text-muted">#6</a> <a href="/u/lioff" class="commentUser" data-userid="1030000002731158" data-username="lioff" data-userslug="" data-useravatar="//static.segmentfault.com/global/img/user-40.png">
+                    <strong>lioff</strong>
+                </a>
+                &middot;
+                5月7日
+                &middot;
+                <a href="javascript:void(0);" class="commentReply" data-userid="1030000002731158" data-id="1050000002736493" data-username="lioff">回复</a>
+
+                <span class="pull-right commentTools hover-show-obj">
+                                                            <a href="#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000002736493" data-typetext="评论" data-placement="top" title="举报">举报</a>
+                </span>
+            </p>
+        </div>
+    </div>
+                        <a href="javascript:void(0);" class="comments showMoreComments" data-id="1190000002437819" data-target="#comment-1190000002437819">展开评论</a>
+        <div class="widget-comments__form row hidden">
+                                    <div class="col-md-12">
+                    请先 <a class="commentLogin" href="javascript:void(0);">登录</a> 后评论
+                </div>
+            
+    </div><!-- /.widget-comments__form -->
+    </div><!-- /.widget-comments -->
+
+
+
+                                    <div class="widget-welcome-question mt20 mb20 hidden-xs widget-welcome">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="title h4">不要错过 TA 的任何更新</h2>
+            <p>如果这篇文章对你有帮助，记得点赞收藏哦，你的支持是我们的动力 ^___^</p>
+        </div>
+        <form id="user">
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-4 pr0">
+                        <input type="text" class="form-control" placeholder="用户名" name="name" required>
+                    </div>
+                    <div class="col-sm-4 pr0">
+                        <input type="text" class="form-control" placeholder="Email" name="mail" required>
+                    </div>
+                    <div class="col-sm-4 pr0">
+                        <input type="password" class="form-control" placeholder="密码" name="password" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-block">注册</button>
+            </div>
+            <div class="col-sm-10 mt10 captcha-part" style="display:none;">
+                <div class="row">
+                    <div class="col-sm-4 pr0">
+                        <input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入验证码" disabled required>
+                    </div>
+                    <div class="col-sm-4 pr0">
+                        <a id="reloadCaptcha"  href="javascript:void(0)"><img src="" height="35" /></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+                
+            </div><!-- /.main -->
+
+
+            <div class="col-xs-12 col-md-3 side">
+                <div class="sfad-sidebar">
+    <div class="sfad-item" data-adn="ad-981179" id="adid-981179">
+    <button class="close" type="button" aria-hidden="true">&times;</button>
+</div>
+
+</div>
+
+                <div class="mb30 pb20 border-bottom">
+                    <p class="text-muted">本文隶属于专栏</p>
+                    <h4 class="fz16"><a href="/blog/suemi">suemi</a></h4>
+                    <p>程序猿一只</p>
+                                                        <button type="button"
+                        class="btn btn-default follow-article mb10" 
+                        data-do="follow" 
+                        data-type="blog" 
+                        data-id="1200000002405426">关注专栏</button>
+                                                    </div>
+
+                
+                                
+                <div class="post-nav hidden-xs">
+                    <div class="panel panel-default widget-outline">
+                        <div class="panel-heading">文章目录</div>
+                        <div class="panel-body">
+                            <div class="nav-body">
+                                <div class="highlight-title"></div>
+                                <ul class="articleIndex"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.side -->
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消并且不再弹出</button>
+                <a href="" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$('#shareToWeiboModal').modal('hide')">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="911" class="modal widget-911">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">举报<span class="type-911">问题</span></h4>
+            </div>
+            <div class="modal-body">
+                <p><strong class="required">举报理由：</strong></p>
+                <div id="reportDescription">
+                <div class="radio-911 radio all">
+                    <label>
+                        <input type="radio" name="descRadio" value="推广（招聘、广告、SEO 等）方面的内容">
+                        推广（招聘、广告、SEO 等）方面的内容
+                    </label>
+                </div>
+                <div class="radio-911 radio all">
+                    <label>
+                        <input type="radio" name="descRadio" value="带有人身攻击、辱骂、仇恨等违反条款的内容">
+                        带有人身攻击、辱骂、仇恨等违反条款的内容
+                    </label>
+                </div>
+                <div class="radio-911 radio question-only">
+                    <label>
+                        <input type="radio" name="descRadio" value="与已有问题重复">
+                        与已有问题重复（请编辑该提问指向已有相同问题）
+                    </label>
+                </div>
+                <div class="radio-911 radio all">
+                    <label>
+                        <input type="radio" name="descRadio" value="内容质量差，或不适合在本网站出现">
+                        内容质量差，或不适合在本网站出现
+                    </label>
+                </div>
+                <div class="radio-911 radio answer-only">
+                    <label>
+                        <input type="radio" name="descRadio" value="答非所问，不符合答题要求">
+                        答非所问，不符合答题要求
+                    </label>
+                </div>
+                <div class="radio-911 radio all" id="btwRadio">
+                    <label>
+                        <input type="radio" name="descRadio" value="">
+                        其他原因（请补充说明）
+                    </label>
+                </div>
+                <div class="hide btw">
+                    <p class="mt20"><strong>补充说明：</strong></p>
+                    <textarea class="form-control" rows="3" autocomplete="false" id="911Desc"></textarea>
+                </div>
+                                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="911Submit" class="btn btn-primary">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<footer id="footer">
+<div class="container">
+    <div class="row hidden-xs">
+        <dl class="col-sm-2 site-link">
+            <dt>网站相关</dt>
+            <dd><a href="/about">关于我们</a></dd>
+            <dd><a href="/tos">服务条款</a></dd>
+            <dd><a href="/faq">帮助中心</a></dd>
+            <dd><a href="/repu">声望与权限</a></dd>
+            <dd><a href="/markdown">编辑器语法</a></dd>
+            <dd><a href="http://weekly.segmentfault.com/">每周精选</a></dd>
+            <dd><a href="/app">App 下载</a></dd>
+        </dl>
+        <dl class="col-sm-2 site-link">
+            <dt>联系合作</dt>
+            <dd><a href="/contact">联系我们</a></dd>
+            <dd><a href="/hiring">加入我们</a></dd>
+            <dd><a href="/link">合作伙伴</a></dd>
+            <dd><a href="/press">媒体报道</a></dd>
+            <dd><a href="http://0x.segmentfault.com">建议反馈</a></dd>
+            <dd><a href="http://pan.baidu.com/share/link?shareid=604288&uk=839272106" target="_blank">Logo 下载</a></dd>
+        </dl>
+        <dl class="col-sm-2 site-link">
+            <dt>常用链接</dt>
+            <dd><a href="http://mirrors.segmentfault.com/" target="_blank">文档镜像</a></dd>
+            <dd>订阅：<a href="/feeds">问答</a> / <a href="/feeds/blogs">文章</a></dd>
+            <dd><a href="http://segmentfault.com/events?category=4">黑客马拉松</a></dd>
+<!--             <dd><a href="http://zs.segmentfault.com/" target="_blank">一起涨姿势</a></dd> -->
+            <dd><a href="http://namebeta.com/" target="_blank">域名搜索注册</a></dd>
+        </dl>
+        <dl class="col-sm-2 site-link">
+            <dt>关注我们</dt>
+            <dd><a href="http://twitter.com/segment_fault" target="_blank">Twitter</a></dd>
+            <!-- <dd><a href="http://page.renren.com/699146294" target="_blank">人人网</a></dd> -->
+            <dd><a href="https://www.linkedin.com/company/segmentfault" target="_blank">LinkedIn</a></dd>
+            <dd><a href="http://weibo.com/segmentfault" target="_blank">新浪微博</a></dd>
+            <dd><a href="http://i.youku.com/segmentfault" target="_blank">优酷主页</a></dd>
+            <dd><a href="/giveaways" target="_blank">开发者福利</a></dd>
+            <dd><a href="http://blog.segmentfault.com/devblog" target="_blank">开发日志</a></dd>
+        </dl>
+        <dl class="col-sm-4 site-link" id="license">
+            <dt>内容许可</dt>
+            <dd>除特别说明外，用户内容均采用 <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/cn/">知识共享署名-相同方式共享 3.0 中国大陆许可协议</a> 进行许可</dd>
+            <dd>本站由 <a target="_blank" href="http://qingcloud.com/">青云 QingCloud</a> 提供云计算服务<br><a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&utm_medium=link&utm_campaign=upyun&md=segmentfault">又拍云</a> 提供 CDN 存储服务</dd>
+        </dl>
+    </div>
+    <div class="copyright">
+        Copyright &copy; 2011-2015 SegmentFault. 当前呈现版本 15.06.11<br><a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备15005796号-2</a>
+    </div>
+</div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+  <a id="backtop" class="hidden border-bottom" href="#">回顶部</a>
+  <div class="qrcodeWraper">
+    <a><span class="glyphicon glyphicon-qrcode"></span></a>
+    <img id="qrcode" class="border" alt="sf-wechat" src="//static.segmentfault.com/build/global/img/sf-wechat.27acd26c.png">
+  </div>
+</div>
+
+
+<script id="loginModal" type="text/template">
+<div class="row bg-white login-modal">
+    <div class="col-md-4 col-sm-12 col-md-push-7 login-wrap">
+        <h1 class="h4 text-muted login-title">用户登录</h1>
+        <form action="/api/user/login" method="POST" role="form" class="mt30">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="email" class="form-control" name="mail" required placeholder="hello@segmentfault.com">
+            </div>
+            <div class="form-group">
+                <label class="control-label">密码</label>
+                <input type="password" class="form-control" name="password" required placeholder="密码">
+            </div>
+            <div class="form-group clearfix">
+                <div class="checkbox pull-left">
+                    <label><input name="remember" type="checkbox" value="1" checked> 记住登录状态</label>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right pl20 pr20">登录</button>
+            </div>
+        </form>
+        <p class="h4 text-muted visible-xs-block h4">快速登录</p>
+        <div class="widget-login mt30">
+            <p class="text-muted mt5 mr10 pull-left hidden-xs">快速登录</p>
+            <a href="/user/oauth/google" class="btn pl5 pr5 mb5 btn-default btn-sm btn-sn-google"><span class="icon-sn-google"></span> <strong class="visible-xs-inline">Google 账号</strong></a>
+            <a href="/user/oauth/github" class="btn pl5 pr5 mb5 btn-default btn-sm btn-sn-github"><span class="icon-sn-github"></span> <strong class="visible-xs-inline">Github 账号</strong></a>
+            <a href="/user/oauth/weibo" class="btn pl5 pr5 mb5 btn-default btn-sm btn-sn-weibo"><span class="icon-sn-weibo"></span> <strong class="visible-xs-inline">新浪微博账号</strong></a>
+            <a href="/user/oauth/qq" class="btn pl5 pr5 mb5 btn-default btn-sm btn-sn-qq"><span class="icon-sn-qq"></span> <strong class="visible-xs-inline">QQ 账号</strong></a>
+            <a href="/user/oauth/weixin" class="btn pl5 pr5 mb5 btn-default btn-sm btn-sn-wechat"><span class="icon-sn-wechat"></span> <strong class="visible-xs-inline">微信账号</strong></a>
+            <button type="button" class="btn mb5 btn-default btn-sm btn-sn-more" id="loginShowMore">...</button>
+            <a href="/user/oauth/twitter" class="btn pl5 pr5 mb5 btn-default btn-sn-twitter btn-sm hidden"><span class="icon-sn-twitter"></span> <strong class="visible-xs-inline">Twitter 账号</strong></a>
+            <a href="/user/oauth/facebook" class="btn pl5 pr5 mb5 btn-default btn-sn-facebook btn-sm hidden"><span class="icon-sn-facebook"></span> <strong class="visible-xs-inline">Facebook 账号</strong></a>
+            <a href="/user/oauth/douban" class="btn pl5 pr5 mb5 btn-default btn-sn-douban btn-sm hidden"><span class="icon-sn-douban"></span> <strong class="visible-xs-inline">豆瓣账号</strong></a>
+        </div>
+    </div>
+    <div class="login-vline hidden-xs hidden-sm"></div>
+    <div class="col-md-4 col-md-pull-3 col-sm-12 login-wrap">
+        <h1 class="h4 text-muted login-title">创建新账号</h1>
+        <form action="/api/user/register" method="POST" role="form" class="mt30">
+            <div class="form-group">
+                <label for="name" class="control-label">用户名</label>
+                <input type="text" class="form-control" name="name" required placeholder="字母、数字等，用户名唯一">
+            </div>
+            <div class="form-group">
+                <label for="mail" class="control-label">Email</label>
+                <input type="hidden" name="mail">
+                <input type="email" class="form-control register-mail" name="mail" required placeholder="hello@segmentfault.com">
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">密码</label>
+                <input type="password" class="form-control" name="password" required placeholder="不少于 6 位">
+            </div>
+            <div class="form-group" style="display:none;">
+                <label class="required control-label">验证码</label>
+                <input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入下方的验证码">
+                <div class="mt10"><a id="loginReloadCaptcha"  href="javascript:void(0)"><img data-src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50" /></a></div>
+            </div>
+            <div class="form-group clearfix">
+                <div class="checkbox pull-left">
+                    同意并接受<a href="/tos" target="_blank">《服务条款》</a>
+                </div>
+                <button type="submit" class="btn btn-primary pl20 pr20 pull-right">注册</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center text-muted mt30">
+    <a href="/user/forgot" class="ml5">找回密码</a>
+</div>
+</script>
+
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "//static.segmentfault.com",
+        };
+        w.SF.token = (function () {
+    var _T6noAOO = //'k'
+'38'+'65'//'E'
++'16'//'Q'
++'64f'//'e3'
++//'1'
+'41'+//'Oe'
+'6'+//'x'
+'287'+'26'//'LQU'
++'ac'//'W'
++'b9'//'BA'
++'78'//'u'
++//'p'
+'36'+//'0AU'
+'4a'+//'A'
+'d90'+'c7'//'E'
+, _k80BE = [];
+
+    for (var i = 0; i < _k80BE.length; i ++) {
+        _T6noAOO = _T6noAOO.substring(0, _k80BE[i][0]) + _T6noAOO.substring(_k80BE[i][1]);
+    }
+
+    return _T6noAOO;
+})();
+    })(window);
+</script>
+
+    <script src="//static.segmentfault.com/build/3rd/assets.ce4fe392.js"></script>
+    <script>
+    requirejs.config({
+        baseUrl: "//static.segmentfault.com/build/global/js"
+    });
+    </script>
+            <script src="//static.segmentfault.com/build/blog/js/post.7f9d4c93.js"></script>
+    
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-918487-8']);
+  _gaq.push(['_trackPageview']);
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-918487-8', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script src="http://cbjs.baidu.com/js/m.js"></script>
+<script>
+if(typeof BAIDU_CLB_fillSlotAsync === 'function') {
+    BAIDU_CLB_fillSlotAsync('981183','adid-981183');
+    BAIDU_CLB_fillSlotAsync('981184','adid-981184');
+    BAIDU_CLB_fillSlotAsync('981694','adid-981694');
+    BAIDU_CLB_fillSlotAsync('981179','adid-981179');
+}
+</script>
+
+
+</body>
+</html>

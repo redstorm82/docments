@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>supertest</title>
+
+    <meta name="description" content="Super-agent driven library for testing HTTP servers">
+    <meta name="keywords" content="testing,test,http,bdd,tdd,request,superagent">
+    <meta name="twitter:url" content="https://www.npmjs.com/package/supertest">
+    <meta name="twitter:title" content="npm: supertest">
+    <meta name="twitter:description" content="Super-agent driven library for testing HTTP servers">
+
+  <meta charset="utf-8">
+  <meta http-equiv="cleartype" content="on" />
+
+  <meta name="apple-mobile-web-app-capable" content="no">
+  <meta name="description" content="npm is the package manager for javascript">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/static/images/touch-icons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/static/images/touch-icons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/static/images/touch-icons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/images/touch-icons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/static/images/touch-icons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/images/touch-icons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/static/images/touch-icons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/images/touch-icons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/images/touch-icons/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="/static/images/touch-icons/apple-touch-startup-image-1024x748.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="/static/images/touch-icons/apple-touch-startup-image-1536x2008.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="/static/images/touch-icons/apple-touch-startup-image-2048x1496.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/static/images/touch-icons/apple-touch-startup-image-320x460.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/static/images/touch-icons/apple-touch-startup-image-640x1096.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="/static/images/touch-icons/apple-touch-startup-image-640x920.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="/static/images/touch-icons/apple-touch-startup-image-768x1004.png">
+  <link rel="icon" type="image/png" href="/static/images/touch-icons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/static/images/touch-icons/favicon-230x230.png" sizes="230x230">
+  <link rel="icon" type="image/png" href="/static/images/touch-icons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/static/images/touch-icons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/static/images/touch-icons/coast-228x228.png" sizes="228x228">
+  <link rel="icon" type="image/png" href="/static/images/touch-icons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/static/images/touch-icons/manifest.json">
+  <link rel="shortcut icon" href="/static/images/touch-icons/favicon.ico">
+  <link rel="yandex-tableau-widget" href="/static/images/touch-icons/yandex-browser-manifest.json">
+  <meta property="og:image" content="https://www.npmjs.com/static/images/touch-icons/open-graph.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="msapplication-TileColor" content="#cb3837">
+  <meta name="msapplication-TileImage" content="/static/images/touch-icons/mstile-144x144.png">
+  <meta name="msapplication-config" content="/static/images/touch-icons/browserconfig.xml">
+  <meta name="theme-color" content="#cb3837">
+
+  <link rel="canonical" href="https://www.npmjs.com/package/supertest">
+  <link rel="stylesheet" media="all" href="/static/css/index.css">
+  <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="npm">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700">
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebSite" data-crumb="AEZPztgMfbDGEyyaI07aayQLhA6ua4wa07UaEbnLPIa">
+  <meta itemprop="url" content="https://www.npmjs.com/">
+
+  <div id="notification-banner" style="display:none">
+    <div class="container">
+      <hgroup>
+        <a href="/private-modules"
+          data-event-trigger="click"
+          data-event-name="private-modules-banner-signup-via-wombat">
+          <img src="/static/images/wombat-by-night.svg" alt="night wombat">
+        </a>
+        <h2>private npm is here.</h2>
+        <h3>publish unlimited private modules for just $7/month</h3>
+      </hgroup>
+      <a class="button" href="/private-modules"
+        data-event-trigger="click"
+        data-event-name="private-modules-banner-signup">sign up</a>
+      <a class="button button-subtle banner-close" data-event-trigger="click" data-event-name="private-modules-banner-no-thanks">no thanks</a>
+    </div>
+  </div>
+
+  <nav>
+    <div class="container">
+      <a href="#" id="npm-expansions" data-event-trigger="click" data-event-name="npm-expansions">node package manager</a>
+      <a href="/private-modules" data-event-trigger="click" data-event-name="private-modules-nav-link">npm private modules</a>
+      <a href="/enterprise">npm Enterprise</a>
+      <a href="https://docs.npmjs.com">documentation</a>
+      <a href="http://blog.npmjs.org/">blog</a>
+      <a href="/npm-weekly">npm weekly</a>
+      <a href="/jobs">jobs</a>
+      <a href="/support">support</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <a href="/" id="npm-logo"><img src="/static/images/npm-logo.svg" alt="npm logo" /></a>
+
+      <div id="user-info" class="anonymous">
+          <a href="/login"><img src="/static/images/wombat-avatar-small.png" /></a>
+          <ul class="single">
+            <li><a href="/signup">sign up</a> or <a href="/login">log in</a></li>
+          </ul>
+
+      </div>
+
+      <form id="npm-search" action="/search" method="get" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
+        <meta itemprop="target" content="https://www.npmjs.com/search?q={q}">
+        <input name="q" value="" type="search" id="site-search" placeholder="find packages" tabindex="1" autocorrect="off" autocapitalize="off" itemprop="query-input" />
+        <input type="submit" id="site-search-submit" />
+      </form>
+
+    </div>
+  </header>
+
+  <div class="container content">
+    
+<div class="content-column">
+
+  <h1 class="package-name">
+    <a href="/package/supertest">supertest</a>
+      <i class="icon-public"></i>
+  </h1>
+  <p class="package-description">Super-agent driven library for testing HTTP servers</p>
+
+  <form class="star">
+    <input type="hidden" name="name" value="supertest">
+    <input id="star-input" type="checkbox" name="isStarred" value="true" >
+    <label for="star-input" class="icon-star"></label>
+    <div class="honey">
+      <label>If you are a robot, enter text here</label>
+      <input type="text" name="honey">
+    </div>
+    
+      <input type="hidden" name="crumb" value="AEZPztgMfbDGEyyaI07aayQLhA6ua4wa07UaEbnLPIa"/>
+  </form>
+
+  <div id="readme" class="markdown">
+      <h1 class="package-name-redundant">SuperTest <a href="https://travis-ci.org/visionmedia/supertest"><img src="https://travis-ci.org/visionmedia/supertest.svg?branch=master" class="badge"></a></h1>
+<p>HTTP assertions made easy via <a href="http://github.com/visionmedia/superagent">super-agent</a>.</p>
+<h2 id="user-content-about" class="deep-link"><a href="#about">About</a></h2>
+<p>The motivation with this module is to provide a high-level abstraction for testing
+HTTP, while still allowing you to drop down to the lower-level API provided by super-agent.</p>
+<h2 id="user-content-getting-started" class="deep-link"><a href="#getting-started">Getting Started</a></h2>
+<p>Install SuperTest as an npm module and save it to your package.json file as a development dependency:</p>
+<pre><code><pre class="editor editor-colors"><div class="line"><span class="text"><span>npm&#xA0;install&#xA0;supertest&#xA0;--save-dev</span></span></div></pre></code></pre>
+<p>Once installed it can now be referenced by simply calling <code>require(&quot;supertest&quot;);</code></p>
+<h2 id="user-content-example" class="deep-link"><a href="#example">Example</a></h2>
+<p>You may pass an <code>http.Server</code>, or a <code>Function</code> to <code>request()</code> - if the server is not
+already listening for connections then it is bound to an ephemeral port for you so
+there is no need to keep track of ports.</p>
+<p>SuperTest works with any test framework, here is an example without using any
+test framework at all:</p>
+<pre><code class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="storage modifier js"><span>var</span></span><span>&#xA0;request&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>supertest</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;express&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>express</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span class="storage modifier js"><span>var</span></span><span>&#xA0;app&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;express</span><span class="meta brace round js"><span>(</span><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>app</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/user</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>req</span></span><span>,&#xA0;</span><span class="variable function js"><span>res</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;res</span><span class="meta delimiter method period js"><span>.</span></span><span class="support function js"><span>send</span></span><span class="meta brace round js"><span>(</span></span><span class="constant numeric js"><span>200</span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span><span>&#xA0;name</span><span class="keyword operator js"><span>:</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>tobi</span><span class="punctuation string end js"><span>&apos;</span></span></span><span>&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>request</span><span class="meta brace round js"><span>(</span></span><span>app</span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/user</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>Content-Type</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span class="string regexp js"><span>&#xA0;</span><span class="punctuation string begin js"><span>/</span></span><span>json</span><span class="punctuation string end js"><span>/</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>Content-Length</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>20</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="constant numeric js"><span>200</span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>end</span><span class="meta brace round js"><span>(</span></span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>err</span></span><span>,&#xA0;</span><span class="variable function js"><span>res</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="keyword control js"><span>if</span></span><span>&#xA0;</span><span class="meta brace round js"><span>(</span></span><span>err</span><span class="meta brace round js"><span>)</span></span><span>&#xA0;</span><span class="keyword control js"><span>throw</span></span><span>&#xA0;err</span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div></pre></code></pre>
+<p>Here&apos;s an example with mocha, note how you can pass <code>done</code> straight to any of the <code>.expect()</code> calls:</p>
+<pre><code class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span>describe</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>GET&#xA0;/users</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;it</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>respond&#xA0;with&#xA0;json</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>done</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;request</span><span class="meta brace round js"><span>(</span></span><span>app</span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/user</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>set</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>Accept</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>application/json</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>Content-Type</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span class="string regexp js"><span>&#xA0;</span><span class="punctuation string begin js"><span>/</span></span><span>json</span><span class="punctuation string end js"><span>/</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="constant numeric js"><span>200</span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;done</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span></span></div></pre></code></pre>
+<p>One thing to note with the above statement is that superagent now sends any HTTP
+error (anything other than a 2XX response code) to the callback as the first argument if
+you do not add a status code expect (i.e. <code>.expect(302)</code>).</p>
+<p>If you are using the <code>.end()</code> method <code>.expect()</code> assertions that fail will
+not throw - they will return the assertion as an error to the <code>.end()</code> callback. In
+order to fail the test case, you will need to rethrow or pass <code>err</code> to <code>done()</code>, as follows:</p>
+<pre><code class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span>describe</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>GET&#xA0;/users</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;it</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>respond&#xA0;with&#xA0;json</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>done</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;request</span><span class="meta brace round js"><span>(</span></span><span>app</span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/user</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>set</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>Accept</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>application/json</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="constant numeric js"><span>200</span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>end</span><span class="meta brace round js"><span>(</span></span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>err</span></span><span>,&#xA0;</span><span class="variable function js"><span>res</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="keyword control js"><span>if</span></span><span>&#xA0;</span><span class="meta brace round js"><span>(</span></span><span>err</span><span class="meta brace round js"><span>)</span></span><span>&#xA0;</span><span class="keyword control js"><span>return</span></span><span>&#xA0;done</span><span class="meta brace round js"><span>(</span></span><span>err</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;done</span><span class="meta brace round js"><span>(</span><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span></span></div></pre></code></pre>
+<p>Anything you can do with superagent, you can do with supertest - for example multipart file uploads!</p>
+<pre><code class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span>request</span><span class="meta brace round js"><span>(</span></span><span>app</span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span class="meta delimiter method period js"><span>.</span></span><span>post</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span class="meta delimiter method period js"><span>.</span></span><span>field</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>name</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>my&#xA0;awesome&#xA0;avatar</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span class="meta delimiter method period js"><span>.</span></span><span>attach</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>avatar</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>test/fixtures/homeboy.jpg</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span class="meta delimiter method period js"><span>.</span><span>.</span><span>.</span></span></span></div></pre></code></pre>
+<p>Passing the app or url each time is not necessary, if you&apos;re testing
+the same host you may simply re-assign the request variable with the
+initialization app or url, a new <code>Test</code> is created per <code>request.VERB()</code> call.</p>
+<pre><code class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span>request&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;request</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span class="markup underline link hyperlink"><span>http://localhost:5555</span></span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>request</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="constant numeric js"><span>200</span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>err</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="entity name type object js firebug"><span>console</span></span><span class="support function js firebug"><span>.log</span></span><span class="meta brace round js"><span>(</span></span><span>err</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>request</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>heya</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>err</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="entity name type object js firebug"><span>console</span></span><span class="support function js firebug"><span>.log</span></span><span class="meta brace round js"><span>(</span></span><span>err</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div></pre></code></pre>
+<p>Here&apos;s an example with mocha that shows how to persist a request and its cookies:</p>
+<pre><code class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span class="storage modifier js"><span>var</span></span><span>&#xA0;request&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>supertest</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;should&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>should</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;express&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;</span><span class="support function js"><span>require</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>express</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>describe</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>request.agent(app)</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="storage modifier js"><span>var</span></span><span>&#xA0;app&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;express</span><span class="meta brace round js"><span>(</span><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;app</span><span class="meta delimiter method period js"><span>.</span></span><span>use</span><span class="meta brace round js"><span>(</span></span><span>express</span><span class="meta delimiter method period js"><span>.</span></span><span>cookieParser</span><span class="meta brace round js"><span>(</span><span>)</span><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;app</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>req</span></span><span>,&#xA0;</span><span class="variable function js"><span>res</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;res</span><span class="meta delimiter method period js"><span>.</span></span><span class="support constant dom js"><span>cookie</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>cookie</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>hey</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;res</span><span class="meta delimiter method period js"><span>.</span></span><span class="support function js"><span>send</span></span><span class="meta brace round js"><span>(</span><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;app</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/return</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>req</span></span><span>,&#xA0;</span><span class="variable function js"><span>res</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="keyword control js"><span>if</span></span><span>&#xA0;</span><span class="meta brace round js"><span>(</span></span><span>req</span><span class="meta delimiter method period js"><span>.</span></span><span>cookies</span><span class="meta delimiter method period js"><span>.</span></span><span class="support constant dom js"><span>cookie</span></span><span class="meta brace round js"><span>)</span></span><span>&#xA0;res</span><span class="meta delimiter method period js"><span>.</span></span><span class="support function js"><span>send</span></span><span class="meta brace round js"><span>(</span></span><span>req</span><span class="meta delimiter method period js"><span>.</span></span><span>cookies</span><span class="meta delimiter method period js"><span>.</span></span><span class="support constant dom js"><span>cookie</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="keyword control js"><span>else</span></span><span>&#xA0;res</span><span class="meta delimiter method period js"><span>.</span></span><span class="support function js"><span>send</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>:(</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="storage modifier js"><span>var</span></span><span>&#xA0;agent&#xA0;</span><span class="keyword operator js"><span>=</span></span><span>&#xA0;request</span><span class="meta delimiter method period js"><span>.</span></span><span>agent</span><span class="meta brace round js"><span>(</span></span><span>app</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;it</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>should&#xA0;save&#xA0;cookies</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>done</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;agent</span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>set-cookie</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>cookie=hey;&#xA0;Path=/</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;done</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;it</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>should&#xA0;send&#xA0;cookies</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;</span><span class="meta function js"><span class="storage type function js"><span>function</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>done</span></span><span class="punctuation end js"><span>)</span></span></span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;agent</span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/return</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>hey</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta delimiter object comma js"><span>,</span></span><span>&#xA0;done</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span><span class="meta brace round js"><span>)</span></span></span></div></pre></code></pre>
+<p>There is another example that is introduced by the file <a href="https://github.com/visionmedia/superagent/blob/master/test/node/agency.js">agency.js</a></p>
+<h2 id="user-content-api" class="deep-link"><a href="#api">API</a></h2>
+<p>You may use any <a href="http://github.com/visionmedia/superagent">super-agent</a> methods,
+including <code>.write()</code>, <code>.pipe()</code> etc and perform assertions in the <code>.end()</code> callback
+for lower-level needs.</p>
+<h3 id="user-content-expect-status-fn" class="deep-link"><a href="#expect-status-fn">.expect(status[, fn])</a></h3>
+<p>Assert response <code>status</code> code.</p>
+<h3 id="user-content-expect-status-body-fn" class="deep-link"><a href="#expect-status-body-fn">.expect(status, body[, fn])</a></h3>
+<p>Assert response <code>status</code> code and <code>body</code>.</p>
+<h3 id="user-content-expect-body-fn" class="deep-link"><a href="#expect-body-fn">.expect(body[, fn])</a></h3>
+<p>Assert response <code>body</code> text with a string, regular expression, or
+parsed body object.</p>
+<h3 id="user-content-expect-field-value-fn" class="deep-link"><a href="#expect-field-value-fn">.expect(field, value[, fn])</a></h3>
+<p>Assert header <code>field</code> <code>value</code> with a string or regular expression.</p>
+<h3 id="user-content-expect-function-res" class="deep-link"><a href="#expect-function-res">.expect(function(res) {})</a></h3>
+<p>Pass a custom assertion function. It&apos;ll be given the response object to check. If the response is ok, it should return falsy, most commonly by not returning anything. If the check fails, throw an error or return a truthy value like a string that&apos;ll be turned into an error.</p>
+<p>Here the string or error throwing options are both demonstrated:</p>
+<pre><code class="highlight js"><pre class="editor editor-colors"><div class="line"><span class="source js"><span>request</span><span class="meta brace round js"><span>(</span></span><span>app</span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>get</span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>/</span><span class="punctuation string end js"><span>&apos;</span></span></span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>expect</span><span class="meta brace round js"><span>(</span></span><span>hasPreviousAndNextKeys</span><span class="meta brace round js"><span>)</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="meta delimiter method period js"><span>.</span></span><span>end</span><span class="meta brace round js"><span>(</span></span><span>done</span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;</span></span></div><div class="line"><span class="source js"><span class="meta function js"><span class="storage type function js"><span>function</span></span><span>&#xA0;</span><span class="entity name function js"><span>hasPreviousAndNextKeys</span></span><span class="punctuation begin js"><span>(</span></span><span class="variable function js"><span>res</span></span><span class="punctuation end js"><span>)</span></span></span><span>&#xA0;</span><span class="meta brace curly js"><span>{</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="keyword control js"><span>if</span></span><span>&#xA0;</span><span class="meta brace round js"><span>(</span></span><span class="keyword operator js"><span>!</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>next</span><span class="punctuation string end js"><span>&apos;</span></span></span><span>&#xA0;</span><span class="keyword operator js"><span>in</span></span><span>&#xA0;res</span><span class="meta delimiter method period js"><span>.</span></span><span class="support constant dom js"><span>body</span></span><span class="meta brace round js"><span>)</span><span>)</span></span><span>&#xA0;</span><span class="keyword control js"><span>return</span></span><span>&#xA0;</span><span class="string quoted double js"><span class="punctuation string begin js"><span>&quot;</span></span><span>missing&#xA0;next&#xA0;key</span><span class="punctuation string end js"><span>&quot;</span></span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span>&#xA0;&#xA0;</span><span class="keyword control js"><span>if</span></span><span>&#xA0;</span><span class="meta brace round js"><span>(</span></span><span class="keyword operator js"><span>!</span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted single js"><span class="punctuation string begin js"><span>&apos;</span></span><span>prev</span><span class="punctuation string end js"><span>&apos;</span></span></span><span>&#xA0;</span><span class="keyword operator js"><span>in</span></span><span>&#xA0;res</span><span class="meta delimiter method period js"><span>.</span></span><span class="support constant dom js"><span>body</span></span><span class="meta brace round js"><span>)</span><span>)</span></span><span>&#xA0;</span><span class="keyword control js"><span>throw</span></span><span>&#xA0;</span><span class="meta class instance constructor"><span class="keyword operator js"><span>new</span></span><span>&#xA0;</span><span class="entity name type instance js"><span>Error</span></span></span><span class="meta brace round js"><span>(</span></span><span class="string quoted double js"><span class="punctuation string begin js"><span>&quot;</span></span><span>missing&#xA0;prev&#xA0;key</span><span class="punctuation string end js"><span>&quot;</span></span></span><span class="meta brace round js"><span>)</span></span><span class="punctuation terminator statement js"><span>;</span></span></span></div><div class="line"><span class="source js"><span class="meta brace curly js"><span>}</span></span></span></div></pre></code></pre>
+<h3 id="user-content-end-fn" class="deep-link"><a href="#end-fn">.end(fn)</a></h3>
+<p>Perform the request and invoke <code>fn(err, res)</code>.</p>
+<h2 id="user-content-notes" class="deep-link"><a href="#notes">Notes</a></h2>
+<p>Inspired by <a href="https://github.com/flatiron/api-easy">api-easy</a> minus vows coupling.</p>
+<h2 id="user-content-license" class="deep-link"><a href="#license">License</a></h2>
+<p>MIT</p>
+
+  </div>
+
+</div>
+
+<div class="sidebar">
+
+    <div class="autoselect-wrapper npm-install icon-download">
+      <input type="text" value="npm install supertest" readonly>
+    </div>
+
+	<ul class="box">
+
+      <li class="last-publisher">
+        <a href="/~mikelax">
+          <img src="https://s.gravatar.com/avatar/12b78818832b0c56a5c9c0932e46605c?size=100&amp;default=retro" alt="mikelax" />
+          <span>mikelax</span>
+        </a>
+          published
+          <span data-date="2015-05-13T15:56:09.503Z" data-date-format="relative">
+            2015-05-13T15:56:09.503Z
+          </span>
+      </li>
+
+    <li>
+      <strong>1.0.1</strong>
+      is the latest
+        of 32 releases
+    </li>
+
+      <li>
+        <a href="https://github.com/visionmedia/supertest">github.com/visionmedia/supertest</a>
+      </li>
+
+
+      <li>
+          <a href="http://opensource.org/licenses/MIT">MIT</a>
+        <span> license</span>
+      </li>
+
+  </ul>
+
+    <h3 title="collaborators">
+      <a href="/package/supertest/access">Collaborators</a>
+    </h3>
+
+    <ul class="humans collaborators">
+        <li>
+          <a href="/~tjholowaychuk" rel="tipsy" title="tjholowaychuk">
+            <img src="https://s.gravatar.com/avatar/f1e3ab214a976a39cfd713bc93deb10f?size=100&amp;default=retro" alt="tjholowaychuk">
+          </a>
+        </li>
+        <li>
+          <a href="/~gjohnson" rel="tipsy" title="gjohnson">
+            <img src="https://s.gravatar.com/avatar/e9674d02c33d1d711a462026f40bbaf4?size=100&amp;default=retro" alt="gjohnson">
+          </a>
+        </li>
+        <li>
+          <a href="/~kof" rel="tipsy" title="kof">
+            <img src="https://s.gravatar.com/avatar/5f1342f40e37beb247bea2f94f21c237?size=100&amp;default=retro" alt="kof">
+          </a>
+        </li>
+        <li>
+          <a href="/~defunctzombie" rel="tipsy" title="defunctzombie">
+            <img src="https://s.gravatar.com/avatar/eb0f066fba69ae24fd346fa097f82d61?size=100&amp;default=retro" alt="defunctzombie">
+          </a>
+        </li>
+        <li>
+          <a href="/~mikelax" rel="tipsy" title="mikelax">
+            <img src="https://s.gravatar.com/avatar/12b78818832b0c56a5c9c0932e46605c?size=100&amp;default=retro" alt="mikelax">
+          </a>
+        </li>
+
+
+    </ul>
+
+  <h3>Stats</h3>
+  <ul class="box">
+
+      <li>
+        <strong class="pretty-number daily-downloads">4265</strong>
+        downloads in the last day
+      </li>
+      <li>
+        <strong class="pretty-number weekly-downloads">67007</strong>
+        downloads in the last week
+      </li>
+      <li>
+        <strong class="pretty-number monthly-downloads">275663</strong>
+        downloads in the last month
+      </li>
+
+      <li id="issues" data-ghapi="https://api.github.com/repos/visionmedia/supertest">
+        <span class="original">Have an issue? <a href="https://github.com/visionmedia/supertest/issues">File it.</a></span>
+          <span class="enhanced" style="display:none">
+            <a href="https://github.com/visionmedia/supertest/issues"></a> on GitHub
+          </span>
+      </li>
+
+      <li id="pull_requests" style="display:none">
+        <a href="https://github.com/visionmedia/supertest/pulls"></a> on GitHub
+      </li>
+
+  </ul>
+
+  <h3>Keywords</h3>
+  <p class="list-of-links">
+        <a href="/browse/keyword/testing">testing</a>, 
+        <a href="/browse/keyword/test">test</a>, 
+        <a href="/browse/keyword/http">http</a>, 
+        <a href="/browse/keyword/bdd">bdd</a>, 
+        <a href="/browse/keyword/tdd">tdd</a>, 
+        <a href="/browse/keyword/request">request</a>, 
+        <a href="/browse/keyword/superagent">superagent</a>
+  </p>
+
+  <h3>Dependencies (2)</h3>
+  <p class="list-of-links">
+          <a href="/package/methods">methods</a>,
+                <a href="/package/superagent">superagent</a>
+  </p>
+
+    <h3><a href="/browse/depended/supertest">Dependents</a></h3>
+    <p class="list-of-links dependents">
+
+          <a href="/package/fh-dev-proxy">fh-dev-proxy</a>,
+        
+          <a href="/package/npm-collection-http-clients">npm-collection-http-clients</a>,
+        
+          <a href="/package/ripple-rest">ripple-rest</a>,
+        
+          <a href="/package/rupert-grunt">rupert-grunt</a>,
+        
+          <a href="/package/we-test-tools">we-test-tools</a>,
+        
+          <a href="/package/isomorphy">isomorphy</a>,
+        
+          <a href="/package/norman-testing-server">norman-testing-server</a>,
+        
+          <a href="/package/crude-test-case">crude-test-case</a>,
+        
+          <a href="/package/nodulator">nodulator</a>,
+        
+          <a href="/package/ripple-rest-dinex">ripple-rest-dinex</a>,
+        
+          <a href="/package/instalike">instalike</a>,
+        
+          <a href="/package/flying-panda">flying-panda</a>,
+        
+          <a href="/package/easy-xapi-supertest">easy-xapi-supertest</a>,
+        
+          <a href="/package/backbeam-server">backbeam-server</a>,
+        
+          <a href="/package/remote-task">remote-task</a>,
+        
+          <a href="/package/stex">stex</a>,
+        
+          <a href="/package/combust-js">combust-js</a>,
+        
+          <a href="/package/sails-test-helper-as-promised">sails-test-helper-as-promised</a>,
+        
+          <a href="/package/ariadne">ariadne</a>,
+        
+          <a href="/package/mhd">mhd</a>,
+        
+          <a href="/package/decibel">decibel</a>,
+        
+          <a href="/package/bigbench">bigbench</a>,
+        
+          <a href="/package/lanetix-microservice">lanetix-microservice</a>,
+        
+          <a href="/package/koa-oauth-server-gowhich">koa-oauth-server-gowhich</a>,
+        
+          <a href="/package/sails-test-helper">sails-test-helper</a>,
+        
+          <a href="/package/restwalker">restwalker</a>,
+        
+          <a href="/package/witty">witty</a>,
+        
+          <a href="/package/frozen-express">frozen-express</a>,
+        
+          <a href="/package/win-common">win-common</a>,
+        
+          <a href="/package/activitystreams">activitystreams</a>,
+        
+          <a href="/package/loopback-testing">loopback-testing</a>,
+        
+          <a href="/package/onroad-testing-utilities">onroad-testing-utilities</a>,
+        
+          <a href="/package/gulp-toolbelt">gulp-toolbelt</a>,
+        
+          <a href="/package/zentest">zentest</a>,
+        
+          <a href="/package/zen-specs">zen-specs</a>,
+        
+          <a href="/package/express-jwt-token">express-jwt-token</a>,
+        
+          <a href="/package/apis-endpoint">apis-endpoint</a>,
+        
+          <a href="/package/jwt-token-auth">jwt-token-auth</a>,
+        
+          <a href="/package/supertest-session">supertest-session</a>,
+        
+          <a href="/package/supertest-rest">supertest-rest</a>,
+        
+          <a href="/package/parseable">parseable</a>,
+        
+          <a href="/package/pulsar-rest-api">pulsar-rest-api</a>,
+        
+          <a href="/package/jorm">jorm</a>,
+        
+          <a href="/package/supertest-koa-agent">supertest-koa-agent</a>,
+        
+          <a href="/package/http-mocha-reporter">http-mocha-reporter</a>,
+        
+          <a href="/package/nodulator-account">nodulator-account</a>,
+        
+          <a href="/package/api-test-runner">api-test-runner</a>,
+        
+          <a href="/package/unit.js">unit.js</a>,
+        
+          <a href="/package/nodebloom">nodebloom</a>,
+                  <a href="/package/hatch-loopback-testing">hatch-loopback-testing</a>,
+        <a href="/browse/depended/supertest">and 59 more</a>
+    </p>
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "supertest",
+      "description": "Super-agent driven library for testing HTTP servers",
+      "url": "https://www.npmjs.com/package/supertest",
+      "keywords": "testing,test,http,bdd,tdd,request,superagent",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+         "@type": "Offer",
+         "price": "0.00"
+      }
+    }
+  </script>
+
+  <div class="hiring-container" data-template="sidebar"></div>
+
+</div>
+
+
+  </div>
+
+  <footer>
+
+    <div class="container">
+
+      <ul class="columnar">
+        <li>
+          <h3>You Need Help</h3>
+          <ul class="links">
+            <li><a href="https://docs.npmjs.com">Documentation</a></li>
+            <li><a href="/support">Support / Contact Us</a></li>
+            <li><a href="http://status.npmjs.org/">Registry Status</a></li>
+            <li><a href="https://github.com/npm/newww/issues">Website Issues</a></li>
+            <li><a href="https://github.com/npm/npm/issues">CLI Issues</a></li>
+            <li><a href="/security">Security</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>About npm</h3>
+          <ul class="links">
+            <li><a href="/about">About npm, Inc</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/private-modules">npm private modules</a></li>
+            <li><a href="http://blog.npmjs.org">Blog</a></li>
+            <li><a href="https://twitter.com/npmjs">Twitter</a></li>
+            <li><a href="https://github.com/npm">GitHub</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>Legal Stuff</h3>
+          <ul class="links">
+            <li><a href="/policies/conduct">Code of Conduct</a></li>
+            <li><a href="/policies/disputes">Package Name Disputes</a></li>
+            <li><a href="/policies/npm-license">npm License</a></li>
+            <li><a href="/policies/privacy">Privacy Policy</a></li>
+            <li><a href="/policies/receiving-reports">Reporting Abuse</a></li>
+            <li><a href="/policies/trademark">Trademark Policy</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="container centered">
+      <a href="/" id="npm-loves-you">
+        npm loves you
+      </a>
+    </div>
+
+  </footer>
+  
+  <script defer src="/static/js/index.min.js"></script>
+  <script defer src="/static/js/vendor.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <![endif]-->
+</body>
+</html>
+
+<!-- pid=5179 88501b4fa9460482fd452e126126d5385f57045c https://www.npmjs.com www-9-west.internal.npmjs.com  -->

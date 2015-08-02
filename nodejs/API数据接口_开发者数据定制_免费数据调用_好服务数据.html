@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API数据接口_开发者数据定制_免费数据调用_好服务数据</title>
+    <meta content="违章查询api,短信api,基站API,LBS数据,LBS基站定位,POI_免费数据接口,lac,cellid,sid,nid,bid,基站查询,手机定位,基站定位,基站位置查询,电信基站查询,基站地理位置查询,基站数据库,基站经纬度,基站卫星地图查询,移动手机定位,联通手机定位,电信手机定位" name="keywords" />
+    <meta content="API调用灵活方便，提供30大类，100种以上基础数据API服务，免费向开发者提供基站数据，移动联通基站,电信基站,国内最大的基础数据API服务提供商" name="description" />
+    <meta content="http://www.haoservice.com/" name="Author">
+    <meta name="baidu-site-verification" content="JJhZ6M7RSHg1CdH0" />
+    <meta name="baidu_union_verify" content="0a478b2d038c30c51f8213211699471f">
+    <link href="http://static.haoservice.com/Content/base.css" rel="stylesheet" />
+    <link href="http://static.haoservice.com/Content/main.css" rel="stylesheet" />
+    <script src="http://static.haoservice.com/Scripts/jquery-1.8.0.min.js" type="text/javascript"></script>
+ <script language="javascript" type="text/javascript">
+  var browser = { versions: function () { var u = navigator.userAgent; return { ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), android: u.indexOf('Android') > -1, iPhone: u.indexOf('iPhone') > -1, iPad: u.indexOf('iPad') > -1, windowPhone: u.indexOf('Windows Phone') > -1, SafariBrw: u.indexOf('Safari') > -1 && u.indexOf('CriOS') == -1, webApp: u.indexOf('Safari') == -1, QQbrw: u.indexOf('MQQBrowser') > -1, ucweb: u.indexOf('UCBrowser') > -1 || u.indexOf('JUC') > -1 || u.indexOf('UCWEB') > -1 || u.indexOf('rv:1.2.3.4') > -1 || u.indexOf('Firefox/1.') > -1 || u.indexOf(' UC ') > -1, Symbian: u.indexOf('Symbian') > -1 } }() }; (function (win, browser, undefined) { var rf = document.referrer; if (rf === "" || rf.toLocaleLowerCase().split('/')[2].indexOf('.haoservice.com') === -1) { if (win.screen === undefined || win.screen.width < 810) { if (browser.versions.iPad == true) { return } if (browser.versions.iPhone == true || browser.versions.android == true || browser.versions.ucweb == true || browser.versions.QQbrw == true) { win.location.href = 'http://m.haoservice.com?from=pc'; return } } } })(this, browser);
+</script>
+    <script src="http://static.haoservice.com/Scripts/base.js" type="text/javascript"></script>
+    <link href="http://static.haoservice.com/Content/temp.css" rel="stylesheet" />
+    <link href="http://static.haoservice.com/Scripts/Validform/style5.0.css" rel="stylesheet" type="text/css" />
+    <!--[if IE]><script src="http://static.haoservice.com/Scripts/html5.js"></script><![endif-->
+    <link href="http://static.haoservice.com/Content/home.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    
+  
+    
+
+<div class="wrap">
+            
+
+
+            <div id="header">
+ <div class="wrapper fix">
+  <h1 id="logo"><a href="/" title="haoservice数据开放平台"></a></h1>
+  
+  <div class="search">
+  <form action="/docs/q" method="get" id="searchform" target="_blank">
+    <div id="searchlabel"><span>接口</span>
+    <ul class="xlxx">
+    <li data-type="s1" style='display:none;'  actionurl="/docs/q"><a href="javascript:;">接口</a></li>
+    <li data-type="s2"   actionurl="/newslist/"><a href="javascript:;" >资讯</a></li>
+    <li data-type="s3"  actionurl="/qa/"><a href="javascript:;" >问答</a></li>
+    
+    </ul>
+    </div>
+    <input type="text" size="40" name="keyword" id="keyword" value="" placeholder="请输入您要搜索的内容" autocomplete="off"><input type="submit" value="搜索" title="搜索" class="submit">
+   </form>
+</div>
+  <div class="reme" id="loginStatusBox">
+ <a id="wap" href="http://m.haoservice.com" title="haoservice手机版">手机版</a>
+   <a id="login" href="/login" title="haoservice登录">登录</a>
+   <a id="reg" href="/register/" title="haoservice注册">注册</a>
+  </div>
+ </div>
+</div>
+<div id="nav">
+ <div class="wrapper fix">
+  <ul class="sns">
+   
+   <li><a id="sn2" href="http://weibo.com/haoservice" target="_blank" title="关注haoservice新浪微博"></a></li>
+   <li><a id="sn3" href="###" onclick="openweixin();" title="关注haoservice微信公众平台"></a></li>
+   <li><a id="sn4" target="_blank" href="tencent://message/?uin=2302999063&amp;websiteName=&amp;Menu=yes"></a></li>
+   <li><a id="sn5" href="/contact/" title="联系haoservice"></a></li>
+   <li><a id="sn6" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=4b1b97ac6702dd82dc9bbd819154e46025893c9af1e38091e87017816e47fd34" title="haoservice数据开放平台"><i class="reddot"></i></a></li>
+  </ul>
+  <ul class="menu">
+   <li class='active'><a href="/">首页</a></li>
+   <li ><a href="/apilist/">数据接口</a>
+   </li>
+   <li class='hoo'><a href="###">服务工具<i class="reddot"></i></a>
+    <div class="yoo">
+      
+     <a href="/freeLocation/" title="免费基站定位" target="_blank">免费基站定位</a>
+     <a href="/wifi/" title="免费wifi定位" target="_blank">免费wifi定位</a>
+     <a href="/weizhang/" title="免费违章查询" target="_blank">免费违章查询</a>
+     <a href="/center?subNav=apply" target="_blank" title="申请key试用接口">申请key试用接口</a>
+    
+    </div>
+   </li>
+   <li ><a href="/qa/">常见问题</a>
+   </li>
+       <li ><a href="/permission/">会员权利</a>
+   </li>
+    <li  ><a href="/newslist/" title="haoservice平台动态">平台动态</a>
+</li>
+  
+<li  ><a href="/contact/" title="联系haoservice">联系我们</a>
+</li>
+  </ul>
+ </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#searchlabel").mouseover(function () {
+            $(".xlxx").show();
+        });
+        $("#searchlabel").mouseout(function () {
+            $(".xlxx").hide();
+        });
+        $('#loginStatusBox').load("/controls/loginstatuscontrol");
+        $(".xlxx li").click(function () {
+            $("#searchlabel span").text($(this).text());
+            $('#searchform').attr('action', $(this).attr('actionurl'));
+            $(".xlxx li").show();
+            $(this).hide();
+            $("#keyword").focus();
+        });
+    });
+</script>
+
+           
+<div id="focus">
+ <div class="flexslider">
+  <ul class="slides">
+    
+    <li style="background:#f5f6f8 url(http://static.haoservice.com/images/newversion/data/sl1.jpg) 50% 0 no-repeat;"><a href="/docs/1" title="移动联通基站,移动联通基站api,移动联通基站接口 ,免费数据接口," target="_blank"></a></li>
+    <li style="background:#f1f3f2 url(http://static.haoservice.com/images/newversion/data/sl4.jpg) 50% 0 no-repeat;"><a href="/docs/2" title="全国车辆违章查询api,全国车辆违章查询接口 ,免费数据接口" target="_blank"></a></li>
+    <li style="background:#f0f5f9 url(http://static.haoservice.com/images/newversion/data/sl5.jpg) 50% 0 no-repeat;"><a href="/docs/17" title="短信API服务api,短信API服务接口,免费数据接口" target="_blank"></a></li>
+     <li style="background:#f3f5f4 url(http://static.haoservice.com/images/newversion/data/sl3.jpg) 50% 0 no-repeat;"><a href="/contact/" title="haoservice开放平台" target="_blank"></a></li>
+  </ul>
+ </div>
+</div>
+
+<div id="main" class="wrapper">
+ <div class="notice">
+  <a href="###">公告：HaoService新版上线啦！</a> <span>2014-9-29</span>
+ </div>
+ <p class="moreapp"><a target="_blank" href="/apilist/" title="haoservice api接口">更多应用 &gt;&gt;</a></p>
+ <div class="apps">
+  <ul id="applist" class="fix">
+   <li class="api1">
+     <h3>全国天气查询</h3>
+     <img src="http://static.haoservice.com/images/newversion/data/app1.gif">
+     <p>全国天气查询API</p>
+     <a target="_blank" href="/docs/6" title="全国天气查询">立即使用</a>
+   </li>
+   <li class="api2">
+    <h3>全国车辆违章查询</h3>
+    <img src="http://static.haoservice.com/images/newversion/data/app2.gif">
+    <p>支持300个左右的城市违章查询</p>
+    <a target="_blank" href="/docs/2" title="全国车辆违章查询api">立即使用 </a>
+   </li>
+   <li class="api3">
+    <h3>短信API服务</h3>
+    <img src="http://static.haoservice.com/images/newversion/data/app3.gif">
+    <p>稳定发送，100%到达率，及时响应</p>
+    <a target="_blank" href="/docs/17" title="短信API">立即使用</a>
+   </li>
+   <li class="api4" class="ap">
+    <h3>移动联通基站</h3>
+    <img src="http://static.haoservice.com/images/newversion/data/app4.gif">
+    <p>通过CID和LAC进行基站位置查询</p>
+    <a target="_blank" href="/docs/1" title="移动联通基站">立即使用</a>
+   </li>
+   <li class="api5">
+    <h3>授权定位</h3>
+    <img src="http://static.haoservice.com/images/newversion/data/app5.gif">
+    <p>手机号码定位</p>
+    <a target="_blank" href="/docs/49" title="手机号码定位">立即使用</a>
+   </li>
+  </ul>
+ </div>
+
+ <div class="tese">
+  <ul class="fix">
+   <li class="te1">
+    <h3>涵盖的行业</h3>
+    <p>软件开发及外包服务、移动互联网数据及API接口服务,手机应用程序开发。</p>
+   </li>
+   <li class="te2">
+    <h3>接口调用量</h3>
+    <p>日均日均接口调用量20000万次，峰值达到50000万次。为网站主平均流量增值25%。</p>
+   </li>
+   <li class="te3">
+    <h3>接入用户</h3>
+    <p>截至今年6月底，haoservice接入用户达到25万户，vip以上的用户占比超过30%</p>
+   </li>
+  </ul>
+ </div>
+ <div class="youshi">
+  <h2 class="ltitle"><b>我们的优势</b></h2>
+  <ul class="fix">
+   <li class="ys1">
+    <h3>稳定安全</h3>
+    <p>多层防御，多点集群部署，</p>
+    <p>实时预警监控，高可用海量数据框架，</p>
+    <p>保证数据AP调用的安全、稳定、高效</p>
+   </li>
+   <li class="ys2"><h3>精准权威</h3>
+    <p>提供千万级海量、准确、权威的</p>
+    <p>基础数据服务，并可为用户更灵活地</p>
+    <p>定制各个功能和所需的数据</p>
+   </li>
+   <li class="ys3"><h3>技术优势</h3>
+    <p>我们拥有多名行业知名的数据</p>
+    <p>分析专家 、200余名高级工程师，</p>
+    <p>24小时技术支持，多年行业积累的成果</p>
+   </li>
+   <li class="ys4"><h3>互利共赢</h3>
+    <p>开放融合，互利共赢。</p>
+    <p>想为百万级开发者和企业提供数据服务吗？</p>
+    <p>加入haoservice数据开放计划！</p>
+   </li>
+  </ul>
+ </div>
+ <div class="fix">
+  <div class="dodo">
+    <div class="otitle">
+     <a href="/newslist/" class="more" title="haoservice行业动态" target="_blank">更多&gt;&gt;</a><h3>最新动态</h3>
+    </div>
+    <ul class="olist">
+     <li><span>2015/8/1</span><a target="_blank" href="/news/117" title="haoservice短信API服务-简易使用教程 ">haoservice短信API服务-简易使用教程 </a></li>
+     <li><span>2015/7/31</span><a target="_blank" href="/news/182" title="快递查询api全面升级">快递查询api全面升级</a></li>
+     <li><span>2015/6/10</span><a target="_blank" href="/news/180" title="短信接口升级了，提质不提价">短信接口升级了，提质不提价</a></li>
+     <li><span>2015/6/10</span><a target="_blank" href="/news/181" title="短信接口升级了，提质不提价">短信接口升级了，提质不提价</a></li>
+     <li><span>2015/6/1</span><a target="_blank" href="/news/179" title="短信模板规则调整">短信模板规则调整</a></li>
+    
+    </ul>
+  </div>
+  <div class="bobo">
+    <div class="otitle">
+     <a href="/qa/" class="more" target="_blank" title="好服务数据_数据调用常见问题_API接口问题-解答">更多&gt;&gt;</a><h3>帮助中心</h3>
+    </div>
+    <ul class="olist">
+     <li><span>2015-07-15</span><a target="_blank" href="/qa/show/479" title="怎么向客户申请获得他们的手机定位授权呢？ 是要他们发送什么短信吗">怎么向客户申请获得他们的手机定位授权呢？ 是要他们发送什么短信吗</a></li>
+     <li><span>2015-06-20</span><a target="_blank" href="/qa/show/478" title="序列号查询接口，保修时间数据不显示">序列号查询接口，保修时间数据不显示</a></li>
+     <li><span>2015-06-17</span><a target="_blank" href="/qa/show/477" title="在线题库API调用问题">在线题库API调用问题</a></li>
+     <li><span>2015-06-12</span><a target="_blank" href="/qa/show/476" title="可以通过ip地址查询使用者的具体位置吗？">可以通过ip地址查询使用者的具体位置吗？</a></li>
+     <li><span>2015-06-06</span><a target="_blank" href="/qa/show/475" title="zm授权手机号">zm授权手机号</a></li>
+     
+    </ul>
+  </div>
+ </div>
+ <div class="kehu">
+  <h2 class="ltitle"><b>他们都在使用HaoService</b></h2>
+  <ul class="fix">
+   <li><a href="http://www.xiaojukeji.com/website/index.html" target="_blank" title="滴滴打车"><img src="http://static.haoservice.com/images/20140318/didi.jpg" width="56" height="56" alt="滴滴打车" border="0"></a></li>
+   <li><a href="http://www.jd.com/" target="_blank" title="京东商城"><img src="http://static.haoservice.com/images/20140318/jd.jpg" width="56" height="56" border="0" alt="京东商城"></a></li>
+   <li><a href="http://www.navidog.cn/d_home.htm" target="_blank" title="导航犬"><img src="http://static.haoservice.com/images/20140318/9.jpg" width="56" height="56" alt="导航犬" border="0"></a></li>
+   <li><a href="http://c.autonavi.com/club/" target="_blank" title="高德导航"><img src="http://static.haoservice.com/images/20140318/dazhong.jpg" width="56" height="56" border="0" alt="高德导航"></a></li>
+   <li><a href="http://www.paidai.com/" target="_blank" title="淘宝导购"><img src="http://static.haoservice.com/images/20140318/taobao.jpg" width="56" height="56" border="0" alt="淘宝导购"></a></li>
+   <li><a href="http://www.douguo.com/" target="_blank" title="美食日记"><img src="http://static.haoservice.com/images/20140318/meishi.png" width="56" height="56" alt="美食日记" border="0"></a></li>
+   <li><a href="http://www.haodf.com/" target="_blank" title="好大夫"><img src="http://static.haoservice.com/images/20140318/haodaifu.jpg" width="56" height="56" border="0" alt="好大夫"></a></li>
+   <li><a href="http://www.meishichina.com/Mobile/" target="_blank" title="美食天下"><img src="http://static.haoservice.com/images/20140318/meishi.jpg" width="56" height="56" alt="美食天下" border="0"></a></li>
+   <li><a href="http://www.carsmart.cn/product-software-info.jsp" target="_blank" title="智慧导航"><img src="http://static.haoservice.com/images/20140318/c08.png" width="56" height="56" alt="智慧导航" border="0"></a></li>
+   <li><a href="http://www.lingtu.com/" target="_blank" title="灵图天行者"><img src="http://static.haoservice.com/images/20140318/lingtu.jpg" width="56" height="56" alt="灵图天行者" border="0"></a></li>
+   <li><a href="http://www.xingshulin.com/" target="_blank" title="杏树林"><img src="http://static.haoservice.com/images/20140318/xsl.png" width="56" height="56" alt="杏树林" border="0"></a></li>
+   <li><a href="http://www.douguo.com/" target="_blank" title="豆果美食"><img src="http://static.haoservice.com/images/20140318/douguo.jpg" width="56" height="56" alt="豆果美食" border="0"></a></li>
+   <li><a href="http://www.meishichina.com/Mobile/" target="_blank" title="美食天下"><img src="http://static.haoservice.com/images/20140318/meishi.jpg" width="56" height="56" alt="美食天下" border="0"></a></li>
+   <li><a href="http://www.carsmart.cn/product-software-info.jsp" target="_blank" title="智慧导航"><img src="http://static.haoservice.com/images/20140318/c08.png" width="56" height="56" alt="智慧导航" border="0"></a></li>
+   <li><a href="http://www.lingtu.com/" target="_blank" title="灵图天行者"><img src="http://static.haoservice.com/images/20140318/lingtu.jpg" width="56" height="56" alt="灵图天行者" border="0"></a></li>
+  </ul>
+ </div>
+</div>
+<!--他们也在一起用-->
+
+<!--end他们也在一起用-->
+
+
+
+
+
+         
+<div id="kefu">
+ <p>
+  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2302999063&amp;site=qq&amp;menu=yes" title="点击这里给我发消息">QQ客服咨询</a>
+  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1092545959&amp;site=qq&amp;menu=yes" title="点击这里给我发消息">QQ客服咨询</a>
+  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1092545959&amp;site=qq&amp;menu=yes" title="点击这里给我发消息">QQ客服咨询</a>
+  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2595668654&amp;site=qq&amp;menu=yes" title="点击这里给我发消息">QQ技术支持</a>
+ </p>
+</div>
+<script>
+    var time;
+    $().ready(function () {
+        $(window).scroll(function () {
+            if (time) {
+                clearTimeout(time);
+            }
+            time = setTimeout(move, 100);
+        });
+        $('#kefu p,#kefu').mouseover(function () {
+            $('#kefu p').css('visibility', 'visible');
+            $('#kefu').css('width','160px');
+        }).mouseout(function () {
+            $('#kefu').css('width', '39px');
+            $('#kefu p').css('visibility', 'hidden');
+        });
+    })
+    function move() {
+        var pos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (pos < 190) {
+            pos = 190;
+        }
+        else { pos += 190; }
+        $('#kefu').animate({ 'top': pos }, 200);
+        clearTimeout(time);
+    }
+</script>
+
+    </div>
+   <div id="footer">
+ <div class="wrapper">
+  <div class="copyrights">
+   <p>Copyright © 2003-2015 北京畅游互联科技有限公司 ©版权所有 </p>
+   <p>京ICP备 13046642号-2<script type="text/javascript">
+                           var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                           document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F38cdec883728678923f8dc337cc88974' type='text/javascript'%3E%3C/script%3E"));
+    </script></p>
+  </div>
+  <div class="bnav">
+   <a target="_blank" href="/">网站首页</a> <a target="_blank" href="/privacy/">隐私政策</a>
+   <a href="/terms/" target="_blank">服务条款</a> <a href="/about/" target="_blank">关于我们</a>
+   <a href="/job/" target="_blank">人才招聘</a> <a target="_blank" href="/contact/">联系我们</a>
+  </div>
+  <div class="follow">
+   <p>关注我们</p>
+   <p><a id="weibo" href="http://weibo.com/haoservice" target="_blank" title="关注haoservice新浪微博"> </a><a id="tqq" href="###" onclick="openweixin();" title="关注haoservice微信公众平台"> </a><a id="weixin" target="_blank" href="tencent://message/?uin=2302999063&amp;websiteName=&amp;Menu=yes"> </a></p>
+  </div>
+  <div class="links">
+   <p><span>友情链接：</span>
+      <a href="http://open.baidu.com/data/" target="_blank">百度数据开放平台</a>
+      <a href="http://open.weibo.com/" target="_blank">sina微博开放平台</a>
+      <a href="http://open.qq.com/" target="_blank">腾讯开放平台</a>
+      <a href="http://open.sogou.com/" target="_blank">搜狗开放平台</a>
+      <a href="http://dev.renren.com/" target="_blank">人人开放平台</a>
+      <a href="http://open.alipay.com/index.htm" target="_blank">支付宝开放平台</a>
+      <a href="http://www.gpsspg.com/" target="_blank">GPSspg</a>
+      <a href="http://anxin360.com/" target="_blank">手机号定位</a>
+      <a href="http://www.jiankongmf.com/" target="_blank">监控魔方</a>
+      <a href="http://apistore.baidu.com/" target="_blank">apistore</a>
+      <a href="http://webscan.360.cn/index/checkwebsite/url/www.haoservice.com" name="c26f925143e66865dcb8c3ce1a5d269d" >360网站安全检测平台</a>
+      <a href="http://www.raincent.com" target="_blank">网络大数据</a>
+   </p>
+  </div>
+ </div>
+</div>
+<a id="gotop" href="#"></a>
+
+<script>
+     function openweixin() {
+       $('#weixinPop').show();
+     }
+      function closeweixin() {
+         $('#weixinPop').hide();
+     }
+ </script>
+<div  id="weixinPop" class="weixingPop">		
+	<div id="dialog_content" class="dialog_content">
+		<div id="dialog_title" class="dialog_title"> <span id="pwdTitle">关注haoservice微信公众帐户</span>
+			<a title="关闭" class="dialog_closed"  onclick="closeweixin();"></a>
+		</div>				
+		<div class="dialog_body">
+				<div style="margin:0 auto;" class="center"><img src="/images/openhome/ad/weixin.jpg" alt="好服务数据平台微信" style="width:258px;height:258px;"></div>
+				<div class="centertitle">关注haoservice微信公众帐户，您可以</div>
+				<ul class="weixing">
+					<li>1、随时随地获取haoservice的最新动态</li>
+					<li>2、随时随地与haoservice客服取得联系</li>
+				</ul>
+		</div>
+	</div>
+</div>
+    <script src="http://static.haoservice.com/Scripts/SystemSpport.js"></script>
+    
+<script src="http://static.haoservice.com/Scripts/flexslider.js"></script>
+<script src="http://static.haoservice.com/Scripts/bxCarousel.js"></script>
+<script>
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                directionNav: false,
+                pauseOnAction: false
+            });
+            $('#applist').bxCarousel({
+                display_num: 5,
+                move: 1,
+                auto: false,
+                margin: 0,
+                auto_hover: true
+            });
+        });
+</script>
+
+   
+    <script type="text/javascript">
+    $(document).ready(function (e) {
+        $("#topselect").mouseover(function () {
+            $(this).find("div").show();
+        });
+        $("#topselect").mouseout(function () {
+            $(this).find("div").hide();
+        });
+    });
+</script>
+ <!--[if lte IE 6]>
+<script type="text/javascript" src="http://static.haoservice.com/Scripts/EvPng.js"></script>
+<script type="text/javascript">
+    EvPNG.fix('.vip_data,.divimg a,.sns a')
+</script>
+<![endif]-->
+</body>
+</html>

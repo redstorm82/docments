@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dropEffect="none" class="no-js no-auth">
+<head>
+<meta charset="utf-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+
+<title>
+
+
+大公司里怎样开发和部署前端代码？ - 前端开发 - 知乎
+
+
+</title>
+
+<meta name="apple-itunes-app" content="app-id=432274380, app-argument=zhihu://questions/20790576">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="mobile-agent" content="format=html5;url=http://www.zhihu.com/question/20790576">
+<meta id="znonce" name="znonce" content="e158d0db3a894074bb588636cc88fb34">
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(57px).png" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(72px).png" sizes="72x72" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(76px).png" sizes="76x76" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(114px).png" sizes="114x114" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(120px).png" sizes="120x120" />
+<link rel="apple-touch-icon-precomposed" href="http://static.zhihu.com/static/img/ios/zhihu(152px).png" sizes="152x152" />
+
+
+<link rel="shortcut icon" href="http://static.zhihu.com/static/favicon.ico" type="image/x-icon">
+
+<link rel="search" type="application/opensearchdescription+xml" href="http://static.zhihu.com/static/search.xml" title="知乎" />
+<link rel="stylesheet" href="http://static.zhihu.com/static/ver/b9b849d8a52ae9e7e9601dcad7656e64.z.css">
+
+<meta name="google-site-verification" content="FTeR0c8arOPKh8c5DYh_9uu98_zJbaWw53J-Sch9MTg" />
+<meta property="qc:admins" content="14414345146201056375" />
+
+
+
+<!--[if lt IE 9]>
+<script src="http://static.zhihu.com/static/components/respond/dest/respond.min.js"></script>
+<link href="http://static.zhihu.com/static/components/respond/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+<link href="/static/components/respond/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+<script src="/static/components/respond/cross-domain/respond.proxy.js"></script>
+<![endif]-->
+
+<script src="http://static.zhihu.com/static/ver/8fc2686c4d610241ee5c53c04271345a.instant.min.js"></script>
+
+
+
+
+</head>
+
+<body class="zhi">
+<div role="navigation" class="zu-top">
+<div class="zg-wrap modal-shifting" id="zh-top-inner">
+<a href="/" class="zu-top-link-logo" id="zh-top-link-logo">知乎</a>
+
+
+<div role="search" id="zh-top-search" class="zu-top-search">
+<form method="GET" action="/search" id="zh-top-search-form" class="zu-top-search-form form-with-magnify">
+
+<input type="text" class="zu-top-search-input" id="q" name="q" autocomplete="off" value="" placeholder="搜索话题、问题或人…" />
+<input type="hidden" name="type" value="question" />
+<label for="q" class="hide-text">知乎搜索</label>
+<button type="submit" class="magnify-button"><i class="icon icon-magnify-q"></i><span class="hide-text">搜索</span></button>
+</form>
+<button class="zu-top-add-question" id="zu-top-add-question">提问</button>
+</div>
+
+
+
+<div id="zg-top-nav" class="zu-top-nav">
+<ul class="zu-top-nav-ul zg-clear">
+
+<li class="zu-top-nav-li " id="zh-top-nav-home">
+<a class="zu-top-nav-link" href="/" id="zh-top-link-home">首页</a>
+</li>
+<li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
+<a class="zu-top-nav-link" href="/topic" id="top-nav-dd-topic">话题</a>
+
+</li>
+<li class="zu-top-nav-li " id="zh-top-nav-explore">
+<a class="zu-top-nav-link" href="/explore">发现</a>
+</li>
+
+
+</ul>
+<div class="zu-top-nav-live zu-noti7-popup zg-r5px no-hovercard" id="zh-top-nav-live-new" role="popup" tabindex="0">
+<div class="zu-top-nav-live-inner zg-r5px">
+<div class="zu-top-live-icon">&nbsp;</div>
+<div class="zu-home-noti-inner" id="zh-top-nav-live-new-inner">
+<div class="zm-noti7-popup-tab-container clearfix" tabindex="0">
+<button class="zm-noti7-popup-tab-item message">
+<span class="icon">消息</span>
+</button>
+<button class="zm-noti7-popup-tab-item user">
+<span class="icon">用户</span>
+</button>
+<button class="zm-noti7-popup-tab-item thanks">
+<span class="icon">赞同和感谢</span>
+</button>
+</div>
+</div>
+<div class="zm-noti7-frame-border top"></div>
+<div class="zm-noti7-frame">
+<div class="zm-noti7-content">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-popup-refresh" style="display:none;">
+<img class="noti-spinner" src="/static/img/spinner2.gif" />
+</div>
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<img class="noti-spinner" src="/static/img/noti-loading.gif" />
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-content" style="display:none;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-popup-refresh" style="display:none;">
+<img class="noti-spinner" src="/static/img/spinner2.gif" />
+</div>
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<img class="noti-spinner" src="/static/img/noti-loading.gif" />
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-content" style="display:none;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-popup-refresh" style="display:none;">
+<img class="noti-spinner" src="/static/img/spinner2.gif" />
+</div>
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<img class="noti-spinner" src="/static/img/noti-loading.gif" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-frame-border bottom"></div>
+<div class="zm-noti7-popup-footer">
+<a href="/notifications" class="zm-noti7-popup-footer-all zg-right">查看全部 &raquo;</a>
+<a href="/settings/notification" class="zm-noti7-popup-footer-set" title="通知设置" ><i class="zg-icon zg-icon-settings"></i></a>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<ul class="topnav-noauth clearfix">
+<li>
+<a href="javascript:;" class="js-signup-noauth"><i class="zg-icon zg-icon-dd-home"></i>注册知乎</a>
+</li>
+<li>
+<a href="javascript:;" class="js-signin-noauth">登录</a>
+</li>
+</ul>
+
+
+</div>
+</div>
+
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<a class="zu-global-notify-close" href="javascript:;" title="关闭" name="close">x</a>
+<span class="zu-global-notify-icon"></span>
+<span class="zu-global-notify-msg"></span>
+</div>
+</div>
+</div>
+
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-redirect-info" style="display:none"></div>
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-notification-summary" style="display:none;">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<span class="zu-global-notify-icon"></span>
+<ul class="zu-question-notify-wrap">
+</ul>
+</div>
+</div>
+</div>
+<div class="zg-wrap zu-main question-page" itemscope itemtype="http://schema.org/Question" id="zh-single-question-page"
+data-urltoken="20790576">
+<meta itemprop="isTopQuestion" content="true" />
+<meta itemprop="visitsCount" content="156216" />
+<div class="zu-main-content">
+<div class="zu-main-content-inner with-indention-votebar">
+
+
+<div class="zm-tag-editor zg-section">
+<div class="zm-tag-editor-labels zg-clear">
+
+<a class="zm-item-tag"
+href="/topic/19550901"
+data-tip="t$b$19550901" data-token="19550901" data-topicid="225">
+前端开发
+</a>
+
+<a class="zm-item-tag"
+href="/topic/19552521"
+data-tip="t$b$19552521" data-token="19552521" data-topicid="769">
+JavaScript
+</a>
+
+<a class="zm-item-tag"
+href="/topic/19574050"
+data-tip="t$b$19574050" data-token="19574050" data-topicid="7946">
+Nginx
+</a>
+
+<a class="zm-item-tag"
+href="/topic/19673599"
+data-tip="t$b$19673599" data-token="19673599" data-topicid="41213">
+SeaJS
+</a>
+
+</div>
+</div>
+<div id="zh-question-title" data-editable="true">
+
+<h2 class="zm-item-title zm-editable-content">
+
+大公司里怎样开发和部署前端代码？
+
+</h2>
+</div>
+<div id="zh-question-detail" class="zm-item-rich-text" data-resourceid="496709" data-action="/question/detail">
+
+<div class="zm-editable-content">主要有以下问题：<br><ul><li>开发时的和部署时类库的引用和存放是一致还是不同？<br></li><li>模块放在项目中还是放在 CDN 之类服务器？<br></li><li>渲染网页用 Nginx 还是其他动态语言的 Web 服务器？<br></li><li>制作网页的流程，是先有设计师的稿，还是先看模块？<br></li><li>会选择用自己写的模块还是从社区寻找模块？</li></ul></div>
+
+
+</div>
+<div class="zm-item-meta zm-item-comment-el clearfix" id="zh-question-meta-wrap">
+<div class="zm-meta-panel">
+
+<a href="#" name="addcomment" class="toggle-comment meta-item">
+<i class="z-icon-comment"></i>添加评论
+</a>
+<a href="#" name="share" class="share meta-item">
+<i class="z-icon-share"></i>分享
+</a>
+
+</div>
+<div class="panel-container">
+
+</div>
+</div>
+
+<div class="zh-answers-title clearfix">
+
+<div id="zh-answers-filter" class="answers-sorter">
+
+<span class="lbl">按投票排序</span>
+<a class="lbl" href="/question/20790576?sort=created">按时间排序</a>
+
+<i class="zg-icon zg-icon-double-arrow"></i>
+</div>
+
+<h3 data-num="15" id="zh-question-answer-num">15 个回答</h3>
+</div>
+<div class="zh-question-answer-summary-wrap zm-item-rich-text" id="zh-question-answer-summary-wrap" style="display:none;">
+<h3>
+<a href="http://www.zhihu.com/question/20014415" target="_blank" class="zg-right zg-link-litblue" style="font-weight:normal">什么是答案总结？</a>
+答案总结</h3>
+<div id="zh-question-answer-summary" class="zg-section"
+data-resourceid="496709" data-action="/question/summary">
+
+<div class="zm-editable-content"></div>
+
+</div>
+</div>
+
+<div id="zh-question-answer-wrap" data-pagesize="20" class="zh-question-answer-wrapper" data-widget="navigable" data-navigable-options="{&quot;items&quot;: &quot;&gt;.zm-item-answer&quot;}" data-init="{&quot;params&quot;: {&quot;url_token&quot;: 20790576, &quot;pagesize&quot;: 20, &quot;offset&quot;: 0}, &quot;nodename&quot;: &quot;QuestionAnswerListV2&quot;}" data-fixed-summary="1">
+
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemprop="topAnswer"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="8426975"
+data-atoken="32602154"
+data-collapsed="0"
+data-created="1414517381"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-8426975"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">2585</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$fouber"
+class="zm-item-link-avatar"
+href="/people/fouber">
+<img src="http://pic1.zhimg.com/ecfeb2b0c_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic1.zhimg.com/ecfeb2b0c_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$fouber" href="/people/fouber">张云龙</a>，<strong title="前端工程师" class="zu-question-my-bio">前端工程师</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="2585">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$foto" href="http://www.zhihu.com/people/foto" class="zg-link" title="太乙真人">太乙真人</a>、</span><span class="user-block"><a data-tip="p$t$zhirui-miao" href="http://www.zhihu.com/people/zhirui-miao" class="zg-link" title="zhirui miao">zhirui miao</a>、</span><span class="user-block"><a data-tip="p$t$hu-song-tao" href="http://www.zhihu.com/people/hu-song-tao" class="zg-link" title="胡松涛">胡松涛</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">没人邀请，看到这个问题不错，路过怒答。（多图预警）<br><br>前百度工程师，曾负责百度 <a href="http://fis.baidu.com/" class=" wrap external" target="_blank" rel="nofollow noreferrer">前端集成解决方案<i class="icon-external"></i></a> 的核心设计与开发工作。我现在称这个领域为【前端工程】。没错，这是我最爱唠叨的问题域。<br><br>这是一个非常有趣的 <u><b>非主流前端领域</b></u>，这个领域要探索的是如何用工程手段解决前端开发和部署优化的综合问题，入行到现在一直在学习和实践中。<br><br>在我的印象中，facebook是这个领域的鼻祖，有兴趣、有梯子的同学可以去看看facebook的页面源代码，体会一下什么叫工程化。<br><br>接下来，我想从原理展开讲述，多图，较长，希望能有耐心看完。<br><br><br>---------------------------- 我是一条分割线 ----------------------------<br><br><noscript><img src="http://pic2.zhimg.com/07c2bdef6ccef3ada425d61e3062dd09_b.jpg" data-rawwidth="389" data-rawheight="238" class="content_image" width="389"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="389" data-rawheight="238" class="content_image lazy" width="389" data-actualsrc="http://pic2.zhimg.com/07c2bdef6ccef3ada425d61e3062dd09_b.jpg"><br><br>让我们返璞归真，从原始的前端开发讲起。上图是一个“可爱”的index.html页面和它的样式文件a.css，用文本编辑器写代码，无需编译，本地预览，确认OK，丢到服务器，等待用户访问。前端就是这么简单，好好玩啊，门槛好低啊，分分钟学会有木有！<br><br><noscript><img src="http://pic1.zhimg.com/d53b504bbc9f1887eddf06d90545b870_b.jpg" data-rawwidth="400" data-rawheight="98" class="content_image" width="400"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="400" data-rawheight="98" class="content_image lazy" width="400" data-actualsrc="http://pic1.zhimg.com/d53b504bbc9f1887eddf06d90545b870_b.jpg"><br><br>然后我们访问页面，看到效果，再查看一下网络请求，200！不错，太™完美了！那么，研发完成。。。。了么？<br><br>等等，这还没完呢！对于大公司来说，那些变态的访问量和性能指标，将会让前端一点也不“好玩”。<br><br>看看那个a.css的请求吧，如果每次用户访问页面都要加载，是不是很影响性能，很浪费带宽啊，我们希望最好这样：<br><br><noscript><img src="http://pic1.zhimg.com/6a611755a5648ca252211cec85a31ac4_b.jpg" data-rawwidth="401" data-rawheight="98" class="content_image" width="401"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="401" data-rawheight="98" class="content_image lazy" width="401" data-actualsrc="http://pic1.zhimg.com/6a611755a5648ca252211cec85a31ac4_b.jpg"><br>利用304，让浏览器使用本地缓存。但，这样也就够了吗？不成！304叫协商缓存，这玩意还是要和服务器通信一次，我们的优化级别是变态级，所以必须彻底灭掉这个请求，变成这样：<br><br><noscript><img src="http://pic3.zhimg.com/fd74ab2bf02d79dd7af1336b4c8f180e_b.jpg" data-rawwidth="400" data-rawheight="98" class="content_image" width="400"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="400" data-rawheight="98" class="content_image lazy" width="400" data-actualsrc="http://pic3.zhimg.com/fd74ab2bf02d79dd7af1336b4c8f180e_b.jpg"><br>强制浏览器使用本地缓存（cache-control/expires），不要和服务器通信。好了，请求方面的优化已经达到变态级别，那问题来了：你都不让浏览器发资源请求了，这缓存咋更新？<br><br>很好，相信有人想到了办法：<b><u>通过更新页面中引用的资源路径，让浏览器主动放弃缓存，加载新资源</u></b>。好像这样：<br><br><noscript><img src="http://pic2.zhimg.com/8a8676e933478d1a73777d84a5de55f5_b.jpg" data-rawwidth="304" data-rawheight="110" class="content_image" width="304"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="304" data-rawheight="110" class="content_image lazy" width="304" data-actualsrc="http://pic2.zhimg.com/8a8676e933478d1a73777d84a5de55f5_b.jpg"><br>下次上线，把链接地址改成新的版本，就更新资源了不是。OK，问题解决了么？！当然没有！大公司的变态又来了，思考这种情况：<br><br><noscript><img src="http://pic1.zhimg.com/4681f7131e777dc885bf66000580ca40_b.jpg" data-rawwidth="579" data-rawheight="310" class="origin_image zh-lightbox-thumb" width="579" data-original="http://pic1.zhimg.com/4681f7131e777dc885bf66000580ca40_r.jpg"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="579" data-rawheight="310" class="origin_image zh-lightbox-thumb lazy" width="579" data-original="http://pic1.zhimg.com/4681f7131e777dc885bf66000580ca40_r.jpg" data-actualsrc="http://pic1.zhimg.com/4681f7131e777dc885bf66000580ca40_b.jpg"><br>页面引用了3个css，而某次上线只改了其中的a.css，如果所有链接都更新版本，就会导致b.css，c.css的缓存也失效，那岂不是又有浪费了？！<br><br>重新开启变态模式，我们不难发现，要解决这种问题，必须让url的修改与文件内容关联，也就是说，只有文件内容变化，才会导致相应url的变更，从而实现文件级别的精确缓存控制。<br><br>什么东西与文件内容相关呢？我们会很自然的联想到利用 <a href="http://baike.baidu.com/view/10961371.htm" class=" wrap external" target="_blank" rel="nofollow noreferrer">数据摘要要算法<i class="icon-external"></i></a> 对文件求摘要信息，摘要信息与文件内容一一对应，就有了一种可以精确到单个文件粒度的缓存控制依据了。好了，我们把url改成带摘要信息的：<br><br><noscript><img src="http://pic1.zhimg.com/5276595f41d6276e21e5bc1d25741680_b.jpg" data-rawwidth="588" data-rawheight="310" class="origin_image zh-lightbox-thumb" width="588" data-original="http://pic1.zhimg.com/5276595f41d6276e21e5bc1d25741680_r.jpg"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="588" data-rawheight="310" class="origin_image zh-lightbox-thumb lazy" width="588" data-original="http://pic1.zhimg.com/5276595f41d6276e21e5bc1d25741680_r.jpg" data-actualsrc="http://pic1.zhimg.com/5276595f41d6276e21e5bc1d25741680_b.jpg"><br>这回再有文件修改，就只更新那个文件对应的url了，想到这里貌似很完美了。你觉得这就够了么？大公司告诉你：图样图森破！<br><br>唉~~~~，让我喘口气<br><br>现代互联网企业，为了进一步提升网站性能，会把静态资源和动态网页分集群部署，静态资源会被部署到CDN节点上，网页中引用的资源也会变成对应的部署路径：<br><br><noscript><img src="http://pic2.zhimg.com/0866cb58bcf349642d57a06b162e0d91_b.jpg" data-rawwidth="574" data-rawheight="259" class="origin_image zh-lightbox-thumb" width="574" data-original="http://pic2.zhimg.com/0866cb58bcf349642d57a06b162e0d91_r.jpg"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="574" data-rawheight="259" class="origin_image zh-lightbox-thumb lazy" width="574" data-original="http://pic2.zhimg.com/0866cb58bcf349642d57a06b162e0d91_r.jpg" data-actualsrc="http://pic2.zhimg.com/0866cb58bcf349642d57a06b162e0d91_b.jpg"><br>好了，当我要更新静态资源的时候，同时也会更新html中的引用吧，就好像这样：<br><br><noscript><img src="http://pic1.zhimg.com/16d6d6c32e52ef1d1a835fb2ed15f864_b.jpg" data-rawwidth="574" data-rawheight="456" class="origin_image zh-lightbox-thumb" width="574" data-original="http://pic1.zhimg.com/16d6d6c32e52ef1d1a835fb2ed15f864_r.jpg"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="574" data-rawheight="456" class="origin_image zh-lightbox-thumb lazy" width="574" data-original="http://pic1.zhimg.com/16d6d6c32e52ef1d1a835fb2ed15f864_r.jpg" data-actualsrc="http://pic1.zhimg.com/16d6d6c32e52ef1d1a835fb2ed15f864_b.jpg"><br>这次发布，同时改了页面结构和样式，也更新了静态资源对应的url地址，现在要发布代码上线，亲爱的前端研发同学，你来告诉我，咱们是先上线页面，还是先上线静态资源？<br><ol><li><b><u>先部署页面，再部署资源</u></b>：在二者部署的时间间隔内，如果有用户访问页面，就会在新的页面结构中加载旧的资源，并且把这个旧版本的资源当做新版本缓存起来，其结果就是：用户访问到了一个样式错乱的页面，除非手动刷新，否则在资源缓存过期之前，页面会一直执行错误。<br></li><li><b><u>先部署资源，再部署页面</u></b>：在部署时间间隔之内，有旧版本资源本地缓存的用户访问网站，由于请求的页面是旧版本的，资源引用没有改变，浏览器将直接使用本地缓存，这种情况下页面展现正常；但没有本地缓存或者缓存过期的用户访问网站，就会出现旧版本页面加载新版本资源的情况，导致页面执行错误，但当页面完成部署，这部分用户再次访问页面又会恢复正常了。</li></ol>好的，上面一坨分析想说的就是：先部署谁都不成！都会导致部署过程中发生页面错乱的问题。所以，访问量不大的项目，可以让研发同学苦逼一把，等到半夜偷偷上线，先上静态资源，再部署页面，看起来问题少一些。<br><br>但是，大公司超变态，没有这样的“绝对低峰期”，只有“相对低峰期”。So，为了稳定的服务，还得继续追求极致啊！<br><br>这个奇葩问题，起源于资源的 <u><b>覆盖式发布</b></u>，用 待发布资源 覆盖 已发布资源，就有这种问题。解决它也好办，就是实现 <u><b>非覆盖式发布</b></u>。<br><br><noscript><img src="http://pic4.zhimg.com/9b3a9df114d14a14130a70abf5733837_b.jpg" data-rawwidth="631" data-rawheight="456" class="origin_image zh-lightbox-thumb" width="631" data-original="http://pic4.zhimg.com/9b3a9df114d14a14130a70abf5733837_r.jpg"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="631" data-rawheight="456" class="origin_image zh-lightbox-thumb lazy" width="631" data-original="http://pic4.zhimg.com/9b3a9df114d14a14130a70abf5733837_r.jpg" data-actualsrc="http://pic4.zhimg.com/9b3a9df114d14a14130a70abf5733837_b.jpg"><br>看上图，用文件的摘要信息来对资源文件进行重命名，把摘要信息放到资源文件发布路径中，这样，内容有修改的资源就变成了一个新的文件发布到线上，不会覆盖已有的资源文件。上线过程中，先全量部署静态资源，再灰度部署页面，整个问题就比较完美的解决了。<br><br>所以，大公司的静态资源优化方案，基本上要实现这么几个东西：<br><br><blockquote><ol><li>配置超长时间的本地缓存                 —— 节省带宽，提高性能<br></li><li>采用内容摘要作为缓存更新依据      —— 精确的缓存控制<br></li><li>静态资源CDN部署                           —— 优化网络请求<br></li><li>更资源发布路径实现非覆盖式发布  —— 平滑升级<br></li></ol></blockquote><br>全套做下来，就是相对比较完整的静态资源缓存控制方案了，而且，还要注意的是，静态资源的缓存控制要求在<b><u>前端所有静态资源加载的位置都要做这样的处理</u></b>。是的，所有！什么js、css自不必说，还要包括js、css文件中引用的资源路径，由于涉及到摘要信息，引用资源的摘要信息也会引起引用文件本身的内容改变，从而形成级联的摘要变化，大概示意图就是：<br><br><noscript><img src="http://pic3.zhimg.com/edf10bb428d39d721e36760a86d2641e_b.jpg" data-rawwidth="709" data-rawheight="371" class="origin_image zh-lightbox-thumb" width="709" data-original="http://pic3.zhimg.com/edf10bb428d39d721e36760a86d2641e_r.jpg"></noscript><img src="//s1.zhimg.com/misc/whitedot.jpg" data-rawwidth="709" data-rawheight="371" class="origin_image zh-lightbox-thumb lazy" width="709" data-original="http://pic3.zhimg.com/edf10bb428d39d721e36760a86d2641e_r.jpg" data-actualsrc="http://pic3.zhimg.com/edf10bb428d39d721e36760a86d2641e_b.jpg"><br>好了，目前我们快速的学习了一下前端工程中关于静态资源缓存要面临的优化和部署问题，新的问题又来了：这™让工程师怎么写码啊！！！<br><br>要解释优化与工程的结合处理思路，又会扯出一堆有关模块化开发、资源加载、请求合并、前端框架等等的工程问题，以上只是开了个头，解决方案才是精髓，但要说的太多太多，有空再慢慢展开吧。或者大家可以去我的blog看其中的一些拆解：<a href="https://github.com/fouber/blog" class=" wrap external" target="_blank" rel="nofollow noreferrer">fouber/blog · GitHub<i class="icon-external"></i></a><br><br><blockquote>总之，前端性能优化绝逼是一个工程问题！<br></blockquote><br>以上不是我YY的，可以观察 百度 或者 facebook 的页面以及静态资源源代码，查看它们的资源引用路径处理，以及网络请中静态资源的缓存控制部分。再次赞叹facebook的前端工程建设水平，跪舔了。<br><br>建议前端工程师多多关注前端工程领域，也许有人会觉得自己的产品很小，不用这么变态，但很有可能说不定某天你就需要做出这样的改变了。而且，如果我们能把事情做得更极致，为什么不去做呢？<br><br>另外，也不要觉得这些是运维或者后端工程师要解决的问题。如果由其他角色来解决，<u><b>大家总是把自己不关心的问题丢给别人</b></u>，那么前端工程师的开发过程将受到极大的限制，这种情况甚至在某些大公司都不少见！<br><br>妈妈，我再也不玩前端了。。。。5555<br><br><br><br>========================[ 10.29更新 ]========================<br>这里更新一下：<br><br>在评论中， <a data-hash="4b1a0d3f97fddca9ed6fc820a7be261c" href="http://www.zhihu.com/people/4b1a0d3f97fddca9ed6fc820a7be261c" class="member_mention" data-editable="true" data-title="@陈钢" data-tip="p$b$4b1a0d3f97fddca9ed6fc820a7be261c">@陈钢</a><a data-hash="1824717da821307ac1151a15299666ed" href="http://www.zhihu.com/people/1824717da821307ac1151a15299666ed" class="member_mention" data-editable="true" data-title="@fleuria" data-tip="p$b$1824717da821307ac1151a15299666ed">@fleuria</a> @林翔 提到了rails，刚刚去看了一下，确实是完成了以上所说的优化细节，对整个静态资源的管理上的思考于本答案描述的一致。很遗憾我直到今天（2014-10-29）才了解到rails中的assets pipeline。这里向以上3位同学道歉，原谅我的无知。<br><br>不过整篇回答没有讲解到具体的解决方案实现思路，只是介绍了前端在工程化方向的思考，答案本身是可用的，了解rails的人也可以把此答案当做是对rails中assets pipeline设计原理的分析。<br><br>rails通过把静态资源变成erb模板文件，然后加入&lt;%= asset_path 'image.png' %&gt;，上线前预编译完成处理，不得不承认，fis的实现思路跟这个几乎完全一样，但我们当初确实不知道有rails的这套方案存在。<br><br>相关资料：英文版：<a href="http://guides.rubyonrails.org/asset_pipeline.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">The Asset Pipeline<i class="icon-external"></i></a>，中文版：<a href="http://guides.ruby-china.org/asset_pipeline.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">Asset Pipeline<i class="icon-external"></i></a><br>========================[ 10.31更新 ]========================<br>用 <a href="http://fis.baidu.com/" class=" wrap external" target="_blank" rel="nofollow noreferrer">F.I.S<i class="icon-external"></i></a> 包装了一个小工具，完整实现整个回答所说的最佳部署方案，并提供了源码对照，可以感受一下项目源码和部署代码的对照。<br>源码项目：<a href="https://github.com/fouber/static-resource-digest-project" class=" wrap external" target="_blank" rel="nofollow noreferrer">fouber/static-resource-digest-project · GitHub<i class="icon-external"></i></a><br>部署项目：<a href="https://github.com/fouber/static-resource-digest-project-release" class=" wrap external" target="_blank" rel="nofollow noreferrer">fouber/static-resource-digest-project-release · GitHub<i class="icon-external"></i></a><br>部署项目可以理解为线上发布后的结果，可以在部署项目里查看所有资源引用的md5化处理。<br><br>这个示例也可以用于和assets pipeline做比较。fis没有assets的目录规范约束，而且可以以独立工具的方式组合各种前端开发语言（coffee、less、sass/scss、stylus、markdown、jade、ejs、handlebars等等你能想到的），并与其他后端开发语言结合。<br><br>assets pipeline的设计思想值得独立成工具用于前端工程，fis就当做这样的一个选择吧。
+<a href="/question/20790576/answer/32602154" class="toggle-expand">显示全部</a>
+<div class="fixed-summary-mask"></div>
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="8426975-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2014-10-29" target="_blank" href="/question/20790576/answer/32602154">编辑于 2014-10-31</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>180 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="14064601"
+data-atoken="46669729"
+data-collapsed="0"
+data-created="1430675925"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-14064601"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">43</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$soulteary"
+class="zm-item-link-avatar"
+href="/people/soulteary">
+<img src="http://pic4.zhimg.com/5d1893f3b_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic4.zhimg.com/5d1893f3b_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$soulteary" href="/people/soulteary">苏洋</a>，<strong title="美团网招前端/客户端/全栈，有兴趣请私信。" class="zu-question-my-bio">美团网招前端/客户端/全栈，有兴趣请私信。</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="43">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$xiao-shao-yan-34" href="http://www.zhihu.com/people/xiao-shao-yan-34" class="zg-link" title="肖少彦">肖少彦</a>、</span><span class="user-block"><a data-tip="p$t$Mr_teen" href="http://www.zhihu.com/people/Mr_teen" class="zg-link" title="何文东">何文东</a>、</span><span class="user-block"><a data-tip="p$t$oy-demy" href="http://www.zhihu.com/people/oy-demy" class="zg-link" title="欧阳芝恩">欧阳芝恩</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">填坑开始，根据关键词为线索一条不条补全吧，更新时间记录在第一行（LAST UPDATE: 儿童节 4:21 AM）。<br><br>和项目相关的重要关键词有以下，虽然看起来和题目关联不大，但是最后的方案选择，往往与这些因素都相关：<br><ol><li><b>项目类型</b></li><ol><li>主要职责范围内的活是什么类型的</li><ol><li>工作量主要在纯前端部分的活（移动/PC）</li><li>工作量除了处理前端外，还需要处理服务端的活（各种形式的前后端交互数据）</li></ol><li>是否需要迁就项目终端受众，简而言之，对内对外，开发和受众谁强势谁弱势</li><li>是一版之后再无新版，还是需要持续维护，慢慢做大的类型，是否可以将项目作为实验项目或者培养新人练手任务</li></ol><li><b>人力资源</b></li><ol><li>项目可投入的人力资源有谁，分别是什么角色，团队伙伴的技能&amp;&amp;经验储备</li><li>如果后续需要持续维护，是否需要考虑公司内||团队内或者接手人员的技能储备和学习成本</li><li>需要共建与否以及是否可以使用团队已有技术储备</li></ol><li><b>时间节点</b></li><ol><li>时间周期长短、平均时间内的工作量</li><li>多人组队，考虑沟通、联调成本</li><li>时间点有依赖或者交叉的情况下（前端先发/后发）：需求评审、视觉评审、项目启动、视觉交付、自测联调、提测冒烟....</li></ol><li><b>项目风险</b></li><ol><li>人</li><ol><li>产品经理喜欢变来变去的，考虑后期产品形态变化，考虑方案和实现的变化</li><li>一个人solo可能会生病，考虑压力问题和时间点问题，考虑方案是否容易快速实施</li><li>多人组队，可能遇到沟通不愉快或者讲不清楚的问题，考虑什么方案减少沟通成本和联调成本</li><li>老板。据说最后项目上线前被老板砍掉的情况不少见，如果经验丰富，那么考虑建设方案和投入程度，以及上面提到的是否使用实验性质的方案以减少损失。</li></ol></ol></ol><br>接下来来简单的说一下，上述不同组合下的简单选择，一家之言，欢迎斧正。<br><br><b>情景1:</b><br><br><br>实习生期间，在一个不以前端见长的团队/公司中，负责产品功能相对简单和单纯的后台的功能开发。同类型职业以及一起组队做项目的人数少，可能你是唯一的工程师。<br><br><b>情景2:</b><br><br><br>实习生期间，在一个以前端见长的团队/公司中，负责特别细的一个或者几个功能/小产品。你是团队前端芸芸众生中的一枚。个别项目存在共建。<br><br><b>情景3:</b><br><br><br>工作不到一年，在一个业界知名的团队中，负责一块业务线以及一些小产品的开发。和上面一样，你有许多有共同话题的前端战友。很多项目存在共建。<br><br><b>情景4:</b><br><br><br>工作不到一年，在一个一般的创业团队中，负责所有的产品的前端相关的活。多数情况下，你是一个人在战斗，大量和别人共建的情况。<br><br><b>情景其他：</b><br><br><br><b>理论上，工作一年以上的童鞋，应该可以直接点赞并无视本帖了。</b><br><br>睡醒了继续写，遁~<br><br><br>---历史的分割线---<br><br><br>挖个大坑，接下来慢慢填（估计数月）<br><br>首先，做项目中，我们可能会遇到的问题可能会有：<br><br><p><b>问题</b></p><ul><li>做新的项目的时候，整套工程方案是什么，除了数据和业务层的实现外，前端（服务端+客户端）的工程方案选择什么</li><ul><li>移动端业务的时候，选择什么</li><ul><li>单页应用</li><li>多页应用</li><li>特殊的活动页</li></ul><li>传统PC业务的时候，选择什么</li><ul><li>单页应用</li><li>多页应用</li><li>特殊的活动页</li></ul><li>降级方案如何促成</li><ul><li>依赖开关进行的功能降级（包括兼容）</li><li>纯粹根据接口降级</li></ul></ul><li>做项目时候，对应的协作规范和工具链如何尽可能趋同（约束）</li><ul><li>书写风格？提交格式化？</li><li>代码质量？review？提交lint？test？</li><ul><li>具体到测试中，该用什么框架，BDD如何,TDD又该如何，跨浏览器UI如何做自动测试</li></ul><li>三方依赖的资源管理？字体/图片/媒体/甚至模板 ？HTTPS support?</li><li>配套CDN的支持</li><li>三方依赖的数据接口？mock？dev env?</li></ul><li>已经做完的项目中的内容的复用（如何做一个靠谱的模块仓库）</li><ul><li>优秀的后端模块/功能</li><li>优秀的前端模块/功能</li><li>数据接口包裹复用？</li></ul><li>打包发布，出错回滚，仿真环境模拟和追错</li><ul><li>python/php/nodejs如何发布管理</li><li>纯前端资源如何发布管理</li></ul><li>维护/集成新组件</li><ul><li>上线后如何做监控</li><li>遇到问题如何报警</li></ul></ul><p><b>解决方案</b></p><br><p>一千个人心中有一千万个苍老师，场景不同，诉求不同，解决方案也不同。</p><p>个人认为解决问题的关键除了积累之外，关键在于：模块化仓库、固化简单方案场景（同构化）并配套脚手架方案。</p><br><p>挖坑完毕，待填</p>
+<a href="/question/20790576/answer/46669729" class="toggle-expand">显示全部</a>
+<div class="fixed-summary-mask"></div>
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="14064601-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2015-05-04" target="_blank" href="/question/20790576/answer/46669729">编辑于 2015-06-01</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>8 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1607271"
+data-atoken="16193901"
+data-collapsed="0"
+data-created="1361423833"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1607271"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">38</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a class="zm-item-link-avatar"
+href="javascript:void(0);">
+<img src="http://pic1.zhimg.com/da8e974dc_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic1.zhimg.com/da8e974dc_s.jpg" />
+</a>
+
+
+
+知乎用户，<strong title="上知乎，求欢乐" class="zu-question-my-bio">上知乎，求欢乐</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="38">
+
+<span class="voters">
+<span class="user-block">知乎用户、</span><span class="user-block"><a data-tip="p$t$mian-bao-wang-zi" href="http://www.zhihu.com/people/mian-bao-wang-zi" class="zg-link" title="面包王子">面包王子</a>、</span><span class="user-block"><a data-tip="p$t$xiao-hong-cheng" href="http://www.zhihu.com/people/xiao-hong-cheng" class="zg-link" title="风在咆哮">风在咆哮</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">每一家大公司都不一样，你只能寻找适合自己的流程。<br><br>一般来说，大公司面临的问题就是复杂度。这就如同说，简单的问题，你用汇编写也肯定写得出来，但更复杂的问题就需要用高级语言来抽象，否则其复杂度无法管理。此外，编译不仅仅是能执行就可以，还要考虑目标平台的执行效率。<br><br>对于大公司来说，用 CDN 是必然的，只是如何尽可能多地把静态资源放到 CDN 上去。对于图片这种数量有限的资源，一般新增多少都会放到 CDN 而不在乎成本。至于 JavaScript 这类打包方案有无穷组合的资源，则需要特别的优化了。最笨的办法，当然是人手划定几个基本的打包方案，然后在 CDN 上部署。如果组合数有限，把所有打包方案都缓存到 CDN 也是可以的（没有人请求的打包方案就不生成了）。更先进的办法是，统计实际请求的打包方案，然后自动生成优化的打包方案，并且缓存在 CDN 上。<br><br>考虑到各家大公司采用的语言不一样，用什么服务器也是不确定的。甚至在一家公司内不同语言的系统用的服务器就不一样。同理，不同团队的合作方式不一样，导致了设计到实现的流程也不一样。就算在同一家公司内，也有可能同时存在最保守的团队和最敏捷的团队，一边必须设计定稿了才开始写第一行代码，另一边想到什么写什么觉得不好看再找设计师调整。<br><br>大公司一般都不会非常多的依赖于开源项目，而是自己做自己的项目然后开源。一方面这是 Not Invented Here 的问题；另一方面，确实通用的开源项目无法满足某一家公司非常特定的某些需求，所以就算 idea 是很好的，大公司也会把 idea 搬过来再结合自己的需求做一个自己的版本。
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1607271-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/16193901">发布于 2013-02-21</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="8431198"
+data-atoken="32612617"
+data-collapsed="0"
+data-created="1414551056"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-8431198"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">83</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$li-shou-xin"
+class="zm-item-link-avatar"
+href="/people/li-shou-xin">
+<img src="http://pic3.zhimg.com/2823d5236_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic3.zhimg.com/2823d5236_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$li-shou-xin" href="/people/li-shou-xin">小芋头君</a>，<strong title="杭州C轮优秀团队招NodeJS和前端开发" class="zu-question-my-bio">杭州C轮优秀团队招NodeJS和前端开发</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="83">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$foto" href="http://www.zhihu.com/people/foto" class="zg-link" title="太乙真人">太乙真人</a>、</span><span class="user-block"><a data-tip="p$t$li-yu-hang-65" href="http://www.zhihu.com/people/li-yu-hang-65" class="zg-link" title="李雨航">李雨航</a>、</span><span class="user-block"><a data-tip="p$t$lin-shao-gang-35" href="http://www.zhihu.com/people/lin-shao-gang-35" class="zg-link" title="林少刚">林少刚</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix"><u>最后有招聘，有意者留意一下，谢谢~~</u><br><br>虽然我们不是大公司，但是我也来占个位，东西太多慢慢写。<br><br><b>1.开发环境的被动式资源服务。</b><br><br>我们的开发环境是一个叫做ads的服务，在github上找得到，没说开源，但是都是public的项目。<br>这个环境跑在每个人的机器和测试环境的机器和线上的机器上。<br>支撑了大搜车所有环境的静态服务。<br>其实它做的工作比较简单，无非是一个静态文件服务器+一些实时处理。<br>原理也比较简单，被动式处理，当你访问一个文件的时候，就会去寻找这个文件的需要经过的处理中间件，让文件以管道的形式通过这些中间件，最后返回一个处理过的文件内容。<br>例如jade和less，我们项目里没有编译和打包的概念，你就写就行了，然后任何环境里访问index.css其实都返回的是index.less的编译结果，打包的过程和配置，都不需要关心。包括jade，less，js压缩，requrejs打包合并都是用这样的方式开发，你写的是这样，你看到的是另一样，简单粗暴，每个人只需要关心自己需要关心的事情，而不是项目的配置和打包之类的事情。<br><br>这个环境也无需配置，直接github clone下来，node app.js跑一下就再也不用管了。<br><br><b>2.如何开发和测试？</b><br><br>测试环境。通过切换host，我们有一个测试的域名，叫做<a href="http://f2e.souche.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">f2e.souche.com</span><span class="invisible"></span><i class="icon-external"></i></a>。默认这个域名是指向一台前端单独的测试服务器的，通过nginx，转发到一个ads的服务上。然后这个服务的背后是我们的前端资源文件，这个项目里还跑了一个定时脚本，一分钟pull一次从github更新代码。<br>所以<a href="http://f2e.souche.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">f2e.souche.com</span><span class="invisible"></span><i class="icon-external"></i></a>直接访问，访问的就是测试环境，这个环境的代码永远是最新的，它会定时从github拉取最新的代码。<br>这个环境主要用来支撑测试和开发访问网站的测试环境时候访问到的前端资源的服务支撑。<br><br>本地开发。通过切换host，把<a href="http://f2e.souche.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">f2e.souche.com</span><span class="invisible"></span><i class="icon-external"></i></a>切换到127.0.0.1，然后就把服务指向了本地的ads服务，本地的ads访问的是本地的资源项目，所以任何修改直接会生效。<br><br><b>3.动态路径和时间戳自动更新</b><br><br>在java程序中，我们实现了两个跟前端资源有关的机制。<br>动态路径。我们的java程序会根据环境的不同判断来引用不同环境的资源文件，例如测试和线上，自动引用不同路径的资源。<br><br>时间戳自动更新。我们前端维护了一个resource.properties，这个文件是一个时间戳的kv。每次发布一个文件，就让他对应的时间戳+1。然后java里会定时去远程读取这个文件，如果读取成功，就把这个kv解析到内存覆盖之前的时间戳map，然后每次渲染模板的时候，会把对应的时间戳通过方法注入到模板中，模板中所有的资源引用都会根据这个时间戳配置动态改变资源的时间戳。<br><br><b>4.线上CDN和发布</b><br><br>线上我们也有一台前端自己的服务器，专门用来跑ads支撑线上服务。<br>每个请求进来（<a href="http://assets.souche.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">assets.souche.com</span><span class="invisible"></span><i class="icon-external"></i></a>是指向cdn的），会先通过阿里的cdn服务，然后如果cdn上有缓存副本，就会直接返回，如果没有，则会去请求一台（<a href="http://f2e-assets.souche.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">f2e-assets.souche.com</span><span class="invisible"></span><i class="icon-external"></i></a>不经过cdn)这台是前端的线上服务，这台服务器上的ads跟开发和测试环境的ads一模一样，会动态处理，jade,less,js压缩合并，requirejs打包，图片自动优化。<br><br>发布，就简单了，就是简单的文件拷贝，我们有个专门的发布服务，也是nodejs写的，会记录每次发布的时间内容，然后copy文件过去，并且更新上面提到的resource.properties。这样就能自动更新时间戳了。<br><br><b>5.combo等个性化服务。</b><br><br>因为采用上述的架构，所以我们可以灵活定制我们的静态服务，因为我们中间有一层cdn，后面架设了一个动态服务，这个动态服务是无所不能的。<br><br>例如combo，这样的url：<a href="http://assets.souche.com/assets/js/%24%24lib/jquery-1.7.1.min.js,lib/require.js,lib/jquery.flexslider-min.js?111" class=" wrap external" target="_blank" rel="nofollow noreferrer">http://assets.souche.com/assets/js/$$lib/jquery-1.7.1.min.js,lib/require.js,lib/jquery.flexslider-min.js<i class="icon-external"></i></a><br><br>实现起来很简单，后台收到请求的时候解析下路径，把文件动态压缩一下，然后合并返回给前端即可，没啥好说的，但是就是够方便。<br><br><b>6.被动式服务的性能。</b><br><br>因为ads是被动式服务，它的好处是傻瓜化，坏处是有时候可能会有性能问题，还好我们可以适当规避。<br>例如常用的服务：jade,less,js压缩合并，requirejs打包，图片自动优化<br><br>其中jade,less的实时编译是非常快的，基本感觉不出来，所以这两个可以忽略。<br>js合并压缩，requirejs打包，图片优化是比较慢的。<br>所以在本地开发和测试环境的时候，这几个服务是关闭掉的。也就是我们的js只有在线上才是压缩的，本地都是不压缩的，当然访问路径都是一样一样的。<br>requirejs也不打包，本地和测试都采用异步加载，到了线上才会使用打包出来的文件。<br><br>所有的所有，都没有中间文件，所以在我们的前端项目里，看不到css文件，看不到压缩后的js文件，看不到jade编译出来的html，看不到requirejs打包的文件，也看不到优化后的图片文件。因为所有的一切都是被动式。<br><br>而在线上，所有的性能问题都不是问题了，因为有cdn，所以服务不会一直被请求，请求一次之后就被cdn缓存，再慢的服务，也是没有问题的。<br><br><b>7.后言</b><br><br>大概先说这些，一直以来从来没跟别人讲过公司的前端工程环境，今天废话了一通。<br><br>最近正在搞一个比较特立独行的前后端分离，思路跟其他公司稍微不同，前后端分离最重要的不是技术实现，而是因为涉及到了整个公司的开发架构，需要为前端，开发，测试，都定制一套傻瓜化的开发环境和解决方案，重新制定开发流程，又涉及到产品运营等等，这些的推动才是最复杂的，中间要解决很多问题，不能说为了技术而技术，要为每个职责解决问题才能够推动整个项目。<br><br><br><u>另外，公司招聘前端开发，杭州大搜车，线上二手车O2O服务平台，技术什么的就不说了（java,ruby,nodejs,golang我们都玩），氛围也懒得夸了（烧烤喝酒party妹子应有尽有），有兴趣的直接联系我吧，</u>邮箱：sunxinyu@souche.com
+<a href="/question/20790576/answer/32612617" class="toggle-expand">显示全部</a>
+<div class="fixed-summary-mask"></div>
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="8431198-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2014-10-29" target="_blank" href="/question/20790576/answer/32612617">编辑于 2014-10-29</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>26 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1608141"
+data-atoken="16196092"
+data-collapsed="0"
+data-created="1361437094"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1608141"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">104</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$panweizeng"
+class="zm-item-link-avatar"
+href="/people/panweizeng">
+<img src="http://pic2.zhimg.com/56af27029_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic2.zhimg.com/56af27029_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$panweizeng" href="/people/panweizeng">潘魏增</a>，<strong title="喜欢前端开发" class="zu-question-my-bio">喜欢前端开发</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="104">
+
+<span class="voters">
+<span class="user-block">知乎用户、</span><span class="user-block"><a data-tip="p$t$yuan-xiu-fu" href="http://www.zhihu.com/people/yuan-xiu-fu" class="zg-link" title="袁秀夫">袁秀夫</a>、</span><span class="user-block"><a data-tip="p$t$pang-niao-di-fei" href="http://www.zhihu.com/people/pang-niao-di-fei" class="zg-link" title="胖鸟低飞">胖鸟低飞</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">虽然美团不是大公司，但在这里写一下我们的情况，仅供参考。<br><br><b>开发时的和部署时类库的引用和存放是一致还是不同?<br></b><br>开发环境和部署环境的类库代码都是相同的，但物理位置不同。部署环境的类库在CDN上，开发环境的类库在开发服务器上。<br><br><b>模块放在项目中还是放在 CDN 之类服务器?</b><br>模块放在项目中，部署时都在CDN上。<br><br><b>渲染网页用 Nginx 还是其他动态语言的 Web 服务器?</b><br>前面用ngnix做负载均衡，后面用apache做web服务器。<br><br><b>制作网页的流程, 是现有设计师的稿, 还是先看模块?</b><br>先有设计师的稿再写模块，但很多时候并不需要设计师，因为架子已经搭好了，界面规范和基础元素都有，一般的界面前端工程师都能搞得定。<br><b><br>会选择用自己写的模块还是从社区寻找模块?</b><i></i><br>基础框架用的YUI3，大部分二次开发的底层模块，还有和业务紧密结合的UI模块都是自己写的。当然也会用社区写的模块，比如上传组件、highcharts、Ace等。如果说怎么选择模块的话，那就是具体情况具体分析了，总体原则有两个：<ol><li>能不自己写，就不自己写；</li><li>选择最符合需求的，一般来说，要么选最好的，要么选最快出结果的</li></ol>
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1608141-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/16196092">发布于 2013-02-21</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>10 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="9574583"
+data-atoken="35464982"
+data-collapsed="0"
+data-created="1418977928"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-9574583"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">2</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+<h3 class="zm-item-answer-author-wrap">匿名用户</h3></div>
+<div class="zm-item-vote-info " data-votecount="2">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$yang-shuo-15-64" href="http://www.zhihu.com/people/yang-shuo-15-64" class="zg-link" title="杨硕">杨硕</a>、</span><span class="user-block"><a data-tip="p$t$jasinyip" href="http://www.zhihu.com/people/jasinyip" class="zg-link" title="Jasin Yip">Jasin Yip</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">可以看看百度的FIS
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="9574583-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/35464982">发布于 2014-12-19</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="8721551"
+data-atoken="33336395"
+data-collapsed="0"
+data-created="1415844972"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-8721551"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">0</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$jirengu-ruo-yu"
+class="zm-item-link-avatar"
+href="/people/jirengu-ruo-yu">
+<img src="http://pic2.zhimg.com/ace2ab38062de3697c80d5ba464565b5_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic2.zhimg.com/ace2ab38062de3697c80d5ba464565b5_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$jirengu-ruo-yu" href="/people/jirengu-ruo-yu">若愚</a>，<strong title="在线教育" class="zu-question-my-bio">在线教育</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix"><ul><li>开发时的和部署时类库的引用和存放是一致还是不同？</li></ul><br>开发时，把应用代码分支拉到本地，这些分支可以只包含你要修改的应用，也可包含你要引用的类库。在本地搭建webserver，修改host映射到本地。开发过程中要引用类库地址时直接引用线上地址，会被webserver中转到本地代码上。 发布时直接发布到对应机器上就行，代码里不用再修改线上路径。<br><ul><li>模块放在项目中还是放在 CDN 之类服务器？<br></li></ul><br>项目是你要做一件事建的项目，跟代码模块没关系。大公司前端代码一般会发布带cdn。<br><ul><li>渲染网页用 Nginx 还是其他动态语言的 Web 服务器？</li></ul><br>看需要了，一般是php和java的， Nginx lighttpd apache都有用<br><ul><li>制作网页的流程，是先有设计师的稿，还是先看模块？</li></ul><br>当然是现有设计稿，至少你要先知道做什么，再写代码吧。<br><ul><li>会选择用自己写的模块还是从社区寻找模块？</li></ul><br>自己写，如果某个函数忘记了或者样式调整不好可以参考网上的资料，模块当然自己写。<br><br><i>求前端讲师，在家会议软件授课，小班，一小时300到800，晚上和周末授课。 求别删除</i>
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="8721551-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2014-11-13" target="_blank" href="/question/20790576/answer/33336395">编辑于 2014-11-13</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>1 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1626288"
+data-atoken="16240906"
+data-collapsed="0"
+data-created="1361934491"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1626288"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">1</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$longwosion"
+class="zm-item-link-avatar"
+href="/people/longwosion">
+<img src="http://pic3.zhimg.com/48c3b9b3a_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic3.zhimg.com/48c3b9b3a_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$longwosion" href="/people/longwosion">施宏</a>，<strong title="Javascript Coder" class="zu-question-my-bio">Javascript Coder</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="1">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$elvirawong" href="http://www.zhihu.com/people/elvirawong" class="zg-link" title="隔壁老王">隔壁老王</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">原来做的大多是集成在发布产品中的WEB前端，不是发布到互联网上的。是用户安装到自己的服务器上配合其他软件使用的。类似于oracle的web管理界面之类。<br><br>部分问题如下：<br><b>开发时的和部署时类库的引用和存放是一致还是不同?</b><br>:: 这个安装性的自然不一致，开发js，css是未混淆和未合并的。部署（或者称为安装，或者生成版本时）使用的是合并后的js和css<br><br><br><b>制作网页的流程, 是现有设计师的稿, 还是先看模块?</b><br>:: 先有交互设计师设计几乎所界面，操作模式，<br>再有视觉设计师设计出来常用场景和常用控件。要求覆盖交互设计师的所有界面。<br>然后开发人员根据逻辑需求分到各个模块中开发。<br><br><br><b>会选择用自己写的模块还是从社区寻找模块?</b><br>::多数是自己写的模块。使用的前端框架是自的框架（很重的框架，自完备型的）
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1626288-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/16240906">发布于 2013-02-27</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="2824757"
+data-atoken="19119082"
+data-collapsed="0"
+data-created="1380448679"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-2824757"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">0</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$dong-yan-84"
+class="zm-item-link-avatar"
+href="/people/dong-yan-84">
+<img src="http://pic4.zhimg.com/fdf77b497_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic4.zhimg.com/fdf77b497_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$dong-yan-84" href="/people/dong-yan-84">dong yan</a>，<strong title="初学者" class="zu-question-my-bio">初学者</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">我这公司还行。<br><br>开发时的和部署时类库的引用和存放是一致还是不同?<br>还算一致<br>模块放在项目中还是放在 CDN 之类服务器?<br>CDN<br>渲染网页用 Nginx 还是其他动态语言的 Web 服务器?<br>渲染网页是浏览器<br>制作网页的流程, 是现有设计师的稿, 还是先看模块?<br>模块<br>会选择用自己写的模块还是从社区寻找模块？<br>取最好的
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="2824757-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/19119082">发布于 2013-09-29</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="8486476"
+data-atoken="32750274"
+data-collapsed="0"
+data-created="1414775808"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-8486476"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">3</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$crazy_coder"
+class="zm-item-link-avatar"
+href="/people/crazy_coder">
+<img src="http://pic4.zhimg.com/c5ab43dcb_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic4.zhimg.com/c5ab43dcb_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$crazy_coder" href="/people/crazy_coder">CrazyCoder</a>，<strong title="爪哇开发攻城狮" class="zu-question-my-bio">爪哇开发攻城狮</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="3">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$zhang-rong-9" href="http://www.zhihu.com/people/zhang-rong-9" class="zg-link" title="张荣">张荣</a>、</span><span class="user-block"><a data-tip="p$t$qi-en-ling" href="http://www.zhihu.com/people/qi-en-ling" class="zg-link" title="七恩灵">七恩灵</a>、</span><span class="user-block">知乎用户</span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">我们公司是这样做的<br>1，前后端完全分离<br>2，前段html javascript放在nginx里<br>3，通过配置nginx的反向代理等，讲前端的ajax请求转发到后端服务器（前端全部是ajax请求）<br>4，后端采用分布式部署在16台wildfly上，前身就是jboss
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="8486476-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/32750274">发布于 2014-11-01</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="10597099"
+data-atoken="38014215"
+data-collapsed="0"
+data-created="1422125796"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-10597099"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">2</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$shileiyu"
+class="zm-item-link-avatar"
+href="/people/shileiyu">
+<img src="http://pic1.zhimg.com/3817adb28_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic1.zhimg.com/3817adb28_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$shileiyu" href="/people/shileiyu">施磊</a>，<strong title="职业程序猿。爱科学。" class="zu-question-my-bio">职业程序猿。爱科学。</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="2">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$riasky" href="http://www.zhihu.com/people/riasky" class="zg-link" title="riasky">riasky</a>、</span><span class="user-block"><a data-tip="p$t$hlx90" href="http://www.zhihu.com/people/hlx90" class="zg-link" title="黄凌翔">黄凌翔</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">此问题没有标准答案。我个人倾向于把前端开发者定义为全栈程序员。这种个体全能是被工作分工困难倒逼出来的，是不利于工程的。<br><br>对于不同的技术栈的团队，“前端”的工作内容出入较大，大公司的流水线上的工位也不是完全一致的，所以几乎每家前端干的事情都不一样。如果仅仅讨论部署和开发流程，上面几位已经阐述了大方向和思路。这些的思路和方案完全就是传统软件工程过去积累出的经验和方案的前端版本，只不过由于过去的“前端技术”的客观条件和需求还不足以暴露出这些工程问题，所以基本没人讨论这些问题。<br><br>对比前端工程和传统软件工程的各个环节的解决方案数量，会发现前端的可选方案出奇的多。由此可见当下前端生态的混乱的程度。我认为造成这种局面的原因在于，现在前端技术中的中心对象HTML文档的模块化方案还没有事实标准， 所以目前生产环境中的所有的前端工程方案都只能借用其他的技术来实现HTML的模块化，这一点其实是很别扭的。这样做也大大增加前端工程的复杂度。只有待这一问题有了大家认可的解决方案(有可能是Web Components)，前端技术才能有较为统一的最佳实践。
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="10597099-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2015-01-25" target="_blank" href="/question/20790576/answer/38014215">编辑于 2015-01-26</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>1 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="2897595"
+data-atoken="19297711"
+data-collapsed="0"
+data-created="1381373079"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-2897595"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">2</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a class="zm-item-link-avatar"
+href="javascript:void(0);">
+<img src="http://pic1.zhimg.com/da8e974dc_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic1.zhimg.com/da8e974dc_s.jpg" />
+</a>
+
+
+
+知乎用户，<strong title="(☆_☆)" class="zu-question-my-bio">(☆_☆)</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="2">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$gaoxiaolu" href="http://www.zhihu.com/people/gaoxiaolu" class="zg-link" title="高路">高路</a>、</span><span class="user-block">知乎用户</span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">公司也算不小，但是我不是前端，只能大概说一下前端的情况。<br><br><b>开发时的和部署时类库的引用和存放是一致还是不同?</b><br>开发时，前端会在自己机器上用nginx搭建一个简单的前端环境来模拟CDN。<br>部署时，前端会用脚本压缩合并JS，并上传到CDN，路径中存在版本号。<br><br><b>模块放在项目中还是放在 CDN 之类服务器?</b><br>前端有单独的SVN存放相关内容，但是部署上线时都会经过压缩合并、加上版本号同步CDN。<br><br><b>渲染网页用 Nginx 还是其他动态语言的 Web 服务器?</b><br>前端nginx，后端resin或tomcat。<br>所有静态内容包括图片、flash、js、css等全部由CDN完成（CDN那边应该是nginx）。<br><br><b>制作网页的流程, 是现有设计师的稿, 还是先看模块?</b><br>首先由设计师出设计稿，之后交由前端童鞋来切图、做页面。<br>通常，设计师会根据整个网站的风格来设计，这样前端就可以复用已有的UI库了，但这种情况不多。。。<br><br><b>会选择用自己写的模块还是从社区寻找模块?</b><br>我们有一套自己的前端库，很大很全，各项功能都有。。很少从社区寻找。。<br><br><br>另外，赞成<a class="member_mention" data-hash="11c4242fd92613a7f85ad9fff60c29c9" href="http://www.zhihu.com/people/11c4242fd92613a7f85ad9fff60c29c9" data-tip="p$b$11c4242fd92613a7f85ad9fff60c29c9">@Cat Chen</a>的答案~
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="2897595-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/19297711">发布于 2013-10-10</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>1 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1839745"
+data-atoken="16768196"
+data-collapsed="0"
+data-created="1366556113"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1839745"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">1</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$mumucn"
+class="zm-item-link-avatar"
+href="/people/mumucn">
+<img src="http://pic3.zhimg.com/c7389d222_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic3.zhimg.com/c7389d222_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$mumucn" href="/people/mumucn">桂林</a>，<strong title="游的越来越远，才明白水越来越深" class="zu-question-my-bio">游的越来越远，才明白水越来越深</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="1">
+
+<span class="voters">
+<span class="user-block">知乎用户</span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix"><b>开发时的和部署时类库的引用和存放是一致还是不同?</b><br>开发时候用的源码开发，部署的时候用的压缩后的，性能优化！<br><b>模块放在项目中还是放在 CDN 之类服务器?</b><br>你说的模块是JS类库吗？对于前端的js和css文件放在独立的服务器就行，主要设置缓存，减少客户端的重复请求压力；<br><b>渲染网页用 Nginx 还是其他动态语言的 Web 服务器?</b><br>前端页面的渲染都是浏览器来处理的，至于动态语言的运行，看你用的什么开发语言来配置环境，Nginx和apache是用来运行php语言的，iis运行asp和c#,tomcate运行java语言<br><b>制作网页的流程, 是现有设计师的稿, 还是先看模块?</b><br>当然先看模块，有交互设计师做出原型，然后是设计人员根据原型做设计搞，最后是前端做页面，最后是开发人员嵌入程序；<br><b>会选择用自己写的模块还是从社区寻找模块?</b><br>根据需求来，复杂的模块可以采用第三方的，简单的可以自己直接写；
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1839745-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/16768196">发布于 2013-04-21</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="14149381"
+data-atoken="46881250"
+data-collapsed="0"
+data-created="1430878682"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-14149381"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">0</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+<h3 class="zm-item-answer-author-wrap">匿名用户</h3></div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix"><a href="http://mp.weixin.qq.com/s?__biz=MjM5MzY2NDY0Ng==&amp;mid=206338487&amp;idx=1&amp;sn=3d924d43d2374cbf015c2499d4b4f188#rd" class=" wrap external" target="_blank" rel="nofollow noreferrer">JavaScript之父和PHP之父将要去台湾，两大开发语言教父5月中双双现身台湾最大Web开发盛会<i class="icon-external"></i></a>
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="14149381-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/46881250">发布于 2015-05-06</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer "
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="17824849"
+data-atoken="56043909"
+data-collapsed="0"
+data-created="1437570898"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-17824849"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="label">赞同</span>
+<span class="count">0</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<h3 class="zm-item-answer-author-wrap">
+
+
+<a data-tip="p$t$zhang-ya-zhu"
+class="zm-item-link-avatar"
+href="/people/zhang-ya-zhu">
+<img src="http://pic1.zhimg.com/9f43b9f5a4aa130b944a24e2775df9ac_s.jpg"
+class="zm-list-avatar"
+data-source="http://pic1.zhimg.com/9f43b9f5a4aa130b944a24e2775df9ac_s.jpg" />
+</a>
+
+
+
+<a data-tip="p$t$zhang-ya-zhu" href="/people/zhang-ya-zhu">张亚宁</a>，<strong title="软件开发工程师" class="zu-question-my-bio">软件开发工程师</strong>
+
+</h3>
+<a href="javascript:;" name="collapse" class="collapse meta-item zg-right"><i class="z-icon-fold"></i>收起</a>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text" data-resourceid="496709" data-action="/answer/content">
+
+<div class="fixed-summary zm-editable-content clearfix">Rails可以实现你想要的一切。
+
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="17824849-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/20790576/answer/56043909">发布于 2015-07-22</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+<div id="zh-question-collapsed-link" class="zu-question-collap-title" style="display:none" >
+<a href="javascript:;" name="expand" class="zg-link-gray" id="zh-question-collapsed-switcher">
+<span id="zh-question-collapsed-num">4</span> 个回答被折叠
+</a>
+（<a target="_blank" href="http://www.zhihu.com/question/20120168" class="zg-link-gray">为什么？</a>）
+</div>
+<div id="zh-question-collapsed-wrap" class="zh-question-answer-wrapper" style="display:none"></div>
+<a name="draft"></a>
+<div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+<div class="zm-editable-tip"></div>
+<div class="zm-editable-content"></div>
+</div>
+<div class="shameimaru-placeholder" data-class="QuestionBottomShameimaruV2" data-params='{&quot;token&quot;:20790576}'></div>
+<!-- end of content -->
+</div>
+</div>
+<div class="zu-main-sidebar">
+
+
+<div class="zm-side-section">
+<div class="zm-side-section-inner">
+<div class="well login-reg-box">
+<span>知乎是一个真实的问答社区，在这里分享知识、经验和见解，发现更大的世界。<br>
+<a id="js-reg-with-mail-in-top" href="#">使用手机或邮箱注册</a>
+<span>·</span>
+<a id="js-reg-with-qq-in-top" href="#">使用 QQ 登录</a>
+</span>
+<div class="clearfix">
+<a id="js-reg-with-wechat-in-top" href="#" class="zg-btn-green"><span class="z-ico-wechat-right-panel"></span>使用微信登录</a>
+<a id="js-reg-with-sina-in-top" href="#" class="zg-btn-red"><span class="icon-big-white-sina"></span>使用微博登录</a>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="zm-side-section">
+<div class="zm-side-section-inner zg-gray-normal" id="zh-question-side-header-wrap">
+<button data-follow="q:m:button" class="follow-button zg-follow zg-btn-green" data-id="496709">关注问题</button>
+
+4921
+人关注该问题
+
+</div>
+</div>
+
+<div class="shameimaru-placeholder" data-class="QuestionUpShameimaruV2" data-params='{&quot;token&quot;:20790576}'></div>
+
+
+
+
+
+<div class="shameimaru-placeholder" data-class="QuestionDownShameimaruV2" data-params='{&quot;token&quot;:20790576}'></div>
+</div>
+<div class="zg-clear"></div>
+<!-- 版权演示 -->
+
+<script type="text/x-template" id="copyright-demo-template">
+<article>
+
+<section>
+<p class="copyright-demo-title"> 这是你的回答正文 </p>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section>
+<p class="copyright-demo-title"> 当其他人想复制你的一段回答 </p>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region1">
+<span class="copyright-ico-indicator" id="copyright-demo-indicator"></span>
+</div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region2"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region3"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region4"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section id="copyright-demo-frame3">
+<p class="copyright-demo-title"> 复制将受限，同时会弹出提醒 </p>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region"></div>
+<span class="copyright-ico-pointer copyright-demo-pointer"></span>
+</section>
+</article>
+</script>
+
+
+</div>
+
+<div id="zh-footer" class="zh-footer">
+<div class="zg-wrap clearfix">
+<ul>
+
+<li><a href="/app" target='_blank'>移动应用</a></li>
+<li><a href="/careers">加入知乎</a></li>
+<li><a href="/terms" target="_blank">知乎协议</a></li>
+<li><a href="mailto:bd@zhihu.com">商务合作</a></li>
+</ul>
+<span class="copy">&copy; 2015 知乎</span>
+</div>
+</div>
+
+<script type="text/json" class="json-inline" data-name="guiders2">{}</script>
+
+<script type="text/template" class="register-template">
+<div class="title register">
+<h1>加入知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view register">
+<form action="/register/email">
+<div class="input-wrapper">
+<input type="text" name="fullname" placeholder="姓名" required>
+</div>
+<div class="input-wrapper">
+<input type="text" name="account" class="account" placeholder="手机号或邮箱" required>
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" hidden> 
+<input type="password" name="password" placeholder="密码（不少于 6 位）" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper captcha">
+<input type="text" name="captcha" placeholder="验证码" required>
+<div class="captcha" data-tip="s$b$看不清楚？换一张">
+<img>
+</div>
+</div>
+<div class="actions">
+<button type="button" class="switch-to-login">已有帐号？</button>
+<button class="submit blue-button">注册</button>
+</div>
+</form>
+<div class="sns clearfix">
+<h1>社交帐号登录</h1>
+<button type="button" class="wechat"><span class="ico z-ico-wechat"></span>微信</button>
+<button type="button" class="weibo"><span class="ico z-ico-weibo"></span>微博</button>
+</div>
+</div>
+<div class="title verification">
+<h1>验证手机</h1>
+<h2>请输入你收到的 6 位数短信验证码</h2>
+</div>
+<div class="view verification">
+<form>
+<div class="input-wrapper">
+<input type="text" name="phone_num" placeholder="手机号" required>
+</div>
+<div class="input-wrapper verification-code">
+<input type="text" name="verification_code" placeholder="6 位数验证码" maxlength="6" required>
+<button type="button" class="send-code">重发验证码</button>
+</div>
+<button class="submit blue-button">进入知乎</button>
+</form>
+</div>
+</script>
+<script type="text/template" class="login-template">
+<div class="title login">
+<h1>加入知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view login">
+<form>
+<div class="input-wrapper">
+<input type="text" name="account" class="account" placeholder="手机号或邮箱" required>
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" name="password" placeholder="密码" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper captcha">
+<input type="text" name="captcha" placeholder="验证码" required>
+<div class="captcha" data-tip="s$b$看不清楚？换一张">
+<img>
+</div>
+</div>
+<div class="actions">
+<label class="remember-me"><input type="checkbox" name="remember_me" checked value="true">记住我</label>
+<span class="middot">·</span>
+<button class="unable-login" type="button">无法登录？</button>
+<button class="submit blue-button">登录</button>
+</div>
+</form>
+<div class="sns clearfix">
+<h1>社交帐号登录</h1>
+<button type="button" class="wechat"><span class="ico z-ico-wechat"></span>微信</button>
+<button type="button" class="weibo"><span class="ico z-ico-weibo"></span>微博</button>
+<button type="button" class="qq"><span class="ico z-ico-qq"></span>QQ</button>
+</div>
+</div>
+</script>
+<script type="text/template" class="unable-login-template">
+<div class="title start">
+<h1>无法登录</h1>
+<h2>我们提供两种方式帮助你重新登录知乎</h2>
+</div>
+<div class="view start">
+<button class="blue-button reset-password">找回密码</button>
+<button class="blue-button sms-login">使用手机验证码登录</button>
+</div>
+<div class="title reset-password-verification">
+<h1>找回密码</h1>
+<h2>验证码将会发送至你的注册邮箱或手机</h2>
+</div>
+<div class="view reset-password-verification">
+<form>
+<div class="input-wrapper">
+<input type="text" name="account" class="account" placeholder="手机号或邮箱" required>
+</div>
+<div class="input-wrapper captcha">
+<input type="text" name="captcha" placeholder="验证码" required>
+<div class="captcha" data-tip="s$b$看不清楚？换一张">
+<img>
+</div>
+</div>
+<button class="submit blue-button">获取验证码</button>
+</form>
+</div>
+<div class="title reset-password">
+<h1>重设密码</h1>
+<h2>验证码将会发送至你的注册邮箱或手机</h2>
+</div>
+<div class="view reset-password">
+<form action="/resetpassword/email">
+<div class="input-wrapper">
+<input type="text" name="account" class="account" placeholder="手机号或邮箱" required>
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" hidden> 
+<input type="password" name="password" placeholder="新密码" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="input-wrapper verification-code">
+<input type="text" name="verification_code" placeholder="邮箱收到的 6 位数验证码" maxlength="6" required>
+<button type="button" class="send-code">重发验证码</button>
+</div>
+<button class="submit blue-button">重设密码</button>
+</form>
+</div>
+<div class="title sms-login-verification">
+<h1>登录知乎</h1>
+<h2>验证码将会发送至你的手机</h2>
+</div>
+<div class="view sms-login-verification">
+<form>
+<div class="input-wrapper">
+<input type="text" name="phone_num" placeholder="手机号" required>
+</div>
+<div class="input-wrapper captcha">
+<input type="text" name="captcha" placeholder="验证码" required>
+<div class="captcha" data-tip="s$b$看不清楚？换一张">
+<img>
+</div>
+</div>
+<button class="submit blue-button">获取验证码</button>
+</form>
+</div>
+<div class="title sms-login">
+<h1>登录知乎</h1>
+<h2>输入你收到的 6 位数短信验证码</h2>
+</div>
+<div class="view sms-login">
+<form>
+<div class="input-wrapper">
+<input type="text" name="phone_num" placeholder="手机号" required>
+</div>
+<div class="input-wrapper verification-code">
+<input type="text" name="verification_code" placeholder="6 位数验证码" maxlength="6" required>
+<button type="button" class="send-code">重发验证码</button>
+</div>
+<button class="submit blue-button">登录知乎</button>
+</form>
+</div>
+</script>
+<script type="text/template" class="oauth-register-template">
+<div class="title register">
+<h1>填写姓名</h1>
+<h2>请填写你的真实姓名</h2>
+</div>
+<div class="view register">
+<form>
+<div class="input-wrapper">
+<input type="text" name="fullname" placeholder="姓名" required>
+</div>
+<div class="input-wrapper captcha">
+<input type="text" name="captcha" placeholder="验证码" required>
+<div class="captcha" data-tip="s$b$看不清楚？换一张">
+<img>
+</div>
+</div>
+<button class="submit blue-button">进入知乎</button>
+</form>
+</div>
+<div class="title bound">
+<h1>登录知乎</h1>
+<h2>该微博曾绑定过以下帐号</h2>
+</div>
+<div class="view bound">
+<img src="" width="50px" height="50px">
+<span class="name"></span>
+<button class="blue-button bind-login">绑定此帐号并登录</button>
+<button class="button register">不绑定，用微博创建新帐号</button>
+</div>
+<div class="title registered">
+<h1>微博邮箱已注册知乎</h1>
+<h2>已注册至如下帐号</h2>
+</div>
+<div class="view registered">
+<img src="" width="50px" height="50px">
+<span class="name"></span>
+<button class="blue-button bind-login">绑定此帐号并登录</button>
+<button class="button register">不绑定，用微博创建新帐号</button>
+</div>
+<div class="title bind-login">
+<h1>登录知乎</h1>
+<h2>与世界分享你的知识、经验和见解</h2>
+</div>
+<div class="view bind-login">
+<form>
+<div class="input-wrapper">
+<input type="text" name="account" class="account" placeholder="手机号或邮箱" required disabled>
+</div>
+<div class="input-wrapper toggle-password">
+<input type="password" name="password" placeholder="密码" required>
+<span class="z-ico-show-password"></span>
+</div>
+<div class="actions">
+<button class="unable-login" type="button">无法登录？</button>
+<button class="submit blue-button">绑定并登录</button>
+</div>
+</form>
+</div>
+</script>
+<script type="text/json" class="json-inline" data-name="current_user">["","","","-1","",0,0]</script>
+<script type="text/json" class="json-inline" data-name="env">["zhihu.com","comet.zhihu.com",false,null]</script>
+<script type="text/json" class="json-inline" data-name="permissions">[]</script>
+
+
+<script type="text/json" class="json-inline" data-name="ga_vars">{"user_created":0,"now":1438481031000,"abtest_mask":"------------------------------","user_attr":[0,0,0,"-","-"],"user_hash":0}</script>
+
+<script type="text/json" class="json-inline" data-name="current_question">{"status":"normal","isLocked":0,"detailEditReasonRequired":true,"editPermission":false,"isAnon":0,"qid":496709,"urlToken":20790576,"showInvitePanel":false,"askAboutMember":0}</script>
+<script type="text/json" class="json-inline" data-name="current_question_owner">false</script>
+<script type="text/json" class="json-inline" data-name="draft">[]</script>
+<script type="text/json" class="json-inline" data-name="my_answer">{}</script>
+
+<script type="text/json" class="json-inline" data-name="redirect_to">""</script>
+
+
+
+<script src="http://static.zhihu.com/static/ver/e81122a3ca2b78ad911aff474211d7c3.extern_src.min.js"></script>
+<script src="http://static.zhihu.com/static/ver/2ce44e8416fb24397edf13628a2136f4.app_core.js"></script>
+<script src="http://static.zhihu.com/static/ver/924eee63e93738233a3fb685a2dfd9bd.sign.js"></script>
+<script src="http://static.zhihu.com/static/ver/a8440b3b3b3986f6b34dde32f79a40b0.app.js"></script>
+<script src="http://static.zhihu.com/static/ver/f1a0e63d38955655bb2ae817855aca03.rich_text_editor.js"></script>
+
+<script type="text/zscript" znonce="e158d0db3a894074bb588636cc88fb34">
+ZH.entrySQ();
+</script>
+
+<input type="hidden" name="_xsrf" value="4f500fd798268dad06ae0248a9f054d4"/>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="theme">
+
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Cmd Markdown 编辑阅读器，支持实时同步预览，区分写作和阅读模式，支持在线存储，分享文稿网址。">
+    <meta name="author" content="Jiawei Zhang">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <title>KrakenJS简单入门 - 作业部落 Cmd Markdown 编辑阅读器</title>
+
+
+    <link href="https://www.zybuluo.com/static/img/favicon.png" type="image/x-icon" rel="icon">
+
+    <link href="https://www.zybuluo.com/static/assets/1bc053c8.base.lib.min.css" rel="stylesheet" media="screen">
+
+
+    
+    <!-- id="prettify-style" will be used to get the link element below and change href to change prettify code style, so it can't be in beginmin/endmin block. -->
+    <link id="prettify-style" href="https://www.zybuluo.com/static/editor/libs/google-code-prettify/prettify-cmd.css" type="text/css" rel="stylesheet">
+    <link href="https://www.zybuluo.com/static/assets/mdeditor/b5e054c3.layout.min.css" rel="stylesheet" media="screen">
+
+
+    
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-44461741-1', 'zybuluo.com');
+      ga('send', 'pageview');
+    </script>
+</head>
+
+<body class="theme">
+
+    <div id="global-prompt-alert" class="hide alert alert-warning">
+        <span id="global-prompt-message"></span>
+        <a id="close-global-prompt-alert" href="">[关闭]</a>
+    </div>
+
+    <!-- zybuluo's body -->
+    
+
+
+
+
+
+
+
+<!-- mdeditor's body -->
+
+
+
+
+
+
+<div id="editor-reader-full" class="editor-reader-full-shown" style="position: static;">
+    <div id="reader-full-topInfo" class="reader-full-topInfo-shown">
+        <span>
+            <code>@bflee</code>
+        </span>
+        <code><span class="article-updated-date">2014-01-10T07:39:52.000000Z</span></code>
+        <code><span>字数 </span><span class="article-characters">2640</span></code>
+        <code><span>阅读 </span><span class="article-read">828</span></code>
+    </div>
+    <div id="wmd-preview" class="wmd-preview wmd-preview-full-reader"><h2>KrakenJS简单入门</h2>
+
+<h1>一. KrakenJS的由来</h1>
+
+<p>Paypal为了抗衡其他支付服务商，有迫切的快速开发的需求。</p>
+
+<p>开始的时候，Paypal选用了Nodejs作为快速开发原型架构。</p>
+
+<p>在内部有越来越多的新项目采用Nodejs后，就有了KrakenJS--一套基于Express可以快速开发Web应用的Nodejs框架。</p>
+
+<p>Kraken基于Express，Express是NodeJS最流行的Web开发框架。</p>
+
+<p>Express基于Connect，Connect是一个基于http模块的工具集。</p>
+
+<p>从Node原生的http模块到Connect，再到Express，最后到Kraken。每一次都是对之前的封装，每一次的封装都为特定的开发者提供了更为方便的开发技巧。</p>
+
+<h1>二. 为什么要使用KrakenJS？</h1>
+
+<ol>
+<li>基于目前最流行的NodeJS Web框架Express，但结构更清晰合理，更加符合MVC开发思想。<br>
+<ul><li>/config，存放应用程序和中间件配置<br></li>
+<li>/controllers，控制器<br></li>
+<li>/lib，存放开发者自定义的库文件和其他代码<br></li>
+<li>/locales，特定语言内容<br></li>
+<li>/models，模型<br></li>
+<li>/public，公共的网络资源<br></li>
+<li>/public/templates，服务器和浏览器端模板<br></li>
+<li>/test，存放单元和功能测试用例等<br></li>
+<li>index.js，应用程序入口文件<br></li></ul></li>
+<li>json配置文件，方便生产环境与开发环境的快速切换。</li>
+<li><p>针对web开发提供了方便的工具集和可独立插件，且容易更换。<br>
+Lusca：安全模块<br>
+Kappa：NPM代理插件，可实现npm私库。<br>
+And so on…<br>
+kraken自带的模板是LinkedIn维护的Dust，如果想换成更为简单和常用的Jade，只需：</p>
+
+<p>a. 在package.json的dependencies中添加jade依赖，并<code>npm install</code><br>
+b. 在config/app.json中的view engine配置为jade
+<code>javascript
+"express":{
+    "view engine": "jade"
+ }</code>
+c. 编写对应jade模板即可，无须修改控制层（名字一致后缀改变）</p></li>
+</ol>
+
+<h1>三. 快速入门</h1>
+
+<ol>
+<li>安装生成器<br>
+<code>
+npm install -g generator-krakennode</code></li>
+<li>生成一个项目<br>
+<code>yo kraken</code><br></li>
+<li>启动服务器<br>
+<code>npm start</code> 或<code>node index.js</code><br></li>
+</ol>
+
+<h1>四. 一些尝试</h1>
+
+<ol>
+<li>增加一个用户查询服务：<br>
+1). 配置数据库 <br>
+a). 安装mongoose <br>
+b). 配置config/app.json</li>
+</ol>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln"> </span><span class="str">"databaseConfig"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">      </span><span class="str">"host"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"localhost"</span><span class="pun">,</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">      </span><span class="str">"database"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"test"</span></code></li><li class="L3"><code class="language-javascript"><span class="pun">}</span></code></li></ol></pre>
+
+<p>c). 编写lib/database.js，用于初始化mongo连接</p>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln">    </span><span class="str">'use strict'</span><span class="pun">;</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> mongoose </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'mongoose'</span><span class="pun">);</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> db </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">      </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        config</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">conf</span><span class="pun">){</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">          mongoose</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">'mongodb://'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> conf</span><span class="pun">.</span><span class="pln">host </span><span class="pun">+</span><span class="pln"> </span><span class="str">'/'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> conf</span><span class="pun">.</span><span class="pln">database</span><span class="pun">);</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">          </span><span class="kwd">var</span><span class="pln"> db </span><span class="pun">=</span><span class="pln"> mongoose</span><span class="pun">.</span><span class="pln">connection</span><span class="pun">;</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">          db</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'error'</span><span class="pun">,</span><span class="pln">console</span><span class="pun">.</span><span class="pln">error</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">(</span><span class="pln">console</span><span class="pun">,</span><span class="str">'connection error:'</span><span class="pun">));</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">          db</span><span class="pun">.</span><span class="pln">once</span><span class="pun">(</span><span class="str">'open'</span><span class="pun">,</span><span class="kwd">function</span><span class="pln"> callback</span><span class="pun">(){</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'db connection open'</span><span class="pun">);</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">          </span><span class="pun">});</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="pun">}</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">      </span><span class="pun">};</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    </span><span class="pun">};</span></code></li><li class="L4"><code class="language-javascript"></code></li><li class="L5"><code class="language-javascript"><span class="pln">    module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> db</span><span class="pun">();</span></code></li></ol></pre>
+
+<p>d). 在index.js添加初始化配置代码</p>
+
+<p><code>var db = require('./lib/database');</code></p>
+
+<p>在configure方法中next(null)方法前添加</p>
+
+<p><code>db.config(nconf.get('databaseConfig'));</code><br>
+2). 编写models/user.js <br></p>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="str">'use strict'</span><span class="pun">;</span><span class="pln"> </span></code></li><li class="L1"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> mongoose </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'mongoose'</span><span class="pun">);</span><span class="pln">                                                                                                                                                                                                                                                       </span></code></li><li class="L2"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> userModel </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">                                                                                                                </span></code></li><li class="L3"><code class="language-javascript"><span class="pln">  </span><span class="kwd">var</span><span class="pln"> userSchema </span><span class="pun">=</span><span class="pln"> mongoose</span><span class="pun">.</span><span class="typ">Schema</span><span class="pun">({</span><span class="pln">                                                                                                       </span></code></li><li class="L4"><code class="language-javascript"><span class="pln">     userid</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Number</span><span class="pun">,</span><span class="pln">                                                                                                                         </span></code></li><li class="L5"><code class="language-javascript"><span class="pln">     name</span><span class="pun">:</span><span class="pln"> </span><span class="typ">String</span><span class="pun">,</span><span class="pln">                                                                                                                           </span></code></li><li class="L6"><code class="language-javascript"><span class="pln">     hometown</span><span class="pun">:</span><span class="pln"> </span><span class="typ">String</span><span class="pln">                                                                                                                       </span></code></li><li class="L7"><code class="language-javascript"><span class="pln">  </span><span class="pun">});</span><span class="pln">                                                                                                                                      </span></code></li><li class="L8"><code class="language-javascript"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> mongoose</span><span class="pun">.</span><span class="pln">model</span><span class="pun">(</span><span class="str">'dynamic'</span><span class="pun">,</span><span class="pln">userSchema</span><span class="pun">);</span><span class="pln">                                                                                             </span></code></li><li class="L9"><code class="language-javascript"><span class="pun">};</span><span class="pln">                                                                                                                                                                                                                                                                                          </span></code></li><li class="L0"><code class="language-javascript"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> userModel</span><span class="pun">();</span></code></li></ol></pre>
+
+<p>3). 编写controllers/user.js </p>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln">    </span><span class="str">'use strict'</span><span class="pun">;</span></code></li><li class="L1"><code class="language-javascript"></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> </span><span class="typ">UserModel</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'../models/user'</span><span class="pun">);</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">app</span><span class="pun">){</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">      app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'user'</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln">res</span><span class="pun">){</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">       </span><span class="kwd">var</span><span class="pln"> userid </span><span class="pun">=</span><span class="pln"> req</span><span class="pun">.</span><span class="pln">query</span><span class="pun">.</span><span class="pln">userid</span><span class="pun">;</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">       console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'userid: '</span><span class="pun">+</span><span class="pln">userid</span><span class="pun">);</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">       </span><span class="typ">UserModel</span><span class="pun">.</span><span class="pln">find</span><span class="pun">({</span><span class="pln">userid</span><span class="pun">:</span><span class="pln">userid</span><span class="pun">},</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln">users</span><span class="pun">){</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">         </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">err</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">err</span><span class="pun">);}</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">         </span><span class="kwd">var</span><span class="pln"> model </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">users </span><span class="pun">:</span><span class="pln"> users</span><span class="pun">};</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">         res</span><span class="pun">.</span><span class="pln">json</span><span class="pun">(</span><span class="lit">200</span><span class="pun">,</span><span class="pln">model</span><span class="pun">);}</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">         </span><span class="pun">});</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">      </span><span class="pun">})</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    </span><span class="pun">};</span></code></li></ol></pre>
+
+<ol>
+<li>写一个统计请求的服务：</li>
+</ol>
+
+<p>在Connect / Express中，有一个中间件的概念。使用中间件，可以完成类似AOP或拦截器的需求。</p>
+
+<p>1). 编写服务提供者lib/countReq.js </p>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="str">'use strict'</span><span class="pun">;</span></code></li><li class="L1"><code class="language-javascript"></code></li><li class="L2"><code class="language-javascript"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> requestsServed </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></code></li><li class="L4"><code class="language-javascript"></code></li><li class="L5"><code class="language-javascript"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">,</span><span class="pln"> next</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        requestsServed </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">requestsServed  </span><span class="pun">+</span><span class="pln"> </span><span class="str">' Request Served!'</span><span class="pun">);</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        next</span><span class="pun">();</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">    </span><span class="pun">};</span></code></li><li class="L0"><code class="language-javascript"><span class="pun">};</span></code></li></ol></pre>
+
+<p>2). 在index.js中相应位置调用</p>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="com">// Fired at the beginning of an incoming request</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="pln">requestStart </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> requestStart</span><span class="pun">(</span><span class="pln">server</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    server</span><span class="pun">.</span><span class="pln">use</span><span class="pun">(</span><span class="pln">countReq</span><span class="pun">());</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    </span><span class="com">// Run before most express middleware has been registered.</span></code></li><li class="L4"><code class="language-javascript"><span class="pun">};</span></code></li></ol></pre>
+
+<p>扩展资料：
+How to Write Middleware for Connect / Express.js <br>
+<a href="http://www.hacksparrow.com/how-to-write-midddleware-for-connect-express-js.html" target="_blank">http://www.hacksparrow.com/how-to-write-midddleware-for-connect-express-js.html</a></p></div>
+    <div class="remark-icons">
+    </div>
+</div>
+
+<!--in page preview buttons. -->
+<div class="in-page-preview-buttons in-page-preview-buttons-full-reader">
+    <ul>
+        <li class="in-page-button dropdown" id="preview-toc-button" title="内容目录 Ctrl+Alt+O">
+            <span class="dropdown-toggle icon-list" data-toggle="dropdown"></span>
+            <div id="toc-list" class="dropdown-menu theme pull-right"> <!-- Add theme means this element will be changed when apply theme color. -->
+                <h3>内容目录</h3>
+                <hr>
+                <div class="table-of-contents"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div id="reader-full-toolbar" class="reader-full-toolbar-shown" style="padding-top: 0;">
+    <ul id="reader-full-toolbar-home" class="preview-button-row">
+        <li class="preview-button-full-reader" id="preview-editor-button" title="撰写文本 Ctrl+Alt+M">
+            <span class="icon-pencil"></span>
+        </li>
+    </ul>
+    <ul id="preview-button-row" class="preview-button-row">
+        <li class="preview-button-full-reader dropdown" id="preview-list-button" title="文本列表 Ctrl+Alt+F">
+            <span class="dropdown-toggle icon-reorder" data-toggle="dropdown"></span>
+            <ul id="file-list" class="dropdown-menu theme-black pull-right" role="menu">
+                    <li>
+                    <ul class="tag-list">
+                        <li class="tag-item item" tag-name="未分类">
+                            <span class="pull-left"><i class="icon-tag"></i><span class="tag-name">未分类</span></span>
+                            <span class="tag-count pull-right">1</span>
+                            <div class="clearfix"></div>
+                        </li>
+                            
+    <li class="file-item item" file-created-date="2014-01-10T07:39:52.000000Z">
+        <a tabindex="-1" href="https://www.zybuluo.com/bflee/note/2809" title="【已发布】 2014-01-10T07:39:52.000000Z">
+        <i class="icon-share-sign"></i>
+        <span id="2809" class="whiter-on-black">KrakenJS简单入门</span>
+        </a>
+    </li>
+
+                    </ul>
+                    </li>
+            </ul>
+            <ul id="file-list-topbar" class="dropdown-menu theme-black pull-right" role="menu">
+                <li id="search-file-bar">
+                    <i class="icon-search icon-large"></i>
+                    <input type="text" id="search-file-textbox" placeholder="搜索 bflee 的文稿标题， * 显示全部">
+                    <i class="icon-level-down icon-rotate-90 icon-large"></i>
+                </li>
+                <li id="tag-file-bar">
+                    以下【标签】将用于标记这篇文稿：
+                </li>
+            </ul>
+        </li>
+        <li class="preview-button-full-reader" id="preview-theme-button" title="主题切换 Ctrl+Alt+Y">
+            <span class="icon-adjust"></span>
+        </li>
+        <li class="preview-button-full-reader" id="preview-fullscreen-button" title="全屏模式 F11">
+            <span class="icon-fullscreen"></span>
+        </li>
+        <li class="preview-button-full-reader wmd-spacer"></li>
+        <li class="preview-button-full-reader dropdown" id="preview-about-button" title="关于本站">
+            <span class="dropdown-toggle icon-info-sign" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true"></span>
+            <ul id="about-menu" class="dropdown-menu theme-black pull-right" role="menu">
+                <li title="下载全平台客户端"><a tabindex="-1" href="https://www.zybuluo.com/cmd" target="_blank"><i class="icon-laptop"></i>下载客户端</a></li>
+                <li title="@ghosert"><a tabindex="-1" href="http://www.weibo.com/ghosert" target="_blank"><i class="icon-weibo"></i>关注开发者</a></li>
+                <li title=""><a tabindex="-1" href="https://github.com/ghosert/cmd-editor/issues" target="_blank"><i class="icon-github-alt"></i>报告问题，建议</a></li>
+                <li title="support@zybuluo.com"><a tabindex="-1" href="mailto:support@zybuluo.com" target="_blank"><i class="icon-envelope"></i>联系我们</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<ul id="reader-full-toolbar-tail" class="reader-full-toolbar-tail-shown">
+    <li class="preview-button-full-reader" id="preview-hidden-button" title="隐藏工具栏 Ctrl+Alt+I">
+        <span class="icon-chevron-sign-right"></span>
+    </li>
+</ul>
+
+
+
+
+
+
+<!-- side remark, hidden when loading. -->
+<div class="remark-list side-remark-hidden">
+    <div class="remark-items">
+    </div>
+    <div class="leave-remark unselectable"><span class='icon-plus-sign-alt'></span><span>添加新批注</span></div>
+    <div class="new-remark">
+        <!-- clone the template $('.new-remark-reply').html() to here.-->
+        <div class="remark-notice">在作者公开此批注前，只有你和作者可见。</div>
+    </div>
+</div>
+
+<!-- template for new remark/reply -->
+<div class="new-remark-reply side-remark-hidden">
+    <div class="remark-head"><a><img src="https://www.zybuluo.com/static/img/default-head.jpg"></a></div>
+    <div class="remark-author unselectable"></div>
+    <div class="remark-editor" contentEditable="true" spellcheck="false"></div>
+    <!-- this will be filled up by js.
+    <div class="inline-error">402/400</div> for new remark
+    <div class="inline-error">202/200</div> for new reply
+    -->
+    <div class="remark-footer unselectable">
+        <button class="remark-save btn-link">保存</button>
+        <button class="remark-cancel btn-link">取消</button>
+    </div>
+</div>
+
+<!-- template for .remark-item/.remark-reply -->
+<div class="remark-item-reply side-remark-hidden">
+    <div class="remark-head"><a><img src="https://www.zybuluo.com/static/img/default-head.jpg"></a></div>
+    <div class="remark-author unselectable"></div>
+    <div class="remark-delete-link unselectable"><span class="icon-remove"></span></div> <!--This is mainly for deleting remark-reply, shown when author/remark hovering on remark-reply.-->
+    <div class="remark-editor" contentEditable="true" spellcheck="false"></div>
+    <!-- this will be filled up by js.
+    <div class="inline-error">402/400</div> for new remark
+    <div class="inline-error">202/200</div> for new reply
+    -->
+    <div class="remark-footer unselectable">
+        <button class="remark-edit btn-link">修改</button>
+        <button class="remark-save btn-link">保存</button>
+        <button class="remark-cancel btn-link">取消</button>
+        <button class="remark-delete btn-link">删除</button>
+    </div>
+</div>
+
+<!-- template for remark-item-->
+<div class="remark-item side-remark-hidden" data-rand-id="" data-version-id="">
+    <div class="remark-published-link unselectable"><span class="icon-link icon-rotate-90"></span></div>
+    <ul class="remark-options theme unselectable">
+        <li class="remark-private"><span class="icon-eye-close"></span><span>私有</span></li>
+        <li class="remark-public"><span class="icon-group"></span><span>公开</span></li>
+        <li class="remark-delete"><span class="icon-remove"></span><span>删除</span></li>
+    </ul>
+
+    <!-- clone the template $('.remark-item-reply').html() to here.-->
+
+    <button class="remark-reply-view-more btn-link">查看更早的 5 条回复</button>
+    <div class="remark-replies">
+        <!--
+        <div class="remark-reply">
+            clone the template $('.remark-item-reply').html() to here.
+        </div>
+        -->
+    </div>
+
+    <div class="leave-reply unselectable"><span>回复批注</span></div>
+    <div class="new-reply">
+        <!-- clone the template $('.new-remark-reply').html() to here.-->
+    </div>
+</div>
+
+<!-- jiawzhang NOTICE: .remark-icons will be put to mdeditor.mako and user_note.mako, where next to .wmd-preview -->
+<!-- <div class="remark-icons"></div> -->
+
+<!-- template for remark-icon -->
+<div class="remark-icon unselectable side-remark-hidden remark-icon-empty" style="display: none;">
+    <span class="icon-stack">
+        <i class="glyph-comment"></i>
+        <span class="remark-count"></span>
+    </span>
+</div>
+
+
+    
+
+
+    <!-- Hidden Popup Modal -->
+    <div id="notification" class="modal hide fade theme" tabindex="-1" role="dialog" aria-labelledby="notification-title" aria-hidden="true">
+        <div class="modal-header theme">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="notification-title">通知</h3>
+        </div>
+        <div class="modal-body theme">
+            <p></p>
+        </div>
+        <div class="modal-footer theme">
+            <button id="notification-cancel" class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+            <button id="notification-confirm" class="btn btn-primary">确认</button>
+        </div>
+    </div>
+
+    <!-- zybuluo's foot -->
+
+    <script src="https://www.zybuluo.com/static/assets/ac6caddd.base.lib.min.js"></script>
+
+    <script>
+        Namespace('com.zybuluo.base');
+        com.zybuluo.base.initData = {
+            globalPromptUrl: "https://www.zybuluo.com/global/prompt",
+        };
+    </script>
+
+    
+    <!--mathjax-->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]], processEscapes: true }, TeX: { equationNumbers: { autoNumber: "AMS" } }, messageStyle: "none"});
+    </script>
+    <script src="https://www.zybuluo.com/static/editor/libs/mathJax.js"></script>
+    <!--mathjax source code is here: https://github.com/mathjax/MathJax.-->
+    <script src="https://www.zybuluo.com/static/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script>
+        Namespace('com.zybuluo.mdeditor.layout');
+        com.zybuluo.mdeditor.layout.initData = {
+            // '' means not logged in, otherwise the logged in username, for mdeditor.mako, this value will be reset in render.js otherwise, for user_note.mako, it's rendered by server side.
+            loggedInUsername: '',
+            isPageOwner: 'False' === 'True' ? true : false,
+            loginComeFromUrl: 'https://www.zybuluo.com/login?return_to=https%3A%2F%2Fwww.zybuluo.com%2Fbflee%2Fnote%2F2809',
+            noteRemarksUrl: "https://www.zybuluo.com/note/2809/remarks", 
+            newNoteRemarkUrl: "https://www.zybuluo.com/note/2809/remark/new", 
+            updateNoteRemarkUrl: "https://www.zybuluo.com/note/2809/remark/update", 
+            deleteNoteRemarkUrl: "https://www.zybuluo.com/note/2809/remark/delete", 
+            publishNoteRemarkUrl: "https://www.zybuluo.com/note/2809/remark/publish", 
+            newNoteRemarkReplyUrl: "https://www.zybuluo.com/note/2809/remark_reply/new", 
+            updateNoteRemarkReplyUrl: "https://www.zybuluo.com/note/2809/remark_reply/update", 
+            deleteNoteRemarkReplyUrl: "https://www.zybuluo.com/note/2809/remark_reply/delete", 
+        };
+
+        // BEGIN: pace.js configuration
+        window.paceOptions = {
+            // disable others, enable for ajax call only,
+            ajax: true,
+            document: false,
+            elements: false,
+            eventLag: false,
+        };
+        // jiawzhang NOTICE: to make sure pace.js is working for any ajax call especially the jquery ajax, add 'Pace.restart()' into jquery ajax call like '$.post'
+        // Originally, pace 0.5.6 doesn't support jquery ajax, see details in: https://github.com/HubSpot/pace/issues/29
+        // END: pace.js configuration
+
+    </script>
+
+    <script src="https://www.zybuluo.com/static/assets/mdeditor/7a70106e.layout.lib.min.js"></script>
+
+    <script src="https://www.zybuluo.com/static/assets/mdeditor/f57fbddc.layout.min.js"></script>
+
+
+
+    
+
+    <!-- https://www.zybuluo.com/static/assets/mdeditor/user_note.lib.min.js -->
+    <!-- -->
+
+    <script>
+        Namespace('com.zybuluo.mdeditor.user_note');
+        com.zybuluo.mdeditor.user_note.initData = {
+            isLoggedIn: 'False',
+            mdeditorUrl: "https://www.zybuluo.com/mdeditor",
+        };
+    </script>
+
+    <script src="https://www.zybuluo.com/static/assets/mdeditor/3dd6198b.user_note.min.js"></script>
+
+
+
+</body>
+</html>
+    
