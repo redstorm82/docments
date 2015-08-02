@@ -12,7 +12,7 @@
 	git remote add origin https://github.com/redstorm82/docments.git
 	git push -u origin master
   
-  配置别名
+7.配置别名
   git config --global alias.st status
   git config --global alias.ci commit
   git config --global alias.st checkout
@@ -22,6 +22,10 @@
   git config --global alias.lg 'log --name-status'
   git config  --global -l
 	git config  --global
+
+8.测试：  ssh git@github.com
+9.查看git配置 git config --lis
+
 
 github账户
 Username for 'https://github.com': redstorm82
