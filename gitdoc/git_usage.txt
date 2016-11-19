@@ -1,18 +1,19 @@
-0. °²×°git Git-1.9.5-preview20150319.exe
-1. ssh-keygen -t rsa -C "redstorm82@qq.com"
+0. å®‰è£…git Git-1.9.5-preview20150319.exe
+1. ssh-keygen -t rsa -C "redstorm82@qq.com" 
+	å¯å°†ç”Ÿæˆçš„æ–‡ä»¶id_rsa  id_rsa.pub  ä¿å­˜ï¼Œä»¥ä¾¿åç»­æ¢å¤åˆ°gitçš„keyä¿å­˜ä½ç½®/c/Users/username/.ssh/
 2. add id_rsa.pub to github in browser
 3. git config --global user.name "felix"
 4. git config --global user.email "redstorm82@qq.com"
-5. ÔÚgithubÍøÒ³ÉÏ´´½¨Ò»¸ö¿Õ²Ö¿âhttps://github.com/redstorm82/docments.git
-6. ÔÚ±¾µØ´´½¨²Ö¿â
-  ´´½¨ÎÄ¼şREADME.md
+5. åœ¨githubç½‘é¡µä¸Šåˆ›å»ºä¸€ä¸ªç©ºä»“åº“https://github.com/redstorm82/docments.git
+6. åœ¨æœ¬åœ°åˆ›å»ºä»“åº“
+  åˆ›å»ºæ–‡ä»¶README.md
 	git init
 	git add README.md
 	git commit -m "init commit"
 	git remote add origin https://github.com/redstorm82/docments.git
 	git push -u origin master
   
-7.ÅäÖÃ±ğÃû
+7.é…ç½®åˆ«å
   git config --global alias.st status
   git config --global alias.ci commit
   git config --global alias.co checkout
@@ -22,10 +23,10 @@
   git config --global alias.lg 'log --name-status'
   git config  --global -l
 
-8.²âÊÔ£º  ssh git@github.com
-9.²é¿´gitÅäÖÃ git config --lis
+8.æµ‹è¯•ï¼š  ssh git@github.com
+9.æŸ¥çœ‹gité…ç½® git config --lis
 
 
-githubÕË»§
+githubè´¦æˆ·
 Username for 'https://github.com': redstorm82
-Password for 'https://redstorm82@github.com':  Shen¡£¡£¡£
+Password for 'https://redstorm82@github.com':  Shenã€‚ã€‚ã€‚
