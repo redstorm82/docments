@@ -10,6 +10,14 @@
     mysql> FLUSH PRIVILEGES;
 4、显示当前的user：
 mysql> SELECT USER();
+5、查看数据
+ 	show databases;
+6、指定数据库
+	use database_name
+7、查看数据库中所有表名字
+	show tables;
+8、查看某个表的字段信息
+	desc table_name;
 
 创建数据库
 create database database_name
